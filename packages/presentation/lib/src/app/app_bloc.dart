@@ -105,7 +105,7 @@ class _AppBloc extends BlocImpl<AppData> implements AppBloc {
     BasePage page,
   ) async {
     await future;
-    _popOldAndPush(page);
+    _popAndPush(page);
   }
 
   BasePage<BaseArguments>? _currentPage() =>
