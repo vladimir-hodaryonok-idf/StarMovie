@@ -3,6 +3,7 @@ import 'package:presentation/src/app/data/app_data.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/navigation/base_page.dart';
+import 'package:presentation/src/pages/home_page/home.dart';
 
 abstract class AppBloc extends Bloc<AppData> {
   factory AppBloc() => _AppBloc();
@@ -14,10 +15,14 @@ class _AppBloc extends BlocImpl<AppData> implements AppBloc {
   _AppBloc() : super(AppData.init());
 
   @override
-  void init() {
+  void init() async {
     super.init();
     _initNavHandler();
     _update();
+    _handleSplashScreen(
+      Future.delayed(Duration(seconds: 3)),
+      Home.page(),
+    );
   }
 
   @override
@@ -37,6 +42,7 @@ class _AppBloc extends BlocImpl<AppData> implements AppBloc {
       pop: _pop,
       maybePop: _maybePop,
       popUntil: _popUntil,
+      handleSplashScreen: _handleSplashScreen,
       currentPage: _currentPage,
     );
   }
@@ -92,6 +98,14 @@ class _AppBloc extends BlocImpl<AppData> implements AppBloc {
     final endIndex = tile.pages.length;
     tile.pages.removeRange(startIndex, endIndex);
     _update();
+  }
+
+  Future<void> _handleSplashScreen(
+    Future future,
+    BasePage page,
+  ) async {
+    await future;
+    _popOldAndPush(page);
   }
 
   BasePage<BaseArguments>? _currentPage() =>

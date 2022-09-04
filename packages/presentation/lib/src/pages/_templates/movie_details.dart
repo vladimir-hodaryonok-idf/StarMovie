@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/_templates/home.dart';
+import 'package:presentation/src/pages/home_page/home.dart';
 import 'package:presentation/text_styles/styles.dart';
 
 const testImage = 'packages/presentation/assets/test_images/john.png';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/text_styles/styles.dart';
 
 const movieReelIcon = 'packages/presentation/assets/icons/event_ticket.svg';
@@ -10,6 +11,13 @@ const singlePersonIcon = 'packages/presentation/assets/icons/single.svg';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
   static const title = 'Star Movie';
+  static const _routName = '/HomePage';
+
+  static page() => BasePage(
+        key: const ValueKey(_routName),
+        name: _routName,
+        builder: (context) => const Home(),
+      );
 
   @override
   Widget build(BuildContext context) {
