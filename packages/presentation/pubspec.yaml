@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   flutter_svg: 1.1.4
 
-  get_it: ^7.2.0
   domain:
     path: ../domain
 
