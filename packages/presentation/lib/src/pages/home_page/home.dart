@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
+import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/text_styles/styles.dart';
 
 const movieReelIcon = 'packages/presentation/assets/icons/event_ticket.svg';
@@ -8,7 +10,7 @@ const alarmIcon = 'packages/presentation/assets/icons/alarm.svg';
 const eventTicketIcon = 'packages/presentation/assets/icons/event_ticket.svg';
 const singlePersonIcon = 'packages/presentation/assets/icons/single.svg';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
   static const title = 'Star Movie';
   static const _routName = '/HomePage';
@@ -20,10 +22,15 @@ class Home extends StatelessWidget {
       );
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends BlocScreenState<Home, HomeBloc> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title, style: sfProSemiBold24px),
+        title: Text(Home.title, style: sfProSemiBold24px),
         actions: [
           IconButton(
             onPressed: () {
@@ -45,30 +52,33 @@ class Home extends StatelessWidget {
               icon: SvgPicture.asset(singlePersonIcon), label: 'Personal'),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            MovieShowingStatus(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 18.0,
-                  right: 18.0,
+      body: StreamBuilder(
+        stream: bloc.dataStream,
+        builder: (context, snapShot) => Center(
+          child: Column(
+            children: [
+              MovieShowingStatus(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 18.0,
+                    right: 18.0,
+                  ),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                        childAspectRatio: 1 / 2.1),
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return MovieGridItem();
+                    },
+                  ),
                 ),
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 1 / 2.1),
-                  itemCount: 8, //todo from apiList
-                  itemBuilder: (context, index) {
-                    return MovieGridItem();
-                  },
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
