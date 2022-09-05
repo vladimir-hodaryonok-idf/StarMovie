@@ -17,7 +17,7 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
     return MaterialApp(
       title: 'Star Movie',
       theme: ThemeData.dark(),
-      home: StreamBuilder<BaseTile<AppData>>(
+      home: StreamBuilder<BaseTile<AppData?>>(
         stream: bloc.dataStream,
         builder: (context, snapshot) {
           final baseTile = snapshot.data;

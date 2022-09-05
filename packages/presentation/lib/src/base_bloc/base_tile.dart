@@ -1,6 +1,6 @@
-class BaseTile<T> {
+class BaseTile<D> {
   final bool isLoading;
-  final T? tile;
+  final D? tile;
 
   BaseTile({
     required this.tile,
@@ -12,9 +12,9 @@ class BaseTile<T> {
         tile: null,
       );
 
-  BaseTile<T> copyWith({
+  BaseTile<D> copyWith({
     bool? isLoading,
-    T? tile,
+    D? tile,
   }) =>
       BaseTile(
         isLoading: isLoading ?? this.isLoading,
