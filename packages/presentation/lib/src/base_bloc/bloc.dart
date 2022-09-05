@@ -2,22 +2,23 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
+import 'package:presentation/src/navigation/base_arguments.dart';
 import 'base_tile.dart';
 
-abstract class Bloc<T> {
-  Stream<BaseTile<T>> get dataStream;
+abstract class Bloc<T extends BaseArguments, D> {
+  Stream<BaseTile<D?>> get dataStream;
 
-  T get tile;
+  D get tile;
 
   void init();
 
-  void dispose();
+  void initArgs(T args);
 }
 
-abstract class BlocImpl<T> implements Bloc<T> {
-  final _dataStream = StreamController<BaseTile<T>>();
-  BaseTile<T> baseTile = BaseTile<T>.init();
-  T _blocTile;
+abstract class BlocImpl<T extends BaseArguments, D> implements Bloc<T, D> {
+  final _dataStream = StreamController<BaseTile<D?>>();
+  BaseTile<D> baseTile = BaseTile.init();
+  D _blocTile;
 
   @protected
   final appNavigator = GetIt.I.get<AppNavigator>();
@@ -25,13 +26,13 @@ abstract class BlocImpl<T> implements Bloc<T> {
   BlocImpl(this._blocTile);
 
   @override
-  T get tile => _blocTile;
+  D get tile => _blocTile;
 
   @override
-  Stream<BaseTile<T>> get dataStream => _dataStream.stream;
+  Stream<BaseTile<D?>> get dataStream => _dataStream.stream;
 
   emit({
-    T? data,
+    D? data,
     bool? isLoading,
   }) {
     if (data != null) _blocTile = data;
@@ -46,5 +47,5 @@ abstract class BlocImpl<T> implements Bloc<T> {
   void init() {}
 
   @override
-  void dispose() {}
+  void initArgs(T args) {}
 }
