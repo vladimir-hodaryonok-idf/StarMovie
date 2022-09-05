@@ -12,10 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  get_it: ^7.2.0
 
-  domain:
-    path: packages/domain
   data:
     path: packages/data
   presentation:
