@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/_templates/home.dart';
-import 'package:presentation/text_styles/styles.dart';
-
-const testImage = 'packages/presentation/assets/test_images/john.png';
+import 'package:presentation/style/text_styles/styles.dart';
+import 'package:presentation/utils/images_container.dart';
+import 'home_page/widgets/movie_stars.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class MovieDetails extends StatelessWidget {
         child: Column(
           children: [
             MovieCover(
-              imageUrl: testImage,
+              imageUrl: Assets.testImage,
             ),
             MovieInfo(
               parentsGuide: 'R',
@@ -45,7 +44,7 @@ class MovieCover extends StatelessWidget {
           width: double.infinity,
           height: 262,
           child: Image.asset(
-            testImage,
+            Assets.testImage,
             fit: BoxFit.fitWidth,
             alignment: Alignment.topLeft,
           ),

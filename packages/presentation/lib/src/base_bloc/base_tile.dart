@@ -7,7 +7,7 @@ class BaseTile<D> {
     required this.isLoading,
   });
 
-  factory BaseTile.init() => BaseTile(
+  factory BaseTile.init() => BaseTile<D>(
         isLoading: false,
         tile: null,
       );

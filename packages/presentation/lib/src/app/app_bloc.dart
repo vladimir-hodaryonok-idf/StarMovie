@@ -4,13 +4,13 @@ import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 
-abstract class AppBloc extends Bloc<BaseArguments,AppData> {
+abstract class AppBloc extends Bloc {
   factory AppBloc() => _AppBloc();
 
   void handleRemoveRouteSettings(RouteSettings value);
 }
 
-class _AppBloc extends BlocImpl<BaseArguments,AppData> implements AppBloc {
+class _AppBloc extends BlocImpl implements AppBloc {
   _AppBloc() : super(AppData.init());
 
   @override

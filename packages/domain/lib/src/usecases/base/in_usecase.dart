@@ -1,9 +1,3 @@
-abstract class InUseCase<In, R> {
-  final R _repository;
-
-  InUseCase(this._repository);
-
-  R get repository => _repository;
-
+abstract class InUseCase<In> {
   call(In params);
 }
