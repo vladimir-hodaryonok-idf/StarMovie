@@ -17,8 +17,8 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   @override
   void init() {
     super.init();
-    _initNavHandler();
     _update();
+    _initNavHandler();
   }
 
   @override
