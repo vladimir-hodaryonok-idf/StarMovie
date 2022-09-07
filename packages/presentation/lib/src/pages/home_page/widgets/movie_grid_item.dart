@@ -14,7 +14,7 @@ class MovieGridItem extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            Assets.testImage,
+            AssetsImages.testImage,
             width: double.infinity,
             fit: BoxFit.fill,
           ),

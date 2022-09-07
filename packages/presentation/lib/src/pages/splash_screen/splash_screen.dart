@@ -40,7 +40,7 @@ class _SplashScreenState
               ),
             ),
             child: Center(
-              child: SvgPicture.asset(Assets.splashAsset),
+              child: SvgPicture.asset(AssetsImages.splashAsset),
             ),
           ),
         );

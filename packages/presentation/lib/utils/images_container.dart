@@ -1,4 +1,4 @@
-class Assets {
+class AssetsImages {
   static String get splashAsset =>
       'packages/presentation/assets/splash_screen/splash.svg';
 

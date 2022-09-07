@@ -40,7 +40,7 @@ class MovieShortInfo extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: SvgPicture.asset(Assets.ellipse),
+                  child: SvgPicture.asset(AssetsImages.ellipse),
                 ),
                 Text(
                   '| $parentsGuide',
