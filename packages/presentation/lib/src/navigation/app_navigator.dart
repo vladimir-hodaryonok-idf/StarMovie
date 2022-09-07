@@ -61,7 +61,6 @@ class _AppNavigatorImpl implements AppNavigator {
     Function()? pop,
     Function()? maybePop,
     Function(BasePage<BaseArguments> page)? popUntil,
-    Function(Future future, BasePage page)? handleSplashScreen,
     BasePage<BaseArguments>? Function()? currentPage,
   }) {
     _push = push;

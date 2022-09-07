@@ -24,27 +24,22 @@ class _SplashScreenState
     extends BlocScreenState<SplashScreen, SplashScreenBloc> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.dataStream,
-      builder: (_, snapShot) {
-        return Material(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(MyColors.splashScreenUp),
-                  Color(MyColors.splashScreenBottom),
-                ],
-              ),
-            ),
-            child: Center(
-              child: SvgPicture.asset(AssetsImages.splashAsset),
-            ),
+    return Material(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(MyColors.splashScreenUp),
+              Color(MyColors.splashScreenBottom),
+            ],
           ),
-        );
-      },
+        ),
+        child: Center(
+          child: SvgPicture.asset(AssetsImages.splashAsset),
+        ),
+      ),
     );
   }
 }
