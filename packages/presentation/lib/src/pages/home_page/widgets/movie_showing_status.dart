@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/_templates/home_page/widgets/status_button.dart';
+import 'package:presentation/src/pages/home_page/widgets/status_button.dart';
 
 class MovieShowingStatus extends StatelessWidget {
   const MovieShowingStatus({Key? key}) : super(key: key);

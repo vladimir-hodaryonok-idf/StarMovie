@@ -28,7 +28,7 @@ class MovieStars extends StatelessWidget {
               (_) => Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: SvgPicture.asset(
-                  Assets.fullStar,
+                  AssetsImages.fullStar,
                   height: isBigStar ? 20 : 14,
                   width: isBigStar ? 20 : 14,
                 ),
@@ -37,7 +37,7 @@ class MovieStars extends StatelessWidget {
             ...List.generate(
               maxFullStars - fullStarsCount,
               (_) => SvgPicture.asset(
-                Assets.emptyStar,
+                AssetsImages.emptyStar,
                 height: isBigStar ? 20 : 14,
                 width: isBigStar ? 20 : 14,
               ),

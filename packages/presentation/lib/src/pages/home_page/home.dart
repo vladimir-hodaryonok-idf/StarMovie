@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/src/pages/_templates/home_page/widgets/movie_grid_item.dart';
-import 'package:presentation/src/pages/_templates/home_page/widgets/movie_showing_status.dart';
+import 'package:presentation/src/pages/home_page/widgets/movie_grid_item.dart';
+import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
 
@@ -26,19 +26,19 @@ class Home extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.movieReelIcon),
+            icon: SvgPicture.asset(AssetsImages.movieReelIcon),
             label: 'Films',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.alarmIcon),
+            icon: SvgPicture.asset(AssetsImages.alarmIcon),
             label: 'Reminder',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.eventTicketIcon),
+            icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
             label: 'Tickets',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(Assets.singlePersonIcon),
+            icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
             label: 'Personal',
           ),
         ],

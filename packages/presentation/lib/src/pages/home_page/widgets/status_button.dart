@@ -28,7 +28,7 @@ class StatusButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          isActive ? SvgPicture.asset(Assets.playIcon) : SizedBox.shrink(),
+          isActive ? SvgPicture.asset(AssetsImages.playIcon) : SizedBox.shrink(),
           Text(
             text,
             style: sfProSemiBold14px,

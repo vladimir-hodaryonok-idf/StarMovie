@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/_templates/home_page/widgets/movie_short_info.dart';
-import 'package:presentation/src/pages/_templates/home_page/widgets/movie_stars.dart';
+import 'package:presentation/src/pages/home_page/widgets/movie_short_info.dart';
+import 'package:presentation/src/pages/home_page/widgets/movie_stars.dart';
 import 'package:presentation/utils/images_container.dart';
 
 class MovieGridItem extends StatelessWidget {
@@ -14,7 +14,7 @@ class MovieGridItem extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            Assets.testImage,
+            AssetsImages.testImage,
             width: double.infinity,
             fit: BoxFit.fill,
           ),
