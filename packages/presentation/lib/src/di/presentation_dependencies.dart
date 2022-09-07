@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:get_it/get_it.dart';
 import 'package:presentation/src/app/app_bloc.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
@@ -7,8 +8,20 @@ import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dar
 final inject = GetIt.I;
 
 void initPresentationModule() {
+  initNavigatorModule();
+  initBlocModule();
+}
+
+void initNavigatorModule() {
   inject.registerLazySingleton<AppNavigator>(() => AppNavigator());
   inject.registerFactory<AppBloc>(() => AppBloc());
-  inject.registerFactory<SplashScreenBloc>(() => SplashScreenBloc());
+}
+
+void initBlocModule() {
+  inject.registerFactory<SplashScreenBloc>(
+    () => SplashScreenBloc(
+      inject.get<InitialApiCallUseCase>(),
+    ),
+  );
   inject.registerFactory<HomeBloc>(() => HomeBloc());
 }

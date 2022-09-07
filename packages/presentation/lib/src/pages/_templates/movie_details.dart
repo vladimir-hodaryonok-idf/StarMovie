@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/home_page/widgets/movie_stars.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
-import 'home_page/widgets/movie_stars.dart';
 
 class MovieDetails extends StatelessWidget {
   const MovieDetails({Key? key}) : super(key: key);

@@ -1,21 +1,27 @@
+import 'package:domain/domain.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/pages/home_page/home.dart';
 
 abstract class SplashScreenBloc extends Bloc {
-  factory SplashScreenBloc() => _SplashScreenBloc();
+  factory SplashScreenBloc(
+    InitialApiCallUseCase initialApiCall,
+  ) =>
+      _SplashScreenBloc(initialApiCall);
 }
 
 class _SplashScreenBloc extends BlocImpl implements SplashScreenBloc {
-  _SplashScreenBloc() : super(null);
+  final InitialApiCallUseCase initialApiCall;
+
+  _SplashScreenBloc(this.initialApiCall) : super(null);
 
   @override
   void init() {
     super.init();
-    appNavigator.handleSplashScreen(
-      initialCall(),
-      Home.page(),
-    );
+    handleSplashScreen();
   }
 
-  Future<void> initialCall() => Future.delayed(Duration(seconds: 3));
+  void handleSplashScreen() async {
+    await initialApiCall();
+    appNavigator.popAndPush(Home.page());
+  }
 }

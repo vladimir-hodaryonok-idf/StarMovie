@@ -17,8 +17,8 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   @override
   void init() {
     super.init();
-    _initNavHandler();
     _update();
+    _initNavHandler();
   }
 
   @override
@@ -93,14 +93,6 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
     final endIndex = tile.pages.length;
     tile.pages.removeRange(startIndex, endIndex);
     _update();
-  }
-
-  Future<void> _handleSplashScreen(
-    Future future,
-    BasePage page,
-  ) async {
-    await future;
-    _popAndPush(page);
   }
 
   BasePage<BaseArguments>? _currentPage() => tile.pages.lastOrNull;

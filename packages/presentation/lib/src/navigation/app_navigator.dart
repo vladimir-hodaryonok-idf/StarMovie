@@ -12,7 +12,6 @@ abstract class AppNavigator {
     Function() pop,
     Function() maybePop,
     Function(BasePage page) popUntil,
-    Function(Future future, BasePage page) handleSplashScreen,
     BasePage? Function() currentPage,
   });
 
@@ -34,8 +33,6 @@ abstract class AppNavigator {
 
   void popUntil(BasePage page);
 
-  Future<void> handleSplashScreen(Future future, BasePage page);
-
   BasePage? currentPage();
 
   factory AppNavigator() => _AppNavigatorImpl();
@@ -51,7 +48,6 @@ class _AppNavigatorImpl implements AppNavigator {
   Function()? _pop;
   Function()? _maybePop;
   Function(BasePage page)? _popUntil;
-  Function(Future future, BasePage page)? _handleSplashScreen;
   BasePage? Function()? _currentPage;
 
   @override
@@ -78,7 +74,6 @@ class _AppNavigatorImpl implements AppNavigator {
     _maybePop = maybePop;
     _popUntil = popUntil;
     _currentPage = currentPage;
-    _handleSplashScreen = handleSplashScreen;
   }
 
   @override
@@ -114,8 +109,4 @@ class _AppNavigatorImpl implements AppNavigator {
 
   @override
   BasePage<BaseArguments>? currentPage() => _currentPage?.call();
-
-  @override
-  Future<void> handleSplashScreen(Future future, BasePage page) =>
-      _handleSplashScreen?.call(future, page);
 }
