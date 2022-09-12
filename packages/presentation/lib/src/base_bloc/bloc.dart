@@ -6,7 +6,7 @@ import 'package:presentation/src/navigation/base_arguments.dart';
 import 'base_tile.dart';
 
 abstract class Bloc<T extends BaseArguments, D> {
-  Stream<BaseTile<D?>> get dataStream;
+  Stream<BaseTile<D>> get dataStream;
 
   D get tile;
 
@@ -16,7 +16,7 @@ abstract class Bloc<T extends BaseArguments, D> {
 }
 
 abstract class BlocImpl<T extends BaseArguments, D> implements Bloc<T, D> {
-  final _dataStream = StreamController<BaseTile<D?>>();
+  final _dataStream = StreamController<BaseTile<D>>();
   BaseTile<D> baseTile = BaseTile.init();
   D _blocTile;
 
@@ -29,16 +29,18 @@ abstract class BlocImpl<T extends BaseArguments, D> implements Bloc<T, D> {
   D get tile => _blocTile;
 
   @override
-  Stream<BaseTile<D?>> get dataStream => _dataStream.stream;
+  Stream<BaseTile<D>> get dataStream => _dataStream.stream;
 
   emit({
     D? data,
     bool? isLoading,
+    String? errorMessage,
   }) {
     if (data != null) _blocTile = data;
     baseTile = baseTile.copyWith(
       isLoading: isLoading,
       tile: data,
+      errorMessage: errorMessage,
     );
     _dataStream.add(baseTile);
   }

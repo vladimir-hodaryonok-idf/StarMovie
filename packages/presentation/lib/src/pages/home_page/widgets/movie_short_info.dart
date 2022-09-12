@@ -17,39 +17,43 @@ class MovieShortInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
-              movieName,
-              style: sfProSemiBold16px,
+      child: Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                movieName,
+                style: sfProSemiBold16px,
+                maxLines: 2,
+                softWrap: true,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  movieGenres,
-                  style: sfProSemiMedium12px50opacity,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: SvgPicture.asset(AssetsImages.ellipse),
-                ),
-                Text(
-                  '| $parentsGuide',
-                  style: sfProSemiMedium12px50opacity,
-                )
-              ],
-            ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    movieGenres,
+                    style: sfProSemiMedium12px50opacity,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                    child: SvgPicture.asset(AssetsImages.ellipse),
+                  ),
+                  Text(
+                    '| $parentsGuide',
+                    style: sfProSemiMedium12px50opacity,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: 1.1.4
+  shimmer: ^2.0.0
 
   domain:
     path: ../domain

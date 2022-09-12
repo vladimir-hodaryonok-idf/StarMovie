@@ -8,5 +8,7 @@ environment:
   sdk: '>=2.17.6 <3.0.0'
 
 dependencies:
+  dio: ^4.0.6
+  pretty_dio_logger: ^1.1.1
   domain:
     path: ../domain
