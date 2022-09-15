@@ -5,7 +5,9 @@ class JsonToTrendingList extends Mapper<dynamic, List<MovieTrending>> {
   @override
   List<MovieTrending> call(params) {
     return List.from(
-      (params as List<dynamic>).map((e) => MovieTrending.fromJson(e)),
+      (params as List<dynamic>).map(
+        (e) => MovieTrending.fromJson(e),
+      ),
     );
   }
 }

@@ -27,19 +27,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends BlocScreenState<Home, HomeBloc> {
   static const _title = 'Star Movie';
+  int _bottomNavIndex = 0;
+
+  void _onBottomNavBarClick(int index) {
+    setState(() {
+      _bottomNavIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(_title, style: sfProSemiBold24px),
+        centerTitle: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {
-              //todo action
-            },
+            onPressed: () {},
             icon: const Icon(Icons.search),
           )
         ],
@@ -51,45 +57,72 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
           builder: (context, snapShot) {
             final state = snapShot.data;
             final tile = state?.tile;
-            if (state == null || tile == null)
-              return SizedBox.shrink();
+            if (state == null || tile == null) return SizedBox.shrink();
             if (state.errorMessage != null)
               return HomeError(
                 tile: tile,
                 bloc: bloc,
                 state: state,
               );
-              return HomeBody(
-                tile: tile,
-                bloc: bloc,
-                isLoading: state.isLoading,
-              );
+            return HomeBody(
+              tile: tile,
+              bloc: bloc,
+              isLoading: state.isLoading,
+            );
           },
         ),
       ),
     );
   }
 
-  BottomNavigationBar buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(AssetsImages.movieReelIcon),
-          label: 'Films',
+  Container buildBottomNavigationBar() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Theme.of(context).colorScheme.onPrimary,
+            width: 1.0,
+          ),
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(AssetsImages.alarmIcon),
-          label: 'Reminder',
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
-          label: 'Tickets',
-        ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
-          label: 'Personal',
-        ),
-      ],
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _bottomNavIndex,
+        onTap: _onBottomNavBarClick,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AssetsImages.movieReelIcon),
+            label: '',
+            activeIcon: SvgPicture.asset(
+              AssetsImages.movieReelIcon,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AssetsImages.alarmIcon),
+            label: '',
+            activeIcon: SvgPicture.asset(
+              AssetsImages.alarmIcon,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
+            label: '',
+            activeIcon: SvgPicture.asset(
+              AssetsImages.eventTicketIcon,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
+            label: '',
+            activeIcon: SvgPicture.asset(
+              AssetsImages.singlePersonIcon,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

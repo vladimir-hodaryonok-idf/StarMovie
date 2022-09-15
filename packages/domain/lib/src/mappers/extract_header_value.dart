@@ -1,5 +1,5 @@
 import 'package:domain/src/mappers/base_mapper.dart';
-import 'package:domain/src/usecases/constants/usecase_constants.dart';
+import 'package:domain/src/use_cases/constants/usecase_constants.dart';
 import 'package:domain/src/utils/nullable_extensions.dart';
 
 const minimumPagesCount = 5;

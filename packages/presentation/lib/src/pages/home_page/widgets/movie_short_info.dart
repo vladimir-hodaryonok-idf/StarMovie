@@ -9,17 +9,19 @@ class MovieShortInfo extends StatelessWidget {
     required this.movieGenres,
     required this.movieName,
     required this.parentsGuide,
+    required this.duration,
   }) : super(key: key);
   final String movieName;
   final String movieGenres;
   final String parentsGuide;
+  final String duration;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Expanded(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
@@ -46,7 +48,7 @@ class MovieShortInfo extends StatelessWidget {
                     child: SvgPicture.asset(AssetsImages.ellipse),
                   ),
                   Text(
-                    '| $parentsGuide',
+                    '$duration | $parentsGuide',
                     style: sfProSemiMedium12px50opacity,
                   )
                 ],

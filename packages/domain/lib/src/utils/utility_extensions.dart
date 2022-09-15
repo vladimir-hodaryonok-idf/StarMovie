@@ -18,7 +18,7 @@ extension ListOfStringsToString on List<String>? {
   }
 }
 
-extension IntToTime on int? {
+extension IntToTimeString on int? {
   String get toTimeString {
     if (this == null) return '';
     final hours = this! ~/ 60;

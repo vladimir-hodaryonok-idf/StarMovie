@@ -11,9 +11,12 @@ class MovieGridItem extends StatelessWidget {
   final HomeBloc bloc;
   final int index;
 
-  const MovieGridItem(
-      {Key? key, required this.movie, required this.bloc, required this.index})
-      : super(key: key);
+  const MovieGridItem({
+    Key? key,
+    required this.movie,
+    required this.bloc,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class MovieGridItem extends StatelessWidget {
               movieGenres: movie.genre,
               movieName: movie.title,
               parentsGuide: movie.certification,
+              duration: movie.duration,
             ),
           ],
         ),
@@ -43,9 +47,8 @@ class MovieGridItem extends StatelessWidget {
   Image buildImage() {
     return Image.network(
       movie.image,
-      width: double.infinity,
       height: 250,
-      fit: BoxFit.fitHeight,
+      fit: BoxFit.fill,
       loadingBuilder: (context, child, progress) {
         return progress == null
             ? child
