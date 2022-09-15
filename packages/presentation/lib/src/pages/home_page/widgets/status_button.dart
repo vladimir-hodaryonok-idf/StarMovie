@@ -22,11 +22,12 @@ class StatusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final containerWidth = MediaQuery.of(context).size.width / 2 - padding;
     return GestureDetector(
       onTap: () => bloc.onButtonTap(id),
       child: Container(
         height: double.infinity,
-        width: MediaQuery.of(context).size.width / 2 - padding,
+        width: containerWidth,
         decoration: decoration(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
