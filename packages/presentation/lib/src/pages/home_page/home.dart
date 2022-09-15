@@ -88,10 +88,12 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
       child: BottomNavigationBar(
         currentIndex: _bottomNavIndex,
         onTap: _onBottomNavBarClick,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(AssetsImages.movieReelIcon),
-            label: '',
+            label: 'Films',
             activeIcon: SvgPicture.asset(
               AssetsImages.movieReelIcon,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -99,7 +101,7 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(AssetsImages.alarmIcon),
-            label: '',
+            label: 'Reminder',
             activeIcon: SvgPicture.asset(
               AssetsImages.alarmIcon,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -107,7 +109,7 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
-            label: '',
+            label: 'Tickets',
             activeIcon: SvgPicture.asset(
               AssetsImages.eventTicketIcon,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -115,7 +117,7 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
-            label: '',
+            label: 'Personal',
             activeIcon: SvgPicture.asset(
               AssetsImages.singlePersonIcon,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
