@@ -1,7 +1,7 @@
 import 'package:domain/src/mappers/base_mapper.dart';
 import 'package:domain/src/repositories/network_repository.dart';
 import 'package:domain/src/request/trakt_api/trakt_api_movies.dart';
-import 'package:domain/src/usecases/base/out_use_case.dart';
+import 'package:domain/src/use_cases/base/out_use_case.dart';
 import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 
 class FetchAnticipatedMoviesUseCase

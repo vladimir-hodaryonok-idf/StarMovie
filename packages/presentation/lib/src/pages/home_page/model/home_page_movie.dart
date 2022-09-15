@@ -6,6 +6,7 @@ class HomePageMovie {
   final String certification;
   final String image;
   final int stars;
+  final String duration;
 
   HomePageMovie(
     this.title,
@@ -13,6 +14,7 @@ class HomePageMovie {
     this.certification,
     this.image,
     this.stars,
+    this.duration,
   );
 
   factory HomePageMovie.fromDomainMovie(Movie movie) {
@@ -22,6 +24,7 @@ class HomePageMovie {
       movie.certification.stringOrEmpty,
       movie.image,
       movie.stars,
+      movie.runtime.timeFormat,
     );
   }
 }

@@ -5,7 +5,7 @@ part 'movie.g.dart';
 
 const imageUrl = 'http://img.omdbapi.com/?apikey=5e582eee&i=';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Movie {
   final String? title;
   final int? year;
@@ -20,12 +20,9 @@ class Movie {
   final String? status;
   final double? rating;
   final int? votes;
-  @JsonKey(name: 'comment_count')
   final int? commentCount;
-  @JsonKey(name: 'updated_at')
   final String? updatedAt;
   final String? language;
-  @JsonKey(name: 'available_translations')
   final List<String>? availableTranslations;
   final List<String>? genres;
   final String? certification;

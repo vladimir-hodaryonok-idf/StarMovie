@@ -5,7 +5,9 @@ class JsonToAnticipatedList extends Mapper<dynamic, List<MovieAnticipated>> {
   @override
   List<MovieAnticipated> call(params) {
     return List.from(
-      (params as List<dynamic>).map((e) => MovieAnticipated.fromJson(e)),
+      (params as List<dynamic>).map(
+        (e) => MovieAnticipated.fromJson(e),
+      ),
     );
   }
 }
