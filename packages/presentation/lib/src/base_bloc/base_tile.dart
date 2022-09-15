@@ -1,28 +1,30 @@
+import 'package:domain/domain.dart';
+
 class BaseTile<D> {
   final bool isLoading;
-  final String? errorMessage;
+  final AppException? exception;
   final D? tile;
 
   BaseTile({
     required this.tile,
     required this.isLoading,
-    required this.errorMessage,
+    required this.exception,
   });
 
   factory BaseTile.init() => BaseTile<D>(
-        isLoading: true,
+        isLoading: false,
         tile: null,
-        errorMessage: null,
+        exception: null,
       );
 
   BaseTile<D> copyWith({
     bool? isLoading,
     D? tile,
-    String? errorMessage,
+    AppException? exception,
   }) =>
       BaseTile(
         isLoading: isLoading ?? this.isLoading,
         tile: tile ?? this.tile,
-        errorMessage: errorMessage,
+        exception: exception,
       );
 }

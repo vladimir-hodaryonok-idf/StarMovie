@@ -8,6 +8,7 @@ import 'package:data/src/di/const/trakt_api_names.dart';
 
 void initTraktApiModule() {
   initTractApiBaseOptions();
+  initInterceptors();
   initTractApiDio();
   initTraktApiService();
 }
@@ -27,10 +28,14 @@ void initTractApiDio() {
       instanceName: traktApiBaseOptionsName,
     ))
       ..interceptors.add(
-        PrettyDioLogger(),
+        inject.get<Interceptor>(),
       ),
     instanceName: traktApiDioName,
   );
+}
+
+void initInterceptors() {
+  inject.registerFactory<Interceptor>(() => PrettyDioLogger());
 }
 
 void initTractApiBaseOptions() {

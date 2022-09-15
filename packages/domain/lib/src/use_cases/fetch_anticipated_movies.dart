@@ -1,18 +1,17 @@
 import 'package:domain/src/mappers/base_mapper.dart';
 import 'package:domain/src/repositories/network_repository.dart';
-import 'package:domain/src/request/trakt_api/trakt_api_movies.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 
 class FetchAnticipatedMoviesUseCase
     extends OutUseCase<Future<List<MovieAnticipated>>> {
   final NetworkRepository networkRepository;
-  final Mapper<Map<String, List<String>>, int> extractItemLimit;
-  final Mapper<dynamic, List<MovieAnticipated>> jsonToAnticipatedList;
+  final Mapper<Map<String, List<String>>, int> extractItemLimitMapper;
+  final Mapper<List, List<MovieAnticipated>> jsonToAnticipatedList;
 
   FetchAnticipatedMoviesUseCase({
     required this.networkRepository,
-    required this.extractItemLimit,
+    required this.extractItemLimitMapper,
     required this.jsonToAnticipatedList,
   });
 
@@ -23,14 +22,14 @@ class FetchAnticipatedMoviesUseCase
   }
 
   Future<List<MovieAnticipated>> _fetchAnticipatedMovies(int limit) async {
-    final trendingRequest = TraktApiMovies.anticipated(limit: limit);
-    final response = await networkRepository.fetchData(trendingRequest);
+    final response = await networkRepository.fetchAnticipatedMovies(
+      limit: limit,
+    );
     return jsonToAnticipatedList(response.data);
   }
 
   Future<int> _getPagesLimit() async {
-    final request = TraktApiMovies.anticipated();
-    final response = await networkRepository.fetchData(request);
-    return extractItemLimit(response.headers);
+    final response = await networkRepository.fetchAnticipatedMovies();
+    return extractItemLimitMapper(response.headers);
   }
 }

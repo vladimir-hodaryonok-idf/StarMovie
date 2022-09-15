@@ -10,7 +10,7 @@
 .history
 .svn/
 migrate_working_dir/
-packages/domain/lib/src/api_key/api_keys.dart
+packages/domain/lib/src/json/yaml/properties.dart
 # IntelliJ related
 *.iml
 *.ipr

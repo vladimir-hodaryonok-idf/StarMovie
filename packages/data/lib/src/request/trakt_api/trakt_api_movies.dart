@@ -1,8 +1,8 @@
-import 'package:domain/src/request/api_request_representable.dart';
-import 'package:domain/src/api_key/api_keys.dart';
-import 'package:domain/src/request/trakt_api/extensions/movies_ext.dart';
-import 'package:domain/src/request/trakt_api/constants/headers.dart';
-import 'package:domain/src/request/trakt_api/constants/query.dart';
+import 'package:data/src/request/api_request_representable.dart';
+import 'package:data/src/request/trakt_api/constants/headers.dart';
+import 'package:data/src/request/trakt_api/constants/query.dart';
+import 'package:data/src/request/trakt_api/extensions/movies_ext.dart';
+import 'package:domain/src/json/yaml/properties.dart';
 
 enum MoviesEndpoint { trending, anticipated }
 
@@ -36,9 +36,7 @@ class TraktApiMovies implements APIRequestRepresentable {
 
   @override
   Map<String, String>? get headers => {
-        TraktApiHeadersKeys.contentType: TraktApiHeadersValues.json,
-        TraktApiHeadersKeys.apiVersion: TraktApiHeadersValues.apiVersion,
-        TraktApiHeadersKeys.apiKey: ApiKeys.key,
+        TraktApiHeadersKeys.apiKey: ApiKeys.traktApiKey,
       };
 
   @override
