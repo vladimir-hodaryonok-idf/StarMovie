@@ -3,8 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'movie.g.dart';
 
-const imageUrl = 'http://img.omdbapi.com/?apikey=5e582eee&i=';
-
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Movie {
   final String? title;
@@ -26,8 +24,6 @@ class Movie {
   final List<String>? availableTranslations;
   final List<String>? genres;
   final String? certification;
-  final String image;
-  final int stars;
 
   Movie(
     this.title,
@@ -49,8 +45,7 @@ class Movie {
     this.availableTranslations,
     this.genres,
     this.certification,
-  )   : image = '$imageUrl${ids?.imdb}',
-        stars = rating == null ? 0 : (rating / 2).round();
+  );
 
   factory Movie.fromJson(dynamic json) => _$MovieFromJson(json);
 

@@ -1,17 +1,15 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/mappers/base_mapper.dart';
-import 'package:domain/src/request/trakt_api/trakt_api_movies.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 
 class FetchTrendingMoviesUseCase
     extends OutUseCase<Future<List<MovieTrending>>> {
   final NetworkRepository networkRepository;
-  final Mapper<dynamic, List<MovieTrending>> jsonToTrendingList;
+  final Mapper<List, List<MovieTrending>> jsonToTrendingListMapper;
   final Mapper<Map<String, List<String>>, int> extractItemLimit;
 
   FetchTrendingMoviesUseCase({
     required this.networkRepository,
-    required this.jsonToTrendingList,
+    required this.jsonToTrendingListMapper,
     required this.extractItemLimit,
   });
 
@@ -22,14 +20,14 @@ class FetchTrendingMoviesUseCase
   }
 
   Future<List<MovieTrending>> _fetchTrendingMovies(int limit) async {
-    final trendingRequest = TraktApiMovies.trending(limit: limit);
-    final response = await networkRepository.fetchData(trendingRequest);
-    return jsonToTrendingList(response.data);
+    final response = await networkRepository.fetchTrendingMovies(
+      limit: limit,
+    );
+    return jsonToTrendingListMapper(response.data);
   }
 
   Future<int> _getPagesLimit() async {
-    final request = TraktApiMovies.trending();
-    final response = await networkRepository.fetchData(request);
+    final response = await networkRepository.fetchTrendingMovies();
     return extractItemLimit(response.headers);
   }
 }

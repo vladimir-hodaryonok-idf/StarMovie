@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
@@ -34,13 +35,13 @@ abstract class BlocImpl<T extends BaseArguments, D> implements Bloc<T, D> {
   emit({
     D? data,
     bool? isLoading,
-    String? errorMessage,
+    AppException? exception,
   }) {
     if (data != null) _blocTile = data;
     baseTile = baseTile.copyWith(
       isLoading: isLoading,
       tile: data,
-      errorMessage: errorMessage,
+      exception: exception,
     );
     _dataStream.add(baseTile);
   }

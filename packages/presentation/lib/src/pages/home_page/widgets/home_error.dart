@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
@@ -29,7 +28,7 @@ class HomeError extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            state.errorMessage.stringOrEmpty,
+            state.exception?.details ?? 'Unknown Error',
             style: sfProSemiBold14px,
           ),
           IconButton(

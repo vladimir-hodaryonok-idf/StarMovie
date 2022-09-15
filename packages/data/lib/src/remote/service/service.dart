@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:data/src/remote/payloads/trakt_movies_payload.dart';
+import 'package:data/src/request/api_request_representable.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 

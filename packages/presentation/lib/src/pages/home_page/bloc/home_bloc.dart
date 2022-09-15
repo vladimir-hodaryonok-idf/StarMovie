@@ -3,15 +3,23 @@ import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/base_bloc/movie_args.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
-import 'package:presentation/src/pages/home_page/model/home_page_movie.dart';
+import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_list.dart';
+import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
 import 'package:presentation/src/pages/movie_details_page/movie_details.dart';
 
 abstract class HomeBloc extends Bloc<BaseArguments, HomePageData> {
   factory HomeBloc(
     FetchTrendingMoviesUseCase fetchTrendingMovies,
     FetchAnticipatedMoviesUseCase fetchAnticipatedMovies,
+    TrendingToHomeListMapper trendingToHomeList,
+    AnticipatedToHomeListMapper anticipatedToHomeList,
   ) =>
-      _HomeBloc(fetchTrendingMovies, fetchAnticipatedMovies);
+      _HomeBloc(
+        fetchTrendingMovies,
+        fetchAnticipatedMovies,
+        trendingToHomeList,
+        anticipatedToHomeList,
+      );
 
   void onButtonTap(MovieButtonStatus id);
 
@@ -24,14 +32,15 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     implements HomeBloc {
   final FetchTrendingMoviesUseCase _fetchTrendingMovies;
   final FetchAnticipatedMoviesUseCase _anticipatedMovies;
+  final TrendingToHomeListMapper _trendingToHomeList;
+  final AnticipatedToHomeListMapper _anticipatedToHomeList;
 
   _HomeBloc(
     this._fetchTrendingMovies,
     this._anticipatedMovies,
+    this._trendingToHomeList,
+    this._anticipatedToHomeList,
   ) : super(HomePageData.init());
-
-  final List<MovieTrending> _trendingFull = [];
-  final List<MovieAnticipated> _anticipatedFull = [];
 
   @override
   void init() async {
@@ -59,42 +68,38 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
   Future<void> _fetchTrending({bool? isLoading = true}) async {
     emit(data: tile, isLoading: isLoading);
     try {
-      _trendingFull.clear();
-      _trendingFull.addAll(await _fetchTrendingMovies());
-      final homeTrendingMovies = _trendingFull
-          .map(
-            (e) => HomePageMovie.fromDomainMovie(e.movie),
-          )
-          .toList();
+      final trendingFull = await _fetchTrendingMovies();
+      final homeTrendingMovies = _trendingToHomeList(trendingFull);
       emit(
-        data: tile.copyWith(trending: homeTrendingMovies),
+        data: tile.copyWith(
+          trending: homeTrendingMovies,
+          trendingFull: trendingFull,
+        ),
         isLoading: false,
       );
     } on AppException catch (e) {
-      emit(isLoading: false, errorMessage: e.details);
+      emit(isLoading: false, exception: e);
     } catch (e) {
-      emit(isLoading: false, errorMessage: 'Unknown Error');
+      emit(isLoading: false, exception: UnknownException("Unknown Error"));
     }
   }
 
   Future<void> _fetchAnticipated({bool? isLoading = true}) async {
     emit(data: tile, isLoading: isLoading);
     try {
-      _anticipatedFull.clear();
-      _anticipatedFull.addAll(await _anticipatedMovies());
-      final homeAnticipatedMovies = _anticipatedFull
-          .map(
-            (e) => HomePageMovie.fromDomainMovie(e.movie),
-          )
-          .toList();
+      final anticipatedFull = await _anticipatedMovies();
+      final homeAnticipatedMovies = _anticipatedToHomeList(anticipatedFull);
       emit(
-        data: tile.copyWith(anticipated: homeAnticipatedMovies),
+        data: tile.copyWith(
+          anticipated: homeAnticipatedMovies,
+          anticipatedFull: anticipatedFull,
+        ),
         isLoading: false,
       );
     } on AppException catch (e) {
-      emit(isLoading: false, errorMessage: e.details);
+      emit(isLoading: false, exception: e);
     } catch (e) {
-      emit(isLoading: false, errorMessage: 'Unknown Error');
+      emit(isLoading: false, exception: UnknownException("Unknown Error"));
     }
   }
 
@@ -108,8 +113,8 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
   @override
   void onItemTap(int index) {
     final Movie movieFull = tile.buttonStatus == MovieButtonStatus.trending
-        ? _trendingFull[index].movie
-        : _anticipatedFull[index].movie;
+        ? tile.trendingFull[index].movie
+        : tile.anticipatedFull[index].movie;
     final args = MovieArgs(movieFull);
     appNavigator.push(MovieDetails.page(args));
   }

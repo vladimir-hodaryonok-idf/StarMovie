@@ -68,3 +68,12 @@ class TimeOutException extends AppException {
           details: details,
         );
 }
+
+class UnknownException extends AppException {
+  UnknownException(String? details)
+      : super(
+    code: "unknown exception",
+    message: "Unknown Error",
+    details: details,
+  );
+}
