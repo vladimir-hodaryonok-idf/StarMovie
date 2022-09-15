@@ -28,6 +28,11 @@ void initUseCases() {
       jsonToAnticipatedList: inject.get(),
     ),
   );
+  inject.registerFactory(
+    () => FetchCrewAndCastUseCase(
+      networkRepository: inject.get(),
+    ),
+  );
 }
 
 void initMappers() {

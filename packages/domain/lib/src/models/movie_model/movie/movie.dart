@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:domain/src/models/movie_model/movie/ids.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -53,7 +54,7 @@ class Movie {
     this.genres,
     this.certification,
   )   : image = '$imageUrl${ids?.imdb}',
-        stars = rating == null ? 0 : (rating / 2).round();
+        stars = rating.fiveStarsRating;
 
   factory Movie.fromJson(dynamic json) => _$MovieFromJson(json);
 

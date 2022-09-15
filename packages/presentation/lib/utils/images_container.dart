@@ -28,4 +28,10 @@ class AssetsImages {
 
   static String get errorImage =>
       'packages/presentation/assets/icons/error.svg';
+
+  static String get backArrow =>
+      'packages/presentation/assets/icons/back_arrow.svg';
+
+  static String get shareArrow =>
+      'packages/presentation/assets/icons/share_arrow.svg';
 }

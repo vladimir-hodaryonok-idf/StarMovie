@@ -111,6 +111,6 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
         ? _trendingFull[index].movie
         : _anticipatedFull[index].movie;
     final args = MovieArgs(movieFull);
-    appNavigator.push(MovieDetails.page(args));
+    appNavigator.push(MovieDetailsPage.page(args));
   }
 }

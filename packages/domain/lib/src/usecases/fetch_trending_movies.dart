@@ -2,7 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:domain/src/mappers/base_mapper.dart';
 import 'package:domain/src/request/trakt_api/trakt_api_movies.dart';
 import 'package:domain/src/usecases/base/out_use_case.dart';
-import 'package:domain/src/models/movie_model/movie_trending.dart';
 
 class FetchTrendingMoviesUseCase
     extends OutUseCase<Future<List<MovieTrending>>> {

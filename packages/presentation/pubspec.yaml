@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
   flutter_svg: 1.1.4
   shimmer: ^2.0.0
+  blur: ^3.1.0
+  expandable: ^5.0.1
 
   domain:
     path: ../domain

@@ -13,3 +13,4 @@ export 'src/models/movie_model/movie/movie.dart';
 export 'src/exceptions/exceptions.dart';
 export 'src/utils/nullable_extensions.dart';
 export 'src/utils/utility_extensions.dart';
+export 'src/usecases/fetch_crew_and-cast.dart';

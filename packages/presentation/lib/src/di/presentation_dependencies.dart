@@ -30,5 +30,9 @@ void initBlocModule() {
       inject.get<FetchAnticipatedMoviesUseCase>(),
     ),
   );
-  inject.registerFactory<MovieDetailsBloc>(() => MovieDetailsBloc());
+  inject.registerFactory<MovieDetailsBloc>(
+    () => MovieDetailsBloc(
+      inject.get<FetchCrewAndCastUseCase>(),
+    ),
+  );
 }

@@ -1,6 +1,6 @@
 class ResponseModel {
   final Map<String, List<String>> headers;
-  final List<dynamic> data;
+  final dynamic data;
 
   ResponseModel({
     required this.headers,
