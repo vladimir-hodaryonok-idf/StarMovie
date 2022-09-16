@@ -1,5 +1,3 @@
-import 'package:domain/domain.dart';
-
 class MovieDetails {
   final String title;
   final String overview;
@@ -20,15 +18,4 @@ class MovieDetails {
     this.rating,
     this.id,
   );
-
-  factory MovieDetails.fromMovie(Movie movie) => MovieDetails(
-        movie.title.stringOrEmpty,
-        movie.overview.stringOrEmpty,
-        movie.runtime.toTimeString + ' | ' + movie.certification.stringOrEmpty,
-        movie.genres.strings,
-        movie.image,
-        movie.stars,
-        movie.rating.stringCompareWithFive,
-        movie.ids?.trakt ?? 0,
-      );
 }

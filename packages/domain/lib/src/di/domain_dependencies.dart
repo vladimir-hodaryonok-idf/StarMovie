@@ -3,8 +3,10 @@ import 'package:domain/src/mappers/duration_to_string.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 import 'package:domain/src/mappers/json_to_trending_list.dart';
+import 'package:domain/src/mappers/list_to_genres_string.dart';
 import 'package:domain/src/mappers/movie_id_to_image_url.dart';
 import 'package:domain/src/mappers/movie_rating_to_stars_count.dart';
+import 'package:domain/src/mappers/rating_to_string.dart';
 import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
@@ -12,6 +14,8 @@ final inject = GetIt.I;
 const movieRatingToStarsCount = 'movieRatingToStarsCount';
 const durationToString = 'durationToString';
 const movieIdToImage = 'movieIdToImage';
+const listToGenresString = 'listToGenresString';
+const ratingToString ='ratingToString';
 
 void initDomainDependencies() {
   initMappers();
@@ -62,5 +66,13 @@ void initMappers() {
   inject.registerFactory<Mapper<String?, String>>(
     () => MovieIdToImageUrlMapper(),
     instanceName: movieIdToImage,
+  );
+  inject.registerFactory<Mapper<List<String>?, String>>(
+    () => ListToGenresString(),
+    instanceName: listToGenresString,
+  );
+  inject.registerFactory<Mapper<double?, String>>(
+        () => RatingToStringMapper(),
+    instanceName: ratingToString,
   );
 }

@@ -1,7 +1,7 @@
+import 'package:data/src/request/api_request_representable.dart';
+import 'package:data/src/request/trakt_api/constants/endpoints.dart';
+import 'package:data/src/request/trakt_api/constants/headers.dart';
 import 'package:domain/domain.dart';
-import 'package:domain/src/api_key/api_keys.dart';
-import 'package:domain/src/request/trakt_api/constants/endpoints.dart';
-import 'package:domain/src/request/trakt_api/constants/headers.dart';
 
 class TraktApiPeoples implements APIRequestRepresentable {
   final int id;
@@ -18,9 +18,7 @@ class TraktApiPeoples implements APIRequestRepresentable {
 
   @override
   Map<String, String>? get headers => {
-        TraktApiHeadersKeys.contentType: TraktApiHeadersValues.json,
-        TraktApiHeadersKeys.apiVersion: TraktApiHeadersValues.apiVersion,
-        TraktApiHeadersKeys.apiKey: ApiKeys.key,
+        TraktApiHeadersKeys.apiKey: ApiKeys.traktApiKey,
       };
 
   @override
