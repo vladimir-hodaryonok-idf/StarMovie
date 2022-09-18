@@ -50,9 +50,11 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
 
   @override
   void onButtonTap(MovieButtonStatus id) {
-    if (id == MovieButtonStatus.trending)
+    if (id == MovieButtonStatus.trending) {
       _onTrendingClick();
-    else if (id == MovieButtonStatus.anticipated) _onAnticipatedClick();
+    } else if (id == MovieButtonStatus.anticipated) {
+      _onAnticipatedClick();
+    }
   }
 
   void _onAnticipatedClick() {

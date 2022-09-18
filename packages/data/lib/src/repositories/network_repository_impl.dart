@@ -10,23 +10,23 @@ class NetworkRepositoryImpl implements NetworkRepository {
 
   NetworkRepositoryImpl({required this.traktService});
 
-  Future<ResponseModel> _fetchData(APIRequestRepresentable request) async {
+  Future<ListResponseModel> _fetchData(APIRequestRepresentable request) async {
     final ServicePayload payload = _createPayload(request);
     final Response response = await traktService.request(request, payload);
-    return ResponseModel(
+    return ListResponseModel(
       headers: response.headers.map,
       data: response.data,
     );
   }
 
   @override
-  Future<ResponseModel> fetchAnticipatedMovies({int? limit}) {
+  Future<ListResponseModel> fetchAnticipatedMovies({int? limit}) {
     final anticipatedRequest = TraktApiMovies.anticipated(limit: limit);
     return _fetchData(anticipatedRequest);
   }
 
   @override
-  Future<ResponseModel> fetchTrendingMovies({int? limit}) {
+  Future<ListResponseModel> fetchTrendingMovies({int? limit}) {
     final trendingRequest = TraktApiMovies.trending(limit: limit);
     return _fetchData(trendingRequest);
   }
@@ -34,7 +34,7 @@ class NetworkRepositoryImpl implements NetworkRepository {
   ServicePayload _createPayload(APIRequestRepresentable request) {
     return DioServicePayload(
       Options(
-        method: request.method.string,
+        method: request.method,
         headers: request.headers,
       ),
     );

@@ -1,9 +1,13 @@
+import 'package:domain/src/key_store/store.dart';
 import 'package:domain/src/mappers/base_mapper.dart';
-import 'package:domain/src/json/yaml/properties.dart';
 
-const imageUrl = 'http://img.omdbapi.com/?apikey=${ApiKeys.omdbApiKey}&i=';
+const imageUrl = 'http://img.omdbapi.com/?apikey=';
 
-class MovieIdToImageUrlMapper extends Mapper<String?, String> {
+class MovieIdToImageUrlMapper extends Mapper<String, String> {
+  final ApiKeyStore apiKeyStore;
+
+  MovieIdToImageUrlMapper({required this.apiKeyStore});
+
   @override
-  String call(String? params) => '$imageUrl${params}';
+  String call(String id) => '$imageUrl${apiKeyStore.omdbApiKey}&i=$id';
 }
