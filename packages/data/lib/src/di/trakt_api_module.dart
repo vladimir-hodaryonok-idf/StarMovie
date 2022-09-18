@@ -1,3 +1,4 @@
+import 'package:data/src/remote/interceptors/trakt_api_interceptor.dart';
 import 'package:data/src/remote/service/service.dart';
 import 'package:data/src/di/const/base_url.dart';
 import 'package:data/src/di/const/connection_time_out.dart';
@@ -27,15 +28,21 @@ void initTractApiDio() {
     () => Dio(inject.get<BaseOptions>(
       instanceName: traktApiBaseOptionsName,
     ))
-      ..interceptors.add(
+      ..interceptors.addAll([
         inject.get<Interceptor>(),
-      ),
+        inject.get<TraktApiInterceptor>(),
+      ]),
     instanceName: traktApiDioName,
   );
 }
 
 void initInterceptors() {
   inject.registerFactory<Interceptor>(() => PrettyDioLogger());
+  inject.registerFactory<TraktApiInterceptor>(
+    () => TraktApiInterceptor(
+      apiKeyStore: inject.get(),
+    ),
+  );
 }
 
 void initTractApiBaseOptions() {

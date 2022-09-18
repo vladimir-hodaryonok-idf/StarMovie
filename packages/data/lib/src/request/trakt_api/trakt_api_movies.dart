@@ -1,22 +1,18 @@
 import 'package:data/src/request/api_request_representable.dart';
-import 'package:data/src/request/trakt_api/constants/headers.dart';
 import 'package:data/src/request/trakt_api/constants/query.dart';
-import 'package:data/src/request/trakt_api/extensions/movies_ext.dart';
-import 'package:domain/src/json/yaml/properties.dart';
+import 'package:data/src/request/trakt_api/constants/endpoints.dart';
 
-enum MoviesEndpoint { trending, anticipated }
-
-class TraktApiMovies implements APIRequestRepresentable {
-  final MoviesEndpoint endPoint;
+class TraktApiMovies implements APIRequestRepresentable<DioMethods> {
+  final String endPoint;
   final int? _itemLimit;
 
   TraktApiMovies._(this.endPoint, this._itemLimit);
 
   TraktApiMovies.trending({int? limit})
-      : this._(MoviesEndpoint.trending, limit);
+      : this._(TraktApiEndpoints.trending, limit);
 
   TraktApiMovies.anticipated({int? limit})
-      : this._(MoviesEndpoint.anticipated, limit);
+      : this._(TraktApiEndpoints.anticipated, limit);
 
   @override
   String? get baseUrl => null;
@@ -32,15 +28,13 @@ class TraktApiMovies implements APIRequestRepresentable {
       };
 
   @override
-  String get url => endPoint.string;
+  String get url => endPoint;
 
   @override
-  Map<String, String>? get headers => {
-        TraktApiHeadersKeys.apiKey: ApiKeys.traktApiKey,
-      };
+  Map<String, String>? get headers => null;
 
   @override
-  HTTPMethod get method => HTTPMethod.get;
+  dynamic get method => DioMethods.get;
 
   @override
   String? get path => null;

@@ -6,13 +6,13 @@ import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 class FetchAnticipatedMoviesUseCase
     extends OutUseCase<Future<List<MovieAnticipated>>> {
   final NetworkRepository networkRepository;
-  final Mapper<Map<String, List<String>>, int> extractItemLimitMapper;
-  final Mapper<List, List<MovieAnticipated>> jsonToAnticipatedList;
+  final Mapper<Map<String, List<String>>, int> extractItemLimit;
+  final Mapper<List, List<MovieAnticipated>> jsonToAnticipatedListMapper;
 
   FetchAnticipatedMoviesUseCase({
     required this.networkRepository,
-    required this.extractItemLimitMapper,
-    required this.jsonToAnticipatedList,
+    required this.extractItemLimit,
+    required this.jsonToAnticipatedListMapper,
   });
 
   @override
@@ -25,11 +25,11 @@ class FetchAnticipatedMoviesUseCase
     final response = await networkRepository.fetchAnticipatedMovies(
       limit: limit,
     );
-    return jsonToAnticipatedList(response.data);
+    return jsonToAnticipatedListMapper(response.data);
   }
 
   Future<int> _getPagesLimit() async {
     final response = await networkRepository.fetchAnticipatedMovies();
-    return extractItemLimitMapper(response.headers);
+    return extractItemLimit(response.headers);
   }
 }

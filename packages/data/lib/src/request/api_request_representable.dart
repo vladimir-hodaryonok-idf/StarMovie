@@ -1,30 +1,25 @@
-enum HTTPMethod { get, post, delete, put, patch }
+abstract class HTTPMethod<M> {}
 
-extension HTTPMethodString on HTTPMethod {
-  String get string {
-    switch (this) {
-      case HTTPMethod.get:
-        return "GET";
-      case HTTPMethod.post:
-        return "POST";
-      case HTTPMethod.delete:
-        return "DELETE";
-      case HTTPMethod.patch:
-        return "PATCH";
-      case HTTPMethod.put:
-        return "PUT";
-    }
-  }
+abstract class DioMethods implements HTTPMethod<String> {
+  static const String get = 'GET';
+
+  static const String post = 'POST';
+
+  static const String delete = 'DELETE';
+
+  static const String patch = 'PATCH';
+
+  static const String put = 'PUT';
 }
 
-abstract class APIRequestRepresentable {
+abstract class APIRequestRepresentable<T extends HTTPMethod> {
   String get url;
 
   String? get baseUrl;
 
   String? get path;
 
-  HTTPMethod get method;
+  dynamic get method;
 
   Map<String, String>? get headers;
 

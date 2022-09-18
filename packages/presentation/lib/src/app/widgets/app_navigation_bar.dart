@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/src/app/app_bloc.dart';
 import 'package:presentation/utils/images_container.dart';
 
-class AppNavigationBar extends StatefulWidget {
-  const AppNavigationBar({Key? key}) : super(key: key);
-
-  @override
-  State<AppNavigationBar> createState() => _AppNavigationBarState();
-}
-
-class _AppNavigationBarState extends State<AppNavigationBar> {
-  int _bottomNavIndex = 0;
-
-  void _onBottomNavBarClick(int index) {
-    setState(() {
-      _bottomNavIndex = index;
-    });
-  }
+class AppNavigationBar extends StatelessWidget {
+  const AppNavigationBar({
+    Key? key,
+    required this.bottomNavIndex,
+    required this.bloc,
+  }) : super(key: key);
+  final AppBloc bloc;
+  final int bottomNavIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +24,8 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
         ),
       ),
       child: BottomNavigationBar(
-        currentIndex: _bottomNavIndex,
-        onTap: _onBottomNavBarClick,
+        currentIndex: bottomNavIndex,
+        onTap: bloc.bottomBarNavigation,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: <BottomNavigationBarItem>[

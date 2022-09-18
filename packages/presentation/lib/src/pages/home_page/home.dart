@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/app/widgets/app_navigation_bar.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
@@ -42,20 +41,20 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
           )
         ],
       ),
-      bottomNavigationBar: AppNavigationBar(),
       body: Center(
         child: StreamBuilder<BaseTile<HomePageData>>(
           stream: bloc.dataStream,
           builder: (context, snapShot) {
             final state = snapShot.data;
             final tile = state?.tile;
-            if (state == null || tile == null) return SizedBox.shrink();
-            if (state.exception != null)
+            if (state == null || tile == null) return const SizedBox.shrink();
+            if (state.exception != null) {
               return HomeError(
                 tile: tile,
                 bloc: bloc,
                 state: state,
               );
+            }
             return HomeBody(
               tile: tile,
               bloc: bloc,

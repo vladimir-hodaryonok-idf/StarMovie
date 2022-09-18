@@ -1,4 +1,4 @@
-class TraktApiQueryKeys {
+abstract class TraktApiQueryKeys {
   static String get extended => 'extended';
 
   static String get page => 'page';
@@ -6,6 +6,6 @@ class TraktApiQueryKeys {
   static String get limit => 'limit';
 }
 
-class TraktApiQueryValues {
+abstract class TraktApiQueryValues {
   static String get full => 'full';
 }

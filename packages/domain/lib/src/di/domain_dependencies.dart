@@ -17,9 +17,14 @@ const movieIdToImage = 'movieIdToImage';
 const listToGenresString = 'listToGenresString';
 const ratingToString ='ratingToString';
 
-void initDomainDependencies() {
+void initDomainDependencies(Map<String, dynamic> apiKeys) {
+  initApiKeyStore(apiKeys);
   initMappers();
   initUseCases();
+}
+
+void initApiKeyStore(Map<String, dynamic> apiKeys) {
+  inject.registerLazySingleton<ApiKeyStore>(() => ApiKeyStore(apiKeys));
 }
 
 void initUseCases() {
@@ -34,8 +39,8 @@ void initUseCases() {
   inject.registerFactory(
     () => FetchAnticipatedMoviesUseCase(
       networkRepository: inject.get(),
-      extractItemLimitMapper: inject.get(),
-      jsonToAnticipatedList: inject.get(),
+      extractItemLimit: inject.get(),
+      jsonToAnticipatedListMapper: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -55,16 +60,18 @@ void initMappers() {
   inject.registerFactory<Mapper<List, List<MovieAnticipated>>>(
     () => JsonToAnticipatedList(),
   );
-  inject.registerFactory<Mapper<double?, int>>(
+  inject.registerFactory<Mapper<double, int>>(
     () => MovieRatingToStarsCountMapper(),
     instanceName: movieRatingToStarsCount,
   );
-  inject.registerFactory<Mapper<int?, String>>(
+  inject.registerFactory<Mapper<int, String>>(
     () => DurationToStringMapper(),
     instanceName: durationToString,
   );
-  inject.registerFactory<Mapper<String?, String>>(
-    () => MovieIdToImageUrlMapper(),
+  inject.registerFactory<Mapper<String, String>>(
+    () => MovieIdToImageUrlMapper(
+      apiKeyStore: inject.get(),
+    ),
     instanceName: movieIdToImage,
   );
   inject.registerFactory<Mapper<List<String>?, String>>(
