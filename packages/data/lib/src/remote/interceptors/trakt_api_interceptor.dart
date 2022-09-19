@@ -1,6 +1,6 @@
+import 'package:data/src/key_store/store.dart';
 import 'package:data/src/request/trakt_api/constants/headers.dart';
 import 'package:dio/dio.dart';
-import 'package:domain/domain.dart';
 
 class TraktApiInterceptor extends Interceptor {
   final ApiKeyStore apiKeyStore;

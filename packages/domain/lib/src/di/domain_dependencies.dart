@@ -12,15 +12,11 @@ final inject = GetIt.I;
 const movieRatingToStarsCount = 'movieRatingToStarsCount';
 const durationToString = 'durationToString';
 const movieIdToImage = 'movieIdToImage';
+const omdbApiKey = 'omdbApiKeyName';
 
-void initDomainDependencies(Map<String, dynamic> apiKeys) {
-  initApiKeyStore(apiKeys);
+void initDomainDependencies() {
   initMappers();
   initUseCases();
-}
-
-void initApiKeyStore(Map<String, dynamic> apiKeys) {
-  inject.registerLazySingleton<ApiKeyStore>(() => ApiKeyStore(apiKeys));
 }
 
 void initUseCases() {
@@ -61,7 +57,7 @@ void initMappers() {
   );
   inject.registerFactory<Mapper<String, String>>(
     () => MovieIdToImageUrlMapper(
-      apiKeyStore: inject.get(),
+      apiKey: inject.get(instanceName: omdbApiKey),
     ),
     instanceName: movieIdToImage,
   );

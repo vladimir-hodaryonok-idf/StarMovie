@@ -29,7 +29,7 @@ void initTractApiDio() {
       instanceName: traktApiBaseOptionsName,
     ))
       ..interceptors.addAll([
-        inject.get<Interceptor>(),
+        inject.get<PrettyDioLogger>(),
         inject.get<TraktApiInterceptor>(),
       ]),
     instanceName: traktApiDioName,
@@ -37,7 +37,7 @@ void initTractApiDio() {
 }
 
 void initInterceptors() {
-  inject.registerFactory<Interceptor>(() => PrettyDioLogger());
+  inject.registerFactory<PrettyDioLogger>(() => PrettyDioLogger());
   inject.registerFactory<TraktApiInterceptor>(
     () => TraktApiInterceptor(
       apiKeyStore: inject.get(),

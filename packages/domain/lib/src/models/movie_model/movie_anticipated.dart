@@ -3,14 +3,14 @@ import 'movie/movie.dart';
 
 part 'movie_anticipated.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MovieAnticipated {
-  final int list_count;
+  final int listCount;
   final Movie movie;
 
   MovieAnticipated(
     this.movie,
-    this.list_count,
+    this.listCount,
   );
 
   factory MovieAnticipated.fromJson(dynamic json) =>
