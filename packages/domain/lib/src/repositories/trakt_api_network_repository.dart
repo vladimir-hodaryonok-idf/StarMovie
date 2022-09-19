@@ -5,5 +5,5 @@ abstract class TraktApiNetworkRepository {
 
   Future<ListResponseModel> fetchTrendingMovies({int? limit});
 
-  Future<ListResponseModel> fetchCrewAndCast(int id);
+  Future<CrewAndCast> fetchCrewAndCast(int id);
 }

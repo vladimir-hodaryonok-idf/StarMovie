@@ -13,14 +13,11 @@ class TmdbApiNetworkRepositoryImpl implements TmdbApiNetworkRepository {
   });
 
   @override
-  Future<ListResponseModel> fetchImage(int id) async {
+  Future<CastAndCrewImages> fetchImage(int id) async {
     final request = TmdbCrewAndCastImages.byId(id);
     final ServicePayload payload = _createPayload(request);
     final Response response = await tmdbService.request(request, payload);
-    return ListResponseModel(
-      headers: response.headers.map,
-      data: response.data,
-    );
+    return CastAndCrewImages.fromJson(response.data);
   }
 
   ServicePayload _createPayload(APIRequestRepresentable request) {

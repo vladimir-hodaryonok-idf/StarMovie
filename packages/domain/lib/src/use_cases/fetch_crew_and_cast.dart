@@ -1,31 +1,37 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/models/people_model/crew_and_cast.dart';
+import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
+import 'package:domain/src/models/people_with_image/people_with_image.dart';
 import 'package:domain/src/use_cases/base/in_out_use_case.dart';
 
-class FetchCrewAndCastUseCase extends InOutUseCase<int, Future<CrewAndCast>> {
+const firstFourIds = 4;
+
+class FetchCrewAndCastUseCase
+    extends InOutUseCase<int, Future<List<PeopleWithImage>>> {
   final TraktApiNetworkRepository traktApiNetworkRepository;
   final TmdbApiNetworkRepository tmdbApiNetworkRepository;
-
-//todo makeMappers
+  final CastAndImagesListMapper castAndImagesListMapper;
 
   FetchCrewAndCastUseCase({
     required this.traktApiNetworkRepository,
     required this.tmdbApiNetworkRepository,
+    required this.castAndImagesListMapper,
   });
 
   @override
-  Future<CrewAndCast> call(int id) async {
-    final ListResponseModel response =
+  Future<List<PeopleWithImage>> call(int id) async {
+    final CrewAndCast crewAndCast =
         await traktApiNetworkRepository.fetchCrewAndCast(id);
-    final crewAndCast = CrewAndCast.fromJson(response.data);
-    final idList = _createIdList(crewAndCast);
-    final responsesList = await _fetchImages(idList);
+    final List<int> idList = _createFirstFourIdsList(crewAndCast);
+    final List<CastAndCrewImages> images = await _fetchImages(idList);
 
-    return CrewAndCast.fromJson(response.data);
+    return castAndImagesListMapper(
+      crewAndCast.cast ?? [],
+      images,
+    );
   }
 
-  Future<List<ListResponseModel>> _fetchImages(List<int> idList) async {
-    final List<ListResponseModel> responsesList = [];
+  Future<List<CastAndCrewImages>> _fetchImages(List<int> idList) async {
+    final List<CastAndCrewImages> responsesList = [];
     await Future.forEach<int>(
       idList,
       (element) async => responsesList.add(
@@ -35,9 +41,9 @@ class FetchCrewAndCastUseCase extends InOutUseCase<int, Future<CrewAndCast>> {
     return responsesList;
   }
 
-  List<int> _createIdList(CrewAndCast crewAndCast) {
+  List<int> _createFirstFourIdsList(CrewAndCast crewAndCast) {
     final cast = crewAndCast.cast ?? List.empty();
-    final length = cast.length;
+    final length = cast.length >= firstFourIds ? firstFourIds : cast.length;
     return List.generate(length, (index) => cast[index].person?.ids?.tmdb ?? 0)
         .toList();
   }

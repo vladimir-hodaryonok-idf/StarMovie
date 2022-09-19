@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'profiles.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.screamingSnake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Profiles {
   Profiles({
     this.aspectRatio,

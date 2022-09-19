@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart';
+import 'package:domain/src/models/cast_images/cast_and_crew_images.dart';
 
 abstract class TmdbApiNetworkRepository{
-  Future<ListResponseModel> fetchImage(int id);
+  Future<CastAndCrewImages> fetchImage(int id);
 }

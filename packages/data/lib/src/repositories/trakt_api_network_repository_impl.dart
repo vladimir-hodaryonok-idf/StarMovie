@@ -33,9 +33,10 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
   }
 
   @override
-  Future<ListResponseModel> fetchCrewAndCast(int id) {
+  Future<CrewAndCast> fetchCrewAndCast(int id) async {
     final request = TraktApiPeoples.castAndCrew(id);
-    return _fetchData(request);
+    final response = await _fetchData(request);
+    return CrewAndCast.fromJson(response.data);
   }
 
   ServicePayload _createPayload(APIRequestRepresentable request) {

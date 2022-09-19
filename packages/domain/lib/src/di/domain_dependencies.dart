@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/duration_to_string.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
@@ -7,7 +8,6 @@ import 'package:domain/src/mappers/list_to_genres_string.dart';
 import 'package:domain/src/mappers/movie_id_to_image_url.dart';
 import 'package:domain/src/mappers/movie_rating_to_stars_count.dart';
 import 'package:domain/src/mappers/rating_to_string.dart';
-import 'package:domain/src/use_cases/fetch_crew_and_cast.dart';
 import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
@@ -48,6 +48,7 @@ void initUseCases() {
     () => FetchCrewAndCastUseCase(
       traktApiNetworkRepository: inject.get(),
       tmdbApiNetworkRepository: inject.get(),
+      castAndImagesListMapper: inject.get(),
     ),
   );
 }
@@ -83,5 +84,8 @@ void initMappers() {
   inject.registerFactory<Mapper<double, String>>(
     () => RatingToStringMapper(),
     instanceName: ratingToString,
+  );
+  inject.registerFactory<CastAndImagesListMapper>(
+    () => CastAndImagesListMapper(),
   );
 }

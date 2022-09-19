@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'cast_and_crew_images.g.dart';
 
-@JsonSerializable(fieldRename: FieldRename.screamingSnake)
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CastAndCrewImages {
   CastAndCrewImages({
     this.id,
