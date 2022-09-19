@@ -1,11 +1,11 @@
 import 'package:domain/src/mappers/base_mapper.dart';
-import 'package:domain/src/repositories/network_repository.dart';
+import 'package:domain/src/repositories/trakt_api_network_repository.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 
 class FetchAnticipatedMoviesUseCase
     extends OutUseCase<Future<List<MovieAnticipated>>> {
-  final NetworkRepository networkRepository;
+  final TraktApiNetworkRepository networkRepository;
   final Mapper<Map<String, List<String>>, int> extractItemLimit;
   final Mapper<List, List<MovieAnticipated>> jsonToAnticipatedListMapper;
 

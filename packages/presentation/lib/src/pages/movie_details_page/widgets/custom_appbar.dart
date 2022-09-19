@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/utils/images_container.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  const CustomAppBar({
+    Key? key,
+    required this.bloc,
+  }) : super(key: key);
+  final MovieDetailsBloc bloc;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +21,13 @@ class CustomAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SvgPicture.asset(
-              AssetsImages.backArrow,
-              width: 12,
-              height: 20.5,
+            GestureDetector(
+              onTap: bloc.goBack,
+              child: SvgPicture.asset(
+                AssetsImages.backArrow,
+                width: 12,
+                height: 20.5,
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,

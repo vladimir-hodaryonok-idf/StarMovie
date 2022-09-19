@@ -7,6 +7,7 @@ import 'package:domain/src/mappers/list_to_genres_string.dart';
 import 'package:domain/src/mappers/movie_id_to_image_url.dart';
 import 'package:domain/src/mappers/movie_rating_to_stars_count.dart';
 import 'package:domain/src/mappers/rating_to_string.dart';
+import 'package:domain/src/use_cases/fetch_crew_and_cast.dart';
 import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
@@ -15,7 +16,7 @@ const movieRatingToStarsCount = 'movieRatingToStarsCount';
 const durationToString = 'durationToString';
 const movieIdToImage = 'movieIdToImage';
 const listToGenresString = 'listToGenresString';
-const ratingToString ='ratingToString';
+const ratingToString = 'ratingToString';
 
 void initDomainDependencies(Map<String, dynamic> apiKeys) {
   initApiKeyStore(apiKeys);
@@ -45,7 +46,8 @@ void initUseCases() {
   );
   inject.registerFactory(
     () => FetchCrewAndCastUseCase(
-      networkRepository: inject.get(),
+      traktApiNetworkRepository: inject.get(),
+      tmdbApiNetworkRepository: inject.get(),
     ),
   );
 }
@@ -74,12 +76,12 @@ void initMappers() {
     ),
     instanceName: movieIdToImage,
   );
-  inject.registerFactory<Mapper<List<String>?, String>>(
+  inject.registerFactory<Mapper<List<String>, String>>(
     () => ListToGenresString(),
     instanceName: listToGenresString,
   );
-  inject.registerFactory<Mapper<double?, String>>(
-        () => RatingToStringMapper(),
+  inject.registerFactory<Mapper<double, String>>(
+    () => RatingToStringMapper(),
     instanceName: ratingToString,
   );
 }

@@ -1,9 +1,7 @@
 import 'package:data/src/request/api_request_representable.dart';
 import 'package:data/src/request/trakt_api/constants/endpoints.dart';
-import 'package:data/src/request/trakt_api/constants/headers.dart';
-import 'package:domain/domain.dart';
 
-class TraktApiPeoples implements APIRequestRepresentable {
+class TraktApiPeoples implements APIRequestRepresentable<DioMethods> {
   final int id;
 
   TraktApiPeoples._({required this.id});
@@ -17,12 +15,10 @@ class TraktApiPeoples implements APIRequestRepresentable {
   get body => null;
 
   @override
-  Map<String, String>? get headers => {
-        TraktApiHeadersKeys.apiKey: ApiKeys.traktApiKey,
-      };
+  Map<String, String>? get headers => null;
 
   @override
-  HTTPMethod get method => HTTPMethod.get;
+  dynamic get method => DioMethods.get;
 
   @override
   String get path => '/${id}';

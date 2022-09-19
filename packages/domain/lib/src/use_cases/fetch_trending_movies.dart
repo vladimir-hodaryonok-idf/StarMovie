@@ -3,7 +3,7 @@ import 'package:domain/src/use_cases/base/out_use_case.dart';
 
 class FetchTrendingMoviesUseCase
     extends OutUseCase<Future<List<MovieTrending>>> {
-  final NetworkRepository networkRepository;
+  final TraktApiNetworkRepository networkRepository;
   final Mapper<List, List<MovieTrending>> jsonToTrendingListMapper;
   final Mapper<Map<String, List<String>>, int> extractItemLimit;
 

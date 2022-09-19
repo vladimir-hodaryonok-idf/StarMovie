@@ -6,10 +6,10 @@ import 'package:data/src/request/trakt_api/trakt_api_peoples.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
-class NetworkRepositoryImpl implements NetworkRepository {
+class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
   final ApiService<ServicePayload> traktService;
 
-  NetworkRepositoryImpl({required this.traktService});
+  TraktApiNetworkRepositoryImpl({required this.traktService});
 
   Future<ListResponseModel> _fetchData(APIRequestRepresentable request) async {
     final ServicePayload payload = _createPayload(request);
@@ -33,7 +33,7 @@ class NetworkRepositoryImpl implements NetworkRepository {
   }
 
   @override
-  Future<ResponseModel> fetchCrewAndCast(int id) {
+  Future<ListResponseModel> fetchCrewAndCast(int id) {
     final request = TraktApiPeoples.castAndCrew(id);
     return _fetchData(request);
   }

@@ -55,11 +55,19 @@ class _MovieDetailsPageState
                       MovieDetailsSwitcher(
                         currentPosition: tile.detailsSwitcher,
                       ),
-                      ExpandableDescription(description: details.overview,),
-                      CastAndCrewList(castList: [],)
+                      ExpandableDescription(
+                        description: details.overview,
+                      ),
+                      CastAndCrewList(
+                        castList: [],
+                      )
                     ],
                   ),
-                  SafeArea(child: CustomAppBar()),
+                  SafeArea(
+                    child: CustomAppBar(
+                      bloc: bloc,
+                    ),
+                  ),
                 ],
               ),
             ),
