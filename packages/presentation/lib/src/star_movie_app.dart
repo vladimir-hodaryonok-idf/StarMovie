@@ -29,7 +29,7 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
               child: CircularProgressIndicator(),
             );
           return Scaffold(
-            bottomNavigationBar: baseTile.isLoading
+            bottomNavigationBar: tile.isShowNavBar
                 ? null
                 : AppNavigationBar(
                     bloc: bloc,

@@ -19,7 +19,7 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   @override
   void init() {
     super.init();
-    _update(isLoading: true);
+    _update(isShowNavBar: true);
     _initNavHandler();
   }
 
@@ -99,8 +99,8 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
 
   BasePage<BaseArguments>? _currentPage() => tile.pages.lastOrNull;
 
-  void _update({bool isLoading = false}) =>
-      emit(data: tile, isLoading: isLoading);
+  void _update({bool isShowNavBar = false}) =>
+      emit(data: tile.copyWith(isShowNavBar: isShowNavBar));
 
   @override
   void bottomBarNavigation(int index) {
