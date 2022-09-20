@@ -36,6 +36,12 @@ TextStyle sfProSemiMedium14pxBlue = TextStyle(
   fontSize: 14,
 );
 
+TextStyle sfProSemiMedium14px = TextStyle(
+  color: Color(0xffFFFFFF),
+  fontFamily: 'SF Pro Text Medium',
+  fontSize: 14,
+);
+
 TextStyle sfProSemiRegular16px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
   fontFamily: 'SF Pro Text Regular',

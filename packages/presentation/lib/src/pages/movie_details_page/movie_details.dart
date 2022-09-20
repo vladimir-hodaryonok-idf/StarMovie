@@ -3,6 +3,7 @@ import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/base_bloc/movie_args.dart';
 import 'package:presentation/src/navigation/base_page.dart';
+import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/custom_appbar.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/expandable_description.dart';
@@ -40,40 +41,60 @@ class _MovieDetailsPageState
           final tile = snapshot.data?.tile;
           final details = tile?.movieDetails;
           if (details == null || tile == null)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          return SingleChildScrollView(
-            child: Center(
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      MovieCover(
-                        imageUrl: details.image,
-                      ),
-                      MovieInfo(details: details),
-                      MovieDetailsSwitcher(
-                        currentPosition: tile.detailsSwitcher,
-                      ),
-                      ExpandableDescription(
-                        description: details.overview,
-                      ),
-                      CastAndCrewList(
-                        castList: [],
-                      )
-                    ],
-                  ),
-                  SafeArea(
-                    child: CustomAppBar(
-                      bloc: bloc,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            return SizedBox.shrink();
+          return MovieDetailsWidget(
+            details: details,
+            tile: tile,
+            bloc: bloc,
           );
         },
+      ),
+    );
+  }
+}
+
+class MovieDetailsWidget extends StatelessWidget {
+  const MovieDetailsWidget({
+    Key? key,
+    required this.details,
+    required this.tile,
+    required this.bloc,
+  }) : super(key: key);
+
+  final MovieDetails details;
+  final DetailsData tile;
+  final MovieDetailsBloc bloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Center(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                MovieCover(
+                  imageUrl: details.image,
+                ),
+                MovieInfo(details: details),
+                MovieDetailsSwitcher(
+                  currentPosition: tile.detailsSwitcher,
+                ),
+                ExpandableDescription(
+                  description: details.overview,
+                ),
+                CastAndCrewList(
+                  castList: tile.crewAndCast,
+                )
+              ],
+            ),
+            SafeArea(
+              child: CustomAppBar(
+                bloc: bloc,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -14,7 +14,7 @@ export 'src/exceptions/exceptions.dart';
 export 'src/utils/nullable_extensions.dart';
 export 'src/utils/utility_extensions.dart';
 export 'src/mappers/base_mapper.dart';
-export 'src/key_store/store.dart';
 export 'src/repositories/tmdb_api_network_repository.dart';
 export 'src/models/people_model/crew_and_cast.dart';
 export 'src/models/cast_images/cast_and_crew_images.dart';
+export 'src/models/people_with_image/people_with_image.dart';

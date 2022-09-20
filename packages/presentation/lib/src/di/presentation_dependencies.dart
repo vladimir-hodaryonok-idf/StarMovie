@@ -8,6 +8,7 @@ import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movi
 import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
+import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
 import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dart';
 
 final inject = GetIt.I;
@@ -54,6 +55,7 @@ void initUiLayerMappers() {
       ratingToString: inject.get(instanceName: ratingToString),
     ),
   );
+  inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());
 }
 
 void initBlocModule() {
@@ -72,8 +74,8 @@ void initBlocModule() {
   );
   inject.registerFactory<MovieDetailsBloc>(
     () => MovieDetailsBloc(
-      inject.get<FetchCrewAndCastUseCase>(),
-      inject.get<MovieToMovieDetailsMapper>(),
-    ),
+        inject.get<FetchCrewAndCastUseCase>(),
+        inject.get<MovieToMovieDetailsMapper>(),
+        inject.get<PeoplesToCrewUiMapper>()),
   );
 }
