@@ -22,6 +22,7 @@ class MovieDetailsPage extends StatefulWidget {
         showSlideAnim: true,
         builder: (context) => const MovieDetailsPage(),
         arguments: args,
+        isShowNavBar: true,
       );
 
   @override

@@ -29,12 +29,12 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
               child: CircularProgressIndicator(),
             );
           return Scaffold(
-            bottomNavigationBar: baseTile.isLoading
-                ? null
-                : AppNavigationBar(
+            bottomNavigationBar: tile.isShowNavBar
+                ? AppNavigationBar(
                     bloc: bloc,
                     bottomNavIndex: tile.bottomNavIndex,
-                  ),
+                  )
+                : null,
             body: Navigator(
               onPopPage: (route, result) {
                 bloc.handleRemoveRouteSettings(route.settings);

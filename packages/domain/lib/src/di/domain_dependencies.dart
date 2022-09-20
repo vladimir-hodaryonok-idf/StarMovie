@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/duration_to_string.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
@@ -15,17 +14,13 @@ final inject = GetIt.I;
 const movieRatingToStarsCount = 'movieRatingToStarsCount';
 const durationToString = 'durationToString';
 const movieIdToImage = 'movieIdToImage';
+const omdbApiKey = 'omdbApiKeyName';
 const listToGenresString = 'listToGenresString';
 const ratingToString = 'ratingToString';
 
-void initDomainDependencies(Map<String, dynamic> apiKeys) {
-  initApiKeyStore(apiKeys);
+void initDomainDependencies() {
   initMappers();
   initUseCases();
-}
-
-void initApiKeyStore(Map<String, dynamic> apiKeys) {
-  inject.registerLazySingleton<ApiKeyStore>(() => ApiKeyStore(apiKeys));
 }
 
 void initUseCases() {
@@ -73,7 +68,7 @@ void initMappers() {
   );
   inject.registerFactory<Mapper<String, String>>(
     () => MovieIdToImageUrlMapper(
-      apiKeyStore: inject.get(),
+      apiKey: inject.get(instanceName: omdbApiKey),
     ),
     instanceName: movieIdToImage,
   );
