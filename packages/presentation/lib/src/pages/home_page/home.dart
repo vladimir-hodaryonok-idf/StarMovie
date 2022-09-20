@@ -17,6 +17,7 @@ class Home extends StatefulWidget {
         key: const ValueKey(_routeName),
         name: _routeName,
         builder: (context) => const Home(),
+        isShowNavBar: true,
       );
 
   @override

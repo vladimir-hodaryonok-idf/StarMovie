@@ -30,11 +30,11 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
             );
           return Scaffold(
             bottomNavigationBar: tile.isShowNavBar
-                ? null
-                : AppNavigationBar(
+                ? AppNavigationBar(
                     bloc: bloc,
                     bottomNavIndex: tile.bottomNavIndex,
-                  ),
+                  )
+                : null,
             body: Navigator(
               onPopPage: (route, result) {
                 bloc.handleRemoveRouteSettings(route.settings);

@@ -17,6 +17,7 @@ class MovieDetails extends StatefulWidget {
         showSlideAnim: true,
         builder: (context) => const MovieDetails(),
         arguments: args,
+        isShowNavBar: true,
       );
 
   @override
