@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
-import 'package:presentation/src/pages/home_page/widgets/movie_grid_item.dart';
-import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.dart';
+import 'package:presentation/src/pages/home_page/widgets/home_error.dart';
+import 'package:presentation/src/pages/home_page/widgets/home_loaded.dart';
 import 'package:presentation/style/text_styles/styles.dart';
-import 'package:presentation/utils/images_container.dart';
+
+import 'bloc/home_data.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class Home extends StatefulWidget {
         key: const ValueKey(_routeName),
         name: _routeName,
         builder: (context) => const Home(),
+        isShowNavBar: true,
       );
 
   @override
@@ -30,63 +32,36 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_title, style: sfProSemiBold24px),
+        centerTitle: false,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {
-              //todo action
-            },
+            onPressed: () {},
             icon: const Icon(Icons.search),
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(AssetsImages.movieReelIcon),
-            label: 'Films',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(AssetsImages.alarmIcon),
-            label: 'Reminder',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
-            label: 'Tickets',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
-            label: 'Personal',
-          ),
-        ],
-      ),
-      body: StreamBuilder(
-        stream: bloc.dataStream,
-        builder: (context, snapShot) => Center(
-          child: Column(
-            children: [
-              MovieShowingStatus(),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 18.0,
-                    right: 18.0,
-                  ),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 1 / 2.1,
-                    ),
-                    itemCount: 8, //todo from apiList
-                    itemBuilder: (context, index) {
-                      return MovieGridItem();
-                    },
-                  ),
-                ),
-              )
-            ],
-          ),
+      body: Center(
+        child: StreamBuilder<BaseTile<HomePageData>>(
+          stream: bloc.dataStream,
+          builder: (context, snapShot) {
+            final state = snapShot.data;
+            final tile = state?.tile;
+            if (state == null || tile == null) return const SizedBox.shrink();
+            if (state.exception != null) {
+              return HomeError(
+                tile: tile,
+                bloc: bloc,
+                state: state,
+              );
+            }
+            return HomeBody(
+              tile: tile,
+              bloc: bloc,
+              isLoading: state.isLoading,
+            );
+          },
         ),
       ),
     );

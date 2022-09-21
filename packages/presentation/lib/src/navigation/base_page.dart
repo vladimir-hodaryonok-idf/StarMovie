@@ -7,6 +7,7 @@ class BasePage<T extends BaseArguments> extends Page {
     required String name,
     required this.builder,
     this.showSlideAnim,
+    required this.isShowNavBar,
     T? arguments,
   }) : super(
           key: key,
@@ -16,6 +17,7 @@ class BasePage<T extends BaseArguments> extends Page {
 
   final WidgetBuilder builder;
   final bool? showSlideAnim;
+  final bool isShowNavBar;
 
   @override
   Route createRoute(BuildContext context) => _AppRoute(

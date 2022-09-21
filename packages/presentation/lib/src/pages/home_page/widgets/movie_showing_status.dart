@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
+import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/src/pages/home_page/widgets/status_button.dart';
 
 class MovieShowingStatus extends StatelessWidget {
-  const MovieShowingStatus({Key? key}) : super(key: key);
+  final MovieButtonStatus buttonStatus;
+  final HomeBloc bloc;
+
+  const MovieShowingStatus({
+    Key? key,
+    required this.buttonStatus,
+    required this.bloc,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +31,17 @@ class MovieShowingStatus extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(4, 4, 0, 4),
               child: StatusButton(
-                text: 'Now Showing',
-                isActive: true,
+                id: MovieButtonStatus.trending,
+                activeButtonId: buttonStatus,
+                bloc: bloc,
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 4, 4, 4),
               child: StatusButton(
-                text: 'Coming Soon',
-                isActive: false,
+                id: MovieButtonStatus.anticipated,
+                activeButtonId: buttonStatus,
+                bloc: bloc,
               ),
             ),
           ],

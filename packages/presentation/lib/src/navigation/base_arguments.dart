@@ -1,5 +1,5 @@
 abstract class BaseArguments {
-  BaseArguments(this.result);
+  BaseArguments(this.value);
 
-  Function(dynamic value)? result;
+  final dynamic value;
 }

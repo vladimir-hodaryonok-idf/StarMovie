@@ -1,4 +1,4 @@
-import 'package:domain/src/usecases/base/out_use_case.dart';
+import 'package:domain/src/use_cases/base/out_use_case.dart';
 
 class InitialApiCallUseCase extends OutUseCase {
   @override

@@ -3,7 +3,7 @@ class AssetsImages {
       'packages/presentation/assets/splash_screen/splash.svg';
 
   static String get movieReelIcon =>
-      'packages/presentation/assets/icons/event_ticket.svg';
+      'packages/presentation/assets/icons/movie_reel.svg';
 
   static String get alarmIcon => 'packages/presentation/assets/icons/alarm.svg';
 
@@ -25,4 +25,7 @@ class AssetsImages {
       'packages/presentation/assets/icons/full_star.svg';
 
   static String get ellipse => 'packages/presentation/assets/icons/ellipse.svg';
+
+  static String get errorImage =>
+      'packages/presentation/assets/icons/error.svg';
 }

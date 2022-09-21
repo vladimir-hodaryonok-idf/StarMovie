@@ -9,6 +9,8 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
   factory AppBloc() => _AppBloc();
 
   void handleRemoveRouteSettings(RouteSettings value);
+
+  void bottomBarNavigation(int index);
 }
 
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
@@ -97,5 +99,13 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
 
   BasePage<BaseArguments>? _currentPage() => tile.pages.lastOrNull;
 
-  void _update() => emit(data: tile);
+  void _update() {
+    final isShowNavBar = _currentPage()?.isShowNavBar ?? false;
+    emit(data: tile.copyWith(isShowNavBar: isShowNavBar));
+  }
+
+  @override
+  void bottomBarNavigation(int index) {
+    emit(data: tile.copyWith(bottomNavIndex: index));
+  }
 }

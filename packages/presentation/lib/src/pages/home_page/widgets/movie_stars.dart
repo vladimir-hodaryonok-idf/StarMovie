@@ -13,6 +13,8 @@ class MovieStars extends StatelessWidget {
   final int fullStarsCount;
   final bool isBigStar;
 
+  int get emptyStarCount => maxFullStars - fullStarsCount;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,26 +25,23 @@ class MovieStars extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(
-              fullStarsCount,
-              (_) => Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: SvgPicture.asset(
-                  AssetsImages.fullStar,
-                  height: isBigStar ? 20 : 14,
-                  width: isBigStar ? 20 : 14,
-                ),
-              ),
-            ),
-            ...List.generate(
-              maxFullStars - fullStarsCount,
-              (_) => SvgPicture.asset(
-                AssetsImages.emptyStar,
-                height: isBigStar ? 20 : 14,
-                width: isBigStar ? 20 : 14,
-              ),
-            ),
+            ...generateStars(stars: fullStarsCount, isFull: true),
+            ...generateStars(stars: emptyStarCount, isFull: false),
           ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> generateStars({required int stars, required bool isFull}) {
+    return List.generate(
+      stars,
+      (_) => Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: SvgPicture.asset(
+          isFull ? AssetsImages.fullStar : AssetsImages.emptyStar,
+          height: isBigStar ? 20 : 14,
+          width: isBigStar ? 20 : 14,
         ),
       ),
     );
