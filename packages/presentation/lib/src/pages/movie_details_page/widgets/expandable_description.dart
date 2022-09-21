@@ -1,7 +1,8 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/style/text_styles/styles.dart';
-import 'package:presentation/style/dimens.dart' as D;
+import 'package:presentation/style/dimens.dart';
 
 const maxDescriptionTextLines = 4;
 
@@ -15,9 +16,9 @@ class ExpandableDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(D.padding_18),
+      padding: const EdgeInsets.all(Dimens.padding_18),
       child: ExpandablePanel(
-        header: Text('Description', style: sfProSemiMedium18px),
+        header: Text(S.of(context).description, style: sfProSemiMedium18px),
         collapsed: Text(
           description,
           style: sfProSemiRegular14px70opacity,

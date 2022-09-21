@@ -1,30 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:presentation/style/dimens.dart' as D;
+
+const double personLogo_w = 50;
+const double personLogo_h = 50;
+const double personImageBorder_r = personLogo_h / 2;
+const double shadow_h_24 = 24;
+const double shadow_h_14 = 14;
+const double shadow_w_24 = 24;
 
 class MovieDetailsShadow extends StatelessWidget {
   const MovieDetailsShadow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final personNameTextShadow_w =
+        MediaQuery.of(context).size.width * 0.55 - personLogo_w;
+    final roleTextShadow_w = MediaQuery.of(context).size.width * 0.30;
+
     return Shimmer.fromColors(
       child: Row(
         children: [
           ShadowContainer(
-            width: D.personImage_w,
-            height: D.personImage_h,
-            borderRadius: D.personImageBorder_r,
+            width: personLogo_w,
+            height: personLogo_h,
+            borderRadius: personImageBorder_r,
           ),
           ShadowContainer(
-            width: D.fiftyFivePercentsOfWidth(context) - D.personImage_w,
-            height: D.shadow_h_24,
+            width: personNameTextShadow_w,
+            height: shadow_h_24,
           ),
-          ShadowContainer(width: D.shadow_h_24, height: D.shadow_h_14),
+          ShadowContainer(width: shadow_h_24, height: shadow_h_14),
           Flexible(
             child: ShadowContainer(
-              width: D.thirtyPercentsOfWidth(context),
-              height: D.shadow_h_24,
+              width: roleTextShadow_w,
+              height: shadow_h_24,
             ),
           ),
         ],

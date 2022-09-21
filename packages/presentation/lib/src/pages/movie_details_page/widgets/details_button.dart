@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/style/text_styles/styles.dart';
-import 'package:presentation/style/dimens.dart' as D;
+import 'package:presentation/style/dimens.dart';
+
+const buttonsCount = 3;
 
 class DetailsButton extends StatelessWidget {
   const DetailsButton({
@@ -15,7 +18,7 @@ class DetailsButton extends StatelessWidget {
   Decoration? decoration(BuildContext context) {
     return isActive
         ? BoxDecoration(
-            borderRadius: BorderRadius.circular(D.border_r_16),
+            borderRadius: BorderRadius.circular(Dimens.border_r_16),
             color: Theme.of(context).colorScheme.secondary,
           )
         : null;
@@ -23,17 +26,30 @@ class DetailsButton extends StatelessWidget {
 
   bool get isActive => activeButtonId == id;
 
+  String buttonName(DetailsSwitcher id) {
+    switch (id) {
+      case DetailsSwitcher.detail:
+        return S.current.detailBtn;
+      case DetailsSwitcher.reviews:
+        return S.current.reviewsBtn;
+      case DetailsSwitcher.showtime:
+        return S.current.showtimeBtn;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final details_button_w =
+        MediaQuery.of(context).size.width / buttonsCount - Dimens.padding_24;
     return GestureDetector(
       onTap: () {},
       child: Container(
         height: double.infinity,
-        width: D.details_button_w(context),
+        width: details_button_w,
         decoration: decoration(context),
         child: Center(
           child: Text(
-            id.toString(),
+            buttonName(id),
             textAlign: TextAlign.center,
             style: sfProSemiBold14px,
           ),

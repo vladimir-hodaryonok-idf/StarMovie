@@ -1,7 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
-import 'package:presentation/style/dimens.dart' as D;
+import 'package:presentation/style/dimens.dart';
 
 class MovieCover extends StatelessWidget {
   const MovieCover({
@@ -19,7 +19,7 @@ class MovieCover extends StatelessWidget {
           colorOpacity: 0.2,
           child: SizedBox(
             width: double.infinity,
-            height: D.backCover_h,
+            height: Dimens.height_300,
             child: MovieCoverLoader(
               imageUrl: imageUrl,
               fit: BoxFit.fitWidth,
@@ -29,10 +29,10 @@ class MovieCover extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
-            D.frontCoverP_l,
-            D.frontCoverP_t,
-            D.frontCoverP_r,
-            D.frontCoverP_b,
+            Dimens.padding_104,
+            Dimens.padding_140,
+            Dimens.padding_104,
+            Dimens.padding_20,
           ),
           child: MovieCoverLoader(imageUrl: imageUrl),
         )

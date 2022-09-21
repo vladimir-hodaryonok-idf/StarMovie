@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_shadow.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
-import 'package:presentation/style/dimens.dart' as D;
+import 'package:presentation/style/dimens.dart';
 
 const ellipsesInImageButtonCount = 3;
+const shadowListLength = 4;
 
 class CastAndCrewList extends StatelessWidget {
   const CastAndCrewList({
@@ -19,43 +21,43 @@ class CastAndCrewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(D.padding_18),
+      padding: const EdgeInsets.all(Dimens.padding_18),
       child: Container(
         width: double.infinity,
-        height: D.castAndCrewList_h,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Text('Cast & Crew', style: sfProSemiMedium18px),
+                Text(
+                  S.of(context).castAndCrew,
+                  style: sfProSemiMedium18px,
+                ),
                 Spacer(),
                 TextButton(
                   onPressed: () {},
                   child: Container(
-                    height: D.textButton_h,
-                    child: Text('View All', style: sfProSemiMedium14pxBlue),
+                    height: Dimens.height_18,
+                    child: Text(
+                      S.of(context).viewAll,
+                      style: sfProSemiMedium14pxBlue,
+                    ),
                   ),
                 ),
               ],
             ),
-            Expanded(
-              child: castList.isNotEmpty
-                  ? ListView.builder(
-                      padding: EdgeInsets.only(top: D.padding_8),
-                      itemCount: castList.length,
-                      itemBuilder: (context, index) {
-                        return CastAndCrewItem(
-                          item: castList[index],
-                        );
-                      },
-                    )
-                  : ListView.builder(
-                      padding: EdgeInsets.only(top: D.padding_8),
-                      itemCount: 4,
-                      itemBuilder: (_, index) => MovieDetailsShadow()),
-            ),
+            ...castList.isNotEmpty
+                ? List.generate(
+                    castList.length,
+                    (index) => CastAndCrewItem(
+                      item: castList[index],
+                    ),
+                  )
+                : List.generate(
+                    shadowListLength,
+                    (index) => MovieDetailsShadow(),
+                  ),
           ],
         ),
       ),
@@ -72,15 +74,16 @@ class CastAndCrewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final thirtyPercentsOfWidth = MediaQuery.of(context).size.width * 0.30;
     return Padding(
-      padding: const EdgeInsets.all(D.padding_8),
+      padding: const EdgeInsets.all(Dimens.padding_8),
       child: Row(
         children: [
           ImageWithName(item: item),
           ThreeEllipsesButton(),
           Expanded(
             child: Container(
-              width: D.thirtyPercentsOfWidth(context),
+              width: thirtyPercentsOfWidth,
               child: Text(
                 item.role,
                 style: sfProSemiMedium12px50opacity,
@@ -103,7 +106,7 @@ class ThreeEllipsesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(D.padding_15),
+      padding: EdgeInsets.all(Dimens.padding_15),
       child: Row(
         children: [
           ...List.generate(
@@ -126,13 +129,15 @@ class ImageWithName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fiftyFivePercentsOfWidth = MediaQuery.of(context).size.width * 0.55;
+
     return Container(
-      width: D.fiftyFivePercentsOfWidth(context),
+      width: fiftyFivePercentsOfWidth,
       child: Row(
         children: [
           PersonImage(item: item),
           SizedBox(
-            width: 12,
+            width: Dimens.width_12,
           ),
           Text(
             item.personName,
@@ -155,16 +160,16 @@ class PersonImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: D.personImage_h,
-      width: D.personImage_w,
+      height: Dimens.height_50,
+      width: Dimens.width_50,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(D.personImageBorder_r),
+        borderRadius: BorderRadius.circular(Dimens.border_r_25),
         child: Image.network(
           item.imageUrl,
           fit: BoxFit.fitWidth,
           errorBuilder: (context, exception, stackTrace) => ImageErrorWidget(
-            height: D.personImage_h,
-            width: D.personImage_w,
+            height: Dimens.height_50,
+            width: Dimens.width_50,
           ),
         ),
       ),

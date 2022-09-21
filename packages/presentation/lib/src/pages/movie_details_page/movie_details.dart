@@ -40,8 +40,7 @@ class _MovieDetailsPageState
         builder: (_, snapshot) {
           final tile = snapshot.data?.tile;
           final details = tile?.movieDetails;
-          if (details == null || tile == null)
-            return SizedBox.shrink();
+          if (details == null || tile == null) return SizedBox.shrink();
           return MovieDetailsWidget(
             details: details,
             tile: tile,
@@ -67,11 +66,11 @@ class MovieDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Center(
-        child: Stack(
-          children: [
-            Column(
+    return Center(
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
               children: [
                 MovieCover(
                   imageUrl: details.image,
@@ -85,16 +84,16 @@ class MovieDetailsWidget extends StatelessWidget {
                 ),
                 CastAndCrewList(
                   castList: tile.crewAndCast,
-                )
+                ),
               ],
             ),
-            SafeArea(
-              child: CustomAppBar(
-                bloc: bloc,
-              ),
+          ),
+          SafeArea(
+            child: CustomAppBar(
+              bloc: bloc,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

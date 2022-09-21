@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/utils/images_container.dart';
-import 'package:presentation/style/dimens.dart' as D;
+import 'package:presentation/style/dimens.dart';
 
 const maxFullStars = 5;
 
@@ -20,11 +20,11 @@ class MovieStars extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: D.padding_16,
-        bottom: D.padding_8,
+        top: Dimens.padding_16,
+        bottom: Dimens.padding_8,
       ),
       child: Container(
-        height: isBigStar ? D.bigStarContainer_h : D.smallStarContainer_h,
+        height: isBigStar ? Dimens.height_30 : Dimens.height_14,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,11 +41,11 @@ class MovieStars extends StatelessWidget {
     return List.generate(
       stars,
       (_) => Padding(
-        padding: const EdgeInsets.all(D.padding_2),
+        padding: const EdgeInsets.all(Dimens.padding_2),
         child: SvgPicture.asset(
           isFull ? AssetsImages.fullStar : AssetsImages.emptyStar,
-          height: isBigStar ? D.bigStarSize : D.smallStarSize,
-          width: isBigStar ? D.bigStarSize : D.smallStarSize,
+          height: isBigStar ? Dimens.height_20 : Dimens.height_14,
+          width: isBigStar ? Dimens.width_20 : Dimens.width_14,
         ),
       ),
     );

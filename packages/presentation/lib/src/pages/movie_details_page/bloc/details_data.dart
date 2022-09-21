@@ -1,11 +1,12 @@
-import 'package:domain/domain.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
 
-enum DetailsSwitcher {detail,reviews,showtime;
-@override
-String toString() => this.name.capitalize();
+enum DetailsSwitcher {
+  detail,
+  reviews,
+  showtime;
 }
+
 class DetailsData {
   final MovieDetails? movieDetails;
   final List<CrewAndCastUi> crewAndCast;
@@ -18,10 +19,9 @@ class DetailsData {
   });
 
   factory DetailsData.init() => DetailsData(
-        movieDetails: null,
-        crewAndCast: [],
-        detailsSwitcher: DetailsSwitcher.detail
-      );
+      movieDetails: null,
+      crewAndCast: [],
+      detailsSwitcher: DetailsSwitcher.detail);
 
   DetailsData copyWith({
     MovieDetails? movieDetails,

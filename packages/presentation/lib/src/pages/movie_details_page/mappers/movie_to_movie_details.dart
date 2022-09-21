@@ -22,7 +22,7 @@ class MovieToMovieDetailsMapper extends Mapper<Movie, MovieDetails> {
         movie.overview.stringOrEmpty,
         movie.runtime == null
             ? ''
-            : durationToString(movie.runtime!) +
+            : durationToString(movie.runtime!) + ' ' +
                 movie.certification.stringOrEmpty,
         movie.genres == null ? '' : listToGenres(movie.genres!),
         movie.ids?.imdb == null ? '' : movieIdToImage(movie.ids!.imdb!),
