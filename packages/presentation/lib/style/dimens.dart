@@ -23,6 +23,7 @@ abstract class Dimens {
   static const double height_20 = 20;
   static const double height_20_5 = 20.5;
   static const double height_21 = 21;
+  static const double height_24 = 24;
   static const double height_30 = 30;
   static const double height_36 = 36;
   static const double height_39 = 39;
@@ -37,6 +38,7 @@ abstract class Dimens {
   static const double width_14 = 14;
   static const double width_20 = 20;
   static const double width_20_5 = 70;
+  static const double width_24 = 24;
   static const double width_56 = 56;
   static const double width_39 = 39;
   static const double width_22_5 = 22.5;
