@@ -41,11 +41,10 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
       final List<PeopleWithImage> peopleWithImage = await fetchCrewAndCast(id);
       emit(
         data: tile.copyWith(
-            crewAndCast: peoplesToCrewUiMapper(peopleWithImage)),
+          crewAndCast: peoplesToCrewUiMapper(peopleWithImage),
+        ),
       );
-    } on AppException catch(e){
-
-    }
+    } on AppException catch (e) {}
   }
 
   @override

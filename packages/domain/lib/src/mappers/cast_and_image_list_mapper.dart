@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:domain/src/mappers/base_mapper_two_input_items.dart';
 import 'package:domain/src/models/people_model/cast.dart';
-import 'package:domain/src/models/people_with_image/people_with_image.dart';
 import 'package:collection/collection.dart';
 
 const baseUrl = 'http://image.tmdb.org/t/p/w185';

@@ -14,13 +14,13 @@ class Profiles {
     this.width,
   });
 
-  double? aspectRatio;
-  int? height;
-  dynamic iso6391;
-  String? filePath;
-  double? voteAverage;
-  int? voteCount;
-  int? width;
+  final double? aspectRatio;
+  final int? height;
+  final dynamic iso6391;
+  final String? filePath;
+  final double? voteAverage;
+  final int? voteCount;
+  final int? width;
 
   factory Profiles.fromJson(dynamic json) => _$ProfilesFromJson(json);
 

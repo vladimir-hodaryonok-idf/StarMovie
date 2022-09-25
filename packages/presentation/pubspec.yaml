@@ -45,4 +45,5 @@ flutter:
 
   generate: true
 flutter_intl:
+  main_locale: en
   enabled: true

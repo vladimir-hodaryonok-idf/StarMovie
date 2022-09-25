@@ -6,7 +6,6 @@ import 'package:presentation/generated/l10n.dart';
 import 'app/app_bloc.dart';
 import 'app/widgets/app_navigation_bar.dart';
 import 'base_bloc/base_tile.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class StarMovieApp extends StatefulWidget {
   const StarMovieApp({Key? key}) : super(key: key);
@@ -21,15 +20,8 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
     return MaterialApp(
       title: 'Star Movie',
       theme: ThemeData.from(colorScheme: dark),
-      localizationsDelegates:const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', ''),
-      ],
+      localizationsDelegates: const [S.delegate],
+      supportedLocales: S.delegate.supportedLocales,
       home: StreamBuilder<BaseTile<AppData>>(
         stream: bloc.dataStream,
         builder: (context, snapshot) {

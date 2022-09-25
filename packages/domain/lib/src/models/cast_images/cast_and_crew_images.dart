@@ -10,8 +10,8 @@ class CastAndCrewImages {
     this.profiles,
   });
 
-  int? id;
-  List<Profiles>? profiles;
+  final int? id;
+  final List<Profiles>? profiles;
 
   factory CastAndCrewImages.fromJson(dynamic json) =>
       _$CastAndCrewImagesFromJson(json);

@@ -18,7 +18,10 @@ class ExpandableDescription extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(Dimens.padding_18),
       child: ExpandablePanel(
-        header: Text(S.of(context).description, style: sfProSemiMedium18px),
+        header: Text(
+          S.of(context).description,
+          style: sfProSemiMedium18px,
+        ),
         collapsed: Text(
           description,
           style: sfProSemiRegular14px70opacity,
