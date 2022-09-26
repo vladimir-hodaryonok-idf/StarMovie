@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 
-class ListToGenresString extends Mapper<List<String>, String> {
+class ListToGenresStringMapper extends Mapper<List<String>, String> {
   @override
   String call(List<String> list) {
     final buffer = StringBuffer();

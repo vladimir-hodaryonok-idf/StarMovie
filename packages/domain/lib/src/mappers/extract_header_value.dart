@@ -5,7 +5,7 @@ import 'package:domain/src/utils/nullable_extensions.dart';
 const minimumPagesCount = 5;
 const defaultItemsPerPage = 10;
 
-class ExtractItemLimit extends Mapper<Map<String, List<String>>, int> {
+class ExtractItemLimitMapper extends Mapper<Map<String, List<String>>, int> {
   @override
   int call(Map<String, List<String>> params) {
     final pagesCount = params[HeaderKey.pages].firstToInt;

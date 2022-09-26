@@ -57,14 +57,23 @@ class MovieCoverLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.network(
       imageUrl,
-      loadingBuilder: (context, child, progress) {
+      loadingBuilder: (
+        context,
+        child,
+        progress,
+      ) {
         return progress == null
             ? child
             : Center(child: const CircularProgressIndicator());
       },
       fit: fit,
       alignment: alignment,
-      errorBuilder: (context, exception, stackTrace) => ImageErrorWidget(
+      errorBuilder: (
+        context,
+        exception,
+        stackTrace,
+      ) =>
+          ImageErrorWidget(
         height: double.infinity,
         width: double.infinity,
       ),

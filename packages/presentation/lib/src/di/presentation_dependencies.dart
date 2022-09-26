@@ -27,10 +27,9 @@ void initNavigatorModule() {
 void initUiLayerMappers() {
   inject.registerFactory<MovieToHomePageMovieMapper>(
     () => MovieToHomePageMovieMapper(
-      movieIdToImage: inject.get(instanceName: movieIdToImage),
-      movieRatingToStarsCount:
-          inject.get(instanceName: movieRatingToStarsCount),
-      durationToString: inject.get(instanceName: durationToString),
+      movieIdToImage: inject.get(),
+      movieRatingToStarsCount: inject.get(),
+      durationToString: inject.get(),
     ),
   );
 
@@ -47,12 +46,10 @@ void initUiLayerMappers() {
   );
   inject.registerFactory(
     () => MovieToMovieDetailsMapper(
-      durationToString: inject.get(instanceName: durationToString),
-      movieIdToImage: inject.get(instanceName: movieIdToImage),
-      movieRatingToStarsCount:
-          inject.get(instanceName: movieRatingToStarsCount),
-      listToGenres: inject.get(instanceName: listToGenresString),
-      ratingToString: inject.get(instanceName: ratingToString),
+      durationToString: inject.get(),
+      movieIdToImage: inject.get(),
+      movieRatingToStarsCount: inject.get(),
+      listToGenres: inject.get(),
     ),
   );
   inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());

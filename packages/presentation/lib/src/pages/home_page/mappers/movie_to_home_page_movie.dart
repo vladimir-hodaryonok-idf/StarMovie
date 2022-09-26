@@ -2,9 +2,9 @@ import 'package:domain/domain.dart';
 import 'package:presentation/src/pages/home_page/model/home_page_movie.dart';
 
 class MovieToHomePageMovieMapper extends Mapper<Movie, HomePageMovie> {
-  final Mapper<int, String> durationToString;
-  final Mapper<String, String> movieIdToImage;
-  final Mapper<double, int> movieRatingToStarsCount;
+  final DurationToStringMapper durationToString;
+  final MovieIdToImageUrlMapper movieIdToImage;
+  final MovieRatingToStarsCountMapper movieRatingToStarsCount;
 
   MovieToHomePageMovieMapper({
     required this.durationToString,

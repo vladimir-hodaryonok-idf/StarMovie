@@ -18,3 +18,7 @@ export 'src/repositories/tmdb_api_network_repository.dart';
 export 'src/models/people_model/crew_and_cast.dart';
 export 'src/models/cast_images/cast_and_crew_images.dart';
 export 'src/models/people_with_image/people_with_image.dart';
+export 'src/mappers/duration_to_string.dart';
+export 'src/mappers/movie_id_to_image_url.dart';
+export 'src/mappers/movie_rating_to_stars_count.dart';
+export 'src/mappers/list_to_genres_string.dart';

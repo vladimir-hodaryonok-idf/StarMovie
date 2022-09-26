@@ -32,7 +32,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
 
   @override
-  void init() async {
+  void init() {
     super.init();
   }
 
