@@ -1,16 +1,17 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsShadow extends StatelessWidget {
-  const MovieDetailsShadow({Key? key}) : super(key: key);
+  const MovieDetailsShadow({Key? key});
 
   @override
   Widget build(BuildContext context) {
     final personNameTextShadow_w =
-        MediaQuery.of(context).size.width * 0.55 - Dimens.width_50;
-    final roleTextShadow_w = MediaQuery.of(context).size.width * 0.30;
+        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.width_50;
+    final roleTextShadow_w = MediaQuery.of(context).size.width.thirtyPercent;
 
     return Shimmer.fromColors(
       child: Row(

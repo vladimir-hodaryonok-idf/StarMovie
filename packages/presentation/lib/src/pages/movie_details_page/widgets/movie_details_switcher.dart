@@ -5,9 +5,9 @@ import 'package:presentation/style/dimens.dart';
 
 class MovieDetailsSwitcher extends StatelessWidget {
   const MovieDetailsSwitcher({
-    Key? key,
     required this.currentPosition,
-  }) : super(key: key);
+    Key? key,
+  });
   final DetailsSwitcher currentPosition;
 
   @override

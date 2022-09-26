@@ -1,22 +1,24 @@
 import 'package:data/src/request/api_request_representable.dart';
 import 'package:data/src/request/tmdb_api/constants/endpoints.dart';
 
-class TmdbCrewAndCastImages implements APIRequestRepresentable<DioMethods>{
+class TmdbCrewAndCastImages implements APIRequestRepresentable<String> {
   final int id;
-  TmdbCrewAndCastImages._({required this.id});
-  TmdbCrewAndCastImages.byId(int id) : this._(id: id);
+
+  const TmdbCrewAndCastImages._({required this.id});
+
+  const TmdbCrewAndCastImages.byId(int id) : this._(id: id);
 
   @override
   String? get baseUrl => null;
 
   @override
-  get body => null;
+  Object? get body => null;
 
   @override
   Map<String, String>? get headers => null;
 
   @override
-  get method => DioMethods.get;
+  String get method => DioMethods.get;
 
   @override
   String get path => '/$id';
@@ -26,5 +28,4 @@ class TmdbCrewAndCastImages implements APIRequestRepresentable<DioMethods>{
 
   @override
   String get url => TmdbApiEndpoints.person + path + TmdbApiEndpoints.images;
-
 }

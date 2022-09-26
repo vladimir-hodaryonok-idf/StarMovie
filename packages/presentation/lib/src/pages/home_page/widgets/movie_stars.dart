@@ -3,18 +3,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:presentation/utils/images_container.dart';
 import 'package:presentation/style/dimens.dart';
 
-const maxFullStars = 5;
+const _maxFullStars = 5;
 
 class MovieStars extends StatelessWidget {
   const MovieStars({
-    Key? key,
     required this.fullStarsCount,
     required this.isBigStar,
-  }) : super(key: key);
+    Key? key,
+  });
   final int fullStarsCount;
   final bool isBigStar;
 
-  int get emptyStarCount => maxFullStars - fullStarsCount;
+  int get emptyStarCount => _maxFullStars - fullStarsCount;
 
   @override
   Widget build(BuildContext context) {

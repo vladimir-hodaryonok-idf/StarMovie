@@ -5,10 +5,10 @@ import 'package:presentation/utils/images_container.dart';
 
 class AppNavigationBar extends StatelessWidget {
   const AppNavigationBar({
-    Key? key,
     required this.bottomNavIndex,
     required this.bloc,
-  }) : super(key: key);
+    Key? key,
+  });
   final AppBloc bloc;
   final int bottomNavIndex;
 

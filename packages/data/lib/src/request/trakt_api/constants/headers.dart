@@ -1,3 +1,3 @@
 abstract class TraktApiHeadersKeys {
-  static String get apiKey => 'trakt-api-key';
+  static const String apiKey = 'trakt-api-key';
 }

@@ -5,12 +5,12 @@ import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 
 class FetchAnticipatedMoviesUseCase
-    extends OutUseCase<Future<List<MovieAnticipated>>> {
+    implements OutUseCase<Future<List<MovieAnticipated>>> {
   final TraktApiNetworkRepository networkRepository;
   final ExtractItemLimitMapper extractItemLimit;
   final JsonToAnticipatedList jsonToAnticipatedListMapper;
 
-  FetchAnticipatedMoviesUseCase({
+  const FetchAnticipatedMoviesUseCase({
     required this.networkRepository,
     required this.extractItemLimit,
     required this.jsonToAnticipatedListMapper,

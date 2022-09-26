@@ -54,11 +54,11 @@ class _MovieDetailsPageState
 
 class MovieDetailsWidget extends StatelessWidget {
   const MovieDetailsWidget({
-    Key? key,
     required this.details,
     required this.tile,
     required this.bloc,
-  }) : super(key: key);
+    Key? key,
+  });
 
   final MovieDetails details;
   final DetailsData tile;

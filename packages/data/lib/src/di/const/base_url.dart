@@ -1,5 +1,5 @@
 abstract class BaseUrl {
-  static String get traktApi => 'https://api.trakt.tv';
+  static const String traktApi = 'https://api.trakt.tv';
 
-  static String get tmdbApi => 'https://api.themoviedb.org';
+  static const String tmdbApi = 'https://api.themoviedb.org';
 }

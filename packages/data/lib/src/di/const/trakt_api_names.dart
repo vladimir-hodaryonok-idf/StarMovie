@@ -1,3 +1,5 @@
-const traktApiDioName = 'TractApiDio';
-const traktApiBaseOptionsName = 'TractApiBaseOptions';
-const traktApiDioServiceName = 'TraktApiDioServiceName';
+abstract class TraktApiNames {
+  static const traktApiDioName = 'TractApiDio';
+  static const traktApiBaseOptionsName = 'TractApiBaseOptions';
+  static const traktApiDioServiceName = 'TraktApiDioServiceName';
+}

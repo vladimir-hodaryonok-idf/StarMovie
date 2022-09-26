@@ -8,7 +8,7 @@ import 'package:domain/domain.dart';
 class TmdbApiNetworkRepositoryImpl implements TmdbApiNetworkRepository {
   final ApiService<ServicePayload> tmdbService;
 
-  TmdbApiNetworkRepositoryImpl({
+  const TmdbApiNetworkRepositoryImpl({
     required this.tmdbService,
   });
 

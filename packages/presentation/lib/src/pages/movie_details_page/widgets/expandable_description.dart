@@ -1,16 +1,15 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/style/dimens.dart';
 
-const maxDescriptionTextLines = 4;
-
 class ExpandableDescription extends StatelessWidget {
   const ExpandableDescription({
-    Key? key,
     required this.description,
-  }) : super(key: key);
+    Key? key,
+  });
   final String description;
 
   @override
@@ -26,7 +25,7 @@ class ExpandableDescription extends StatelessWidget {
           description,
           style: sfProSemiRegular14px70opacity,
           softWrap: true,
-          maxLines: maxDescriptionTextLines,
+          maxLines: C.maxDescriptionTextLines,
           overflow: TextOverflow.ellipsis,
         ),
         expanded: Text(

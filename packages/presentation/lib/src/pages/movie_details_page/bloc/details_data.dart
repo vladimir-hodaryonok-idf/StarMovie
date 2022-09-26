@@ -12,7 +12,7 @@ class DetailsData {
   final List<CrewAndCastUi> crewAndCast;
   final DetailsSwitcher detailsSwitcher;
 
-  DetailsData({
+  const DetailsData({
     required this.movieDetails,
     required this.crewAndCast,
     required this.detailsSwitcher,

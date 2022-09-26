@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShadowItem extends StatelessWidget {
-  const ShadowItem({
-    Key? key,
-  }) : super(key: key);
+  const ShadowItem({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +36,12 @@ class ShadowItem extends StatelessWidget {
 
 class ShadowContainer extends StatelessWidget {
   const ShadowContainer({
-    Key? key,
     required this.width,
     required this.height,
     this.borderRadius = 8,
     this.padding = 8,
-  }) : super(key: key);
+    Key? key,
+  });
   final double width;
   final double height;
   final double borderRadius;

@@ -5,13 +5,14 @@ part 'cast_and_crew_images.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class CastAndCrewImages {
-  CastAndCrewImages({
-    this.id,
-    this.profiles,
-  });
 
   final int? id;
   final List<Profiles>? profiles;
+
+  const CastAndCrewImages({
+    this.id,
+    this.profiles,
+  });
 
   factory CastAndCrewImages.fromJson(dynamic json) =>
       _$CastAndCrewImagesFromJson(json);

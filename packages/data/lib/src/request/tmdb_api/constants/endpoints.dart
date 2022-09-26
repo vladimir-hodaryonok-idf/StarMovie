@@ -1,5 +1,5 @@
 abstract class TmdbApiEndpoints {
-  static String get person => '/3/person';
+  static const String person = '/3/person';
 
-  static String get images => '/images';
+  static const String images = '/images';
 }

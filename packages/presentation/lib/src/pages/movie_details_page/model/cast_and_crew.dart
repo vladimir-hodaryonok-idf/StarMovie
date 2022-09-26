@@ -3,7 +3,7 @@ class CrewAndCastUi {
   final String personName;
   final String role;
 
-  CrewAndCastUi({
+  const CrewAndCastUi({
     required this.imageUrl,
     required this.personName,
     required this.role,

@@ -1,3 +1,3 @@
 abstract class TmdbQueryKeys{
-  static String get tmdbApiKey => 'api_key';
+  static const String tmdbApiKey = 'api_key';
 }

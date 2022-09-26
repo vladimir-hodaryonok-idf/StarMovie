@@ -8,7 +8,7 @@ class MovieDetails {
   final String rating;
   final int id;
 
-  MovieDetails(
+  const MovieDetails(
     this.title,
     this.overview,
     this.durationAndCertification,

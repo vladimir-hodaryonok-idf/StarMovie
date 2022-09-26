@@ -6,9 +6,9 @@ import 'package:presentation/style/dimens.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
-    Key? key,
     required this.bloc,
-  }) : super(key: key);
+    Key? key,
+  });
   final MovieDetailsBloc bloc;
 
   @override

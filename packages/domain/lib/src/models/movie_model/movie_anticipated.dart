@@ -8,7 +8,7 @@ class MovieAnticipated {
   final int listCount;
   final Movie movie;
 
-  MovieAnticipated(
+  const MovieAnticipated(
     this.movie,
     this.listCount,
   );

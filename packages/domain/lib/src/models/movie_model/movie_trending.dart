@@ -9,7 +9,7 @@ class MovieTrending {
   final int watchers;
   final Movie movie;
 
-  MovieTrending(
+  const MovieTrending(
     this.movie,
     this.watchers,
   );

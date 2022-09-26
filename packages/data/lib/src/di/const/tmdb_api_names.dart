@@ -1,3 +1,5 @@
-const tmdbApiDioName = 'TmdbApiDio';
-const tmdbApiBaseOptionsName = 'TmdbApiBaseOptions';
-const tmdbApiDioServiceName = 'TmdbApiDioServiceName';
+abstract class TmdbApiNames {
+  static const tmdbApiDioName = 'TmdbApiDio';
+  static const tmdbApiBaseOptionsName = 'TmdbApiBaseOptions';
+  static const tmdbApiDioServiceName = 'TmdbApiDioServiceName';
+}

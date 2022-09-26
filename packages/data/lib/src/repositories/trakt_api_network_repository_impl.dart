@@ -9,14 +9,16 @@ import 'package:domain/domain.dart';
 class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
   final ApiService<ServicePayload> traktService;
 
-  TraktApiNetworkRepositoryImpl({required this.traktService});
+  const TraktApiNetworkRepositoryImpl({required this.traktService});
 
   Future<ListResponseModel> _fetchData(APIRequestRepresentable request) async {
     final ServicePayload payload = _createPayload(request);
     final Response response = await traktService.request(request, payload);
     return ListResponseModel(
       headers: response.headers.map,
-      data: response.data,
+      data: (response.data as List<dynamic>)
+          .map((e) => e as Map<String, dynamic>)
+          .toList(),
     );
   }
 
@@ -35,7 +37,8 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
   @override
   Future<CrewAndCast> fetchCrewAndCast(int id) async {
     final request = TraktApiPeoples.castAndCrew(id);
-    final response = await _fetchData(request);
+    final payload = _createPayload(request);
+    final response = await traktService.request(request, payload);
     return CrewAndCast.fromJson(response.data);
   }
 

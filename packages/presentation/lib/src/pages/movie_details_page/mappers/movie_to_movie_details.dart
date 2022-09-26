@@ -1,13 +1,13 @@
 import 'package:domain/domain.dart';
 import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
 
-class MovieToMovieDetailsMapper extends Mapper<Movie, MovieDetails> {
+class MovieToMovieDetailsMapper implements Mapper<Movie, MovieDetails> {
   final DurationToStringMapper durationToString;
   final MovieIdToImageUrlMapper movieIdToImage;
   final MovieRatingToStarsCountMapper movieRatingToStarsCount;
   final ListToGenresStringMapper listToGenres;
 
-  MovieToMovieDetailsMapper({
+  const MovieToMovieDetailsMapper({
     required this.durationToString,
     required this.movieIdToImage,
     required this.movieRatingToStarsCount,

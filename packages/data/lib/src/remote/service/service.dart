@@ -15,7 +15,7 @@ abstract class ApiService<P extends ServicePayload> {
 class DioService implements ApiService<DioServicePayload> {
   final Dio _client;
 
-  DioService(
+  const DioService(
     this._client,
   );
 

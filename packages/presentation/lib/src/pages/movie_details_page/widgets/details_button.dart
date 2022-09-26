@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/style/dimens.dart';
 
-const buttonsCount = 3;
-
 class DetailsButton extends StatelessWidget {
   const DetailsButton({
-    Key? key,
     required this.activeButtonId,
     required this.id,
-  }) : super(key: key);
+    Key? key,
+  });
   final DetailsSwitcher id;
   final DetailsSwitcher activeButtonId;
 
@@ -40,7 +39,7 @@ class DetailsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final details_button_w =
-        MediaQuery.of(context).size.width / buttonsCount - Dimens.padding_24;
+        MediaQuery.of(context).size.width / C.buttonsCount - Dimens.padding_24;
     return GestureDetector(
       onTap: () {},
       child: Container(

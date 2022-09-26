@@ -4,12 +4,12 @@ import 'package:domain/src/mappers/json_to_trending_list.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 
 class FetchTrendingMoviesUseCase
-    extends OutUseCase<Future<List<MovieTrending>>> {
+    implements OutUseCase<Future<List<MovieTrending>>> {
   final TraktApiNetworkRepository networkRepository;
   final JsonToTrendingListMapper jsonToTrendingListMapper;
   final ExtractItemLimitMapper extractItemLimit;
 
-  FetchTrendingMoviesUseCase({
+  const FetchTrendingMoviesUseCase({
     required this.networkRepository,
     required this.jsonToTrendingListMapper,
     required this.extractItemLimit,

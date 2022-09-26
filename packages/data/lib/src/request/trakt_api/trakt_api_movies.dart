@@ -2,23 +2,23 @@ import 'package:data/src/request/api_request_representable.dart';
 import 'package:data/src/request/trakt_api/constants/query.dart';
 import 'package:data/src/request/trakt_api/constants/endpoints.dart';
 
-class TraktApiMovies implements APIRequestRepresentable<DioMethods> {
+class TraktApiMovies implements APIRequestRepresentable<String> {
   final String endPoint;
   final int? _itemLimit;
 
-  TraktApiMovies._(this.endPoint, this._itemLimit);
+  const TraktApiMovies._(this.endPoint, this._itemLimit);
 
-  TraktApiMovies.trending({int? limit})
+  const TraktApiMovies.trending({int? limit})
       : this._(TraktApiEndpoints.trending, limit);
 
-  TraktApiMovies.anticipated({int? limit})
+  const TraktApiMovies.anticipated({int? limit})
       : this._(TraktApiEndpoints.anticipated, limit);
 
   @override
   String? get baseUrl => null;
 
   @override
-  get body => null;
+  Object? get body => null;
 
   @override
   Map<String, dynamic>? get query => {
@@ -34,7 +34,7 @@ class TraktApiMovies implements APIRequestRepresentable<DioMethods> {
   Map<String, String>? get headers => null;
 
   @override
-  dynamic get method => DioMethods.get;
+  String get method => DioMethods.get;
 
   @override
   String? get path => null;

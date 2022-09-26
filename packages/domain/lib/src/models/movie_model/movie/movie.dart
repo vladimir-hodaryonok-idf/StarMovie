@@ -25,7 +25,7 @@ class Movie {
   final List<String>? genres;
   final String? certification;
 
-  Movie(
+  const Movie(
     this.title,
     this.year,
     this.ids,

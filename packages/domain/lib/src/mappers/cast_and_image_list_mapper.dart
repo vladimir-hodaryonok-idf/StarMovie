@@ -3,7 +3,7 @@ import 'package:domain/src/mappers/base_mapper_two_input_items.dart';
 import 'package:domain/src/models/people_model/cast.dart';
 import 'package:collection/collection.dart';
 
-const baseUrl = 'http://image.tmdb.org/t/p/w185';
+const _imageUrl = 'http://image.tmdb.org/t/p/w185';
 
 class CastAndImagesListMapper extends BaseMapperWithTwoInput<List<Cast>,
     List<CastAndCrewImages>, List<PeopleWithImage>> {
@@ -26,7 +26,7 @@ class CastAndImagesListMapper extends BaseMapperWithTwoInput<List<Cast>,
           characters: people.characters,
           person: people.person,
           imageUrl:
-              baseUrl + (image.profiles?.firstOrNull?.filePath).stringOrEmpty,
+              _imageUrl + (image.profiles?.firstOrNull?.filePath).stringOrEmpty,
         );
       },
     ).toList();

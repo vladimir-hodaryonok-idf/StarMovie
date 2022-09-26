@@ -1,9 +1,9 @@
 abstract class TraktApiEndpoints {
-  static String get trending => '/movies/trending';
+  static const String trending = '/movies/trending';
 
-  static String get anticipated => '/movies/anticipated';
+  static const String anticipated = '/movies/anticipated';
 
-  static String get movies => '/movies';
+  static const String movies = '/movies';
 
-  static String get people => '/people';
+  static const String people = '/people';
 }

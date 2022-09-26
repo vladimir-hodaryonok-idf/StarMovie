@@ -6,7 +6,7 @@ class PeopleWithImage {
   final Person? person;
   final String imageUrl;
 
-  PeopleWithImage({
+  const PeopleWithImage({
     required this.character,
     required this.characters,
     required this.person,

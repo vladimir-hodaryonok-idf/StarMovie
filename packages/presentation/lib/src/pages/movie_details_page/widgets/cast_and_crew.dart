@@ -1,5 +1,7 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
@@ -8,58 +10,56 @@ import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
 import 'package:presentation/style/dimens.dart';
 
-const ellipsesInImageButtonCount = 3;
-const shadowListLength = 4;
-
 class CastAndCrewList extends StatelessWidget {
   const CastAndCrewList({
-    Key? key,
     required this.castList,
-  }) : super(key: key);
+    Key? key,
+  });
+
   final List<CrewAndCastUi> castList;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(Dimens.padding_18),
-      child: Container(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  S.of(context).castAndCrew,
-                  style: sfProSemiMedium18px,
-                ),
-                Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    height: Dimens.height_18,
-                    child: Text(
-                      S.of(context).viewAll,
-                      style: sfProSemiMedium14pxBlue,
-                    ),
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                S.of(context).castAndCrew,
+                style: sfProSemiMedium18px,
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: () {
+                  // todo implement in the next tasks
+                },
+                child: Container(
+                  height: Dimens.height_18,
+                  child: Text(
+                    S.of(context).viewAll,
+                    style: sfProSemiMedium14pxBlue,
                   ),
                 ),
-              ],
-            ),
-            ...castList.isNotEmpty
-                ? List.generate(
-                    castList.length,
-                    (index) => CastAndCrewItem(
-                      item: castList[index],
-                    ),
-                  )
-                : List.generate(
-                    shadowListLength,
-                    (index) => MovieDetailsShadow(),
+              ),
+            ],
+          ),
+          ...castList.isNotEmpty
+              ? List.generate(
+                  castList.length,
+                  (index) => CastAndCrewItem(
+                    item: castList[index],
                   ),
-          ],
-        ),
+                )
+              : List.generate(
+                  C.shadowListLength,
+                  (index) => MovieDetailsShadow(),
+                ),
+        ],
       ),
     );
   }
@@ -67,14 +67,16 @@ class CastAndCrewList extends StatelessWidget {
 
 class CastAndCrewItem extends StatelessWidget {
   const CastAndCrewItem({
-    Key? key,
     required this.item,
-  }) : super(key: key);
+    Key? key,
+  });
+
   final CrewAndCastUi item;
 
   @override
   Widget build(BuildContext context) {
-    final thirtyPercentsOfWidth = MediaQuery.of(context).size.width * 0.30;
+    final thirtyPercentsOfWidth =
+        MediaQuery.of(context).size.width.thirtyPercent;
     return Padding(
       padding: const EdgeInsets.all(Dimens.padding_8),
       child: Row(
@@ -87,7 +89,7 @@ class CastAndCrewItem extends StatelessWidget {
               child: Text(
                 item.role,
                 style: sfProSemiMedium12px50opacity,
-                maxLines: 2,
+                maxLines: C.roleMaxLines,
                 softWrap: true,
               ),
             ),
@@ -99,9 +101,7 @@ class CastAndCrewItem extends StatelessWidget {
 }
 
 class ThreeEllipsesButton extends StatelessWidget {
-  const ThreeEllipsesButton({
-    Key? key,
-  }) : super(key: key);
+  const ThreeEllipsesButton({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class ThreeEllipsesButton extends StatelessWidget {
       child: Row(
         children: [
           ...List.generate(
-            ellipsesInImageButtonCount,
+            C.ellipsesInImageButtonCount,
             (index) => SvgPicture.asset(AssetsImages.ellipse),
           ),
         ],
@@ -121,15 +121,16 @@ class ThreeEllipsesButton extends StatelessWidget {
 
 class ImageWithName extends StatelessWidget {
   const ImageWithName({
-    Key? key,
     required this.item,
-  }) : super(key: key);
+    Key? key,
+  });
 
   final CrewAndCastUi item;
 
   @override
   Widget build(BuildContext context) {
-    final fiftyFivePercentsOfWidth = MediaQuery.of(context).size.width * 0.55;
+    final fiftyFivePercentsOfWidth =
+        MediaQuery.of(context).size.width.fiftyFivePercent;
 
     return Container(
       width: fiftyFivePercentsOfWidth,
@@ -151,9 +152,9 @@ class ImageWithName extends StatelessWidget {
 
 class PersonImage extends StatelessWidget {
   const PersonImage({
-    Key? key,
     required this.item,
-  }) : super(key: key);
+    Key? key,
+  });
 
   final CrewAndCastUi item;
 

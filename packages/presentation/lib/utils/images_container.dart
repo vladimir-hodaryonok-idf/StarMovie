@@ -1,37 +1,39 @@
 class AssetsImages {
-  static String get splashAsset =>
+  static const String splashAsset =
       'packages/presentation/assets/splash_screen/splash.svg';
 
-  static String get movieReelIcon =>
+  static const String movieReelIcon =
       'packages/presentation/assets/icons/movie_reel.svg';
 
-  static String get alarmIcon => 'packages/presentation/assets/icons/alarm.svg';
+  static const String alarmIcon =
+      'packages/presentation/assets/icons/alarm.svg';
 
-  static String get eventTicketIcon =>
+  static const String eventTicketIcon =
       'packages/presentation/assets/icons/event_ticket.svg';
 
-  static String get singlePersonIcon =>
+  static const String singlePersonIcon =
       'packages/presentation/assets/icons/single.svg';
 
-  static String get playIcon => 'packages/presentation/assets/icons/play.svg';
+  static const String playIcon = 'packages/presentation/assets/icons/play.svg';
 
-  static String get testImage =>
+  static const String testImage =
       'packages/presentation/assets/test_images/john.png';
 
-  static String get emptyStar =>
+  static const String emptyStar =
       'packages/presentation/assets/icons/empty_star.svg';
 
-  static String get fullStar =>
+  static const String fullStar =
       'packages/presentation/assets/icons/full_star.svg';
 
-  static String get ellipse => 'packages/presentation/assets/icons/ellipse.svg';
+  static const String ellipse =
+      'packages/presentation/assets/icons/ellipse.svg';
 
-  static String get errorImage =>
+  static const String errorImage =
       'packages/presentation/assets/icons/error.svg';
 
-  static String get backArrow =>
+  static const String backArrow =
       'packages/presentation/assets/icons/back_arrow.svg';
 
-  static String get shareArrow =>
+  static const String shareArrow =
       'packages/presentation/assets/icons/share_arrow.svg';
 }

@@ -3,10 +3,10 @@ import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movi
 import 'package:presentation/src/pages/home_page/model/home_page_movie.dart';
 
 class TrendingToHomeListMapper
-    extends Mapper<List<MovieTrending>, List<HomePageMovie>> {
+    implements Mapper<List<MovieTrending>, List<HomePageMovie>> {
   final MovieToHomePageMovieMapper movieToHomePageMovieMapper;
 
-  TrendingToHomeListMapper({required this.movieToHomePageMovieMapper});
+  const TrendingToHomeListMapper({required this.movieToHomePageMovieMapper});
 
   @override
   List<HomePageMovie> call(List<MovieTrending> trending) => trending

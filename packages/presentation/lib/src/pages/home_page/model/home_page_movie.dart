@@ -6,7 +6,7 @@ class HomePageMovie {
   final int stars;
   final String duration;
 
-  HomePageMovie(
+  const HomePageMovie(
     this.title,
     this.genre,
     this.certification,

@@ -4,10 +4,10 @@ import 'package:presentation/utils/images_container.dart';
 
 class ImageErrorWidget extends StatelessWidget {
   const ImageErrorWidget({
-    Key? key,
     this.height,
     this.width,
-  }) : super(key: key);
+    Key? key,
+  });
   final double? height;
   final double? width;
 
@@ -17,7 +17,10 @@ class ImageErrorWidget extends StatelessWidget {
       AssetsImages.errorImage,
       height: height,
       width: width,
-      color: Theme.of(context).colorScheme.onPrimary,
+      color: Theme
+          .of(context)
+          .colorScheme
+          .onPrimary,
       fit: BoxFit.cover,
     );
   }

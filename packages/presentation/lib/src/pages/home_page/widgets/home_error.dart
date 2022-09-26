@@ -7,11 +7,11 @@ import 'package:presentation/style/text_styles/styles.dart';
 
 class HomeError extends StatelessWidget {
   const HomeError({
-    Key? key,
     required this.tile,
     required this.bloc,
     required this.state,
-  }) : super(key: key);
+    Key? key,
+  });
 
   final HomePageData tile;
   final HomeBloc bloc;

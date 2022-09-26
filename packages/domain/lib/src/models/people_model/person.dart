@@ -5,15 +5,15 @@ part 'person.g.dart';
 
 @JsonSerializable()
 class Person {
-  Person({
-    this.name,
-    this.ids,
-  });
 
   final String? name;
   final Ids? ids;
 
   factory Person.fromJson(dynamic json) => _$PersonFromJson(json);
+  const Person({
+    this.name,
+    this.ids,
+  });
 
   Map<String, dynamic> toJson() => _$PersonToJson(this);
 }

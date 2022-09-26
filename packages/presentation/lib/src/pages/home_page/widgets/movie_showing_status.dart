@@ -8,10 +8,10 @@ class MovieShowingStatus extends StatelessWidget {
   final HomeBloc bloc;
 
   const MovieShowingStatus({
-    Key? key,
     required this.buttonStatus,
     required this.bloc,
-  }) : super(key: key);
+    Key? key,
+  });
 
   @override
   Widget build(BuildContext context) {

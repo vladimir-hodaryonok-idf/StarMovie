@@ -5,13 +5,13 @@ part 'crew_and_cast.g.dart';
 
 @JsonSerializable()
 class CrewAndCast {
-  CrewAndCast({
-    this.cast,
-  });
 
   final List<Cast>? cast;
 
   factory CrewAndCast.fromJson(dynamic json) => _$CrewAndCastFromJson(json);
+  const CrewAndCast({
+    this.cast,
+  });
 
   Map<String, dynamic> toJson() => _$CrewAndCastToJson(this);
 }

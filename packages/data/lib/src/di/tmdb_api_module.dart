@@ -1,11 +1,12 @@
 import 'package:data/src/di/const/connection_time_out.dart';
-import 'package:data/src/di/const/tmdb_api_names.dart';
 import 'package:data/src/remote/interceptors/tmdb_api_interceptor.dart';
 import 'package:data/src/remote/service/service.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:data/src/di/const/base_url.dart';
+
+import 'const/tmdb_api_names.dart';
 
 void initTmdbApiModule() {
   initTmdbApiBaseOptions();
@@ -18,10 +19,10 @@ void initTmdbApiService() {
   inject.registerFactory<ApiService>(
     () => DioService(
       inject.get<Dio>(
-        instanceName: tmdbApiDioName,
+        instanceName: TmdbApiNames.tmdbApiDioName,
       ),
     ),
-    instanceName: tmdbApiDioServiceName,
+    instanceName: TmdbApiNames.tmdbApiDioServiceName,
   );
 }
 
@@ -29,13 +30,13 @@ void initTmdbApiDio() {
   inject.registerFactory<Dio>(
     () => Dio(
       inject.get(
-        instanceName: tmdbApiBaseOptionsName,
+        instanceName: TmdbApiNames.tmdbApiBaseOptionsName,
       ),
     )..interceptors.addAll([
         inject.get<PrettyDioLogger>(),
         inject.get<TmdbApiInterceptor>(),
       ]),
-    instanceName: tmdbApiDioName,
+    instanceName: TmdbApiNames.tmdbApiDioName,
   );
 }
 
@@ -55,6 +56,6 @@ void initTmdbApiBaseOptions() {
       sendTimeout: ConnectionTimeOuts.sendTimeout,
       receiveTimeout: ConnectionTimeOuts.receiveTimeout,
     ),
-    instanceName: tmdbApiBaseOptionsName,
+    instanceName: TmdbApiNames.tmdbApiBaseOptionsName,
   );
 }

@@ -9,11 +9,11 @@ const shadowListLength = 10;
 
 class HomeBody extends StatelessWidget {
   const HomeBody({
-    Key? key,
     required this.tile,
     required this.bloc,
     required this.isLoading,
-  }) : super(key: key);
+    Key? key,
+  });
 
   final HomePageData tile;
   final HomeBloc bloc;

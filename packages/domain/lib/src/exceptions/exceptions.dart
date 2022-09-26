@@ -3,7 +3,7 @@ class AppException implements Exception {
   final String message;
   final String? details;
 
-  AppException({
+  const AppException({
     required this.code,
     required this.message,
     required this.details,

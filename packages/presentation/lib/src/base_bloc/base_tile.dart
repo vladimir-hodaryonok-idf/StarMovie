@@ -5,7 +5,7 @@ class BaseTile<D> {
   final AppException? exception;
   final D? tile;
 
-  BaseTile({
+  const BaseTile({
     required this.tile,
     required this.isLoading,
     required this.exception,

@@ -1,7 +1,7 @@
 class ApiKeyStore {
   final Map<String, dynamic> _keys;
 
-  ApiKeyStore(this._keys);
+  const ApiKeyStore(this._keys);
 
   String get traktApiKey => _keys['traktApiKey'] ?? '';
 

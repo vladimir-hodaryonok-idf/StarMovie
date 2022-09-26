@@ -43,4 +43,12 @@ abstract class Dimens {
   static const double width_39 = 39;
   static const double width_22_5 = 22.5;
   static const double width_50 = 50;
+
+  /// Font Sizes
+  static const double font_s_12 = 12;
+  static const double font_s_14 = 14;
+  static const double font_s_16 = 16;
+  static const double font_s_18 = 18;
+  static const double font_s_24 = 24;
+  static const double font_s_30 = 30;
 }

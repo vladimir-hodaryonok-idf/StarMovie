@@ -3,10 +3,10 @@ import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movi
 import 'package:presentation/src/pages/home_page/model/home_page_movie.dart';
 
 class AnticipatedToHomeListMapper
-    extends Mapper<List<MovieAnticipated>, List<HomePageMovie>> {
+    implements Mapper<List<MovieAnticipated>, List<HomePageMovie>> {
   final MovieToHomePageMovieMapper movieToHomePageMovieMapper;
 
-  AnticipatedToHomeListMapper({required this.movieToHomePageMovieMapper});
+  const AnticipatedToHomeListMapper({required this.movieToHomePageMovieMapper});
 
   @override
   List<HomePageMovie> call(List<MovieAnticipated> anticipated) => anticipated

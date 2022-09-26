@@ -1,29 +1,29 @@
 abstract class HTTPMethod<M> {}
 
-abstract class DioMethods implements HTTPMethod<String> {
-  static const String get = 'GET';
+abstract class DioMethods<String> implements HTTPMethod<String> {
+  static const get = 'GET';
 
-  static const String post = 'POST';
+  static const post = 'POST';
 
-  static const String delete = 'DELETE';
+  static const delete = 'DELETE';
 
-  static const String patch = 'PATCH';
+  static const patch = 'PATCH';
 
-  static const String put = 'PUT';
+  static const put = 'PUT';
 }
 
-abstract class APIRequestRepresentable<T extends HTTPMethod> {
+abstract class APIRequestRepresentable<T extends dynamic> {
   String get url;
 
   String? get baseUrl;
 
   String? get path;
 
-  dynamic get method;
+  T get method;
 
   Map<String, String>? get headers;
 
   Map<String, dynamic>? get query;
 
-  dynamic get body;
+  Object? get body;
 }
