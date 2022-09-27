@@ -9,8 +9,9 @@ class DetailsButton extends StatelessWidget {
   const DetailsButton({
     required this.activeButtonId,
     required this.id,
-    Key? key,
+    super.key,
   });
+
   final DetailsSwitcher id;
   final DetailsSwitcher activeButtonId;
 
@@ -39,7 +40,8 @@ class DetailsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final details_button_w =
-        MediaQuery.of(context).size.width / C.buttonsCount - Dimens.padding_24;
+        MediaQuery.of(context).size.width / AppConst.buttonsCount -
+            Dimens.padding_24;
     return GestureDetector(
       onTap: () {},
       child: Container(

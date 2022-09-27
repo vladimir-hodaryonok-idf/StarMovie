@@ -7,7 +7,7 @@ class HomeLoading extends StatelessWidget {
   const HomeLoading({
     required this.tile,
     required this.bloc,
-    Key? key,
+    super.key,
   });
 
   final HomePageData? tile;

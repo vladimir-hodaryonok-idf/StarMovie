@@ -13,7 +13,7 @@ import 'package:presentation/style/dimens.dart';
 class CastAndCrewList extends StatelessWidget {
   const CastAndCrewList({
     required this.castList,
-    Key? key,
+    super.key,
   });
 
   final List<CrewAndCastUi> castList;
@@ -56,7 +56,7 @@ class CastAndCrewList extends StatelessWidget {
                   ),
                 )
               : List.generate(
-                  C.shadowListLength,
+                  AppConst.shadowListLength,
                   (index) => MovieDetailsShadow(),
                 ),
         ],
@@ -68,7 +68,7 @@ class CastAndCrewList extends StatelessWidget {
 class CastAndCrewItem extends StatelessWidget {
   const CastAndCrewItem({
     required this.item,
-    Key? key,
+    super.key,
   });
 
   final CrewAndCastUi item;
@@ -89,7 +89,7 @@ class CastAndCrewItem extends StatelessWidget {
               child: Text(
                 item.role,
                 style: sfProSemiMedium12px50opacity,
-                maxLines: C.roleMaxLines,
+                maxLines: AppConst.roleMaxLines,
                 softWrap: true,
               ),
             ),
@@ -101,7 +101,7 @@ class CastAndCrewItem extends StatelessWidget {
 }
 
 class ThreeEllipsesButton extends StatelessWidget {
-  const ThreeEllipsesButton({Key? key});
+  const ThreeEllipsesButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class ThreeEllipsesButton extends StatelessWidget {
       child: Row(
         children: [
           ...List.generate(
-            C.ellipsesInImageButtonCount,
+            AppConst.ellipsesInImageButtonCount,
             (index) => SvgPicture.asset(AssetsImages.ellipse),
           ),
         ],
@@ -122,7 +122,7 @@ class ThreeEllipsesButton extends StatelessWidget {
 class ImageWithName extends StatelessWidget {
   const ImageWithName({
     required this.item,
-    Key? key,
+    super.key,
   });
 
   final CrewAndCastUi item;
@@ -153,7 +153,7 @@ class ImageWithName extends StatelessWidget {
 class PersonImage extends StatelessWidget {
   const PersonImage({
     required this.item,
-    Key? key,
+    super.key,
   });
 
   final CrewAndCastUi item;

@@ -7,7 +7,7 @@ import 'package:presentation/style/colors.dart';
 import 'package:presentation/utils/images_container.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key});
+  const SplashScreen({super.key});
   static const _routeName = '/SplashScreen';
 
   static page() => BasePage(

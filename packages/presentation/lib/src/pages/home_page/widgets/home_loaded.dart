@@ -12,7 +12,7 @@ class HomeBody extends StatelessWidget {
     required this.tile,
     required this.bloc,
     required this.isLoading,
-    Key? key,
+    super.key,
   });
 
   final HomePageData tile;

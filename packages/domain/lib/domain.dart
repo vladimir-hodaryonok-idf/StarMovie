@@ -22,3 +22,4 @@ export 'src/mappers/duration_to_string.dart';
 export 'src/mappers/movie_id_to_image_url.dart';
 export 'src/mappers/movie_rating_to_stars_count.dart';
 export 'src/mappers/list_to_genres_string.dart';
+export 'src/di/const/omdb_api_name_key.dart';

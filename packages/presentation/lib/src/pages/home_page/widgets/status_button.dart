@@ -13,8 +13,9 @@ class StatusButton extends StatelessWidget {
     required this.activeButtonId,
     required this.id,
     required this.bloc,
-    Key? key,
+    super.key,
   });
+
   static const padding = 24;
   final MovieButtonStatus activeButtonId;
   final MovieButtonStatus id;

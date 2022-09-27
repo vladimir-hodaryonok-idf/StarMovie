@@ -7,8 +7,9 @@ import 'package:presentation/style/dimens.dart';
 class MovieInfo extends StatelessWidget {
   const MovieInfo({
     required this.details,
-    Key? key,
+    super.key,
   });
+
   final MovieDetails details;
 
   @override

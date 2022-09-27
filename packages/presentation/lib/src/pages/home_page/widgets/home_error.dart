@@ -10,7 +10,7 @@ class HomeError extends StatelessWidget {
     required this.tile,
     required this.bloc,
     required this.state,
-    Key? key,
+    super.key,
   });
 
   final HomePageData tile;

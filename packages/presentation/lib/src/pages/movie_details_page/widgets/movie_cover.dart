@@ -6,8 +6,9 @@ import 'package:presentation/style/dimens.dart';
 class MovieCover extends StatelessWidget {
   const MovieCover({
     required this.imageUrl,
-    Key? key,
+    super.key,
   });
+
   final String imageUrl;
 
   @override
@@ -46,7 +47,7 @@ class MovieCoverLoader extends StatelessWidget {
     required this.imageUrl,
     this.alignment = Alignment.center,
     this.fit,
-    Key? key,
+    super.key,
   });
 
   final String imageUrl;

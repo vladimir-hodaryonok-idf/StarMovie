@@ -5,7 +5,7 @@ import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsShadow extends StatelessWidget {
-  const MovieDetailsShadow({Key? key});
+  const MovieDetailsShadow({super.key});
 
   @override
   Widget build(BuildContext context) {

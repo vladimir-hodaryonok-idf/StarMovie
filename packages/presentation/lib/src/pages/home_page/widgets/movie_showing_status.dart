@@ -10,7 +10,7 @@ class MovieShowingStatus extends StatelessWidget {
   const MovieShowingStatus({
     required this.buttonStatus,
     required this.bloc,
-    Key? key,
+    super.key,
   });
 
   @override

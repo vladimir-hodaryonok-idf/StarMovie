@@ -8,8 +8,9 @@ import 'package:presentation/style/dimens.dart';
 class ExpandableDescription extends StatelessWidget {
   const ExpandableDescription({
     required this.description,
-    Key? key,
+    super.key,
   });
+
   final String description;
 
   @override
@@ -25,7 +26,7 @@ class ExpandableDescription extends StatelessWidget {
           description,
           style: sfProSemiRegular14px70opacity,
           softWrap: true,
-          maxLines: C.maxDescriptionTextLines,
+          maxLines: AppConst.maxDescriptionTextLines,
           overflow: TextOverflow.ellipsis,
         ),
         expanded: Text(

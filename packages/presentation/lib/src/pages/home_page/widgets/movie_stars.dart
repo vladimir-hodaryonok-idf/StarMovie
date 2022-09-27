@@ -9,8 +9,9 @@ class MovieStars extends StatelessWidget {
   const MovieStars({
     required this.fullStarsCount,
     required this.isBigStar,
-    Key? key,
+    super.key,
   });
+
   final int fullStarsCount;
   final bool isBigStar;
 

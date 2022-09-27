@@ -9,8 +9,9 @@ class MovieShortInfo extends StatelessWidget {
     required this.movieName,
     required this.parentsGuide,
     required this.duration,
-    Key? key,
+    super.key,
   });
+
   final String movieName;
   final String movieGenres;
   final String parentsGuide;

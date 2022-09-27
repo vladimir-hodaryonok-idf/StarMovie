@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:domain/src/di/const/omdb_api_name_key.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
@@ -6,8 +7,6 @@ import 'package:domain/src/mappers/json_to_trending_list.dart';
 import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
-
-const omdbApiKey = 'omdbApiKeyName';
 
 void initDomainDependencies() {
   initMappers();
@@ -57,7 +56,7 @@ void initMappers() {
   );
   inject.registerFactory<MovieIdToImageUrlMapper>(
     () => MovieIdToImageUrlMapper(
-      apiKey: inject.get(instanceName: omdbApiKey),
+      apiKey: inject.get(instanceName: OmdbApiNameKey.omdbApiKey),
     ),
   );
   inject.registerFactory<ListToGenresStringMapper>(

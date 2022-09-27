@@ -14,7 +14,7 @@ import 'bloc/details_data.dart';
 import 'bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatefulWidget {
-  const MovieDetailsPage({Key? key}) : super(key: key);
+  const MovieDetailsPage({super.key});
   static const _routeName = '/MovieDetails';
 
   static page(MovieArgs args) => BasePage(
@@ -57,7 +57,7 @@ class MovieDetailsWidget extends StatelessWidget {
     required this.details,
     required this.tile,
     required this.bloc,
-    Key? key,
+    super.key,
   });
 
   final MovieDetails details;
