@@ -1,3 +1,4 @@
+import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/app/data/app_data.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
@@ -18,7 +19,7 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppConfig,
+      title: AppConfig.of(context)?.title ?? "",//todo sadasd
       theme: ThemeData.from(colorScheme: dark),
       localizationsDelegates: const [S.delegate],
       supportedLocales: S.delegate.supportedLocales,

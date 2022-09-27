@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:presentation/presentation.dart';
+import 'package:app_config/config.dart';
+import 'package:star_movie/main.dart';
 
-import 'di/init_dependencies.dart';
-
-Future<void> main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await initDependencies();
-  runApp(const StarMovieApp());
+Future<void> main() async {
+  mainCommon(const FlavorConfig.sandBox());
 }

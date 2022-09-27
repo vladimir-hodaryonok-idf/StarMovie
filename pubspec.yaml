@@ -17,6 +17,8 @@ dependencies:
     path: packages/data
   presentation:
     path: packages/presentation
+  app_config:
+    path: packages/app_config
 
 dev_dependencies:
   flutter_test:

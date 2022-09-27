@@ -71,6 +71,7 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     emit(data: tile, isLoading: isLoading);
     try {
       final trendingFull = await _fetchTrendingMovies();
+      if(trendingFull.isEmpty) throw FetchDataException("Empty response");
       final homeTrendingMovies = _trendingToHomeList(trendingFull);
       emit(
         data: tile.copyWith(
@@ -90,6 +91,7 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     emit(data: tile, isLoading: isLoading);
     try {
       final anticipatedFull = await _anticipatedMovies();
+      if(anticipatedFull.isEmpty) throw FetchDataException("Empty response");
       final homeAnticipatedMovies = _anticipatedToHomeList(anticipatedFull);
       emit(
         data: tile.copyWith(
