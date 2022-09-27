@@ -11,6 +11,7 @@ class MovieStars extends StatelessWidget {
     required this.isBigStar,
     Key? key,
   });
+
   final int fullStarsCount;
   final bool isBigStar;
 
@@ -18,26 +19,33 @@ class MovieStars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
+    return Container(
+      margin: const EdgeInsets.only(
         top: Dimens.padding_16,
         bottom: Dimens.padding_8,
       ),
-      child: Container(
-        height: isBigStar ? Dimens.height_30 : Dimens.height_14,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...generateStars(stars: fullStarsCount, isFull: true),
-            ...generateStars(stars: emptyStarCount, isFull: false),
-          ],
-        ),
+      height: isBigStar ? Dimens.height_30 : Dimens.height_14,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ...generateStars(
+            stars: fullStarsCount,
+            isFull: true,
+          ),
+          ...generateStars(
+            stars: emptyStarCount,
+            isFull: false,
+          ),
+        ],
       ),
     );
   }
 
-  List<Widget> generateStars({required int stars, required bool isFull}) {
+  List<Widget> generateStars({
+    required int stars,
+    required bool isFull,
+  }) {
     return List.generate(
       stars,
       (_) => Padding(

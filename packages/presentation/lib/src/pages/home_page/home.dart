@@ -37,7 +37,9 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              //todo implement
+            },
             icon: const Icon(Icons.search),
           )
         ],

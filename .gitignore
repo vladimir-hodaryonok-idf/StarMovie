@@ -11,6 +11,7 @@
 .svn/
 migrate_working_dir/
 keys.json
+packages/presentation/lib/generated
 # IntelliJ related
 *.iml
 *.ipr

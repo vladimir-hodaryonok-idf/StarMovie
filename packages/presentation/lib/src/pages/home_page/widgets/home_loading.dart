@@ -22,9 +22,10 @@ class HomeLoading extends StatelessWidget {
           bloc: bloc,
         ),
         Center(
-            child: LinearProgressIndicator(
-          color: Theme.of(context).colorScheme.secondary,
-        )),
+          child: LinearProgressIndicator(
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
       ],
     );
   }

@@ -1,11 +1,16 @@
 abstract class Dimens {
-  /// border radius
+  /// Border radius
+  static const double border_r_8 = 8;
   static const double border_r_16 = 16;
+  static const double border_r_20 = 20;
   static const double border_r_25 = 25;
 
+  /// Aspect ratio
+  static const double aspectRatio_1_to_22 = 1 / 2.2;
   /// Paddings
   static const double padding_2 = 2;
   static const double padding_4 = 4;
+  static const double padding_6 = 6;
   static const double padding_8 = 8;
   static const double padding_10 = 10;
   static const double padding_15 = 15;
@@ -19,6 +24,7 @@ abstract class Dimens {
 
   /// Height
   static const double height_14 = 14;
+  static const double height_15 = 15;
   static const double height_18 = 18;
   static const double height_20 = 20;
   static const double height_20_5 = 20.5;
@@ -27,9 +33,11 @@ abstract class Dimens {
   static const double height_30 = 30;
   static const double height_36 = 36;
   static const double height_39 = 39;
+  static const double height_40 = 40;
   static const double height_50 = 50;
   static const double height_56 = 56;
   static const double height_70 = 70;
+  static const double height_250 = 250;
   static const double height_300 = 300;
 
   /// Width
@@ -43,6 +51,7 @@ abstract class Dimens {
   static const double width_39 = 39;
   static const double width_22_5 = 22.5;
   static const double width_50 = 50;
+  static const double width_86 = 86;
 
   /// Font Sizes
   static const double font_s_12 = 12;

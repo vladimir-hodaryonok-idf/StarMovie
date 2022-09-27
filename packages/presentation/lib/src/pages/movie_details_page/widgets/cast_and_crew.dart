@@ -56,7 +56,7 @@ class CastAndCrewList extends StatelessWidget {
                   ),
                 )
               : List.generate(
-                  C.shadowListLength,
+                  C.shadowMovieListLength,
                   (index) => MovieDetailsShadow(),
                 ),
         ],
