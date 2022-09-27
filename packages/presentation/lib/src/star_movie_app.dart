@@ -18,7 +18,7 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Star Movie',
+      title: AppConfig,
       theme: ThemeData.from(colorScheme: dark),
       localizationsDelegates: const [S.delegate],
       supportedLocales: S.delegate.supportedLocales,
