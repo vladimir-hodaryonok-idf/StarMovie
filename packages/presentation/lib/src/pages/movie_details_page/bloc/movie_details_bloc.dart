@@ -31,12 +31,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   final MovieToMovieDetailsMapper _movieToDetails;
   final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
 
-  @override
-  void init() {
-    super.init();
-  }
-
-  void initData(int id) async {
+  void _initData(int id) async {
     try {
       final List<PeopleWithImage> peopleWithImage = await fetchCrewAndCast(id);
       emit(
@@ -55,6 +50,6 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
     final Movie movie = args.value as Movie;
     final movieDetails = _movieToDetails(movie);
     emit(data: tile.copyWith(movieDetails: movieDetails));
-    initData(movieDetails.id);
+    _initData(movieDetails.id);
   }
 }

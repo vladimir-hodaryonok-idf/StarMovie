@@ -18,7 +18,7 @@ class DetailsButton extends StatelessWidget {
   Decoration? decoration(BuildContext context) {
     return isActive
         ? BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimens.border_r_16),
+            borderRadius: BorderRadius.circular(Dimens.size_16),
             color: Theme.of(context).colorScheme.secondary,
           )
         : null;
@@ -41,7 +41,7 @@ class DetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final details_button_w =
         MediaQuery.of(context).size.width / AppConst.buttonsCount -
-            Dimens.padding_24;
+            Dimens.size_24;
     return GestureDetector(
       onTap: () {},
       child: Container(

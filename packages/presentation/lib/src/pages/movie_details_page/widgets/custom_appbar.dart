@@ -15,14 +15,14 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimens.height_70,
+      height: Dimens.size_70,
       width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(
-          Dimens.padding_18,
-          Dimens.padding_8,
-          Dimens.padding_18,
-          Dimens.padding_16,
+          Dimens.size_18,
+          Dimens.size_8,
+          Dimens.size_18,
+          Dimens.size_16,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,15 +32,15 @@ class CustomAppBar extends StatelessWidget {
               onTap: bloc.goBack,
               child: SvgPicture.asset(
                 AssetsImages.backArrow,
-                width: Dimens.width_12,
-                height: Dimens.height_20_5,
+                width: Dimens.size_12,
+                height: Dimens.size_20_5,
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: Dimens.height_56,
-                width: Dimens.width_56,
+                height: Dimens.size_56,
+                width: Dimens.size_56,
                 child: Stack(
                   children: [
                     SvgPicture.asset(
@@ -51,8 +51,8 @@ class CustomAppBar extends StatelessWidget {
                     Center(
                       child: SvgPicture.asset(
                         AssetsImages.playIcon,
-                        height: Dimens.height_39,
-                        width: Dimens.width_39,
+                        height: Dimens.size_39,
+                        width: Dimens.size_39,
                       ),
                     ),
                   ],
@@ -61,8 +61,8 @@ class CustomAppBar extends StatelessWidget {
             ),
             SvgPicture.asset(
               AssetsImages.shareArrow,
-              width: Dimens.width_22_5,
-              height: Dimens.height_21,
+              width: Dimens.size_22_5,
+              height: Dimens.size_21,
             ),
           ],
         ),

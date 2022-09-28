@@ -24,6 +24,8 @@ class TmdbApiInterceptor implements Interceptor {
 
   @override
   void onResponse(
-          Response<dynamic> response, ResponseInterceptorHandler handler) =>
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) =>
       handler.next(response);
 }

@@ -17,7 +17,7 @@ class MovieInfo extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(Dimens.padding_10),
+          padding: const EdgeInsets.all(Dimens.size_10),
           child: Text(
             details.title,
             style: sfProSemiBold24px,
@@ -28,7 +28,7 @@ class MovieInfo extends StatelessWidget {
           style: sfProSemiRegular16px50opacity,
         ),
         Padding(
-          padding: const EdgeInsets.all(Dimens.padding_10),
+          padding: const EdgeInsets.all(Dimens.size_10),
           child: Text(
             details.genres,
             style: sfProSemiRegular16px50opacity,
@@ -38,7 +38,7 @@ class MovieInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(right: Dimens.padding_15),
+              padding: EdgeInsets.only(right: Dimens.size_15),
               child: Text(
                 details.rating,
                 style: sfProSemiRegular30px,

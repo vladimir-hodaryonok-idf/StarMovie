@@ -1,4 +1,6 @@
-abstract class AppConst {
+class AppConst {
+  const AppConst._();
+
   static const ellipsesInImageButtonCount = 3;
   static const shadowListLength = 4;
   static const buttonsCount = 3;

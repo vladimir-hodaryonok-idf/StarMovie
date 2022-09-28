@@ -7,9 +7,9 @@ class PeopleWithImage {
   final String imageUrl;
 
   const PeopleWithImage({
-    required this.character,
-    required this.characters,
-    required this.person,
-    required this.imageUrl,
+    this.character,
+    this.characters,
+    this.person,
+    this.imageUrl = '',
   });
 }

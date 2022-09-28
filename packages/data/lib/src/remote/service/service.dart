@@ -1,15 +1,15 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:data/src/remote/payloads/trakt_movies_payload.dart';
-import 'package:data/src/request/api_request_representable.dart';
+import 'package:data/src/remote/payloads/dio_service_payload.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
 abstract class ApiService<P extends ServicePayload> {
-  Future request(
-    APIRequestRepresentable request,
+  Future getRequest({
+    required String path,
+    Map<String, dynamic>? query,
     P? payload,
-  );
+  });
 }
 
 class DioService implements ApiService<DioServicePayload> {
@@ -20,19 +20,18 @@ class DioService implements ApiService<DioServicePayload> {
   );
 
   @override
-  Future request(
-    APIRequestRepresentable request,
+  Future getRequest({
+    required String path,
+    Map<String, dynamic>? query,
     DioServicePayload? payload,
-  ) async {
+  }) async {
     try {
-      final response = await _client.request(
-        request.url,
+      final response = await _client.get(
+        path,
+        queryParameters: query,
         options: payload?.options,
-        queryParameters: request.query,
-        data: request.body,
         cancelToken: payload?.cancelToken,
-        onReceiveProgress: payload?.onReceiveProgress,
-        onSendProgress: payload?.onSendProgress,
+        onReceiveProgress: payload?.onSendProgress,
       );
       return _returnResponse(response);
     } on DioError catch (e) {

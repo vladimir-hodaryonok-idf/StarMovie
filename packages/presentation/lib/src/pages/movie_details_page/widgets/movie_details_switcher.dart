@@ -14,18 +14,18 @@ class MovieDetailsSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(Dimens.padding_18),
+      padding: const EdgeInsets.all(Dimens.size_18),
       child: Container(
-        height: Dimens.height_36,
+        height: Dimens.size_36,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimens.padding_20),
+          borderRadius: BorderRadius.circular(Dimens.size_20),
           border: Border.all(
-            width: Dimens.width_1,
+            width: Dimens.size_1,
             color: Theme.of(context).colorScheme.onPrimary,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(Dimens.padding_4),
+          padding: const EdgeInsets.all(Dimens.size_4),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -49,7 +49,8 @@ void initTmdbApiNetworkRepository() {
   inject.registerLazySingleton<TmdbApiNetworkRepository>(
     () => TmdbApiNetworkRepositoryImpl(
       tmdbService: inject.get<ApiService>(
-          instanceName: TmdbApiNames.tmdbApiDioServiceName),
+        instanceName: TmdbApiNames.tmdbApiDioServiceName,
+      ),
     ),
   );
 }
@@ -58,7 +59,8 @@ void initTraktApiNetworkRepository() {
   inject.registerLazySingleton<TraktApiNetworkRepository>(
     () => TraktApiNetworkRepositoryImpl(
       traktService: inject.get<ApiService>(
-          instanceName: TraktApiNames.traktApiDioServiceName),
+        instanceName: TraktApiNames.traktApiDioServiceName,
+      ),
     ),
   );
 }

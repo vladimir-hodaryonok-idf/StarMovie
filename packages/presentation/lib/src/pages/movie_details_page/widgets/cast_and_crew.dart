@@ -21,7 +21,7 @@ class CastAndCrewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(Dimens.padding_18),
+      padding: const EdgeInsets.all(Dimens.size_18),
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +39,7 @@ class CastAndCrewList extends StatelessWidget {
                   // todo implement in the next tasks
                 },
                 child: Container(
-                  height: Dimens.height_18,
+                  height: Dimens.size_18,
                   child: Text(
                     S.of(context).viewAll,
                     style: sfProSemiMedium14pxBlue,
@@ -78,7 +78,7 @@ class CastAndCrewItem extends StatelessWidget {
     final thirtyPercentsOfWidth =
         MediaQuery.of(context).size.width.thirtyPercent;
     return Padding(
-      padding: const EdgeInsets.all(Dimens.padding_8),
+      padding: const EdgeInsets.all(Dimens.size_8),
       child: Row(
         children: [
           ImageWithName(item: item),
@@ -106,7 +106,7 @@ class ThreeEllipsesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(Dimens.padding_15),
+      padding: EdgeInsets.all(Dimens.size_15),
       child: Row(
         children: [
           ...List.generate(
@@ -138,7 +138,7 @@ class ImageWithName extends StatelessWidget {
         children: [
           PersonImage(item: item),
           SizedBox(
-            width: Dimens.width_12,
+            width: Dimens.size_12,
           ),
           Text(
             item.personName,
@@ -161,16 +161,16 @@ class PersonImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Dimens.height_50,
-      width: Dimens.width_50,
+      height: Dimens.size_50,
+      width: Dimens.size_50,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(Dimens.border_r_25),
+        borderRadius: BorderRadius.circular(Dimens.size_25),
         child: Image.network(
           item.imageUrl,
           fit: BoxFit.fitWidth,
           errorBuilder: (context, exception, stackTrace) => ImageErrorWidget(
-            height: Dimens.height_50,
-            width: Dimens.width_50,
+            height: Dimens.size_50,
+            width: Dimens.size_50,
           ),
         ),
       ),

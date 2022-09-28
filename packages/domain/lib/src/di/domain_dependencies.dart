@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/di/const/omdb_api_name_key.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
@@ -33,7 +32,7 @@ void initUseCases() {
     () => FetchCrewAndCastUseCase(
       traktApiNetworkRepository: inject.get(),
       tmdbApiNetworkRepository: inject.get(),
-      castAndImagesListMapper: inject.get(),
+      castAndImagesMapper: inject.get(),
     ),
   );
 }
@@ -63,7 +62,7 @@ void initMappers() {
     () => ListToGenresStringMapper(),
   );
 
-  inject.registerFactory<CastAndImagesListMapper>(
-    () => CastAndImagesListMapper(),
-  );
+  inject.registerFactory<CastAndImagesMapper>(() => CastAndImagesMapper());
+
+  inject.registerFactory<RatingToStringMapper>(() => RatingToStringMapper());
 }
