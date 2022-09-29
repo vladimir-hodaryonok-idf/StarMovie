@@ -30,8 +30,14 @@ class MovieStars extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...generateStars(stars: fullStarsCount, isFull: true),
-            ...generateStars(stars: emptyStarCount, isFull: false),
+            ...generateStars(
+              stars: fullStarsCount,
+              isFull: true,
+            ),
+            ...generateStars(
+              stars: emptyStarCount,
+              isFull: false,
+            ),
           ],
         ),
       ),

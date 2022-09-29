@@ -43,7 +43,9 @@ class DetailsButton extends StatelessWidget {
         MediaQuery.of(context).size.width / AppConst.buttonsCount -
             Dimens.size_24;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        //todo implement
+      },
       child: Container(
         height: double.infinity,
         width: details_button_w,

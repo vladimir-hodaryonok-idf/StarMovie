@@ -48,7 +48,7 @@ class MovieGridItem extends StatelessWidget {
   Image buildImage() {
     return Image.network(
       movie.image,
-      height: Dimens.height_250,
+      height: Dimens.size_250,
       fit: BoxFit.fill,
       loadingBuilder: (
         context,
@@ -66,7 +66,7 @@ class MovieGridItem extends StatelessWidget {
       ) =>
           SvgPicture.asset(
         AssetsImages.errorImage,
-        height: Dimens.height_250,
+        height: Dimens.size_250,
         width: double.infinity,
         color: Theme.of(context).colorScheme.onPrimary,
         fit: BoxFit.fitHeight,

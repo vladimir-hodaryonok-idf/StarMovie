@@ -16,7 +16,7 @@ class AppException implements Exception {
 }
 
 class FetchDataException extends AppException {
-  FetchDataException(String? details)
+  const FetchDataException(String? details)
       : super(
           code: "fetch-data",
           message: "Error During Communication",
@@ -25,7 +25,7 @@ class FetchDataException extends AppException {
 }
 
 class BadRequestException extends AppException {
-  BadRequestException(String? details)
+  const BadRequestException(String? details)
       : super(
           code: "invalid-request",
           message: "Invalid Request",
@@ -34,7 +34,7 @@ class BadRequestException extends AppException {
 }
 
 class UnauthorisedException extends AppException {
-  UnauthorisedException(String? details)
+  const UnauthorisedException(String? details)
       : super(
           code: "unauthorised",
           message: "Unauthorised",
@@ -43,7 +43,7 @@ class UnauthorisedException extends AppException {
 }
 
 class InvalidInputException extends AppException {
-  InvalidInputException(String? details)
+  const InvalidInputException(String? details)
       : super(
           code: "invalid-input",
           message: "Invalid Input",
@@ -52,7 +52,7 @@ class InvalidInputException extends AppException {
 }
 
 class AuthenticationException extends AppException {
-  AuthenticationException(String? details)
+  const AuthenticationException(String? details)
       : super(
           code: "authentication-failed",
           message: "Authentication Failed",
@@ -61,7 +61,7 @@ class AuthenticationException extends AppException {
 }
 
 class TimeOutException extends AppException {
-  TimeOutException(String? details)
+  const TimeOutException(String? details)
       : super(
           code: "request-timeout",
           message: "Request TimeOut",
@@ -70,7 +70,7 @@ class TimeOutException extends AppException {
 }
 
 class UnknownException extends AppException {
-  UnknownException(String? details)
+  const UnknownException(String? details)
       : super(
     code: "unknown exception",
     message: "Unknown Error",

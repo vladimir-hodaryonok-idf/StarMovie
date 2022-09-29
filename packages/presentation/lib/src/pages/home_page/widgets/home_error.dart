@@ -27,7 +27,7 @@ class HomeError extends StatelessWidget {
             buttonStatus: tile.buttonStatus,
             bloc: bloc,
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             state.exception?.details ?? S.of(context).unknownError,
             style: sfProSemiBold14px,

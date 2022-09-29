@@ -1,9 +1,10 @@
 class Dimens {
-  Dimens._();
+  const Dimens._();
 
   static const double size_1 = 1;
   static const double size_2 = 2;
   static const double size_4 = 4;
+  static const double size_6 = 6;
   static const double size_8 = 8;
   static const double size_10 = 10;
   static const double size_12 = 12;
@@ -20,10 +21,15 @@ class Dimens {
   static const double size_30 = 30;
   static const double size_36 = 36;
   static const double size_39 = 39;
+  static const double size_40 = 40;
   static const double size_50 = 50;
   static const double size_56 = 56;
   static const double size_70 = 70;
+  static const double size_86 = 86;
   static const double size_104 = 104;
   static const double size_140 = 140;
+  static const double size_250 = 250;
   static const double size_300 = 300;
+
+  static const double aspectRatio_1_to_22 = 1 / 2.2;
 }

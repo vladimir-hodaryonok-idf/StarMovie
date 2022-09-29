@@ -23,7 +23,7 @@ class StatusButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final containerWidth =
-        MediaQuery.of(context).size.width.fiftyPercents - Dimens.padding_24;
+        MediaQuery.of(context).size.width.fiftyPercents - Dimens.size_24;
     return GestureDetector(
       onTap: () => bloc.onButtonTap(id),
       child: Container(
@@ -52,7 +52,7 @@ class StatusButton extends StatelessWidget {
   Decoration? decoration(BuildContext context) {
     return isActive
         ? BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimens.padding_16),
+            borderRadius: BorderRadius.circular(Dimens.size_16),
             color: Theme.of(context).colorScheme.secondary,
           )
         : null;

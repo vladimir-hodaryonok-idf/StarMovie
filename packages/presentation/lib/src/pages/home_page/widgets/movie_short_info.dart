@@ -27,16 +27,16 @@ class MovieShortInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: Dimens.padding_8),
+            padding: const EdgeInsets.only(bottom: Dimens.size_8),
             child: Text(
               movieName,
               style: sfProSemiBold16px,
-              maxLines: C.movieNameMaxLines,
+              maxLines: AppConst.movieNameMaxLines,
               softWrap: true,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: Dimens.padding_8),
+            padding: const EdgeInsets.only(bottom: Dimens.size_8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,8 +47,8 @@ class MovieShortInfo extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: Dimens.padding_8,
-                    right: Dimens.padding_8,
+                    left: Dimens.size_8,
+                    right: Dimens.size_8,
                   ),
                   child: SvgPicture.asset(AssetsImages.ellipse),
                 ),
