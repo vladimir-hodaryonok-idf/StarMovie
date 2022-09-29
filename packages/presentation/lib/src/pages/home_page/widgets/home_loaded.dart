@@ -12,7 +12,7 @@ class HomeBody extends StatelessWidget {
     required this.tile,
     required this.bloc,
     required this.isLoading,
-    Key? key,
+    super.key,
   });
 
   final HomePageData tile;
@@ -30,24 +30,24 @@ class HomeBody extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(
-              left: Dimens.padding_18,
-              right: Dimens.padding_18,
+              left: Dimens.size_18,
+              right: Dimens.size_18,
             ),
             child: RefreshIndicator(
               color: Theme.of(context).colorScheme.secondary,
               onRefresh: bloc.refreshList,
               child: GridView.builder(
                 key: tile.buttonStatus == MovieButtonStatus.trending
-                    ? PageStorageKey(C.trendsListKey)
-                    : PageStorageKey(C.anticipatedListKey),
+                    ? PageStorageKey(AppConst.trendsListKey)
+                    : PageStorageKey(AppConst.anticipatedListKey),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: C.movieListCrossAxisCount,
-                  crossAxisSpacing: Dimens.padding_8,
-                  mainAxisSpacing: Dimens.padding_8,
+                  crossAxisCount: AppConst.movieListCrossAxisCount,
+                  crossAxisSpacing: Dimens.size_8,
+                  mainAxisSpacing: Dimens.size_8,
                   childAspectRatio: Dimens.aspectRatio_1_to_22,
                 ),
                 itemCount: isLoading
-                    ? C.shadowMovieListLength
+                    ? AppConst.shadowMovieListLength
                     : tile.moviesList.length,
                 itemBuilder: (context, index) {
                   return isLoading

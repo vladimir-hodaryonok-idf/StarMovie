@@ -11,23 +11,23 @@ class MovieShowingStatus extends StatelessWidget {
   const MovieShowingStatus({
     required this.buttonStatus,
     required this.bloc,
-    Key? key,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(Dimens.padding_18),
-      height: Dimens.height_40,
+      margin: EdgeInsets.all(Dimens.size_18),
+      height: Dimens.size_40,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimens.border_r_20),
+        borderRadius: BorderRadius.circular(Dimens.size_20),
         border: Border.all(
-          width: Dimens.width_1,
+          width: Dimens.size_1,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(Dimens.padding_4),
+        padding: const EdgeInsets.all(Dimens.size_4),
         child: Row(
           children: [
             StatusButton(

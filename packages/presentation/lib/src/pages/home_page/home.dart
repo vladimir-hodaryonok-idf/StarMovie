@@ -12,7 +12,7 @@ import 'package:presentation/style/text_styles/styles.dart';
 import 'bloc/home_data.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key});
+  const Home({super.key});
 
   static const _routeName = '/HomePage';
 

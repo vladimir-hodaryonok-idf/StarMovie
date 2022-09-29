@@ -9,7 +9,7 @@ import 'app/widgets/app_navigation_bar.dart';
 import 'base_bloc/base_tile.dart';
 
 class StarMovieApp extends StatefulWidget {
-  const StarMovieApp({Key? key});
+  const StarMovieApp({super.key});
 
   @override
   State<StatefulWidget> createState() => _StarMovieAppState();

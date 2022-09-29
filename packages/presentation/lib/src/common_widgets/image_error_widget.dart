@@ -6,8 +6,9 @@ class ImageErrorWidget extends StatelessWidget {
   const ImageErrorWidget({
     this.height,
     this.width,
-    Key? key,
+    super.key,
   });
+
   final double? height;
   final double? width;
 
@@ -17,10 +18,7 @@ class ImageErrorWidget extends StatelessWidget {
       AssetsImages.errorImage,
       height: height,
       width: width,
-      color: Theme
-          .of(context)
-          .colorScheme
-          .onPrimary,
+      color: Theme.of(context).colorScheme.onPrimary,
       fit: BoxFit.cover,
     );
   }

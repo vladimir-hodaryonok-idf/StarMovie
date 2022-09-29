@@ -6,12 +6,14 @@ class MovieToMovieDetailsMapper implements Mapper<Movie, MovieDetails> {
   final MovieIdToImageUrlMapper movieIdToImage;
   final MovieRatingToStarsCountMapper movieRatingToStarsCount;
   final ListToGenresStringMapper listToGenres;
+  final RatingToStringMapper ratingToString;
 
   const MovieToMovieDetailsMapper({
     required this.durationToString,
     required this.movieIdToImage,
     required this.movieRatingToStarsCount,
     required this.listToGenres,
+    required this.ratingToString,
   });
 
   @override
@@ -26,7 +28,7 @@ class MovieToMovieDetailsMapper implements Mapper<Movie, MovieDetails> {
         movie.genres == null ? '' : listToGenres(movie.genres!),
         movie.ids?.imdb == null ? '' : movieIdToImage(movie.ids!.imdb!),
         movie.rating == null ? 0 : movieRatingToStarsCount(movie.rating!),
-        movie.rating == null ? '' : movie.rating!.toStringRating(),
+        movie.rating == null ? '' : ratingToString(movie.rating!),
         movie.ids?.trakt ?? 0,
       );
 }

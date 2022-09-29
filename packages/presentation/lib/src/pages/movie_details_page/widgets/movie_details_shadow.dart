@@ -5,34 +5,34 @@ import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsShadow extends StatelessWidget {
-  const MovieDetailsShadow({Key? key});
+  const MovieDetailsShadow({super.key});
 
   @override
   Widget build(BuildContext context) {
     final personNameTextShadow_w =
-        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.width_50;
+        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.size_50;
     final roleTextShadow_w = MediaQuery.of(context).size.width.thirtyPercent;
 
     return Shimmer.fromColors(
       child: Row(
         children: [
           ShadowContainer(
-            width: Dimens.width_50,
-            height: Dimens.height_50,
-            borderRadius: Dimens.border_r_25,
+            width: Dimens.size_50,
+            height: Dimens.size_50,
+            borderRadius: Dimens.size_25,
           ),
           ShadowContainer(
             width: personNameTextShadow_w,
-            height: Dimens.height_24,
+            height: Dimens.size_24,
           ),
           ShadowContainer(
-            width: Dimens.width_24,
-            height: Dimens.height_14,
+            width: Dimens.size_24,
+            height: Dimens.size_14,
           ),
           Flexible(
             child: ShadowContainer(
               width: roleTextShadow_w,
-              height: Dimens.height_24,
+              height: Dimens.size_24,
             ),
           ),
         ],

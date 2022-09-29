@@ -3,7 +3,7 @@ import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShadowItem extends StatelessWidget {
-  const ShadowItem({Key? key});
+  const ShadowItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +12,20 @@ class ShadowItem extends StatelessWidget {
         children: [
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.height_250,
+            height: Dimens.size_250,
           ),
           ShadowContainer(
-            width: Dimens.width_86,
-            height: Dimens.height_15,
-          ),
-          ShadowContainer(
-            width: double.infinity,
-            height: Dimens.height_24,
-            padding: Dimens.padding_6,
+            width: Dimens.size_86,
+            height: Dimens.size_15,
           ),
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.height_15,
+            height: Dimens.size_24,
+            padding: Dimens.size_6,
+          ),
+          ShadowContainer(
+            width: double.infinity,
+            height: Dimens.size_15,
           ),
         ],
       ),
@@ -39,8 +39,8 @@ class ShadowContainer extends StatelessWidget {
   const ShadowContainer({
     required this.width,
     required this.height,
-    this.borderRadius = Dimens.border_r_8,
-    this.padding = Dimens.padding_8,
+    this.borderRadius = Dimens.size_8,
+    this.padding = Dimens.size_8,
     Key? key,
   });
 
@@ -53,9 +53,9 @@ class ShadowContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        Dimens.padding_8,
+        Dimens.size_8,
         padding,
-        Dimens.padding_8,
+        Dimens.size_8,
         padding,
       ),
       child: Container(

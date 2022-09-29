@@ -50,6 +50,7 @@ void initUiLayerMappers() {
       movieIdToImage: inject.get(),
       movieRatingToStarsCount: inject.get(),
       listToGenres: inject.get(),
+      ratingToString: inject.get(),
     ),
   );
   inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());

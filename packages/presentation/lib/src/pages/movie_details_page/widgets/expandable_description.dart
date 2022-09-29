@@ -8,14 +8,15 @@ import 'package:presentation/style/dimens.dart';
 class ExpandableDescription extends StatelessWidget {
   const ExpandableDescription({
     required this.description,
-    Key? key,
+    super.key,
   });
+
   final String description;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(Dimens.padding_18),
+      padding: const EdgeInsets.all(Dimens.size_18),
       child: ExpandablePanel(
         header: Text(
           S.of(context).description,
@@ -25,7 +26,7 @@ class ExpandableDescription extends StatelessWidget {
           description,
           style: sfProSemiRegular14px70opacity,
           softWrap: true,
-          maxLines: C.maxDescriptionTextLines,
+          maxLines: AppConst.maxDescriptionTextLines,
           overflow: TextOverflow.ellipsis,
         ),
         expanded: Text(

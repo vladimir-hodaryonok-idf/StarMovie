@@ -1,4 +1,7 @@
 class MyColors {
-  static int get splashScreenUp => 0xffE51937;
-  static int get splashScreenBottom => 0xffDB5252;
+  const MyColors._();
+
+  static int splashScreenUp = 0xffE51937;
+
+  static int splashScreenBottom = 0xffDB5252;
 }

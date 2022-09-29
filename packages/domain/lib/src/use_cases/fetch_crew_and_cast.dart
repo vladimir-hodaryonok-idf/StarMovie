@@ -1,46 +1,50 @@
 import 'package:domain/domain.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
+import 'package:domain/src/models/data_wrapper/cast_and_images_wrapper.dart';
 import 'package:domain/src/use_cases/base/in_out_use_case.dart';
 
 class FetchCrewAndCastUseCase
     implements InOutUseCase<int, Future<List<PeopleWithImage>>> {
   final TraktApiNetworkRepository traktApiNetworkRepository;
   final TmdbApiNetworkRepository tmdbApiNetworkRepository;
-  final CastAndImagesListMapper castAndImagesListMapper;
+  final CastAndImagesMapper castAndImagesMapper;
 
   const FetchCrewAndCastUseCase({
     required this.traktApiNetworkRepository,
     required this.tmdbApiNetworkRepository,
-    required this.castAndImagesListMapper,
+    required this.castAndImagesMapper,
   });
 
   @override
   Future<List<PeopleWithImage>> call(int id) async {
-    final CrewAndCast crewAndCast =
+    final List<Cast> cast =
         await traktApiNetworkRepository.fetchCrewAndCast(id);
-    final List<int?> idList = _createFirstFourIdsList(crewAndCast);
-    final List<CastAndCrewImages> images = await _fetchImages(idList);
+    if (cast.isEmpty) return List.empty();
+    return _fetchImagesAndMap(cast);
+  }
 
-    return castAndImagesListMapper(
-      crewAndCast.cast ?? [],
-      images,
+  Future<List<PeopleWithImage>> _fetchImagesAndMap(List<Cast> cast) async {
+    final List<int> indexes = _generateFirstIndexes(cast.length);
+    return Future.wait(
+      indexes.map(
+        (index) async {
+          final id = cast[index].person?.ids?.tmdb;
+          if (id == null) return PeopleWithImage();
+          final images = await tmdbApiNetworkRepository.fetchImage(id);
+          return castAndImagesMapper(
+            CastAndImageWrapper(
+              images: images,
+              people: cast[index],
+            ),
+          );
+        },
+      ),
     );
   }
 
-  Future<List<CastAndCrewImages>> _fetchImages(List<int?> idList) async =>
-      Future.wait(
-        idList.map(
-          (id) async => id != null
-              ? await tmdbApiNetworkRepository.fetchImage(id)
-              : CastAndCrewImages(),
-        ),
-      );
-
-  List<int?> _createFirstFourIdsList(CrewAndCast crewAndCast) {
+  List<int> _generateFirstIndexes(int castLength) {
     const firstFourIds = 4;
-    final cast = crewAndCast.cast ?? List.empty();
-    final length = cast.length >= firstFourIds ? firstFourIds : cast.length;
-    return List.generate(length, (index) => cast[index].person?.ids?.tmdb)
-        .toList();
+    final length = castLength >= firstFourIds ? firstFourIds : castLength;
+    return List.generate(length, (index) => index++);
   }
 }

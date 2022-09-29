@@ -1,4 +1,3 @@
-import 'package:app_config/config.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
@@ -34,7 +33,7 @@ void initApiKeyStore(Map<String, dynamic> apiKeys) {
   );
   inject.registerFactory<String>(
     () => inject.get<ApiKeyStore>().omdbApiKey,
-    instanceName: omdbApiKey,
+    instanceName: OmdbApiNameKey.omdbApiKey,
   );
 }
 
@@ -55,7 +54,8 @@ void initTmdbApiNetworkRepository() {
   inject.registerLazySingleton<TmdbApiNetworkRepository>(
     () => TmdbApiNetworkRepositoryImpl(
       tmdbService: inject.get<ApiService>(
-          instanceName: TmdbApiNames.tmdbApiDioServiceName),
+        instanceName: TmdbApiNames.tmdbApiDioServiceName,
+      ),
     ),
   );
 }
@@ -64,7 +64,8 @@ void initTraktApiNetworkRepository() {
   inject.registerLazySingleton<TraktApiNetworkRepository>(
     () => TraktApiNetworkRepositoryImpl(
       traktService: inject.get<ApiService>(
-          instanceName: TraktApiNames.traktApiDioServiceName),
+        instanceName: TraktApiNames.traktApiDioServiceName,
+      ),
     ),
   );
 }
