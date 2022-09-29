@@ -7,5 +7,6 @@
   "showtimeBtn" : "Showtime",
   "unknownError" : "Unknown Error",
   "nowShowingTitle" : "Trending",
-  "comingSoonTitle" : "Anticipated"
+  "comingSoonTitle" : "Anticipated",
+  "appTitle" : "StarMovie"
 }

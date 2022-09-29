@@ -1,3 +1,4 @@
+import 'package:app_config/config.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
@@ -11,7 +12,6 @@ import 'const/trakt_api_names.dart';
 import 'key_store_loader/key_store_loader.dart';
 
 final inject = GetIt.I;
-const keysPath = 'keys.json';
 
 Future<void> initDataDependencies() async {
   initApiKeyStore(await keys());
@@ -20,6 +20,7 @@ Future<void> initDataDependencies() async {
 }
 
 Future<Map<String, dynamic>> keys() async {
+  const keysPath = 'keys.json';
   final keyStoreLoader = KeyStoreLoader(path: keysPath);
   return keyStoreLoader.load();
 }
