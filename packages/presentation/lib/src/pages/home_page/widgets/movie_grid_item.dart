@@ -12,11 +12,11 @@ class MovieGridItem extends StatelessWidget {
   final int index;
 
   const MovieGridItem({
-    Key? key,
     required this.movie,
     required this.bloc,
     required this.index,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

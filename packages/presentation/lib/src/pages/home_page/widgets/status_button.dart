@@ -10,11 +10,12 @@ const comingSoonTitle = 'Anticipated';
 
 class StatusButton extends StatelessWidget {
   const StatusButton({
-    Key? key,
     required this.activeButtonId,
     required this.id,
     required this.bloc,
-  }) : super(key: key);
+    super.key,
+  });
+
   static const padding = 24;
   final MovieButtonStatus activeButtonId;
   final MovieButtonStatus id;

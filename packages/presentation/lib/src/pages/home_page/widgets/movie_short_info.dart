@@ -5,12 +5,13 @@ import 'package:presentation/utils/images_container.dart';
 
 class MovieShortInfo extends StatelessWidget {
   const MovieShortInfo({
-    Key? key,
     required this.movieGenres,
     required this.movieName,
     required this.parentsGuide,
     required this.duration,
-  }) : super(key: key);
+    super.key,
+  });
+
   final String movieName;
   final String movieGenres;
   final String parentsGuide;

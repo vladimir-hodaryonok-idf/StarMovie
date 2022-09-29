@@ -1,6 +1,6 @@
 import 'package:domain/src/mappers/base_mapper.dart';
 
-const imageUrl = 'http://img.omdbapi.com/?apikey=';
+const _imageUrl = 'http://img.omdbapi.com/?apikey=';
 
 class MovieIdToImageUrlMapper extends Mapper<String, String> {
   final String apiKey;
@@ -8,5 +8,5 @@ class MovieIdToImageUrlMapper extends Mapper<String, String> {
   MovieIdToImageUrlMapper({required this.apiKey});
 
   @override
-  String call(String id) => imageUrl + apiKey + '&i=' + id;
+  String call(String id) => _imageUrl + apiKey + '&i=' + id;
 }

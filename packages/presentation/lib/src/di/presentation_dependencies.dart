@@ -7,6 +7,8 @@ import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_lis
 import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movie.dart';
 import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
+import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
+import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
 import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dart';
 
 final inject = GetIt.I;
@@ -25,10 +27,9 @@ void initNavigatorModule() {
 void initUiLayerMappers() {
   inject.registerFactory<MovieToHomePageMovieMapper>(
     () => MovieToHomePageMovieMapper(
-      movieIdToImage: inject.get(instanceName: movieIdToImage),
-      movieRatingToStarsCount:
-          inject.get(instanceName: movieRatingToStarsCount),
-      durationToString: inject.get(instanceName: durationToString),
+      movieIdToImage: inject.get(),
+      movieRatingToStarsCount: inject.get(),
+      durationToString: inject.get(),
     ),
   );
 
@@ -43,6 +44,16 @@ void initUiLayerMappers() {
       movieToHomePageMovieMapper: inject.get(),
     ),
   );
+  inject.registerFactory(
+    () => MovieToMovieDetailsMapper(
+      durationToString: inject.get(),
+      movieIdToImage: inject.get(),
+      movieRatingToStarsCount: inject.get(),
+      listToGenres: inject.get(),
+      ratingToString: inject.get(),
+    ),
+  );
+  inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());
 }
 
 void initBlocModule() {
@@ -59,5 +70,10 @@ void initBlocModule() {
       inject.get<AnticipatedToHomeListMapper>(),
     ),
   );
-  inject.registerFactory<MovieDetailsBloc>(() => MovieDetailsBloc());
+  inject.registerFactory<MovieDetailsBloc>(
+    () => MovieDetailsBloc(
+        inject.get<FetchCrewAndCastUseCase>(),
+        inject.get<MovieToMovieDetailsMapper>(),
+        inject.get<PeoplesToCrewUiMapper>()),
+  );
 }

@@ -10,7 +10,7 @@ class HomePageData {
   final List<MovieTrending> trendingFull;
   final List<MovieAnticipated> anticipatedFull;
 
-  HomePageData({
+  const HomePageData({
     required this.trending,
     required this.anticipated,
     required this.buttonStatus,

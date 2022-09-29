@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class KeyStoreLoader {
   final String path;
 
-  KeyStoreLoader({required this.path});
+  const KeyStoreLoader({required this.path});
 
   Future<Map<String, dynamic>> load() {
     return rootBundle.loadStructuredData<Map<String, dynamic>>(

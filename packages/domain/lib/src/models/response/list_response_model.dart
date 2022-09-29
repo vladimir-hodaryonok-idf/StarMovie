@@ -1,8 +1,8 @@
 class ListResponseModel {
   final Map<String, List<String>> headers;
-  final List<dynamic> data;
+  final List<Map<String, dynamic>> data;
 
-  ListResponseModel({
+  const ListResponseModel({
     required this.headers,
     required this.data,
   });

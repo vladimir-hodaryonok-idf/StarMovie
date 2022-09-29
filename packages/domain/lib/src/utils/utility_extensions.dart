@@ -1,6 +1,11 @@
 extension StringExtension on String {
   String capitalize() {
-    if (this.isEmpty) return this;
     return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
   }
+}
+
+extension TakePercents on double {
+  double get fiftyFivePercent => this * 0.55;
+
+  double get thirtyPercent => this * 0.30;
 }

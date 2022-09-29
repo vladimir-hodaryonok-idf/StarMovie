@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:presentation/src/app/data/app_data.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/style/color_scheme/dark.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'app/app_bloc.dart';
 import 'app/widgets/app_navigation_bar.dart';
 import 'base_bloc/base_tile.dart';
 
 class StarMovieApp extends StatefulWidget {
-  const StarMovieApp({Key? key}) : super(key: key);
+  const StarMovieApp({super.key});
 
   @override
   State<StatefulWidget> createState() => _StarMovieAppState();
@@ -19,6 +20,8 @@ class _StarMovieAppState extends BlocScreenState<StatefulWidget, AppBloc> {
     return MaterialApp(
       title: 'Star Movie',
       theme: ThemeData.from(colorScheme: dark),
+      localizationsDelegates: const [S.delegate],
+      supportedLocales: S.delegate.supportedLocales,
       home: StreamBuilder<BaseTile<AppData>>(
         stream: bloc.dataStream,
         builder: (context, snapshot) {

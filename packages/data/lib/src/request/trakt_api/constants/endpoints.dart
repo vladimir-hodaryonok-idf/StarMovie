@@ -1,5 +1,11 @@
-abstract class TraktApiEndpoints {
-  static String get trending => '/movies/trending';
+class TraktApiEndpoints {
+  const TraktApiEndpoints._();
 
-  static String get anticipated => '/movies/anticipated';
+  static const String trending = '/movies/trending';
+
+  static const String anticipated = '/movies/anticipated';
+
+  static const String movies = '/movies';
+
+  static const String people = '/people';
 }

@@ -1,18 +1,11 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/mappers/duration_to_string.dart';
+import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 import 'package:domain/src/mappers/json_to_trending_list.dart';
-import 'package:domain/src/mappers/movie_id_to_image_url.dart';
-import 'package:domain/src/mappers/movie_rating_to_stars_count.dart';
 import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
-
-const movieRatingToStarsCount = 'movieRatingToStarsCount';
-const durationToString = 'durationToString';
-const movieIdToImage = 'movieIdToImage';
-const omdbApiKey = 'omdbApiKeyName';
 
 void initDomainDependencies() {
   initMappers();
@@ -35,30 +28,41 @@ void initUseCases() {
       jsonToAnticipatedListMapper: inject.get(),
     ),
   );
+  inject.registerFactory(
+    () => FetchCrewAndCastUseCase(
+      traktApiNetworkRepository: inject.get(),
+      tmdbApiNetworkRepository: inject.get(),
+      castAndImagesMapper: inject.get(),
+    ),
+  );
 }
 
 void initMappers() {
-  inject.registerFactory<Mapper<List, List<MovieTrending>>>(
-    () => JsonToTrendingList(),
+  inject.registerFactory<JsonToTrendingListMapper>(
+    () => JsonToTrendingListMapper(),
   );
-  inject.registerFactory<Mapper<Map<String, List<String>>, int>>(
-    () => ExtractItemLimit(),
+  inject.registerFactory<ExtractItemLimitMapper>(
+    () => ExtractItemLimitMapper(),
   );
-  inject.registerFactory<Mapper<List, List<MovieAnticipated>>>(
+  inject.registerFactory<JsonToAnticipatedList>(
     () => JsonToAnticipatedList(),
   );
-  inject.registerFactory<Mapper<double, int>>(
+  inject.registerFactory<MovieRatingToStarsCountMapper>(
     () => MovieRatingToStarsCountMapper(),
-    instanceName: movieRatingToStarsCount,
   );
-  inject.registerFactory<Mapper<int, String>>(
+  inject.registerFactory<DurationToStringMapper>(
     () => DurationToStringMapper(),
-    instanceName: durationToString,
   );
-  inject.registerFactory<Mapper<String, String>>(
+  inject.registerFactory<MovieIdToImageUrlMapper>(
     () => MovieIdToImageUrlMapper(
-      apiKey: inject.get(instanceName: omdbApiKey),
+      apiKey: inject.get(instanceName: OmdbApiNameKey.omdbApiKey),
     ),
-    instanceName: movieIdToImage,
   );
+  inject.registerFactory<ListToGenresStringMapper>(
+    () => ListToGenresStringMapper(),
+  );
+
+  inject.registerFactory<CastAndImagesMapper>(() => CastAndImagesMapper());
+
+  inject.registerFactory<RatingToStringMapper>(() => RatingToStringMapper());
 }

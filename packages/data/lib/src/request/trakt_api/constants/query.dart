@@ -1,11 +1,15 @@
-abstract class TraktApiQueryKeys {
-  static String get extended => 'extended';
+class TraktApiQueryKeys {
+  const TraktApiQueryKeys._();
 
-  static String get page => 'page';
+  static const String extended = 'extended';
 
-  static String get limit => 'limit';
+  static const String page = 'page';
+
+  static const String limit = 'limit';
 }
 
-abstract class TraktApiQueryValues {
-  static String get full => 'full';
+class TraktApiQueryValues {
+  TraktApiQueryValues._();
+
+  static const String full = 'full';
 }

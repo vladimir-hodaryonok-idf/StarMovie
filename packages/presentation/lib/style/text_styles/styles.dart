@@ -1,37 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/style/dimens.dart';
+
+const _fontFamilySfProSemibold = 'SF Pro Text Semibold';
+const _fontFamilySfProMedium = 'SF Pro Text Medium';
+const _fontFamilySfProRegular = 'SF Pro Text Regular';
 
 TextStyle sfProSemiBold24px = TextStyle(
   color: Color(0xffFFFFFF),
-  fontFamily: 'SF Pro Text Semibold',
-  fontSize: 24,
+  fontFamily: _fontFamilySfProSemibold,
+  fontSize: Dimens.size_24,
 );
 
 TextStyle sfProSemiBold14px = TextStyle(
   color: Color(0xffFFFFFF),
-  fontFamily: 'SF Pro Text Semibold',
-  fontSize: 14,
+  fontFamily: _fontFamilySfProSemibold,
+  fontSize: Dimens.size_14,
 );
 
 TextStyle sfProSemiBold16px = TextStyle(
   color: Color(0xffFFFFFF),
-  fontFamily: 'SF Pro Text Semibold',
-  fontSize: 16,
+  fontFamily: _fontFamilySfProSemibold,
+  fontSize: Dimens.size_16,
 );
 
 TextStyle sfProSemiMedium12px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
-  fontFamily: 'SF Pro Text Medium',
-  fontSize: 12,
+  fontFamily: _fontFamilySfProMedium,
+  fontSize: Dimens.size_12,
+);
+
+TextStyle sfProSemiMedium18px = TextStyle(
+  color: Color(0xffFFFFFF),
+  fontFamily: _fontFamilySfProMedium,
+  fontSize: Dimens.size_18,
+);
+
+TextStyle sfProSemiMedium14pxBlue = TextStyle(
+  color: Color(0xff47CFFF),
+  fontFamily: _fontFamilySfProMedium,
+  fontSize: Dimens.size_14,
+);
+
+TextStyle sfProSemiMedium14px = TextStyle(
+  color: Color(0xffFFFFFF),
+  fontFamily: _fontFamilySfProMedium,
+  fontSize: Dimens.size_14,
 );
 
 TextStyle sfProSemiRegular16px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
-  fontFamily: 'SF Pro Text Regular',
-  fontSize: 16,
+  fontFamily: _fontFamilySfProRegular,
+  fontSize: Dimens.size_16,
+);
+
+TextStyle sfProSemiRegular14px70opacity = TextStyle(
+  color: Color(0xffFFFFFF).withOpacity(0.7),
+  fontFamily: _fontFamilySfProRegular,
+  fontSize: Dimens.size_14,
 );
 
 TextStyle sfProSemiRegular30px = TextStyle(
   color: Color(0xffFFFFFF),
-  fontFamily: 'SF Pro Text Regular',
-  fontSize: 30,
+  fontFamily: _fontFamilySfProRegular,
+  fontSize: Dimens.size_30,
 );

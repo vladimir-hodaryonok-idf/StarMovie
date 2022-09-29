@@ -9,7 +9,7 @@ class Ids {
   final String? imdb;
   final int? tmdb;
 
-  Ids(
+  const Ids(
     this.trakt,
     this.slug,
     this.imdb,

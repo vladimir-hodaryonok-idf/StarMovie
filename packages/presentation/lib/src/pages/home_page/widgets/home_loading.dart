@@ -5,10 +5,10 @@ import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.da
 
 class HomeLoading extends StatelessWidget {
   const HomeLoading({
-    Key? key,
     required this.tile,
     required this.bloc,
-  }) : super(key: key);
+    super.key,
+  });
 
   final HomePageData? tile;
   final HomeBloc bloc;

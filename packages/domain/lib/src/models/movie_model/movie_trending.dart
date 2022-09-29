@@ -9,12 +9,13 @@ class MovieTrending {
   final int watchers;
   final Movie movie;
 
-  MovieTrending(
+  const MovieTrending(
     this.movie,
     this.watchers,
   );
 
-  factory MovieTrending.fromJson(dynamic json) => _$MovieTrendingFromJson(json);
+  factory MovieTrending.fromJson(Map<String, dynamic> json) =>
+      _$MovieTrendingFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieTrendingToJson(this);
 }

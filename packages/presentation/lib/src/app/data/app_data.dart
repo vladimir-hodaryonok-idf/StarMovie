@@ -8,7 +8,7 @@ class AppData {
   final int bottomNavIndex;
   final bool isShowNavBar;
 
-  AppData(
+  const AppData(
     this.pages,
     this.bottomNavIndex,
     this.isShowNavBar,

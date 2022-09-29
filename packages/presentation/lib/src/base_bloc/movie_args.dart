@@ -3,7 +3,7 @@ import 'package:presentation/src/navigation/base_arguments.dart';
 
 class MovieArgs implements BaseArguments{
   final Movie _movie;
-  MovieArgs(this._movie);
+  const MovieArgs(this._movie);
 
   @override
   get value => _movie;

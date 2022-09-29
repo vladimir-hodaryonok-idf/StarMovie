@@ -1,16 +1,20 @@
 # star_movie
 
-idf fkutter lab
+# idf flutter lab
 
-## Getting Started
+Star Movie app is the simple app for browsing a popular movies (trakt.tv API)
+and view peoples cast and base information about it
 
-This project is a starting point for a Flutter application.
+## How to Launch
 
-A few resources to get you started if this is your first Flutter project:
+1. Create keys.json file in the root of the project, with content:
+{
+"traktApiKey": "...", // trakt.tv apiKey
+"omdbApiKey": "...", // omdbapi.com apiKey
+"tmdbApiKey": "..." // developers.themoviedb.org ApiKey 
+}
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Generate domain models by running "flutter pub run build_runner build" in the root/packages/domain
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Generate Localization files by running "flutter pub global run intl_utils:generate" in the
+root/packages/presentation
