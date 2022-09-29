@@ -1,4 +1,6 @@
 class AssetsImages {
+  AssetsImages._();
+
   static const String splashAsset =
       'packages/presentation/assets/splash_screen/splash.svg';
 

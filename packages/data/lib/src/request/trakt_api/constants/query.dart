@@ -1,4 +1,6 @@
-abstract class TraktApiQueryKeys {
+class TraktApiQueryKeys {
+  const TraktApiQueryKeys._();
+
   static const String extended = 'extended';
 
   static const String page = 'page';
@@ -6,6 +8,8 @@ abstract class TraktApiQueryKeys {
   static const String limit = 'limit';
 }
 
-abstract class TraktApiQueryValues {
+class TraktApiQueryValues {
+  TraktApiQueryValues._();
+
   static const String full = 'full';
 }

@@ -1,63 +1,29 @@
-abstract class Dimens {
-  /// Border radius
-  static const double border_r_8 = 8;
-  static const double border_r_16 = 16;
-  static const double border_r_20 = 20;
-  static const double border_r_25 = 25;
+class Dimens {
+  Dimens._();
 
-  /// Aspect ratio
-  static const double aspectRatio_1_to_22 = 1 / 2.2;
-  /// Paddings
-  static const double padding_2 = 2;
-  static const double padding_4 = 4;
-  static const double padding_6 = 6;
-  static const double padding_8 = 8;
-  static const double padding_10 = 10;
-  static const double padding_15 = 15;
-  static const double padding_16 = 16;
-  static const double padding_18 = 18;
-  static const double padding_20 = 20;
-  static const double padding_24 = 24;
-  static const double padding_30 = 30;
-  static const double padding_104 = 104;
-  static const double padding_140 = 140;
-
-  /// Height
-  static const double height_14 = 14;
-  static const double height_15 = 15;
-  static const double height_18 = 18;
-  static const double height_20 = 20;
-  static const double height_20_5 = 20.5;
-  static const double height_21 = 21;
-  static const double height_24 = 24;
-  static const double height_30 = 30;
-  static const double height_36 = 36;
-  static const double height_39 = 39;
-  static const double height_40 = 40;
-  static const double height_50 = 50;
-  static const double height_56 = 56;
-  static const double height_70 = 70;
-  static const double height_250 = 250;
-  static const double height_300 = 300;
-
-  /// Width
-  static const double width_1 = 1;
-  static const double width_12 = 12;
-  static const double width_14 = 14;
-  static const double width_20 = 20;
-  static const double width_20_5 = 70;
-  static const double width_24 = 24;
-  static const double width_56 = 56;
-  static const double width_39 = 39;
-  static const double width_22_5 = 22.5;
-  static const double width_50 = 50;
-  static const double width_86 = 86;
-
-  /// Font Sizes
-  static const double font_s_12 = 12;
-  static const double font_s_14 = 14;
-  static const double font_s_16 = 16;
-  static const double font_s_18 = 18;
-  static const double font_s_24 = 24;
-  static const double font_s_30 = 30;
+  static const double size_1 = 1;
+  static const double size_2 = 2;
+  static const double size_4 = 4;
+  static const double size_8 = 8;
+  static const double size_10 = 10;
+  static const double size_12 = 12;
+  static const double size_14 = 14;
+  static const double size_15 = 15;
+  static const double size_16 = 16;
+  static const double size_18 = 18;
+  static const double size_20 = 20;
+  static const double size_20_5 = 20.5;
+  static const double size_21 = 21;
+  static const double size_22_5 = 22.5;
+  static const double size_24 = 24;
+  static const double size_25 = 25;
+  static const double size_30 = 30;
+  static const double size_36 = 36;
+  static const double size_39 = 39;
+  static const double size_50 = 50;
+  static const double size_56 = 56;
+  static const double size_70 = 70;
+  static const double size_104 = 104;
+  static const double size_140 = 140;
+  static const double size_300 = 300;
 }

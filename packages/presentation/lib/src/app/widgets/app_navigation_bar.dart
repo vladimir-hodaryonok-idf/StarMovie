@@ -7,7 +7,7 @@ class AppNavigationBar extends StatelessWidget {
   const AppNavigationBar({
     required this.bottomNavIndex,
     required this.bloc,
-    Key? key,
+    super.key,
   });
   final AppBloc bloc;
   final int bottomNavIndex;

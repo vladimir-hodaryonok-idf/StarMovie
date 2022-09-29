@@ -1,4 +1,6 @@
-abstract class TraktApiEndpoints {
+class TraktApiEndpoints {
+  const TraktApiEndpoints._();
+
   static const String trending = '/movies/trending';
 
   static const String anticipated = '/movies/anticipated';

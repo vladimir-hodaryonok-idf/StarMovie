@@ -13,7 +13,7 @@ class StatusButton extends StatelessWidget {
     required this.activeButtonId,
     required this.id,
     required this.bloc,
-    Key? key,
+    super.key,
   });
 
   final MovieButtonStatus activeButtonId;

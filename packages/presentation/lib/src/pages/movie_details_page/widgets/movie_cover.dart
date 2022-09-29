@@ -6,8 +6,9 @@ import 'package:presentation/style/dimens.dart';
 class MovieCover extends StatelessWidget {
   const MovieCover({
     required this.imageUrl,
-    Key? key,
+    super.key,
   });
+
   final String imageUrl;
 
   @override
@@ -19,7 +20,7 @@ class MovieCover extends StatelessWidget {
           colorOpacity: 0.2,
           child: SizedBox(
             width: double.infinity,
-            height: Dimens.height_300,
+            height: Dimens.size_300,
             child: MovieCoverLoader(
               imageUrl: imageUrl,
               fit: BoxFit.fitWidth,
@@ -29,10 +30,10 @@ class MovieCover extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
-            Dimens.padding_104,
-            Dimens.padding_140,
-            Dimens.padding_104,
-            Dimens.padding_20,
+            Dimens.size_104,
+            Dimens.size_140,
+            Dimens.size_104,
+            Dimens.size_20,
           ),
           child: MovieCoverLoader(imageUrl: imageUrl),
         )
@@ -46,7 +47,7 @@ class MovieCoverLoader extends StatelessWidget {
     required this.imageUrl,
     this.alignment = Alignment.center,
     this.fit,
-    Key? key,
+    super.key,
   });
 
   final String imageUrl;

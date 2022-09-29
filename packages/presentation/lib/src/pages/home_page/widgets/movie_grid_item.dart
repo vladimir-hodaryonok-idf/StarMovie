@@ -16,7 +16,7 @@ class MovieGridItem extends StatelessWidget {
     required this.movie,
     required this.bloc,
     required this.index,
-    Key? key,
+    super.key,
   });
 
   @override

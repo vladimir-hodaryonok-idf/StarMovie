@@ -9,7 +9,7 @@ class MovieStars extends StatelessWidget {
   const MovieStars({
     required this.fullStarsCount,
     required this.isBigStar,
-    Key? key,
+    super.key,
   });
 
   final int fullStarsCount;
@@ -19,41 +19,34 @@ class MovieStars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        top: Dimens.padding_16,
-        bottom: Dimens.padding_8,
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: Dimens.size_16,
+        bottom: Dimens.size_8,
       ),
-      height: isBigStar ? Dimens.height_30 : Dimens.height_14,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ...generateStars(
-            stars: fullStarsCount,
-            isFull: true,
-          ),
-          ...generateStars(
-            stars: emptyStarCount,
-            isFull: false,
-          ),
-        ],
+      child: Container(
+        height: isBigStar ? Dimens.size_30 : Dimens.size_14,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ...generateStars(stars: fullStarsCount, isFull: true),
+            ...generateStars(stars: emptyStarCount, isFull: false),
+          ],
+        ),
       ),
     );
   }
 
-  List<Widget> generateStars({
-    required int stars,
-    required bool isFull,
-  }) {
+  List<Widget> generateStars({required int stars, required bool isFull}) {
     return List.generate(
       stars,
       (_) => Padding(
-        padding: const EdgeInsets.all(Dimens.padding_2),
+        padding: const EdgeInsets.all(Dimens.size_2),
         child: SvgPicture.asset(
           isFull ? AssetsImages.fullStar : AssetsImages.emptyStar,
-          height: isBigStar ? Dimens.height_20 : Dimens.height_14,
-          width: isBigStar ? Dimens.width_20 : Dimens.width_14,
+          height: isBigStar ? Dimens.size_20 : Dimens.size_14,
+          width: isBigStar ? Dimens.size_20 : Dimens.size_14,
         ),
       ),
     );

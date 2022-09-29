@@ -28,7 +28,7 @@ void initApiKeyStore(Map<String, dynamic> apiKeys) {
   inject.registerLazySingleton<ApiKeyStore>(() => ApiKeyStore(apiKeys));
   inject.registerFactory<String>(
     () => inject.get<ApiKeyStore>().omdbApiKey,
-    instanceName: omdbApiKey,
+    instanceName: OmdbApiNameKey.omdbApiKey,
   );
 }
 
@@ -48,7 +48,9 @@ void initNetworkServices() {
 void initTmdbApiNetworkRepository() {
   inject.registerLazySingleton<TmdbApiNetworkRepository>(
     () => TmdbApiNetworkRepositoryImpl(
-      tmdbService: inject.get<ApiService>(instanceName: TmdbApiNames.tmdbApiDioServiceName),
+      tmdbService: inject.get<ApiService>(
+        instanceName: TmdbApiNames.tmdbApiDioServiceName,
+      ),
     ),
   );
 }
@@ -56,8 +58,9 @@ void initTmdbApiNetworkRepository() {
 void initTraktApiNetworkRepository() {
   inject.registerLazySingleton<TraktApiNetworkRepository>(
     () => TraktApiNetworkRepositoryImpl(
-      traktService:
-          inject.get<ApiService>(instanceName: TraktApiNames.traktApiDioServiceName),
+      traktService: inject.get<ApiService>(
+        instanceName: TraktApiNames.traktApiDioServiceName,
+      ),
     ),
   );
 }

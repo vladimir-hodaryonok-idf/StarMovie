@@ -3,7 +3,7 @@ import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShadowItem extends StatelessWidget {
-  const ShadowItem({Key? key});
+  const ShadowItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ShadowItem extends StatelessWidget {
         children: [
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.height_250,
+            height: Dimens.s250,
           ),
           ShadowContainer(
             width: Dimens.width_86,

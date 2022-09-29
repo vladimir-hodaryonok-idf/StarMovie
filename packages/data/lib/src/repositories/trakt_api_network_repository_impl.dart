@@ -1,8 +1,7 @@
-import 'package:data/src/remote/payloads/trakt_movies_payload.dart';
+import 'package:data/src/remote/payloads/dio_service_payload.dart';
 import 'package:data/src/remote/service/service.dart';
-import 'package:data/src/request/api_request_representable.dart';
-import 'package:data/src/request/trakt_api/trakt_api_movies.dart';
-import 'package:data/src/request/trakt_api/trakt_api_peoples.dart';
+import 'package:data/src/request/trakt_api/tract_api_query_factory.dart';
+import 'package:data/src/request/trakt_api/trakt_api_path_factory.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';
 
@@ -11,9 +10,14 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
 
   const TraktApiNetworkRepositoryImpl({required this.traktService});
 
-  Future<ListResponseModel> _fetchData(APIRequestRepresentable request) async {
-    final ServicePayload payload = _createPayload(request);
-    final Response response = await traktService.request(request, payload);
+  Future<ListResponseModel> _fetchData({
+    required String path,
+    Map<String, dynamic>? query,
+  }) async {
+    final Response response = await traktService.getRequest(
+      path: path,
+      query: query,
+    );
     return ListResponseModel(
       headers: response.headers.map,
       data: (response.data as List<dynamic>)
@@ -24,30 +28,27 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
 
   @override
   Future<ListResponseModel> fetchAnticipatedMovies({int? limit}) {
-    final anticipatedRequest = TraktApiMovies.anticipated(limit: limit);
-    return _fetchData(anticipatedRequest);
+    return _fetchData(
+      path: TraktApiPathFactory.getAnticipatedPath(),
+      query:
+          TraktApiQueryFactory.generateMoviesQueryFullWithLimit(limit: limit),
+    );
   }
 
   @override
   Future<ListResponseModel> fetchTrendingMovies({int? limit}) {
-    final trendingRequest = TraktApiMovies.trending(limit: limit);
-    return _fetchData(trendingRequest);
+    return _fetchData(
+      path: TraktApiPathFactory.getTrendingPath(),
+      query:
+          TraktApiQueryFactory.generateMoviesQueryFullWithLimit(limit: limit),
+    );
   }
 
   @override
-  Future<CrewAndCast> fetchCrewAndCast(int id) async {
-    final request = TraktApiPeoples.castAndCrew(id);
-    final payload = _createPayload(request);
-    final response = await traktService.request(request, payload);
-    return CrewAndCast.fromJson(response.data);
-  }
-
-  ServicePayload _createPayload(APIRequestRepresentable request) {
-    return DioServicePayload(
-      Options(
-        method: request.method,
-        headers: request.headers,
-      ),
+  Future<List<Cast>> fetchCrewAndCast(int id) async {
+    final response = await traktService.getRequest(
+      path: TraktApiPathFactory.getCastAndCrewPath(id),
     );
+    return CrewAndCast.fromJson(response.data).cast ?? List.empty();
   }
 }

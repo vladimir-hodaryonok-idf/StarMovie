@@ -7,8 +7,6 @@ import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
 
-const omdbApiKey = 'omdbApiKeyName';
-
 void initDomainDependencies() {
   initMappers();
   initUseCases();
@@ -34,7 +32,7 @@ void initUseCases() {
     () => FetchCrewAndCastUseCase(
       traktApiNetworkRepository: inject.get(),
       tmdbApiNetworkRepository: inject.get(),
-      castAndImagesListMapper: inject.get(),
+      castAndImagesMapper: inject.get(),
     ),
   );
 }
@@ -57,14 +55,14 @@ void initMappers() {
   );
   inject.registerFactory<MovieIdToImageUrlMapper>(
     () => MovieIdToImageUrlMapper(
-      apiKey: inject.get(instanceName: omdbApiKey),
+      apiKey: inject.get(instanceName: OmdbApiNameKey.omdbApiKey),
     ),
   );
   inject.registerFactory<ListToGenresStringMapper>(
     () => ListToGenresStringMapper(),
   );
 
-  inject.registerFactory<CastAndImagesListMapper>(
-    () => CastAndImagesListMapper(),
-  );
+  inject.registerFactory<CastAndImagesMapper>(() => CastAndImagesMapper());
+
+  inject.registerFactory<RatingToStringMapper>(() => RatingToStringMapper());
 }

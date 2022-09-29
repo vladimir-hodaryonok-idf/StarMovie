@@ -13,7 +13,7 @@ class MovieAnticipated {
     this.listCount,
   );
 
-  factory MovieAnticipated.fromJson(dynamic json) =>
+  factory MovieAnticipated.fromJson(Map<String, dynamic> json) =>
       _$MovieAnticipatedFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieAnticipatedToJson(this);

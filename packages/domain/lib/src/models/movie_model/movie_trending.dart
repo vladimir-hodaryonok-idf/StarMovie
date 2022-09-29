@@ -14,7 +14,8 @@ class MovieTrending {
     this.watchers,
   );
 
-  factory MovieTrending.fromJson(dynamic json) => _$MovieTrendingFromJson(json);
+  factory MovieTrending.fromJson(Map<String, dynamic> json) =>
+      _$MovieTrendingFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieTrendingToJson(this);
 }
