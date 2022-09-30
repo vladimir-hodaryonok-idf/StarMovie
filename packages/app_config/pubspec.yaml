@@ -9,7 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get_it: ^7.2.0
+  needle_di:
+    git: https://github.com/vladimir-hodaryonok-idf/needle_di.git
 
 dev_dependencies:
   flutter_test:

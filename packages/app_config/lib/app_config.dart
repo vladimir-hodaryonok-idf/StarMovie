@@ -1,7 +1,6 @@
 library app_config;
-
+import 'package:needle_di/needle_di.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'config.dart';
 
 class AppConfig extends InheritedWidget {
@@ -12,7 +11,7 @@ class AppConfig extends InheritedWidget {
     required super.child,
     super.key,
   }) : title = data.appTitle {
-    GetIt.I.registerSingleton<FlavorConfig>(data);
+    Needle.instance.registerLazySingleton<FlavorConfig>(() => data);
   }
 
   static AppConfig? of(BuildContext context) {

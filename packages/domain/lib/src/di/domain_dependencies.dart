@@ -3,9 +3,9 @@ import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 import 'package:domain/src/mappers/json_to_trending_list.dart';
-import 'package:get_it/get_it.dart';
+import 'package:needle_di/needle_di.dart';
 
-final inject = GetIt.I;
+final inject = Needle.instance;
 
 void initDomainDependencies() {
   initMappers();
