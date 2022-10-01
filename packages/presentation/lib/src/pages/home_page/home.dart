@@ -1,4 +1,3 @@
-import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
@@ -16,8 +15,7 @@ class Home extends StatefulWidget {
 
   static const _routeName = '/HomePage';
 
-  static page() =>
-      BasePage(
+  static page() => BasePage(
         key: const ValueKey(_routeName),
         name: _routeName,
         builder: (context) => const Home(),
@@ -34,18 +32,11 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppConfig
-              .of(context)
-              ?.title ?? S
-              .of(context)
-              .unknownError,
+          S.of(context).appTitle,
           style: sfProSemiBold24px,
         ),
         centerTitle: false,
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         actions: [
           IconButton(

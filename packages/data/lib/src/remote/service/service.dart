@@ -36,7 +36,7 @@ class DioService implements ApiService<DioServicePayload> {
       return _returnResponse(response);
     } on DioError catch (e) {
       if (e.error is SocketException)
-        throw FetchDataException('No Internet connection');
+        throw FetchDataException(details: 'No Internet connection');
       else if (e.error is TimeoutException) throw TimeOutException(null);
     }
   }
@@ -53,11 +53,12 @@ class DioService implements ApiService<DioServicePayload> {
       case 404:
         throw BadRequestException('Not found');
       case 500:
-        throw FetchDataException('Internal Server Error');
+        throw FetchDataException(details: 'Internal Server Error');
       default:
         throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : '
-            '${response.statusCode}');
+            details:
+                'Error occured while Communication with Server with StatusCode : '
+                '${response.statusCode}');
     }
   }
 }

@@ -1,16 +1,14 @@
-import 'package:app_config/app_config.dart';
-import 'package:app_config/config.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/presentation.dart';
 import 'package:star_movie/di/init_dependencies.dart';
+import 'package:star_movie/flavor_configurator/flavor_configurator.dart';
 
-Future<void> mainCommon(FlavorConfig config) async {
+Future<void> initApp(Flavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initDependencies();
+  await initDependencies(flavor);
   runApp(
-    AppConfig(
-      data: config,
-      child: const StarMovieApp(),
+    StarMovieApp(
+      config: await FlavorConfigurator.configurePresentation(flavor),
     ),
   );
 }

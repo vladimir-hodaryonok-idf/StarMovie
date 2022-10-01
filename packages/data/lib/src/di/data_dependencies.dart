@@ -1,4 +1,4 @@
-import 'package:app_config/config.dart';
+import 'package:data/data.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
@@ -14,22 +14,23 @@ import 'key_store_loader/key_store_loader.dart';
 final inject = GetIt.I;
 
 Future<void> initDataDependencies() async {
-  initApiKeyStore(await keys());
+  await initApiKeyStore();
   initNetworkModule();
   initLocalModule();
 }
 
-Future<Map<String, dynamic>> keys() async {
+Future<Map<String, dynamic>> loadKeys() async {
   const keysPath = 'keys.json';
   final keyStoreLoader = KeyStoreLoader(path: keysPath);
   return keyStoreLoader.load();
 }
 
-void initApiKeyStore(Map<String, dynamic> apiKeys) {
+Future<void> initApiKeyStore() async {
+  final keys = await loadKeys();
   inject.registerLazySingleton<ApiKeyStore>(
     () => ApiKeyStore(
-      apiKeys,
-      isProd: inject.get<FlavorConfig>().isProd,
+      inject.get<DataConfig>().isProd,
+      keys,
     ),
   );
   inject.registerFactory<String>(
