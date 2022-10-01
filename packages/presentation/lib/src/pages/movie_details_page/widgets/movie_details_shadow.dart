@@ -10,29 +10,29 @@ class MovieDetailsShadow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final personNameTextShadow_w =
-        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.size_50;
+        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.size50;
     final roleTextShadow_w = MediaQuery.of(context).size.width.thirtyPercent;
 
     return Shimmer.fromColors(
       child: Row(
         children: [
           ShadowContainer(
-            width: Dimens.size_50,
-            height: Dimens.size_50,
-            borderRadius: Dimens.size_25,
+            width: Dimens.size50,
+            height: Dimens.size50,
+            borderRadius: Dimens.size25,
           ),
           ShadowContainer(
             width: personNameTextShadow_w,
-            height: Dimens.size_24,
+            height: Dimens.size24,
           ),
           ShadowContainer(
-            width: Dimens.size_24,
-            height: Dimens.size_14,
+            width: Dimens.size24,
+            height: Dimens.size14,
           ),
           Flexible(
             child: ShadowContainer(
               width: roleTextShadow_w,
-              height: Dimens.size_24,
+              height: Dimens.size24,
             ),
           ),
         ],

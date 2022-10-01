@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/src/pages/home_page/widgets/status_button.dart';
+import 'package:presentation/style/dimens.dart';
 
 class MovieShowingStatus extends StatelessWidget {
   final MovieButtonStatus buttonStatus;
@@ -15,34 +16,29 @@ class MovieShowingStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(18),
-      child: Container(
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            width: 1,
-            color: Theme.of(context).colorScheme.onPrimary,
-          ),
+    return Container(
+      margin: EdgeInsets.all(Dimens.size18),
+      height: Dimens.size40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Dimens.size20),
+        border: Border.all(
+          width: Dimens.size1,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(Dimens.size4),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 4, 0, 4),
-              child: StatusButton(
-                id: MovieButtonStatus.trending,
-                activeButtonId: buttonStatus,
-                bloc: bloc,
-              ),
+            StatusButton(
+              id: MovieButtonStatus.trending,
+              activeButtonId: buttonStatus,
+              bloc: bloc,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 4, 4, 4),
-              child: StatusButton(
-                id: MovieButtonStatus.anticipated,
-                activeButtonId: buttonStatus,
-                bloc: bloc,
-              ),
+            StatusButton(
+              id: MovieButtonStatus.anticipated,
+              activeButtonId: buttonStatus,
+              bloc: bloc,
             ),
           ],
         ),

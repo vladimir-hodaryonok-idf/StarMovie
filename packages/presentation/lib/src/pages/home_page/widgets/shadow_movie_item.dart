@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/style/dimens.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShadowItem extends StatelessWidget {
@@ -11,20 +12,20 @@ class ShadowItem extends StatelessWidget {
         children: [
           ShadowContainer(
             width: double.infinity,
-            height: 250,
+            height: Dimens.size250,
           ),
           ShadowContainer(
-            width: 86,
-            height: 15,
-          ),
-          ShadowContainer(
-            width: double.infinity,
-            height: 24,
-            padding: 6,
+            width: Dimens.size86,
+            height: Dimens.size15,
           ),
           ShadowContainer(
             width: double.infinity,
-            height: 15,
+            height: Dimens.size24,
+            padding: Dimens.size6,
+          ),
+          ShadowContainer(
+            width: double.infinity,
+            height: Dimens.size15,
           ),
         ],
       ),
@@ -38,9 +39,9 @@ class ShadowContainer extends StatelessWidget {
   const ShadowContainer({
     required this.width,
     required this.height,
-    this.borderRadius = 8,
-    this.padding = 8,
-    super.key,
+    this.borderRadius = Dimens.size8,
+    this.padding = Dimens.size8,
+    Key? key,
   });
 
   final double width;
@@ -51,7 +52,12 @@ class ShadowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(8, padding, 8, padding),
+      padding: EdgeInsets.fromLTRB(
+        Dimens.size8,
+        padding,
+        Dimens.size8,
+        padding,
+      ),
       child: Container(
         width: width,
         height: height,

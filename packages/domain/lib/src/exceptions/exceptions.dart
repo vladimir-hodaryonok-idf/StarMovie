@@ -16,64 +16,63 @@ class AppException implements Exception {
 }
 
 class FetchDataException extends AppException {
-  FetchDataException(String? details)
+  const FetchDataException({super.details})
       : super(
-          code: "fetch-data",
-          message: "Error During Communication",
-          details: details,
+          code: 'fetch-data',
+          message: 'Error During Communication',
         );
 }
 
 class BadRequestException extends AppException {
-  BadRequestException(String? details)
+  const BadRequestException(String? details)
       : super(
-          code: "invalid-request",
-          message: "Invalid Request",
+          code: 'invalid-request',
+          message: 'Invalid Request',
           details: details,
         );
 }
 
 class UnauthorisedException extends AppException {
-  UnauthorisedException(String? details)
+  const UnauthorisedException(String? details)
       : super(
-          code: "unauthorised",
-          message: "Unauthorised",
+          code: 'unauthorised',
+          message: 'Unauthorised',
           details: details,
         );
 }
 
 class InvalidInputException extends AppException {
-  InvalidInputException(String? details)
+  const InvalidInputException(String? details)
       : super(
-          code: "invalid-input",
-          message: "Invalid Input",
+          code: 'invalid-input',
+          message: 'Invalid Input',
           details: details,
         );
 }
 
 class AuthenticationException extends AppException {
-  AuthenticationException(String? details)
+  const AuthenticationException(String? details)
       : super(
-          code: "authentication-failed",
-          message: "Authentication Failed",
+          code: 'authentication-failed',
+          message: 'Authentication Failed',
           details: details,
         );
 }
 
 class TimeOutException extends AppException {
-  TimeOutException(String? details)
+  const TimeOutException(String? details)
       : super(
-          code: "request-timeout",
-          message: "Request TimeOut",
+          code: 'request-timeout',
+          message: 'Request TimeOut',
           details: details,
         );
 }
 
 class UnknownException extends AppException {
-  UnknownException(String? details)
+  const UnknownException(String? details)
       : super(
-    code: "unknown exception",
-    message: "Unknown Error",
+    code: 'unknown exception',
+    message: 'Unknown Error',
     details: details,
   );
 }

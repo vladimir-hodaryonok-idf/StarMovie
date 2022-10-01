@@ -4,5 +4,8 @@
   "description" : "Description",
   "detailBtn" : "Details",
   "reviewsBtn" : "Reviews",
-  "showtimeBtn" : "Showtime"
+  "showTimeBtn": "Showtime",
+  "unknownError" : "Unknown Error",
+  "nowShowingTitle" : "Trending",
+  "comingSoonTitle" : "Anticipated"
 }

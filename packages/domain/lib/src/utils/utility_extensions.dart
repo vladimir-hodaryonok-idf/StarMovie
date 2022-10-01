@@ -8,4 +8,6 @@ extension TakePercents on double {
   double get fiftyFivePercent => this * 0.55;
 
   double get thirtyPercent => this * 0.30;
+
+  double get fiftyPercents => this / 2;
 }
