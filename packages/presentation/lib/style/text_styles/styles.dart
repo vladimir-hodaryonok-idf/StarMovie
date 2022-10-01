@@ -8,59 +8,59 @@ const _fontFamilySfProRegular = 'SF Pro Text Regular';
 TextStyle sfProSemiBold24px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProSemibold,
-  fontSize: Dimens.size_24,
+  fontSize: Dimens.size24,
 );
 
 TextStyle sfProSemiBold14px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProSemibold,
-  fontSize: Dimens.size_14,
+  fontSize: Dimens.size14,
 );
 
 TextStyle sfProSemiBold16px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProSemibold,
-  fontSize: Dimens.size_16,
+  fontSize: Dimens.size16,
 );
 
 TextStyle sfProSemiMedium12px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
   fontFamily: _fontFamilySfProMedium,
-  fontSize: Dimens.size_12,
+  fontSize: Dimens.size12,
 );
 
 TextStyle sfProSemiMedium18px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProMedium,
-  fontSize: Dimens.size_18,
+  fontSize: Dimens.size18,
 );
 
 TextStyle sfProSemiMedium14pxBlue = TextStyle(
   color: Color(0xff47CFFF),
   fontFamily: _fontFamilySfProMedium,
-  fontSize: Dimens.size_14,
+  fontSize: Dimens.size14,
 );
 
 TextStyle sfProSemiMedium14px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProMedium,
-  fontSize: Dimens.size_14,
+  fontSize: Dimens.size14,
 );
 
 TextStyle sfProSemiRegular16px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
   fontFamily: _fontFamilySfProRegular,
-  fontSize: Dimens.size_16,
+  fontSize: Dimens.size16,
 );
 
 TextStyle sfProSemiRegular14px70opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.7),
   fontFamily: _fontFamilySfProRegular,
-  fontSize: Dimens.size_14,
+  fontSize: Dimens.size14,
 );
 
 TextStyle sfProSemiRegular30px = TextStyle(
   color: Color(0xffFFFFFF),
   fontFamily: _fontFamilySfProRegular,
-  fontSize: Dimens.size_30,
+  fontSize: Dimens.size30,
 );

@@ -17,17 +17,17 @@ class MovieShowingStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(Dimens.size_18),
-      height: Dimens.size_40,
+      margin: EdgeInsets.all(Dimens.size18),
+      height: Dimens.size40,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimens.size_20),
+        borderRadius: BorderRadius.circular(Dimens.size20),
         border: Border.all(
-          width: Dimens.size_1,
+          width: Dimens.size1,
           color: Theme.of(context).colorScheme.onPrimary,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(Dimens.size_4),
+        padding: const EdgeInsets.all(Dimens.size4),
         child: Row(
           children: [
             StatusButton(
