@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/src/app/app_bloc.dart';
+import 'package:presentation/style/dimens.dart';
 import 'package:presentation/utils/images_container.dart';
 
 class AppNavigationBar extends StatelessWidget {
@@ -19,7 +20,7 @@ class AppNavigationBar extends StatelessWidget {
         border: Border(
           top: BorderSide(
             color: Theme.of(context).colorScheme.onPrimary,
-            width: 1.0,
+            width: Dimens.size1,
           ),
         ),
       ),

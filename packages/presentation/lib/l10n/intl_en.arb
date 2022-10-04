@@ -8,5 +8,9 @@
   "unknownError" : "Unknown Error",
   "nowShowingTitle" : "Trending",
   "comingSoonTitle" : "Anticipated",
-  "appTitle" : "StarMovie"
+  "appTitle" : "StarMovie",
+  "loginTitle" : "Profile",
+  "loginUserName" : "USER NAME",
+  "loginPassword" : "PASSWORD",
+  "loginBtn" : "Login"
 }

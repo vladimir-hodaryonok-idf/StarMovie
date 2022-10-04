@@ -35,6 +35,24 @@ void initUseCases() {
       castAndImagesMapper: inject.get(),
     ),
   );
+  inject.registerFactory(
+    () => LoginWithEmailAndPassUseCase(
+      authRepository: inject.get(),
+      preferences: inject.get(),
+    ),
+  );
+  inject.registerFactory<LoginGoogleUseCase>(
+    () => LoginGoogleUseCase(
+      preferences: inject.get(),
+      authRepository: inject.get(),
+    ),
+  );
+  inject.registerFactory<LoginFaceBookUseCase>(
+    () => LoginFaceBookUseCase(
+      preferences: inject.get(),
+      authRepository: inject.get(),
+    ),
+  );
 }
 
 void initMappers() {

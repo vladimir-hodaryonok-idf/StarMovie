@@ -4,6 +4,8 @@ import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:collection/collection.dart';
+import 'package:presentation/src/pages/home_page/home.dart';
+import 'package:presentation/src/pages/login_page/login.dart';
 
 abstract class AppBloc extends Bloc<BaseArguments, AppData> {
   factory AppBloc() => _AppBloc();
@@ -13,8 +15,16 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
   void bottomBarNavigation(int index);
 }
 
+const homePageKey = 0;
+const loginPageKey = 3;
+
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   _AppBloc() : super(AppData.init());
+
+  final bottomNavBarStack = {
+    homePageKey: () => Home.page(),
+    loginPageKey: () => Login.page(),
+  };
 
   @override
   void init() {
@@ -107,5 +117,15 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   @override
   void bottomBarNavigation(int index) {
     emit(data: tile.copyWith(bottomNavIndex: index));
+    final page = bottomNavBarStack[index]?.call();
+    if (page == null) return;
+    switch (index) {
+      case homePageKey:
+        _popAllAndPush(page);
+        break;
+      case loginPageKey:
+        _popAllAndPush(page);
+        break;
+    }
   }
 }

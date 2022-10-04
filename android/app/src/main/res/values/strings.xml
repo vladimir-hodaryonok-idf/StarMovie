@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Default App Name</string>
+    <string name="app_name">StarMovie</string>
+    <string name="facebook_app_id">504363714516184</string>
+    <string name="fb_login_protocol_scheme">fb504363714516184</string>
+    <string name="facebook_client_token">034b33121c13d5bfa49775ae9dd73ec4</string>
 </resources>
