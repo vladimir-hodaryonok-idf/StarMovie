@@ -5,7 +5,8 @@ version: 1.0.0
 publish_to: 'none'
 
 dependencies:
-  get_it: ^7.2.0
+  needle_di:
+    git: https://github.com/vladimir-hodaryonok-idf/needle_di.git
   collection: ^1.16.0
   json_annotation: ^4.6.0
 

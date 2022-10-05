@@ -11,13 +11,13 @@ import 'package:data/src/repositories/trakt_api_network_repository_impl.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'const/tmdb_api_names.dart';
 import 'const/trakt_api_names.dart';
 import 'key_store_loader/key_store_loader.dart';
+import 'package:needle_di/needle_di.dart';
 
-final inject = GetIt.I;
+final inject = Needle.instance;
 
 Future<void> initDataDependencies() async {
   await initApiKeyStore();
@@ -47,7 +47,7 @@ Future<void> initApiKeyStore() async {
 }
 
 Future<void> initLocalModule() async {
-  inject.registerSingleton(await SharedPreferences.getInstance());
+  inject.registerSingleton(instance: await SharedPreferences.getInstance());
   inject.registerLazySingleton<PreferencesLocalRepository>(
     () => PreferencesLocalRepositoryImpl(sharedPreferences: inject.get()),
   );
