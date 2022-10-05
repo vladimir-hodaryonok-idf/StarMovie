@@ -6,23 +6,29 @@ import 'package:presentation/presentation.dart';
 enum Flavor { prod, sandBox }
 
 class FlavorConfigurator {
-  const FlavorConfigurator._();
+  final Flavor flavor;
 
-  static Future<Map<String, dynamic>> _readJsonConfig() async {
-    const keysPath = 'flavor_config.json';
+  const FlavorConfigurator({required this.flavor});
+
+  Future<Map<String, dynamic>> _readJsonConfig() async {
+    const sandBoxConfigPath = 'flavor_sandbox_config.json';
+    const prodConfigPath = 'flavor_prod_config.json';
+    final keysPath = _isProd ? prodConfigPath : sandBoxConfigPath;
     return rootBundle.loadStructuredData<Map<String, dynamic>>(
       keysPath,
       (keys) async => json.decode(keys),
     );
   }
 
-  static Future<DataConfig> configureData(Flavor flavor) async {
+  Future<DataConfig> configureData() async {
     Map<String, dynamic> jsonConfig = await _readJsonConfig();
     return DataConfig.fromJson(jsonConfig, flavor.name);
   }
 
-  static Future<PresentationConfig> configurePresentation(Flavor flavor) async {
+  Future<PresentationConfig> configurePresentation() async {
     Map<String, dynamic> jsonConfig = await _readJsonConfig();
-    return PresentationConfig.fromJson(jsonConfig, flavor.name);
+    return PresentationConfig.fromJson(jsonConfig);
   }
+
+  bool get _isProd => flavor == Flavor.prod;
 }

@@ -8,5 +8,6 @@
   "unknownError" : "Unknown Error",
   "nowShowingTitle" : "Trending",
   "comingSoonTitle" : "Anticipated",
-  "appTitle" : "StarMovie"
+  "appTitle" : "StarMovie",
+  "emptyData": "Empty Data"
 }

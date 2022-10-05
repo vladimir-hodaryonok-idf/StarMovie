@@ -5,10 +5,11 @@ import 'package:star_movie/flavor_configurator/flavor_configurator.dart';
 
 Future<void> initApp(Flavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initDependencies(flavor);
+  final flavorConfigurator = FlavorConfigurator(flavor: flavor);
+  await initDependencies(flavorConfigurator);
   runApp(
     StarMovieApp(
-      config: await FlavorConfigurator.configurePresentation(flavor),
+      config: await flavorConfigurator.configurePresentation(),
     ),
   );
 }

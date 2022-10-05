@@ -6,12 +6,12 @@ import 'package:get_it/get_it.dart';
 
 final inject = GetIt.I;
 
-Future<void> initDependencies(Flavor flavor) async {
-  await initConfig(flavor);
+Future<void> initDependencies(FlavorConfigurator flavorConfigurator) async {
+  await initConfig(flavorConfigurator);
   initPresentationModule();
   initDomainDependencies();
   await initDataDependencies();
 }
 
-Future<void> initConfig(Flavor flavor) async =>
-    inject.registerSingleton(await FlavorConfigurator.configureData(flavor));
+Future<void> initConfig(FlavorConfigurator flavorConfigurator) async =>
+    inject.registerSingleton(await flavorConfigurator.configureData());
