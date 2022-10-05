@@ -1,10 +1,10 @@
-import 'package:app_config/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
+import 'package:presentation/src/pages/home_page/widgets/empty_lists_state.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_error.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_loaded.dart';
 import 'package:presentation/style/text_styles/styles.dart';
@@ -16,8 +16,7 @@ class Home extends StatefulWidget {
 
   static const _routeName = '/HomePage';
 
-  static page() =>
-      BasePage(
+  static page() => BasePage(
         key: const ValueKey(_routeName),
         name: _routeName,
         builder: (context) => const Home(),
@@ -34,18 +33,11 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppConfig
-              .of(context)
-              ?.title ?? S
-              .of(context)
-              .unknownError,
+          S.of(context).appTitle,
           style: sfProSemiBold24px,
         ),
         centerTitle: false,
-        backgroundColor: Theme
-            .of(context)
-            .colorScheme
-            .background,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         actions: [
           IconButton(
@@ -70,6 +62,9 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
                 state: state,
               );
             }
+            if (tile.anticipated.isEmpty &&
+                tile.trending.isEmpty &&
+                !state.isLoading) return EmptyListsState(bloc: bloc);
             return HomeBody(
               tile: tile,
               bloc: bloc,

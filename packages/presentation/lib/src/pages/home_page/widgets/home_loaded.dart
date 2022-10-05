@@ -30,8 +30,8 @@ class HomeBody extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(
-              left: Dimens.size_18,
-              right: Dimens.size_18,
+              left: Dimens.size18,
+              right: Dimens.size18,
             ),
             child: RefreshIndicator(
               color: Theme.of(context).colorScheme.secondary,
@@ -42,9 +42,9 @@ class HomeBody extends StatelessWidget {
                     : PageStorageKey(AppConst.anticipatedListKey),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: AppConst.movieListCrossAxisCount,
-                  crossAxisSpacing: Dimens.size_8,
-                  mainAxisSpacing: Dimens.size_8,
-                  childAspectRatio: Dimens.aspectRatio_1_to_22,
+                  crossAxisSpacing: Dimens.size8,
+                  mainAxisSpacing: Dimens.size8,
+                  childAspectRatio: Dimens.aspectRatio1to22,
                 ),
                 itemCount: isLoading
                     ? AppConst.shadowMovieListLength

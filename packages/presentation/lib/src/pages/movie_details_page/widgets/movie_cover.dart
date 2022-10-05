@@ -20,7 +20,7 @@ class MovieCover extends StatelessWidget {
           colorOpacity: 0.2,
           child: SizedBox(
             width: double.infinity,
-            height: Dimens.size_300,
+            height: Dimens.size300,
             child: MovieCoverLoader(
               imageUrl: imageUrl,
               fit: BoxFit.fitWidth,
@@ -30,10 +30,10 @@ class MovieCover extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(
-            Dimens.size_104,
-            Dimens.size_140,
-            Dimens.size_104,
-            Dimens.size_20,
+            Dimens.size104,
+            Dimens.size140,
+            Dimens.size104,
+            Dimens.size20,
           ),
           child: MovieCoverLoader(imageUrl: imageUrl),
         )

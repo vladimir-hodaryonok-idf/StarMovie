@@ -21,11 +21,11 @@ class MovieStars extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: Dimens.size_16,
-        bottom: Dimens.size_8,
+        top: Dimens.size16,
+        bottom: Dimens.size8,
       ),
       child: Container(
-        height: isBigStar ? Dimens.size_30 : Dimens.size_14,
+        height: isBigStar ? Dimens.size30 : Dimens.size14,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +48,11 @@ class MovieStars extends StatelessWidget {
     return List.generate(
       stars,
       (_) => Padding(
-        padding: const EdgeInsets.all(Dimens.size_2),
+        padding: const EdgeInsets.all(Dimens.size2),
         child: SvgPicture.asset(
           isFull ? AssetsImages.fullStar : AssetsImages.emptyStar,
-          height: isBigStar ? Dimens.size_20 : Dimens.size_14,
-          width: isBigStar ? Dimens.size_20 : Dimens.size_14,
+          height: isBigStar ? Dimens.size20 : Dimens.size14,
+          width: isBigStar ? Dimens.size20 : Dimens.size14,
         ),
       ),
     );

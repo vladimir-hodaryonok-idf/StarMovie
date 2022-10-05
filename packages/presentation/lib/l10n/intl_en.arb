@@ -4,9 +4,10 @@
   "description" : "Description",
   "detailBtn" : "Details",
   "reviewsBtn" : "Reviews",
-  "showtimeBtn" : "Showtime",
+  "showTimeBtn": "Showtime",
   "unknownError" : "Unknown Error",
   "nowShowingTitle" : "Trending",
   "comingSoonTitle" : "Anticipated",
-  "appTitle" : "StarMovie"
+  "appTitle" : "StarMovie",
+  "emptyData": "Empty Data"
 }

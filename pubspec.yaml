@@ -17,8 +17,6 @@ dependencies:
     path: packages/data
   presentation:
     path: packages/presentation
-  app_config:
-    path: packages/app_config
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +26,9 @@ dev_dependencies:
 
 flutter:
   assets:
-    - keys.json
+    - keys_prod.json
+    - keys_sandbox.json
+    - flavor_sandbox_config.json
+    - flavor_prod_config.json
 
   uses-material-design: true

@@ -14,5 +14,3 @@ dependencies:
   pretty_dio_logger: ^1.1.1
   domain:
     path: ../domain
-  app_config:
-    path: ../app_config

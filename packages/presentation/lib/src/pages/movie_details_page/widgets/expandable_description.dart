@@ -16,7 +16,7 @@ class ExpandableDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(Dimens.size_18),
+      padding: const EdgeInsets.all(Dimens.size18),
       child: ExpandablePanel(
         header: Text(
           S.of(context).description,

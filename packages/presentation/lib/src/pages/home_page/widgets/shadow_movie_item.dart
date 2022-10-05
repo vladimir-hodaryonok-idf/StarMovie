@@ -12,20 +12,20 @@ class ShadowItem extends StatelessWidget {
         children: [
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.size_250,
+            height: Dimens.size250,
           ),
           ShadowContainer(
-            width: Dimens.size_86,
-            height: Dimens.size_15,
-          ),
-          ShadowContainer(
-            width: double.infinity,
-            height: Dimens.size_24,
-            padding: Dimens.size_6,
+            width: Dimens.size86,
+            height: Dimens.size15,
           ),
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.size_15,
+            height: Dimens.size24,
+            padding: Dimens.size6,
+          ),
+          ShadowContainer(
+            width: double.infinity,
+            height: Dimens.size15,
           ),
         ],
       ),
@@ -39,8 +39,8 @@ class ShadowContainer extends StatelessWidget {
   const ShadowContainer({
     required this.width,
     required this.height,
-    this.borderRadius = Dimens.size_8,
-    this.padding = Dimens.size_8,
+    this.borderRadius = Dimens.size8,
+    this.padding = Dimens.size8,
     Key? key,
   });
 
@@ -53,9 +53,9 @@ class ShadowContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        Dimens.size_8,
+        Dimens.size8,
         padding,
-        Dimens.size_8,
+        Dimens.size8,
         padding,
       ),
       child: Container(

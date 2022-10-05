@@ -1,11 +1,9 @@
 class ApiKeyStore {
   final Map<String, dynamic> _keys;
-  final bool isProd;
 
-  const ApiKeyStore(this._keys, {required this.isProd});
+  const ApiKeyStore(this._keys);
 
-  String get traktApiKey =>
-      isProd ? _keys['traktApiKey'] ?? '' : _keys['sandBoxApiKey'] ?? '';
+  String get traktApiKey => _keys['traktApiKey'];
 
   String get omdbApiKey => _keys['omdbApiKey'] ?? '';
 
