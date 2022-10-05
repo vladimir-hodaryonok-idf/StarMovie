@@ -1,5 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:get_it/get_it.dart';
 import 'package:presentation/src/app/app_bloc.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
@@ -10,8 +9,9 @@ import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_blo
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
 import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dart';
+import 'package:needle_di/needle_di.dart';
 
-final inject = GetIt.I;
+final inject = Needle.instance;
 
 void initPresentationModule() {
   initNavigatorModule();

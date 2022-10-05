@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'base_tile.dart';
+import 'package:needle_di/needle_di.dart';
 
 abstract class Bloc<T extends BaseArguments, D> {
   Stream<BaseTile<D>> get dataStream;
@@ -22,7 +22,7 @@ abstract class BlocImpl<T extends BaseArguments, D> implements Bloc<T, D> {
   D _blocTile;
 
   @protected
-  final appNavigator = GetIt.I.get<AppNavigator>();
+  final appNavigator = Needle.instance.get<AppNavigator>();
 
   BlocImpl(this._blocTile);
 
