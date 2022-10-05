@@ -3,7 +3,7 @@ class ApiKeyStore {
 
   const ApiKeyStore(this._keys);
 
-  String get traktApiKey => _keys['traktApiKey'] ?? '';
+  String get traktApiKey => _keys['traktApiKey'];
 
   String get omdbApiKey => _keys['omdbApiKey'] ?? '';
 

@@ -1,3 +1,4 @@
+import 'package:data/data.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
@@ -5,27 +6,34 @@ import 'package:data/src/remote/service/service.dart';
 import 'package:data/src/repositories/tmdb_api_network_repository_impl.dart';
 import 'package:data/src/repositories/trakt_api_network_repository_impl.dart';
 import 'package:domain/domain.dart';
-import 'package:get_it/get_it.dart';
 import 'const/tmdb_api_names.dart';
 import 'const/trakt_api_names.dart';
 import 'key_store_loader/key_store_loader.dart';
+import 'package:needle_di/needle_di.dart';
 
-final inject = GetIt.I;
-const keysPath = 'keys.json';
+final inject = Needle.instance;
 
 Future<void> initDataDependencies() async {
-  initApiKeyStore(await keys());
+  await initApiKeyStore();
   initNetworkModule();
   initLocalModule();
 }
 
-Future<Map<String, dynamic>> keys() async {
+Future<Map<String, dynamic>> loadKeys() async {
+  const sandboxPath = 'keys_sandbox.json';
+  const prodPath = 'keys_prod.json';
+  final keysPath = inject.get<DataConfig>().isProd ? prodPath : sandboxPath;
   final keyStoreLoader = KeyStoreLoader(path: keysPath);
   return keyStoreLoader.load();
 }
 
-void initApiKeyStore(Map<String, dynamic> apiKeys) {
-  inject.registerLazySingleton<ApiKeyStore>(() => ApiKeyStore(apiKeys));
+Future<void> initApiKeyStore() async {
+  final keys = await loadKeys();
+  inject.registerLazySingleton<ApiKeyStore>(
+    () => ApiKeyStore(
+      keys,
+    ),
+  );
   inject.registerFactory<String>(
     () => inject.get<ApiKeyStore>().omdbApiKey,
     instanceName: OmdbApiNameKey.omdbApiKey,

@@ -82,7 +82,7 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     } on AppException catch (e) {
       emit(isLoading: false, exception: e);
     } catch (e) {
-      emit(isLoading: false, exception: UnknownException("Unknown Error"));
+      emit(isLoading: false, exception: UnknownException('Unknown Error'));
     }
   }
 
@@ -101,7 +101,7 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     } on AppException catch (e) {
       emit(isLoading: false, exception: e);
     } catch (e) {
-      emit(isLoading: false, exception: UnknownException("Unknown Error"));
+      emit(isLoading: false, exception: UnknownException('Unknown Error'));
     }
   }
 

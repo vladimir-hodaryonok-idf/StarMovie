@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
+import 'package:presentation/src/pages/home_page/widgets/empty_lists_state.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_error.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_loaded.dart';
 import 'package:presentation/style/text_styles/styles.dart';
@@ -26,13 +28,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends BlocScreenState<Home, HomeBloc> {
-  static const _title = 'Star Movie';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title, style: sfProSemiBold24px),
+        title: Text(
+          S.of(context).appTitle,
+          style: sfProSemiBold24px,
+        ),
         centerTitle: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
