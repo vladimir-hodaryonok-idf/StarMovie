@@ -27,7 +27,9 @@ dev_dependencies:
 
 flutter:
   assets:
-    - keys.json
-    - flavor_config.json
+    - keys_prod.json
+    - keys_sandbox.json
+    - flavor_sandbox_config.json
+    - flavor_prod_config.json
 
   uses-material-design: true

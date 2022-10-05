@@ -9,8 +9,5 @@
   "nowShowingTitle" : "Trending",
   "comingSoonTitle" : "Anticipated",
   "appTitle" : "StarMovie",
-  "loginTitle" : "Profile",
-  "loginUserName" : "USER NAME",
-  "loginPassword" : "PASSWORD",
-  "loginBtn" : "Login"
+  "emptyData": "Empty Data"
 }

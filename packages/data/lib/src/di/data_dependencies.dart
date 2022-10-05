@@ -26,7 +26,9 @@ Future<void> initDataDependencies() async {
 }
 
 Future<Map<String, dynamic>> loadKeys() async {
-  const keysPath = 'keys.json';
+  const sandboxPath = 'keys_sandbox.json';
+  const prodPath = 'keys_prod.json';
+  final keysPath = inject.get<DataConfig>().isProd ? prodPath : sandboxPath;
   final keyStoreLoader = KeyStoreLoader(path: keysPath);
   return keyStoreLoader.load();
 }
@@ -35,7 +37,6 @@ Future<void> initApiKeyStore() async {
   final keys = await loadKeys();
   inject.registerLazySingleton<ApiKeyStore>(
     () => ApiKeyStore(
-      inject.get<DataConfig>().isProd,
       keys,
     ),
   );

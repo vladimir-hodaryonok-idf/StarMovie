@@ -4,6 +4,7 @@ import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
+import 'package:presentation/src/pages/home_page/widgets/empty_lists_state.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_error.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_loaded.dart';
 import 'package:presentation/style/text_styles/styles.dart';
@@ -61,6 +62,9 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
                 state: state,
               );
             }
+            if (tile.anticipated.isEmpty &&
+                tile.trending.isEmpty &&
+                !state.isLoading) return EmptyListsState(bloc: bloc);
             return HomeBody(
               tile: tile,
               bloc: bloc,

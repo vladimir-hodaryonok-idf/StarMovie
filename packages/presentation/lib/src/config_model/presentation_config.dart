@@ -5,18 +5,6 @@ class PresentationConfig {
 
   factory PresentationConfig.fromJson(
     Map<String, dynamic> json,
-    String flavor,
-  ) {
-    const prod = 'prod';
-    switch(flavor){
-      case prod:
-        return PresentationConfig(
-          json['prodTitle'],
-        );
-      default:
-        return PresentationConfig(
-          json['sandBoxTitle'],
-        );
-    }
-  }
+  ) =>
+      PresentationConfig(json['title']);
 }

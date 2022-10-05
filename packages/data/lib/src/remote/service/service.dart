@@ -56,9 +56,10 @@ class DioService implements ApiService<DioServicePayload> {
         throw FetchDataException(details: 'Internal Server Error');
       default:
         throw FetchDataException(
-            details:
-                'Error occured while Communication with Server with StatusCode : '
-                '${response.statusCode}');
+          details:
+              'Error occured while Communication with Server with StatusCode : '
+              '${response.statusCode}',
+        );
     }
   }
 }
