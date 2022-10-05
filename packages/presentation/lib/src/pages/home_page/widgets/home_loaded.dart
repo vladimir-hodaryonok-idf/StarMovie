@@ -7,6 +7,8 @@ import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.da
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:presentation/style/dimens.dart';
 
+import 'empty_lists_state.dart';
+
 class HomeBody extends StatelessWidget {
   const HomeBody({
     required this.tile,
@@ -36,29 +38,33 @@ class HomeBody extends StatelessWidget {
             child: RefreshIndicator(
               color: Theme.of(context).colorScheme.secondary,
               onRefresh: bloc.refreshList,
-              child: GridView.builder(
-                key: tile.buttonStatus == MovieButtonStatus.trending
-                    ? PageStorageKey(AppConst.trendsListKey)
-                    : PageStorageKey(AppConst.anticipatedListKey),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: AppConst.movieListCrossAxisCount,
-                  crossAxisSpacing: Dimens.size8,
-                  mainAxisSpacing: Dimens.size8,
-                  childAspectRatio: Dimens.aspectRatio1to22,
-                ),
-                itemCount: isLoading
-                    ? AppConst.shadowMovieListLength
-                    : tile.moviesList.length,
-                itemBuilder: (context, index) {
-                  return isLoading
-                      ? const ShadowItem()
-                      : MovieGridItem(
-                          movie: tile.moviesList[index],
-                          bloc: bloc,
-                          index: index,
-                        );
-                },
-              ),
+              child: (tile.anticipated.isEmpty &&
+                      tile.trending.isEmpty &&
+                      !isLoading)
+                  ? EmptyListsState(bloc: bloc)
+                  : GridView.builder(
+                      key: tile.buttonStatus == MovieButtonStatus.trending
+                          ? PageStorageKey(AppConst.trendsListKey)
+                          : PageStorageKey(AppConst.anticipatedListKey),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: AppConst.movieListCrossAxisCount,
+                        crossAxisSpacing: Dimens.size8,
+                        mainAxisSpacing: Dimens.size8,
+                        childAspectRatio: Dimens.aspectRatio1to22,
+                      ),
+                      itemCount: isLoading
+                          ? AppConst.shadowMovieListLength
+                          : tile.moviesList.length,
+                      itemBuilder: (context, index) {
+                        return isLoading
+                            ? const ShadowItem()
+                            : MovieGridItem(
+                                movie: tile.moviesList[index],
+                                bloc: bloc,
+                                index: index,
+                              );
+                      },
+                    ),
             ),
           ),
         ),
