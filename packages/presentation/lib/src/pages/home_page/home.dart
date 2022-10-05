@@ -62,6 +62,8 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
                 state: state,
               );
             }
+            if (tile.anticipated.isEmpty || tile.trending.isEmpty)
+              return EmptyListsState(bloc: bloc);
             return HomeBody(
               tile: tile,
               bloc: bloc,
