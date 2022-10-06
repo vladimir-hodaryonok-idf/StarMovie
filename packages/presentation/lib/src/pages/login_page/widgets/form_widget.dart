@@ -84,7 +84,7 @@ class FormWidget extends StatelessWidget {
               width: double.infinity,
               height: Dimens.size48,
               child: ElevatedButton(
-                onPressed: () => bloc.auth(),
+                onPressed: bloc.auth,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                     Theme.of(context).colorScheme.secondary,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 
 class LoggedPage extends StatelessWidget {
-  const LoggedPage({Key? key}) : super(key: key);
+  const LoggedPage({super.key});
 
   static const _routeName = '/LoggedPage';
 

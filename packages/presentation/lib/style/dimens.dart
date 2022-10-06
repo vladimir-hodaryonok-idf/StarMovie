@@ -1,6 +1,7 @@
 class Dimens {
   const Dimens._();
 
+  static const double size0 = 0;
   static const double size1 = 1;
   static const double size2 = 2;
   static const double size4 = 4;

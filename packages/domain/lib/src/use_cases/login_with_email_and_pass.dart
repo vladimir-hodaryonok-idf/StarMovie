@@ -18,7 +18,7 @@ class LoginWithEmailAndPassUseCase
       (element) =>
           element.login == user.login && element.password == user.password,
     );
-    if(isAbleToLogin) await preferences.saveLoggedUser(user);
+    isAbleToLogin ? await preferences.saveLoggedUser(user) : null;
     return isAbleToLogin;
   }
 }

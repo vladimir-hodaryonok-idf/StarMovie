@@ -13,7 +13,7 @@ class ErrorMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (tile!.isEmpty) return const SizedBox.shrink();
+    if (tile == null || tile!.isEmpty) return const SizedBox.shrink();
     return Padding(
       padding: EdgeInsets.only(bottom: Dimens.size20),
       child: Text(

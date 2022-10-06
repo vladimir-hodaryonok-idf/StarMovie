@@ -36,7 +36,7 @@ class _LoginState extends BlocScreenState<Login, LoginBloc> {
           style: sfProSemiBold24px,
         ),
         backgroundColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
+        elevation: Dimens.size0,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(Dimens.size1),
           child: Container(

@@ -15,15 +15,15 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
   void bottomBarNavigation(int index);
 }
 
-const homePageKey = 0;
-const loginPageKey = 3;
+const _homePageKey = 0;
+const _loginPageKey = 3;
 
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   _AppBloc() : super(AppData.init());
 
   final bottomNavBarStack = {
-    homePageKey: () => Home.page(),
-    loginPageKey: () => Login.page(),
+    _homePageKey: () => Home.page(),
+    _loginPageKey: () => Login.page(),
   };
 
   @override
@@ -120,10 +120,10 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
     final page = bottomNavBarStack[index]?.call();
     if (page == null) return;
     switch (index) {
-      case homePageKey:
+      case _homePageKey:
         _popAllAndPush(page);
         break;
-      case loginPageKey:
+      case _loginPageKey:
         _popAllAndPush(page);
         break;
     }
