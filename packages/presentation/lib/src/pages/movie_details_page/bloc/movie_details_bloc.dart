@@ -1,4 +1,6 @@
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
@@ -10,26 +12,33 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
     FetchCrewAndCastUseCase fetchCrewAndCast,
     MovieToMovieDetailsMapper movieToDetails,
     PeoplesToCrewUiMapper peoplesToCrewUiMapper,
+    ShareMovie shareMovie,
   ) =>
       _MovieDetailsBloc(
         fetchCrewAndCast,
         movieToDetails,
         peoplesToCrewUiMapper,
+        shareMovie,
       );
 
   void goBack();
+
+  void share(BuildContext context);
 }
 
 class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
     implements MovieDetailsBloc {
+  final FetchCrewAndCastUseCase fetchCrewAndCast;
+  final MovieToMovieDetailsMapper _movieToDetails;
+  final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
+  final ShareMovie shareMovie;
+
   _MovieDetailsBloc(
     this.fetchCrewAndCast,
     this._movieToDetails,
     this.peoplesToCrewUiMapper,
+    this.shareMovie,
   ) : super(DetailsData.init());
-  final FetchCrewAndCastUseCase fetchCrewAndCast;
-  final MovieToMovieDetailsMapper _movieToDetails;
-  final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
 
   void _initData(int id) async {
     try {
@@ -39,11 +48,21 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
           crewAndCast: peoplesToCrewUiMapper(peopleWithImage),
         ),
       );
-    } on AppException catch (e) {}
+    } on AppException catch (e) {
+      print(e.message);
+    }
   }
 
   @override
   void goBack() => appNavigator.pop();
+
+  @override
+  void share(BuildContext context) async {
+    final id = tile.movieDetails?.id ?? 0;
+    final locale = Localizations.localeOf(context).languageCode;
+    final message = S.of(context).shareString(id, locale);
+    shareMovie.shareMovie(message);
+  }
 
   @override
   void initArgs(BaseArguments args) {

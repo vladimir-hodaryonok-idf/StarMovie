@@ -88,9 +88,11 @@ void initBlocModule() {
   );
   inject.registerFactory<MovieDetailsBloc>(
     () => MovieDetailsBloc(
-        inject.get<FetchCrewAndCastUseCase>(),
-        inject.get<MovieToMovieDetailsMapper>(),
-        inject.get<PeoplesToCrewUiMapper>()),
+      inject.get<FetchCrewAndCastUseCase>(),
+      inject.get<MovieToMovieDetailsMapper>(),
+      inject.get<PeoplesToCrewUiMapper>(),
+      inject.get<ShareMovie>(),
+    ),
   );
 
   inject.registerFactory<LoginBloc>(

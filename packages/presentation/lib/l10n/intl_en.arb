@@ -13,5 +13,6 @@
   "loginUserName": "USER NAME",
   "loginPassword": "PASSWORD",
   "loginBtn": "Login",
-  "emptyData" : "Empty Data"
+  "emptyData" : "Empty Data",
+  "shareString": "Look, what movie I found! \nhttps://www.themoviedb.org/movie/{id}?language={lng}"
 }

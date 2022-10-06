@@ -59,10 +59,13 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
             ),
-            SvgPicture.asset(
-              AssetsImages.shareArrow,
-              width: Dimens.size22_5,
-              height: Dimens.size21,
+            GestureDetector(
+              onTap: () => bloc.share(context),
+              child: SvgPicture.asset(
+                AssetsImages.shareArrow,
+                width: Dimens.size22_5,
+                height: Dimens.size21,
+              ),
             ),
           ],
         ),
