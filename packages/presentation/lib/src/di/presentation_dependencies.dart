@@ -1,6 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:presentation/src/analitics/service.dart';
 import 'package:presentation/src/app/app_bloc.dart';
 import 'package:presentation/src/navigation/app_navigator.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
@@ -21,18 +19,11 @@ void initPresentationModule() {
   initNavigatorModule();
   initUiLayerMappers();
   initValidators();
-  initAnalytics();
   initBlocModule();
 }
 
 void initValidators() {
   inject.registerFactory(() => LoginValidator());
-}
-
-void initAnalytics() {
-  inject.registerSingleton(
-    instance: Analytics(FirebaseAnalytics.instance),
-  );
 }
 
 void initNavigatorModule() {

@@ -31,3 +31,5 @@ export 'src/use_cases/login_with_email_and_pass.dart';
 export 'src/use_cases/login_google.dart';
 export 'src/use_cases/login_facebook.dart';
 export 'src/repositories/preferences_local_repository.dart';
+export 'src/services/analytics_service.dart';
+export 'src/use_cases/log_event.dart';

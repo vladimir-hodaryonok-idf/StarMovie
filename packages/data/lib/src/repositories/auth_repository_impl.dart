@@ -18,9 +18,16 @@ class AuthRepositoryImpl implements AuthRepository {
   });
 
   @override
-  Future<List<UserEmailPass>> fetchUsers() async {
-    final users = await firebaseFirestore.collection(_usersCollection).get();
-    return users.docs.map((e) => UserEmailPass.fromJson(e.data())).toList();
+  Future<bool> isLoginAndPasswordCorrect(UserEmailPass user) async {
+    const login = 'login';
+    const password = 'password';
+    final QuerySnapshot<Map<String, dynamic>> query = await firebaseFirestore
+        .collection(_usersCollection)
+        .where(login, isEqualTo: user.login)
+        .where(password, isEqualTo: user.password)
+        .get();
+    if(query.docs.isEmpty) return false;
+    return true;
   }
 
   @override

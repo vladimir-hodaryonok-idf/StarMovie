@@ -1,6 +1,4 @@
 import 'package:domain/domain.dart';
-import 'package:flutter/material.dart';
-import 'package:presentation/src/analitics/service.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/logged_page/logged.dart';
@@ -13,20 +11,20 @@ abstract class LoginBloc extends Bloc<BaseArguments, LoginData> {
     LoginWithEmailAndPassUseCase loginWithEmailAndPass,
     LoginGoogleUseCase loginGoogleUseCase,
     LoginFaceBookUseCase loginFaceBookUseCase,
-    Analytics firebaseAnalytics,
+    LogEventUseCase logEvent,
     LoginValidator loginValidator,
   ) =>
       _LoginBloc(
         loginWithEmailAndPass,
         loginGoogleUseCase,
         loginFaceBookUseCase,
-        firebaseAnalytics,
+        logEvent,
         loginValidator,
       );
 
-  TextEditingController get textLoginController;
+  void onLoginChange(String text);
 
-  TextEditingController get textPasswordController;
+  void onPasswordChange(String text);
 
   Future<void> auth();
 
@@ -40,51 +38,39 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   final LoginWithEmailAndPassUseCase loginWithEmailAndPass;
   final LoginGoogleUseCase loginGoogleUseCase;
   final LoginFaceBookUseCase loginFaceBookUseCase;
-  final Analytics analytics;
+  final LogEventUseCase logEvent;
   final LoginValidator loginValidator;
 
   _LoginBloc(
     this.loginWithEmailAndPass,
     this.loginGoogleUseCase,
     this.loginFaceBookUseCase,
-    this.analytics,
+    this.logEvent,
     this.loginValidator,
   ) : super(LoginData.init());
 
-  final _loginController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  TextEditingController get textLoginController => _loginController;
-
-  @override
-  TextEditingController get textPasswordController => _passwordController;
-
   @override
   Future<void> auth() async {
-    final login = _loginController.text;
-    final password = _passwordController.text;
-
     emit(data: tile, isLoading: false);
-    if (!loginValidator(login, password)) {
+    if (!loginValidator(tile.login, tile.password)) {
       emit(data: tile.copyWith(errorMessage: 'Fill in your login or password'));
       return;
     }
     emit(data: tile, isLoading: true);
-    analytics.logWithEmailAndPassClick();
-    final UserEmailPass user = UserEmailPass(login, password);
+    logEvent('AuthWithEmailAndPassword clicked');
+    final UserEmailPass user = UserEmailPass(tile.login, tile.password);
     _tryLogin(await loginWithEmailAndPass(user));
   }
 
   @override
   Future<void> authFacebook() async {
-    analytics.logOnFacebookAuthClick();
+    logEvent('AuthWithFacebook clicked');
     _tryLogin(await loginFaceBookUseCase());
   }
 
   @override
   Future<void> authGoogle() async {
-    analytics.logOnGoogleAuthClick();
+    logEvent('AuthWithGoogle clicked');
     _tryLogin(await loginGoogleUseCase());
   }
 
@@ -98,4 +84,11 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
       isLoading: false,
     );
   }
+
+  @override
+  void onLoginChange(String text) => emit(data: tile.copyWith(login: text));
+
+  @override
+  void onPasswordChange(String text) =>
+      emit(data: tile.copyWith(password: text));
 }

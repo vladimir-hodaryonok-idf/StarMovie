@@ -39,7 +39,7 @@ class FormWidget extends StatelessWidget {
             ),
             const SizedBox(height: Dimens.size8),
             TextField(
-              controller: bloc.textLoginController,
+              onChanged: bloc.onLoginChange,
               cursorColor: Colors.white,
               style: const TextStyle(color: MyColors.colorTitle),
               decoration: InputDecoration(
@@ -60,7 +60,7 @@ class FormWidget extends StatelessWidget {
             ),
             const SizedBox(height: Dimens.size8),
             TextField(
-              controller: bloc.textPasswordController,
+              onChanged: bloc.onPasswordChange,
               obscureText: true,
               autocorrect: false,
               enableSuggestions: false,
