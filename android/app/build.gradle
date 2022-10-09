@@ -72,6 +72,19 @@ android {
         }
     }
 
+    flavorDimensions "app"
+
+    productFlavors {
+
+        SandBox {
+            dimension "app"
+        }
+
+        Prod {
+            dimension "app"
+        }
+    }
+
     buildTypes {
         release {
             signingConfig signingConfigs.debug
