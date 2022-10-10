@@ -58,6 +58,7 @@ void initUseCases() {
       authRepository: inject.get(),
     ),
   );
+  inject.registerFactory(() => LogEventUseCase(inject.get()));
 }
 
 void initMappers() {

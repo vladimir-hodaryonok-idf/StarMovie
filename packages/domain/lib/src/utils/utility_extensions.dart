@@ -11,3 +11,7 @@ extension TakePercents on double {
 
   double get fiftyPercents => this / 2;
 }
+
+extension NullAbleString on String? {
+  String get valueOrEmpty => this ?? '';
+}

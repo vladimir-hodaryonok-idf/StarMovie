@@ -1,3 +1,4 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
 import 'package:presentation/style/dimens.dart';
@@ -17,7 +18,7 @@ class ErrorMessageWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: Dimens.size20),
       child: Text(
-        tile ?? '',
+        tile.valueOrEmpty,
         style: const TextStyle(
           fontSize: Dimens.size18,
           color: Colors.red,

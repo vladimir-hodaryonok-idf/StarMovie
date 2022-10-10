@@ -4,11 +4,13 @@ import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
 import 'package:data/src/remote/service/service.dart';
-import 'package:data/src/repositories/auth_repository.dart';
-import 'package:data/src/repositories/preferences_local_repository.dart';
+import 'package:data/src/services/analytics_service_impl.dart';
+import 'package:data/src/repositories/auth_repository_impl.dart';
+import 'package:data/src/repositories/preferences_local_repository_impl.dart';
 import 'package:data/src/repositories/tmdb_api_network_repository_impl.dart';
 import 'package:data/src/repositories/trakt_api_network_repository_impl.dart';
 import 'package:domain/domain.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,6 +60,13 @@ void initNetworkModule() {
   initTraktApiNetworkRepository();
   initTmdbApiNetworkRepository();
   initAuthFireBaseRepository();
+  initAnalyticsService();
+}
+
+void initAnalyticsService() {
+  inject.registerSingleton<AnalyticsService>(
+    instance: AnalyticsServiceImpl(FirebaseAnalytics.instance),
+  );
 }
 
 void initAuthFireBaseRepository() {

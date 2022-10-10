@@ -21,6 +21,8 @@ class HomePageData {
   List get moviesList =>
       buttonStatus == MovieButtonStatus.trending ? trending : anticipated;
 
+  bool get isDataEmpty => anticipated.isEmpty && trending.isEmpty;
+
   HomePageData copyWith({
     List<HomePageMovie>? trending,
     List<HomePageMovie>? anticipated,

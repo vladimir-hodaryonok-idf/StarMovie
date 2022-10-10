@@ -13,13 +13,8 @@ class LoginGoogleUseCase implements OutUseCase<Future<bool>> {
   @override
   Future<bool> call() async {
     final UserEmailPass? user = await authRepository.loginWithGoogle();
-    if (user == null) return false;
-    final List<UserEmailPass> users = await authRepository.fetchUsers();
-    final isAbleToLogin = users.any(
-      (element) =>
-          element.login == user.login && element.password == user.password,
-    );
-    isAbleToLogin ? await preferences.saveLoggedUser(user) : null;
-    return isAbleToLogin;
+    return user != null
+        ? await authRepository.isLoginAndPasswordCorrect(user)
+        : false;
   }
 }
