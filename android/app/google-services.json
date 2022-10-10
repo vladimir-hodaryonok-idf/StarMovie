@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "639885050390",
+    "project_id": "starmovie-e9120",
+    "storage_bucket": "starmovie-e9120.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639885050390:android:0113437d2483673d2ceb37",
+        "android_client_info": {
+          "package_name": "com.vladimir.hodaryonok.star_movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639885050390-v7r8mljcqeel6429qtki9miut66kn352.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vladimir.hodaryonok.star_movie",
+            "certificate_hash": "50502de3fa9ca313cb71cecf009230f95e22b492"
+          }
+        },
+        {
+          "client_id": "639885050390-j0mi7vqkfkfe4hiq1fjtivrbi1cvnf2i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-7eCmsEs9RDtqIXSC1xotNxcatUEG_sc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639885050390-j0mi7vqkfkfe4hiq1fjtivrbi1cvnf2i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "639885050390-d3kn4q9il57tm4f8k4t980ue3dmovj2j.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vladimir.hodaryonok.starMovie"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,6 +4,17 @@ import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:collection/collection.dart';
+import 'package:presentation/src/pages/home_page/home.dart';
+import 'package:presentation/src/pages/login_page/login.dart';
+
+enum BottomNavBarItemType {
+  home,
+  login,
+  undefined;
+
+  static BottomNavBarItemType fromIndex(int index) =>
+      BottomNavBarItemType.values[index];
+}
 
 abstract class AppBloc extends Bloc<BaseArguments, AppData> {
   factory AppBloc() => _AppBloc();
@@ -15,6 +26,11 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
 
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   _AppBloc() : super(AppData.init());
+
+  final bottomNavBarStack = {
+    BottomNavBarItemType.home: () => Home.page(),
+    BottomNavBarItemType.login: () => Login.page(),
+  };
 
   @override
   void init() {
@@ -107,5 +123,18 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   @override
   void bottomBarNavigation(int index) {
     emit(data: tile.copyWith(bottomNavIndex: index));
+    final type = BottomNavBarItemType.fromIndex(index);
+    final page = bottomNavBarStack[type]?.call();
+    if (page == null) return;
+    switch (type) {
+      case BottomNavBarItemType.home:
+        _popAllAndPush(page);
+        break;
+      case BottomNavBarItemType.login:
+        _popAllAndPush(page);
+        break;
+      case BottomNavBarItemType.undefined:
+        break;
+    }
   }
 }

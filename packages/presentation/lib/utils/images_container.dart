@@ -38,4 +38,11 @@ class AssetsImages {
 
   static const String shareArrow =
       'packages/presentation/assets/icons/share_arrow.svg';
+  static const String lock = 'packages/presentation/assets/icons/lock.svg';
+  static const String profile =
+      'packages/presentation/assets/icons/profile.svg';
+  static const String facebook =
+      'packages/presentation/assets/icons/facebook.svg';
+  static const String google =
+      'packages/presentation/assets/icons/google.svg';
 }

@@ -5,6 +5,8 @@ import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_list.dart';
 import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movie.dart';
 import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
+import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
+import 'package:presentation/src/pages/login_page/validator/validator.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
@@ -16,7 +18,12 @@ final inject = Needle.instance;
 void initPresentationModule() {
   initNavigatorModule();
   initUiLayerMappers();
+  initValidators();
   initBlocModule();
+}
+
+void initValidators() {
+  inject.registerFactory(() => LoginValidator());
 }
 
 void initNavigatorModule() {
@@ -75,5 +82,15 @@ void initBlocModule() {
         inject.get<FetchCrewAndCastUseCase>(),
         inject.get<MovieToMovieDetailsMapper>(),
         inject.get<PeoplesToCrewUiMapper>()),
+  );
+
+  inject.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      inject.get(),
+      inject.get(),
+      inject.get(),
+      inject.get(),
+      inject.get(),
+    ),
   );
 }

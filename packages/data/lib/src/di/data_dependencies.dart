@@ -1,11 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data/data.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
 import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/services/analytics_service_impl.dart';
+import 'package:data/src/repositories/auth_repository_impl.dart';
+import 'package:data/src/repositories/preferences_local_repository_impl.dart';
 import 'package:data/src/repositories/tmdb_api_network_repository_impl.dart';
 import 'package:data/src/repositories/trakt_api_network_repository_impl.dart';
 import 'package:domain/domain.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'const/tmdb_api_names.dart';
 import 'const/trakt_api_names.dart';
 import 'key_store_loader/key_store_loader.dart';
@@ -16,7 +24,7 @@ final inject = Needle.instance;
 Future<void> initDataDependencies() async {
   await initApiKeyStore();
   initNetworkModule();
-  initLocalModule();
+  await initLocalModule();
 }
 
 Future<Map<String, dynamic>> loadKeys() async {
@@ -40,12 +48,35 @@ Future<void> initApiKeyStore() async {
   );
 }
 
-void initLocalModule() {}
+Future<void> initLocalModule() async {
+  inject.registerSingleton(instance: await SharedPreferences.getInstance());
+  inject.registerLazySingleton<PreferencesLocalRepository>(
+    () => PreferencesLocalRepositoryImpl(sharedPreferences: inject.get()),
+  );
+}
 
 void initNetworkModule() {
   initNetworkServices();
   initTraktApiNetworkRepository();
   initTmdbApiNetworkRepository();
+  initAuthFireBaseRepository();
+  initAnalyticsService();
+}
+
+void initAnalyticsService() {
+  inject.registerSingleton<AnalyticsService>(
+    instance: AnalyticsServiceImpl(FirebaseAnalytics.instance),
+  );
+}
+
+void initAuthFireBaseRepository() {
+  inject.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(
+      firebaseAuth: FirebaseAuth.instance,
+      firebaseFirestore: FirebaseFirestore.instance,
+      facebookAuth: FacebookAuth.instance,
+    ),
+  );
 }
 
 void initNetworkServices() {

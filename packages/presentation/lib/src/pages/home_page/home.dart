@@ -7,6 +7,7 @@ import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/widgets/empty_lists_state.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_error.dart';
 import 'package:presentation/src/pages/home_page/widgets/home_loaded.dart';
+import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 
 import 'bloc/home_data.dart';
@@ -38,7 +39,7 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
         ),
         centerTitle: false,
         backgroundColor: Theme.of(context).colorScheme.background,
-        elevation: 0,
+        elevation: Dimens.size0,
         actions: [
           IconButton(
             onPressed: () {
@@ -62,6 +63,8 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
                 state: state,
               );
             }
+            if (isDataEmptyAndStateIsLoaded(tile, state))
+              return EmptyListsState(bloc: bloc);
             return HomeBody(
               tile: tile,
               bloc: bloc,
@@ -72,4 +75,7 @@ class _HomeState extends BlocScreenState<Home, HomeBloc> {
       ),
     );
   }
+
+  bool isDataEmptyAndStateIsLoaded(HomePageData tile, BaseTile state) =>
+      tile.isDataEmpty && !state.isLoading;
 }
