@@ -95,4 +95,14 @@ void initBlocModule() {
       inject.get(),
     ),
   );
+
+  inject.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      inject.get(),
+      inject.get(),
+      inject.get(),
+      inject.get(),
+      inject.get(),
+    ),
+  );
 }
