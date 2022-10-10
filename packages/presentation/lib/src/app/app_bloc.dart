@@ -9,8 +9,9 @@ import 'package:presentation/src/pages/login_page/login.dart';
 
 enum BottomNavBarItemType {
   home,
-  login,
-  undefined;
+  tickets,
+  notifications,
+  login;
 
   static BottomNavBarItemType fromIndex(int index) =>
       BottomNavBarItemType.values[index];
@@ -133,7 +134,7 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
       case BottomNavBarItemType.login:
         _popAllAndPush(page);
         break;
-      case BottomNavBarItemType.undefined:
+      default:
         break;
     }
   }
