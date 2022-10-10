@@ -12,15 +12,8 @@ enum BottomNavBarItemType {
   login,
   undefined;
 
-  static BottomNavBarItemType fromIndex(int index) {
-    switch (index) {
-      case 0:
-        return home;
-      case 3:
-        return login;
-    }
-    return undefined;
-  }
+  static BottomNavBarItemType fromIndex(int index) =>
+      BottomNavBarItemType.values[index];
 }
 
 abstract class AppBloc extends Bloc<BaseArguments, AppData> {

@@ -4,7 +4,7 @@ import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
 import 'package:data/src/remote/service/service.dart';
-import 'package:data/src/services/analytics_repository_impl.dart';
+import 'package:data/src/services/analytics_service_impl.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/preferences_local_repository_impl.dart';
 import 'package:data/src/repositories/tmdb_api_network_repository_impl.dart';
@@ -64,8 +64,8 @@ void initNetworkModule() {
 }
 
 void initAnalyticsService() {
-  inject.registerSingleton<FirebaseAnalyticsService>(
-    instance: FirebaseAnalyticsServiceImpl(FirebaseAnalytics.instance),
+  inject.registerSingleton<AnalyticsService>(
+    instance: AnalyticsServiceImpl(FirebaseAnalytics.instance),
   );
 }
 

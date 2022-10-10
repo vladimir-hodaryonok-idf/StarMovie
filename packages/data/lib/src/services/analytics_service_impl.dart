@@ -1,10 +1,10 @@
 import 'package:domain/domain.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
-class FirebaseAnalyticsServiceImpl implements FirebaseAnalyticsService {
+class AnalyticsServiceImpl implements AnalyticsService {
   final FirebaseAnalytics firebaseAnalytics;
 
-  const FirebaseAnalyticsServiceImpl(this.firebaseAnalytics);
+  const AnalyticsServiceImpl(this.firebaseAnalytics);
 
   @override
   Future<void> logEvent(String event) =>
