@@ -10,11 +10,6 @@ final inject = Needle.instance;
 void initDomainDependencies() {
   initMappers();
   initUseCases();
-  initPlugins();
-}
-
-void initPlugins() {
-  inject.registerFactory<ShareMovie>(() => ShareMovie());
 }
 
 void initUseCases() {

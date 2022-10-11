@@ -6,19 +6,18 @@ import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
+import 'package:share_text/share_text.dart';
 
 abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
   factory MovieDetailsBloc(
     FetchCrewAndCastUseCase fetchCrewAndCast,
     MovieToMovieDetailsMapper movieToDetails,
     PeoplesToCrewUiMapper peoplesToCrewUiMapper,
-    ShareMovie shareMovie,
   ) =>
       _MovieDetailsBloc(
         fetchCrewAndCast,
         movieToDetails,
         peoplesToCrewUiMapper,
-        shareMovie,
       );
 
   void goBack();
@@ -31,13 +30,11 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   final FetchCrewAndCastUseCase fetchCrewAndCast;
   final MovieToMovieDetailsMapper _movieToDetails;
   final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
-  final ShareMovie shareMovie;
 
   _MovieDetailsBloc(
     this.fetchCrewAndCast,
     this._movieToDetails,
     this.peoplesToCrewUiMapper,
-    this.shareMovie,
   ) : super(DetailsData.init());
 
   void _initData(int id) async {
@@ -61,7 +58,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
     final id = tile.movieDetails?.id ?? 0;
     final locale = Localizations.localeOf(context).languageCode;
     final message = S.of(context).shareString(id, locale);
-    shareMovie.shareMovie(message);
+    ShareText.shareText(message);
   }
 
   @override

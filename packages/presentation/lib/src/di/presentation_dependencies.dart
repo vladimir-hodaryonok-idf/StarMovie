@@ -82,7 +82,6 @@ void initBlocModule() {
       inject.get<FetchCrewAndCastUseCase>(),
       inject.get<MovieToMovieDetailsMapper>(),
       inject.get<PeoplesToCrewUiMapper>(),
-      inject.get<ShareMovie>(),
     ),
   );
 

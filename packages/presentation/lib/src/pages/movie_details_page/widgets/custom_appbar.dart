@@ -28,9 +28,9 @@ class CustomAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: bloc.goBack,
-              child: SvgPicture.asset(
+            IconButton(
+              onPressed: bloc.goBack,
+              icon: SvgPicture.asset(
                 AssetsImages.backArrow,
                 width: Dimens.size12,
                 height: Dimens.size20_5,
@@ -59,9 +59,9 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () => bloc.share(context),
-              child: SvgPicture.asset(
+            IconButton(
+              onPressed: () => bloc.share(context),
+              icon: SvgPicture.asset(
                 AssetsImages.shareArrow,
                 width: Dimens.size22_5,
                 height: Dimens.size21,
