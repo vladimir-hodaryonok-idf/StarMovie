@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
-import 'package:flutter/material.dart';
-import 'package:presentation/generated/l10n.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
