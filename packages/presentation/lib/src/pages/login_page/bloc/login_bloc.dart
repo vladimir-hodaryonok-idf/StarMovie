@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/logged_page/logged.dart';
@@ -11,14 +12,14 @@ abstract class LoginBloc extends Bloc<BaseArguments, LoginData> {
     LoginWithEmailAndPassUseCase loginWithEmailAndPass,
     LoginGoogleUseCase loginGoogleUseCase,
     LoginFaceBookUseCase loginFaceBookUseCase,
-    LogEventUseCase logEvent,
+    LogButtonUseCase logButton,
     LoginValidator loginValidator,
   ) =>
       _LoginBloc(
         loginWithEmailAndPass,
         loginGoogleUseCase,
         loginFaceBookUseCase,
-        logEvent,
+        logButton,
         loginValidator,
       );
 
@@ -38,14 +39,14 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   final LoginWithEmailAndPassUseCase loginWithEmailAndPass;
   final LoginGoogleUseCase loginGoogleUseCase;
   final LoginFaceBookUseCase loginFaceBookUseCase;
-  final LogEventUseCase logEvent;
+  final LogButtonUseCase logButton;
   final LoginValidator loginValidator;
 
   _LoginBloc(
     this.loginWithEmailAndPass,
     this.loginGoogleUseCase,
     this.loginFaceBookUseCase,
-    this.logEvent,
+    this.logButton,
     this.loginValidator,
   ) : super(LoginData.init());
 
@@ -57,20 +58,20 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
       return;
     }
     emit(data: tile, isLoading: true);
-    logEvent('AuthWithEmailAndPassword clicked');
+    logButton(EventName.emailAndPasswordBtn);
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
     _tryLogin(await loginWithEmailAndPass(user));
   }
 
   @override
   Future<void> authFacebook() async {
-    logEvent('AuthWithFacebook clicked');
+    logButton(EventName.facebookBtn);
     _tryLogin(await loginFaceBookUseCase());
   }
 
   @override
   Future<void> authGoogle() async {
-    logEvent('AuthWithGoogle clicked');
+    logButton(EventName.googleBtn);
     _tryLogin(await loginGoogleUseCase());
   }
 

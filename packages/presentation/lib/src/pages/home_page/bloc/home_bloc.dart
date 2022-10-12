@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/base_bloc/movie_args.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
@@ -13,12 +14,14 @@ abstract class HomeBloc extends Bloc<BaseArguments, HomePageData> {
     FetchAnticipatedMoviesUseCase fetchAnticipatedMovies,
     TrendingToHomeListMapper trendingToHomeList,
     AnticipatedToHomeListMapper anticipatedToHomeList,
+    LogButtonUseCase logButton,
   ) =>
       _HomeBloc(
         fetchTrendingMovies,
         fetchAnticipatedMovies,
         trendingToHomeList,
         anticipatedToHomeList,
+        logButton,
       );
 
   void onButtonTap(MovieButtonStatus id);
@@ -34,12 +37,14 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
   final FetchAnticipatedMoviesUseCase _anticipatedMovies;
   final TrendingToHomeListMapper _trendingToHomeList;
   final AnticipatedToHomeListMapper _anticipatedToHomeList;
+  final LogButtonUseCase logButton;
 
   _HomeBloc(
     this._fetchTrendingMovies,
     this._anticipatedMovies,
     this._trendingToHomeList,
     this._anticipatedToHomeList,
+    this.logButton,
   ) : super(HomePageData.init());
 
   @override
@@ -58,11 +63,13 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
   }
 
   void _onAnticipatedClick() {
+    logButton(EventName.anticipatedBtn);
     emit(data: tile.copyWith(buttonStatus: MovieButtonStatus.anticipated));
     tile.anticipated.isEmpty ? _fetchAnticipated() : emit(data: tile);
   }
 
   void _onTrendingClick() {
+    logButton(EventName.trendingBtn);
     emit(data: tile.copyWith(buttonStatus: MovieButtonStatus.trending));
     tile.trending.isEmpty ? _fetchTrending() : emit(data: tile);
   }
@@ -117,6 +124,8 @@ class _HomeBloc extends BlocImpl<BaseArguments, HomePageData>
     final Movie movieFull = tile.buttonStatus == MovieButtonStatus.trending
         ? tile.trendingFull[index].movie
         : tile.anticipatedFull[index].movie;
+    final id = '${movieFull.ids?.tmdb}';
+    logButton(EventName.movieItemClicked + id);
     final args = MovieArgs(movieFull);
     appNavigator.push(MovieDetailsPage.page(args));
   }

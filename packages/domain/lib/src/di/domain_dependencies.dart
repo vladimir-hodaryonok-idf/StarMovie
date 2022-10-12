@@ -3,6 +3,7 @@ import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 import 'package:domain/src/mappers/json_to_trending_list.dart';
+import 'package:domain/src/use_cases/log_page.dart';
 import 'package:needle_di/needle_di.dart';
 
 final inject = Needle.instance;
@@ -53,7 +54,8 @@ void initUseCases() {
       authRepository: inject.get(),
     ),
   );
-  inject.registerFactory(() => LogEventUseCase(inject.get()));
+  inject.registerFactory(() => LogButtonUseCase(inject.get()));
+  inject.registerFactory(() => LogPageUseCase(inject.get()));
 }
 
 void initMappers() {

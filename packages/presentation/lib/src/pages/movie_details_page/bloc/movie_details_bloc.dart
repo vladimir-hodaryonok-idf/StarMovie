@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
@@ -13,11 +14,13 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
     FetchCrewAndCastUseCase fetchCrewAndCast,
     MovieToMovieDetailsMapper movieToDetails,
     PeoplesToCrewUiMapper peoplesToCrewUiMapper,
+    LogButtonUseCase logButton,
   ) =>
       _MovieDetailsBloc(
         fetchCrewAndCast,
         movieToDetails,
         peoplesToCrewUiMapper,
+        logButton,
       );
 
   void goBack();
@@ -30,11 +33,13 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   final FetchCrewAndCastUseCase fetchCrewAndCast;
   final MovieToMovieDetailsMapper _movieToDetails;
   final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
+  final LogButtonUseCase logButton;
 
   _MovieDetailsBloc(
     this.fetchCrewAndCast,
     this._movieToDetails,
     this.peoplesToCrewUiMapper,
+    this.logButton,
   ) : super(DetailsData.init());
 
   void _initData(int id) async {
@@ -51,10 +56,14 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   }
 
   @override
-  void goBack() => appNavigator.pop();
+  void goBack() {
+    logButton(EventName.backNavBtn);
+    appNavigator.pop();
+  }
 
   @override
   void share(BuildContext context) async {
+    logButton(EventName.shareBtn);
     final id = tile.movieDetails?.id ?? 0;
     final locale = Localizations.localeOf(context).languageCode;
     final message = S.of(context).shareString(id, locale);
