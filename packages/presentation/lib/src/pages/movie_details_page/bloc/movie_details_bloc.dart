@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
@@ -25,7 +24,7 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
 
   void goBack();
 
-  void share(BuildContext context);
+  void share(String message);
 }
 
 class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
@@ -62,13 +61,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   }
 
   @override
-  void share(BuildContext context) async {
-    logButton(EventName.shareBtn);
-    final id = tile.movieDetails?.id ?? 0;
-    final locale = Localizations.localeOf(context).languageCode;
-    final message = S.of(context).shareString(id, locale);
-    ShareText.shareText(message);
-  }
+  void share(String message) => ShareText.shareText(message);
 
   @override
   void initArgs(BaseArguments args) {
