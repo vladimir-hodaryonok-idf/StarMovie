@@ -49,6 +49,6 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
     final response = await traktService.getRequest(
       path: TraktApiPathFactory.getCastAndCrewPath(id),
     );
-    return CrewAndCast.fromJson(response.data).cast ?? List.empty();
+    return CrewAndCast.fromJson(response.tile).cast ?? List.empty();
   }
 }

@@ -25,4 +25,10 @@ abstract class BlocScreenState<SW extends StatefulWidget, B extends Bloc>
       }
     });
   }
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 }
