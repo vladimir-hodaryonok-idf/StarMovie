@@ -15,6 +15,7 @@ import 'bloc/movie_details_bloc.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   const MovieDetailsPage({super.key});
+
   static const _routeName = '/MovieDetails';
 
   static page(MovieArgs args) => BasePage(
@@ -91,6 +92,7 @@ class MovieDetailsWidget extends StatelessWidget {
           SafeArea(
             child: CustomAppBar(
               bloc: bloc,
+              id: details.id,
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/utils/images_container.dart';
 import 'package:presentation/style/dimens.dart';
@@ -7,10 +8,12 @@ import 'package:presentation/style/dimens.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     required this.bloc,
+    required this.id,
     super.key,
   });
 
   final MovieDetailsBloc bloc;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +31,9 @@ class CustomAppBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: bloc.goBack,
-              child: SvgPicture.asset(
+            IconButton(
+              onPressed: bloc.goBack,
+              icon: SvgPicture.asset(
                 AssetsImages.backArrow,
                 width: Dimens.size12,
                 height: Dimens.size20_5,
@@ -59,10 +62,17 @@ class CustomAppBar extends StatelessWidget {
                 ),
               ),
             ),
-            SvgPicture.asset(
-              AssetsImages.shareArrow,
-              width: Dimens.size22_5,
-              height: Dimens.size21,
+            IconButton(
+              onPressed: () {
+                final locale = Localizations.localeOf(context).languageCode;
+                final message = S.of(context).shareString(id, locale);
+                bloc.share(message);
+              },
+              icon: SvgPicture.asset(
+                AssetsImages.shareArrow,
+                width: Dimens.size22_5,
+                height: Dimens.size21,
+              ),
             ),
           ],
         ),

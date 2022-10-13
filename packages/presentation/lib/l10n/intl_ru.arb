@@ -1,0 +1,18 @@
+{
+  "castAndCrew": "Состав и команда",
+  "viewAll": "Все",
+  "description": "Описание",
+  "detailBtn": "Детали",
+  "reviewsBtn": "Обзоры",
+  "showTimeBtn": "Сейчас",
+  "unknownError": "Неизвестная ошибка",
+  "nowShowingTitle": "Тренды",
+  "comingSoonTitle": "Ожидаемые",
+  "appTitle": "StarMovie",
+  "loginTitle": "Профиль",
+  "loginUserName": "ИМЯ ПОЛЬЗОВАТЕЛЯ",
+  "loginPassword": "ПАРОЛЬ",
+  "loginBtn": "Вход",
+  "emptyData" : "Нет Данных",
+  "shareString": "Смотри, какой я фильм нашел! \nhttps://www.themoviedb.org/movie/{id}?language={lng}"
+}

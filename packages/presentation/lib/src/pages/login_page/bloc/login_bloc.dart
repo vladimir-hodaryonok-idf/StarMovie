@@ -57,20 +57,20 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
       return;
     }
     emit(data: tile, isLoading: true);
-    logEvent('AuthWithEmailAndPassword clicked');
+    logEvent('AuthWithEmailAndPassword_clicked');
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
     _tryLogin(await loginWithEmailAndPass(user));
   }
 
   @override
   Future<void> authFacebook() async {
-    logEvent('AuthWithFacebook clicked');
+    logEvent('AuthWithFacebook_clicked');
     _tryLogin(await loginFaceBookUseCase());
   }
 
   @override
   Future<void> authGoogle() async {
-    logEvent('AuthWithGoogle clicked');
+    logEvent('AuthWithGoogle_clicked');
     _tryLogin(await loginGoogleUseCase());
   }
 

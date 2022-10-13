@@ -5,6 +5,8 @@ version: 1.0.0
 publish_to: 'none'
 
 dependencies:
+  flutter:
+    sdk: flutter
   needle_di:
     git: https://github.com/vladimir-hodaryonok-idf/needle_di.git
   collection: ^1.16.0

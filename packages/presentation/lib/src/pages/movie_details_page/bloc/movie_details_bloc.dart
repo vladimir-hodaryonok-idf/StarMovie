@@ -4,6 +4,7 @@ import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
+import 'package:share_text/share_text.dart';
 
 abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
   factory MovieDetailsBloc(
@@ -18,18 +19,21 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
       );
 
   void goBack();
+
+  void share(String message);
 }
 
 class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
     implements MovieDetailsBloc {
+  final FetchCrewAndCastUseCase fetchCrewAndCast;
+  final MovieToMovieDetailsMapper _movieToDetails;
+  final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
+
   _MovieDetailsBloc(
     this.fetchCrewAndCast,
     this._movieToDetails,
     this.peoplesToCrewUiMapper,
   ) : super(DetailsData.init());
-  final FetchCrewAndCastUseCase fetchCrewAndCast;
-  final MovieToMovieDetailsMapper _movieToDetails;
-  final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
 
   void _initData(int id) async {
     try {
@@ -39,11 +43,16 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
           crewAndCast: peoplesToCrewUiMapper(peopleWithImage),
         ),
       );
-    } on AppException catch (e) {}
+    } on AppException catch (e) {
+      print(e.message);
+    }
   }
 
   @override
   void goBack() => appNavigator.pop();
+
+  @override
+  void share(String message) => ShareText.shareText(message);
 
   @override
   void initArgs(BaseArguments args) {

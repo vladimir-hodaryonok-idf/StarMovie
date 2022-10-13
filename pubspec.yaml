@@ -33,3 +33,4 @@ flutter:
     - flavor_prod_config.json
 
   uses-material-design: true
+
