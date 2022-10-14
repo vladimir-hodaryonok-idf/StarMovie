@@ -10,19 +10,29 @@ class ValidateLoginFormUseCase
       );
 
   String? _validateLogin(String login) {
-    const invalidFormat = 'Email length - 7 from a-z,A-Z,0-9,@';
-    const loginPattern =
-        '^(([a-z]|[A-Z]|[0-9])([a-z]|[A-Z]|[0-9])+)@(([a-z]|[A-Z]|[0-9]){1}|([a-z]|[A-Z]|[0-9])+)+(\.([a-z]|[A-Z]){2,3})\$';
-    final RegExp validator = RegExp(loginPattern);
-    final matches = validator.allMatches(login);
-    return matches.isNotEmpty ? null : invalidFormat;
+    if (_validate(_emptyStringPattern, login)) return _loginIsRequired;
+    return (_validate(_loginFormatPattern, login)) ? null : _invalidLoginFormat;
   }
 
   String? _validatePassword(String password) {
-    const invalidPassword = 'Min. length - 8, only chars and numbers';
-    const passwordPattern = '^([a-z]|[A-Z]|[0-9]){7}([a-z]|[A-Z]|[0-9])+\$';
-    final RegExp validator = RegExp(passwordPattern);
-    final matches = validator.allMatches(password);
-    return matches.isNotEmpty ? null : invalidPassword;
+    if (_validate(_emptyStringPattern, password)) return _passwordIsRequired;
+    return _validate(_passwordPattern, password) ? null : _invalidPassword;
   }
+
+  bool _validate(String pattern, String value) {
+    final RegExp validator = RegExp(pattern);
+    final matches = validator.allMatches(value);
+    return matches.isNotEmpty;
+  }
+
+  static const _loginIsRequired = 'Login is required';
+  static const _invalidLoginFormat =
+      'Login should be \'Email\' and at least 8 symbols';
+  static const _passwordIsRequired = 'Password is required';
+  static const _invalidPassword = 'Invalid password';
+  static const _emptyStringPattern = '^\$';
+  static const _passwordPattern =
+      '^([a-z]|[A-Z]|[0-9]){7}([a-z]|[A-Z]|[0-9])+\$';
+  static const _loginFormatPattern =
+      '^(([a-z]|[A-Z]|[0-9])([a-z]|[A-Z]|[0-9])+)@(([a-z]|[A-Z]|[0-9]){1}|([a-z]|[A-Z]|[0-9])+)+(\.([a-z]|[A-Z]){2,3})\$';
 }

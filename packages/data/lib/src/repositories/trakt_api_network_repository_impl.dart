@@ -46,9 +46,9 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
 
   @override
   Future<List<Cast>> fetchCrewAndCast(int id) async {
-    final response = await traktService.getRequest(
+    final Response response = await traktService.getRequest(
       path: TraktApiPathFactory.getCastAndCrewPath(id),
     );
-    return CrewAndCast.fromJson(response.tile).cast ?? List.empty();
+    return CrewAndCast.fromJson(response.data).cast ?? List.empty();
   }
 }
