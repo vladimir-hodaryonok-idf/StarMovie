@@ -7,6 +7,6 @@ class AnalyticsServiceImpl implements AnalyticsService {
   const AnalyticsServiceImpl(this.firebaseAnalytics);
 
   @override
-  Future<void> logEvent(String event) =>
-      firebaseAnalytics.logEvent(name: event);
+  Future<void> logEvent(String event, {Map<String, Object?>? payload}) =>
+      firebaseAnalytics.logEvent(name: event, parameters: payload);
 }

@@ -28,7 +28,12 @@ void initValidators() {
 
 void initNavigatorModule() {
   inject.registerLazySingleton<AppNavigator>(() => AppNavigator());
-  inject.registerFactory<AppBloc>(() => AppBloc());
+  inject.registerFactory<AppBloc>(
+    () => AppBloc(
+      inject.get(),
+      inject.get(),
+    ),
+  );
 }
 
 void initUiLayerMappers() {
@@ -75,6 +80,7 @@ void initBlocModule() {
       inject.get<FetchAnticipatedMoviesUseCase>(),
       inject.get<TrendingToHomeListMapper>(),
       inject.get<AnticipatedToHomeListMapper>(),
+      inject.get<LogButtonUseCase>(),
     ),
   );
   inject.registerFactory<MovieDetailsBloc>(
@@ -82,16 +88,7 @@ void initBlocModule() {
       inject.get<FetchCrewAndCastUseCase>(),
       inject.get<MovieToMovieDetailsMapper>(),
       inject.get<PeoplesToCrewUiMapper>(),
-    ),
-  );
-
-  inject.registerFactory<LoginBloc>(
-    () => LoginBloc(
-      inject.get(),
-      inject.get(),
-      inject.get(),
-      inject.get(),
-      inject.get(),
+      inject.get<LogButtonUseCase>(),
     ),
   );
 

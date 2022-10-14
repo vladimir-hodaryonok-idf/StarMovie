@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
@@ -11,11 +12,13 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
     FetchCrewAndCastUseCase fetchCrewAndCast,
     MovieToMovieDetailsMapper movieToDetails,
     PeoplesToCrewUiMapper peoplesToCrewUiMapper,
+    LogButtonUseCase logButton,
   ) =>
       _MovieDetailsBloc(
         fetchCrewAndCast,
         movieToDetails,
         peoplesToCrewUiMapper,
+        logButton,
       );
 
   void goBack();
@@ -28,11 +31,13 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   final FetchCrewAndCastUseCase fetchCrewAndCast;
   final MovieToMovieDetailsMapper _movieToDetails;
   final PeoplesToCrewUiMapper peoplesToCrewUiMapper;
+  final LogButtonUseCase logButton;
 
   _MovieDetailsBloc(
     this.fetchCrewAndCast,
     this._movieToDetails,
     this.peoplesToCrewUiMapper,
+    this.logButton,
   ) : super(DetailsData.init());
 
   void _initData(int id) async {
@@ -49,7 +54,10 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   }
 
   @override
-  void goBack() => appNavigator.pop();
+  void goBack() {
+    logButton(EventName.backNavBtn);
+    appNavigator.pop();
+  }
 
   @override
   void share(String message) => ShareText.shareText(message);

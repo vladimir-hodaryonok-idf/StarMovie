@@ -1,4 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/app/data/app_data.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
@@ -18,7 +20,14 @@ enum BottomNavBarItemType {
 }
 
 abstract class AppBloc extends Bloc<BaseArguments, AppData> {
-  factory AppBloc() => _AppBloc();
+  factory AppBloc(
+    LogButtonUseCase logButton,
+    LogPageUseCase logPage,
+  ) =>
+      _AppBloc(
+        logButton,
+        logPage,
+      );
 
   void handleRemoveRouteSettings(RouteSettings value);
 
@@ -26,7 +35,13 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
 }
 
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
-  _AppBloc() : super(AppData.init());
+  final LogButtonUseCase logButton;
+  final LogPageUseCase logPage;
+
+  _AppBloc(
+    this.logButton,
+    this.logPage,
+  ) : super(AppData.init());
 
   final bottomNavBarStack = {
     BottomNavBarItemType.home: () => Home.page(),
@@ -117,14 +132,18 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   BasePage<BaseArguments>? _currentPage() => tile.pages.lastOrNull;
 
   void _update() {
-    final isShowNavBar = _currentPage()?.isShowNavBar ?? false;
-    emit(data: tile.copyWith(isShowNavBar: isShowNavBar));
+    final currentPage = _currentPage();
+    if (currentPage != null) {
+      emit(data: tile.copyWith(isShowNavBar: currentPage.isShowNavBar));
+      logPage(currentPage.name.valueOrEmpty);
+    }
   }
 
   @override
   void bottomBarNavigation(int index) {
     emit(data: tile.copyWith(bottomNavIndex: index));
     final type = BottomNavBarItemType.fromIndex(index);
+    logButton(EventName.navBarBtn + type.name);
     final page = bottomNavBarStack[type]?.call();
     if (page == null) return;
     switch (type) {
