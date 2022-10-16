@@ -64,6 +64,7 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
 
   @override
   Future<void> auth() async {
+    logButton(EventName.emailAndPasswordBtn);
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
     final validationResult = formValidator(user);
     emit(
