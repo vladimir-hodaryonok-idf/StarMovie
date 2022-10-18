@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/generated/l10n.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 
 class LoginButton extends StatelessWidget {
-  final LoginBloc bloc;
+  final Function() onTap;
   final bool isLoading;
 
   const LoginButton({
-    required this.bloc,
+    required this.onTap,
     required this.isLoading,
     super.key,
   });
@@ -20,7 +19,7 @@ class LoginButton extends StatelessWidget {
       width: double.infinity,
       height: Dimens.size48,
       child: ElevatedButton(
-        onPressed: bloc.auth,
+        onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
             Theme.of(context).colorScheme.secondary,

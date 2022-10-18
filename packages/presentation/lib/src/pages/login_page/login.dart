@@ -51,8 +51,14 @@ class _LoginState extends BlocScreenState<Login, LoginBloc> {
           final tile = data?.tile;
           if (data != null && tile != null) {
             return FormWidget(
-              bloc: bloc,
-              tile: tile,
+              passwordValidation: bloc.validatePassword,
+              loginValidation: bloc.validateLogin,
+              onLoginChange: bloc.onLoginChange,
+              onPasswordChange: bloc.onPasswordChange,
+              formKey: bloc.formKey,
+              onLoginTap: bloc.auth,
+              onFacebookTap: bloc.authFacebook,
+              onGoogleTap: bloc.authGoogle,
               isLoading: data.isLoading,
             );
           }
