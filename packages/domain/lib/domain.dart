@@ -38,3 +38,5 @@ export 'src/use_cases/validate_login_form.dart';
 export 'src/models/validation_model/login_form_result.dart';
 export 'src/use_cases/log_button.dart';
 export 'src/use_cases/log_page.dart';
+export 'src/repositories/local_repository.dart';
+export 'src/repositories/date_repository.dart';

@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data/data.dart';
+import 'package:data/src/database/database.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
 import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/repositories/date_preferences_repository.dart';
+import 'package:data/src/repositories/local_cache_repository_impl.dart';
 import 'package:data/src/services/analytics_service_impl.dart';
 import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/preferences_local_repository_impl.dart';
@@ -49,9 +52,20 @@ Future<void> initApiKeyStore() async {
 }
 
 Future<void> initLocalModule() async {
+  inject.registerSingleton(
+    instance:
+        await $FloorMovieDatabase.databaseBuilder('app_database.db').build(),
+  );
   inject.registerSingleton(instance: await SharedPreferences.getInstance());
   inject.registerLazySingleton<PreferencesLocalRepository>(
     () => PreferencesLocalRepositoryImpl(sharedPreferences: inject.get()),
+  );
+  inject.registerLazySingleton<DatePreferencesRepository>(
+    () => DatePreferencesRepositoryImpl(sharedPreferences: inject.get()),
+  );
+  inject.registerLazySingleton<LocalCacheRepository>(
+    () => LocalCacheRepositoryImpl(
+        trendingDao: inject.get<MovieDatabase>().movieTrendingDao),
   );
 }
 

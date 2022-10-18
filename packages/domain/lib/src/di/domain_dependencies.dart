@@ -1,9 +1,10 @@
 import 'package:domain/domain.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
+import 'package:domain/src/mappers/extract_date.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
+import 'package:domain/src/mappers/is_api_request_allowed.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
 import 'package:domain/src/mappers/json_to_trending_list.dart';
-import 'package:domain/src/use_cases/log_page.dart';
 import 'package:needle_di/needle_di.dart';
 
 final inject = Needle.instance;
@@ -20,6 +21,10 @@ void initUseCases() {
       networkRepository: inject.get(),
       jsonToTrendingListMapper: inject.get(),
       extractItemLimit: inject.get(),
+      dateRepository: inject.get(),
+      localCacheRepository: null,
+      isApiRequestAllowed: inject.get(),
+      extractDate: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -88,4 +93,6 @@ void initMappers() {
   inject.registerFactory<RatingToStringMapper>(() => RatingToStringMapper());
   inject.registerFactory<ValidateLoginFormUseCase>(
       () => ValidateLoginFormUseCase());
+  inject.registerFactory<ExtractDateMapper>(() => ExtractDateMapper());
+  inject.registerFactory<IsApiRequestAllowedMapper>(() => IsApiRequestAllowedMapper());
 }
