@@ -7,6 +7,7 @@ import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_lis
 import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movie.dart';
 import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
 import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
+import 'package:presentation/src/pages/login_page/mappers/result_to_localized.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
@@ -61,6 +62,9 @@ void initUiLayerMappers() {
     ),
   );
   inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());
+  inject.registerFactory<ResultToLocalizedMapper>(
+    () => ResultToLocalizedMapper(),
+  );
 }
 
 void initBlocModule() {
@@ -91,6 +95,7 @@ void initBlocModule() {
     () {
       inject.registerFactory(() => GlobalKey<FormState>());
       return LoginBloc(
+        inject.get(),
         inject.get(),
         inject.get(),
         inject.get(),

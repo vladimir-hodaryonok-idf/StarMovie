@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
 import 'package:presentation/style/colors.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/utils/images_container.dart';
 
 class GoogleLoginButton extends StatelessWidget {
-  final LoginBloc bloc;
+  final Function() onTap;
 
   const GoogleLoginButton({
-    required this.bloc,
+    required this.onTap,
     super.key,
   });
 
@@ -19,7 +18,7 @@ class GoogleLoginButton extends StatelessWidget {
       width: Dimens.size44,
       height: Dimens.size44,
       child: ElevatedButton(
-        onPressed: bloc.authGoogle,
+        onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
             MyColors.colorGoogle,

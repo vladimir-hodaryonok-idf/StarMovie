@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/generated/l10n.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
 import 'package:presentation/src/pages/login_page/widgets/movie_form_field.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 
-enum TextFieldType { login, password }
-
 class LoginForm extends StatelessWidget {
-  final LoginBloc bloc;
+  final Function loginValidation;
+  final Function passwordValidation;
+  final Function(String) onLoginChange;
+  final Function(String) onPasswordChange;
+  final GlobalKey<FormState> formKey;
 
   const LoginForm({
-    required this.bloc,
+    required this.passwordValidation,
+    required this.loginValidation,
+    required this.onLoginChange,
+    required this.onPasswordChange,
+    required this.formKey,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: bloc.formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,8 +34,9 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: Dimens.size8),
           MovieFormField(
-            bloc: bloc,
-            type: TextFieldType.login,
+            isPasswordField: false,
+            onChange: onLoginChange,
+            validation: loginValidation,
           ),
           const SizedBox(height: Dimens.size20),
           Text(
@@ -39,8 +45,9 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: Dimens.size8),
           MovieFormField(
-            bloc: bloc,
-            type: TextFieldType.password,
+            isPasswordField: true,
+            onChange: onPasswordChange,
+            validation: passwordValidation,
           ),
           const SizedBox(height: Dimens.size20),
         ],

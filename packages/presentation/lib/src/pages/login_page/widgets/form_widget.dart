@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_data.dart';
-import 'package:presentation/src/pages/login_page/widgets/error_message_widget.dart';
 import 'package:presentation/src/pages/login_page/widgets/facebook_login_button.dart';
 import 'package:presentation/src/pages/login_page/widgets/google_login_button.dart';
 import 'package:presentation/src/pages/login_page/widgets/login_button.dart';
@@ -9,13 +6,25 @@ import 'package:presentation/style/dimens.dart';
 import 'package:presentation/src/pages/login_page/widgets/login_form.dart';
 
 class FormWidget extends StatelessWidget {
-  final LoginBloc bloc;
-  final LoginData tile;
+  final Function loginValidation;
+  final Function passwordValidation;
+  final Function(String) onLoginChange;
+  final Function(String) onPasswordChange;
+  final GlobalKey<FormState> formKey;
+  final Function() onLoginTap;
+  final Function() onFacebookTap;
+  final Function() onGoogleTap;
   final bool isLoading;
 
   const FormWidget({
-    required this.bloc,
-    required this.tile,
+    required this.passwordValidation,
+    required this.loginValidation,
+    required this.onLoginChange,
+    required this.onPasswordChange,
+    required this.formKey,
+    required this.onLoginTap,
+    required this.onFacebookTap,
+    required this.onGoogleTap,
     required this.isLoading,
   });
 
@@ -28,19 +37,24 @@ class FormWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ErrorMessageWidget(message: tile.errorMessage),
-            LoginForm(bloc: bloc),
+            LoginForm(
+              passwordValidation: passwordValidation,
+              loginValidation: loginValidation,
+              onLoginChange: onLoginChange,
+              onPasswordChange: onPasswordChange,
+              formKey: formKey,
+            ),
             LoginButton(
-              bloc: bloc,
+              onTap: onLoginTap,
               isLoading: isLoading,
             ),
             const SizedBox(height: Dimens.size50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FacebookLoginButton(bloc: bloc),
+                FacebookLoginButton(onTap: onFacebookTap),
                 const SizedBox(width: Dimens.size24),
-                GoogleLoginButton(bloc: bloc),
+                GoogleLoginButton(onTap: onGoogleTap),
               ],
             ),
           ],
