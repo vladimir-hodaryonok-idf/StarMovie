@@ -14,7 +14,6 @@ class FormWidget extends StatelessWidget {
   final Function() onLoginTap;
   final Function() onFacebookTap;
   final Function() onGoogleTap;
-  final bool isLoading;
 
   const FormWidget({
     required this.passwordValidation,
@@ -25,7 +24,6 @@ class FormWidget extends StatelessWidget {
     required this.onLoginTap,
     required this.onFacebookTap,
     required this.onGoogleTap,
-    required this.isLoading,
   });
 
   @override
@@ -46,7 +44,6 @@ class FormWidget extends StatelessWidget {
             ),
             LoginButton(
               onTap: onLoginTap,
-              isLoading: isLoading,
             ),
             const SizedBox(height: Dimens.size50),
             Row(

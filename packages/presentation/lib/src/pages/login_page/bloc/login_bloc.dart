@@ -54,6 +54,7 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   final ValidateLoginFormUseCase formValidator;
   final GlobalKey<FormState> formKey;
   final ResultToLocalizedMapper localizationResultMapper;
+  ValidationResult? validationResult = null;
 
   _LoginBloc(
     this.loginWithEmailAndPass,
@@ -75,14 +76,12 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   Future<void> auth() async {
     logButton(EventName.emailAndPasswordBtn);
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
-    final validationResult = formValidator(user);
-    final localizedResult = localizationResultMapper(validationResult);
-    emit(
-      data: tile.fromValidationResult(result: localizedResult),
-      isLoading: true,
-    );
-    if (formKey.currentState?.validate() ?? false) {
+    try {
+      await formValidator(user);
       _tryLogin(await loginWithEmailAndPass(user));
+    } on ValidationException catch (e) {
+      validationResult = localizationResultMapper(e.validationError);
+      formKey.currentState?.validate();
     }
   }
 
@@ -107,36 +106,31 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
       login: S.current.invalidLogin,
       password: S.current.invalidPassword,
     );
-    emit(
-      data: tile.fromValidationResult(result: result),
-      isLoading: false,
-    );
+    validationResult = result;
     formKey.currentState?.validate();
   }
 
   @override
   void onLoginChange(String text) {
-    emit(
-        data: tile.copyWith(
-      login: text,
-      passwordValidation: tile.passwordValidation,
-    ));
+    emit(data: tile.copyWith(login: text));
+    if (validationResult != null && validationResult!.login != null) {
+      validationResult = ValidationResult(password: validationResult?.password);
+    }
     formKey.currentState?.validate();
   }
 
   @override
   void onPasswordChange(String text) {
-    emit(
-        data: tile.copyWith(
-      password: text,
-      loginValidation: tile.loginValidation,
-    ));
+    emit(data: tile.copyWith(password: text));
+    if (validationResult != null && validationResult!.password != null) {
+      validationResult = ValidationResult(login: validationResult?.login);
+    }
     formKey.currentState?.validate();
   }
 
   @override
-  String? validateLogin() => tile.loginValidation;
+  String? validateLogin() => validationResult?.login;
 
   @override
-  String? validatePassword() => tile.passwordValidation;
+  String? validatePassword() => validationResult?.password;
 }

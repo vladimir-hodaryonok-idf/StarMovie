@@ -5,11 +5,9 @@ import 'package:presentation/style/text_styles/styles.dart';
 
 class LoginButton extends StatelessWidget {
   final Function() onTap;
-  final bool isLoading;
 
   const LoginButton({
     required this.onTap,
-    required this.isLoading,
     super.key,
   });
 
@@ -25,16 +23,10 @@ class LoginButton extends StatelessWidget {
             Theme.of(context).colorScheme.secondary,
           ),
         ),
-        child: isLoading == true
-            ? const SizedBox(
-                width: Dimens.size20,
-                height: Dimens.size20,
-                child: CircularProgressIndicator(),
-              )
-            : Text(
-                S.of(context).loginBtn,
-                style: sfProSemiBold16px,
-              ),
+        child: Text(
+          S.of(context).loginBtn,
+          style: sfProSemiBold16px,
+        ),
       ),
     );
   }

@@ -5,4 +5,6 @@ class ValidationAndLogin {
   static const invalidLoginFormat = 'invalidLoginFormat';
   static const passwordIsRequired = 'passwordIsRequired';
   static const invalidPassword = 'invalidPassword';
+  static const loginMinLength = 'Login field should be at least 8 symbols';
+  static const passwordMinLength = 'Password field should be at least 7 symbols';
 }

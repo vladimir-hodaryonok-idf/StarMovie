@@ -1,3 +1,5 @@
+import 'package:domain/domain.dart';
+
 extension StringExtension on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
@@ -14,4 +16,8 @@ extension TakePercents on double {
 
 extension NullAbleString on String? {
   String get valueOrEmpty => this ?? '';
+}
+
+extension IsValid on ValidationResult{
+  bool get isFailure => this.login != null || this.password != null;
 }

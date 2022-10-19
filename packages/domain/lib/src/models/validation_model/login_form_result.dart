@@ -3,7 +3,7 @@ class ValidationResult {
   final String? password;
 
   const ValidationResult({
-    required this.login,
-    required this.password,
+    this.login,
+    this.password,
   });
 }

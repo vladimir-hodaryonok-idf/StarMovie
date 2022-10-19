@@ -6,7 +6,7 @@ part 'person.g.dart';
 @JsonSerializable()
 class Person {
   final String? name;
-  final Ids? ids;
+  final PeopleIds? ids;
 
   const Person({
     this.name,

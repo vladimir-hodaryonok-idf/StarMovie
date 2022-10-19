@@ -59,7 +59,6 @@ class _LoginState extends BlocScreenState<Login, LoginBloc> {
               onLoginTap: bloc.auth,
               onFacebookTap: bloc.authFacebook,
               onGoogleTap: bloc.authGoogle,
-              isLoading: data.isLoading,
             );
           }
           return Center(child: CircularProgressIndicator());
