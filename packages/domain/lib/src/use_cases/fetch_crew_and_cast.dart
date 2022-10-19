@@ -7,20 +7,33 @@ class FetchCrewAndCastUseCase
     implements InOutUseCase<int, Future<List<PeopleWithImage>>> {
   final TraktApiNetworkRepository traktApiNetworkRepository;
   final TmdbApiNetworkRepository tmdbApiNetworkRepository;
+  final PeopleLocalRepository peopleLocalRepository;
   final CastAndImagesMapper castAndImagesMapper;
 
   const FetchCrewAndCastUseCase({
     required this.traktApiNetworkRepository,
     required this.tmdbApiNetworkRepository,
     required this.castAndImagesMapper,
+    required this.peopleLocalRepository,
   });
 
   @override
   Future<List<PeopleWithImage>> call(int id) async {
+    final List<PeopleWithImage> fromCache =
+        await peopleLocalRepository.fetchByMovieId(id);
+    if (fromCache.isNotEmpty) {
+      return fromCache;
+    }
+    return _fetchFromApiAndCache(id);
+  }
+
+  Future<List<PeopleWithImage>> _fetchFromApiAndCache(int id) async {
     final List<Cast> cast =
         await traktApiNetworkRepository.fetchCrewAndCast(id);
     if (cast.isEmpty) return List.empty();
-    return _fetchImagesAndMap(cast);
+    final List<PeopleWithImage> fromApi = await _fetchImagesAndMap(cast);
+    peopleLocalRepository.saveCast(fromApi, id);
+    return fromApi;
   }
 
   Future<List<PeopleWithImage>> _fetchImagesAndMap(List<Cast> cast) async {

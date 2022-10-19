@@ -3,14 +3,14 @@ import 'package:json_annotation/json_annotation.dart';
 part 'ids.g.dart';
 
 @JsonSerializable()
-class Ids {
+class PeopleIds {
   final int? trakt;
   final String? slug;
   final String? imdb;
   final int? tmdb;
   final int? tvrage;
 
-  const Ids({
+  const PeopleIds({
     this.trakt,
     this.slug,
     this.imdb,
@@ -18,7 +18,8 @@ class Ids {
     this.tvrage,
   });
 
-  factory Ids.fromJson(Map<String, dynamic> json) => _$IdsFromJson(json);
+  factory PeopleIds.fromJson(Map<String, dynamic> json) =>
+      _$PeopleIdsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IdsToJson(this);
+  Map<String, dynamic> toJson() => _$PeopleIdsToJson(this);
 }

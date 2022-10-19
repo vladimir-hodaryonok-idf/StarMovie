@@ -22,7 +22,7 @@ void initUseCases() {
       jsonToTrendingListMapper: inject.get(),
       extractItemLimit: inject.get(),
       dateRepository: inject.get(),
-      localCacheRepository: null,
+      localCacheRepository: inject.get(),
       isApiRequestAllowed: inject.get(),
       extractDate: inject.get(),
     ),
@@ -32,6 +32,10 @@ void initUseCases() {
       networkRepository: inject.get(),
       extractItemLimit: inject.get(),
       jsonToAnticipatedListMapper: inject.get(),
+      extractDate: inject.get(),
+      isApiRequestAllowed: inject.get(),
+      dateRepository: inject.get(),
+      localCacheRepository: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -39,6 +43,7 @@ void initUseCases() {
       traktApiNetworkRepository: inject.get(),
       tmdbApiNetworkRepository: inject.get(),
       castAndImagesMapper: inject.get(),
+      peopleLocalRepository: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -94,5 +99,6 @@ void initMappers() {
   inject.registerFactory<ValidateLoginFormUseCase>(
       () => ValidateLoginFormUseCase());
   inject.registerFactory<ExtractDateMapper>(() => ExtractDateMapper());
-  inject.registerFactory<IsApiRequestAllowedMapper>(() => IsApiRequestAllowedMapper());
+  inject.registerFactory<IsApiRequestAllowedMapper>(
+      () => IsApiRequestAllowedMapper());
 }
