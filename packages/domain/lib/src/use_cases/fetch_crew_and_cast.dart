@@ -32,7 +32,7 @@ class FetchCrewAndCastUseCase
         await traktApiNetworkRepository.fetchCrewAndCast(id);
     if (cast.isEmpty) return List.empty();
     final List<PeopleWithImage> fromApi = await _fetchImagesAndMap(cast);
-    peopleLocalRepository.saveCast(fromApi, id);
+    await peopleLocalRepository.saveCast(fromApi, id);
     return fromApi;
   }
 

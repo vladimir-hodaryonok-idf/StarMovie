@@ -13,6 +13,7 @@ class PeopleWithImageDto {
   final int? tmdb;
   final int? tvrage;
   final int movieId;
+  final String imageUrl;
 
   const PeopleWithImageDto(
     this.character,
@@ -24,6 +25,7 @@ class PeopleWithImageDto {
     this.tmdb,
     this.tvrage,
     this.movieId,
+    this.imageUrl,
   );
 
   factory PeopleWithImageDto.fromPeopleAndId(
@@ -40,6 +42,7 @@ class PeopleWithImageDto {
         peoples.person?.ids?.tmdb,
         peoples.person?.ids?.tvrage,
         movieId,
+        peoples.imageUrl,
       );
 
   PeopleWithImage toPeoplesWithImages() => PeopleWithImage(
@@ -55,5 +58,6 @@ class PeopleWithImageDto {
             tvrage: tvrage,
           ),
         ),
+        imageUrl: imageUrl,
       );
 }

@@ -24,7 +24,7 @@ abstract class MovieDao {
   Future<List<int>> insertAnticipated(List<MovieAnticipatedDto> movies);
 
   @Query(
-      'SELECT * FROM MovieAnticipatedDto WHERE trakt in (:idList) ORDER BY watchers DESC')
+      'SELECT * FROM MovieAnticipatedDto WHERE trakt in (:idList) ORDER BY listCount DESC')
   Future<List<MovieAnticipatedDto>> compareAnticipatedListById(List<int> idList);
 
   @Query('DELETE FROM MovieAnticipatedDto')
