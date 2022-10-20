@@ -20,6 +20,7 @@ jobs:
         channel: 'stable'
     - run: touch "keys_prod.json";
     - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+    - run: flutter pub get
     - run: cd android
     - run: touch "keys.propeties";
     - run: echo "facebook_app_id=504363714516184" >> keys.properties;
@@ -27,7 +28,6 @@ jobs:
     - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
     - run: cat keys.properties;
     - run: cd ..
-    - run: flutter pub get
     - run: flutter build apk --flavor Prod
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
