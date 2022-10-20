@@ -28,7 +28,7 @@ jobs:
     - run: cat keys.properties;
     - run: cd ..
     - run: flutter pub get
-    - run: flutter flutter build apk --flavor Prod
+    - run: flutter build apk --flavor Prod
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
       with:
