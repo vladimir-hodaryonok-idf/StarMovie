@@ -5,4 +5,7 @@ class ValidationAndLogin {
   static const invalidLoginFormat = 'invalidLoginFormat';
   static const passwordIsRequired = 'passwordIsRequired';
   static const invalidPassword = 'invalidPassword';
+  static const loginMinLength = 'loginMinLength';
+  static const passwordMinLength = 'passwordMinLength';
+  static const invalidLogin = 'InvalidLogin';
 }

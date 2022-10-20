@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';
-import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/logged_page/logged.dart';
@@ -54,6 +53,7 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   final ValidateLoginFormUseCase formValidator;
   final GlobalKey<FormState> formKey;
   final ResultToLocalizedMapper localizationResultMapper;
+  ValidationResult? validationResult = null;
 
   _LoginBloc(
     this.loginWithEmailAndPass,
@@ -75,68 +75,65 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   Future<void> auth() async {
     logButton(EventName.emailAndPasswordBtn);
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
-    final validationResult = formValidator(user);
-    final localizedResult = localizationResultMapper(validationResult);
-    emit(
-      data: tile.fromValidationResult(result: localizedResult),
-      isLoading: true,
-    );
-    if (formKey.currentState?.validate() ?? false) {
-      _tryLogin(await loginWithEmailAndPass(user));
+    try {
+      await formValidator(user);
+      await loginWithEmailAndPass(user);
+      navigateToLoggedPage();
+    } on ValidationException catch (e) {
+      handleValidationException(e);
     }
   }
 
   @override
   Future<void> authFacebook() async {
     logButton(EventName.facebookBtn);
-    _tryLogin(await loginFaceBookUseCase());
+    try {
+      await loginFaceBookUseCase();
+      navigateToLoggedPage();
+    } on ValidationException catch (e) {
+      handleValidationException(e);
+    }
   }
 
   @override
   Future<void> authGoogle() async {
     logButton(EventName.googleBtn);
-    _tryLogin(await loginGoogleUseCase());
+    try {
+      await loginGoogleUseCase();
+      navigateToLoggedPage();
+    } on ValidationException catch (e) {
+      handleValidationException(e);
+    }
   }
 
-  void _tryLogin(bool isAbleToLogin) {
-    if (isAbleToLogin) {
-      appNavigator.push(LoggedPage.page());
-      return;
-    }
-    final result = ValidationResult(
-      login: S.current.invalidLogin,
-      password: S.current.invalidPassword,
-    );
-    emit(
-      data: tile.fromValidationResult(result: result),
-      isLoading: false,
-    );
+  void navigateToLoggedPage() => appNavigator.push(LoggedPage.page());
+
+  void handleValidationException(ValidationException e) {
+    validationResult = localizationResultMapper(e.validationError);
     formKey.currentState?.validate();
   }
 
   @override
   void onLoginChange(String text) {
-    emit(
-        data: tile.copyWith(
-      login: text,
-      passwordValidation: tile.passwordValidation,
-    ));
+    emit(data: tile.copyWith(login: text));
+    if (validationResult != null && validationResult!.login != null) {
+      validationResult = ValidationResult(password: validationResult?.password);
+    }
     formKey.currentState?.validate();
   }
 
   @override
   void onPasswordChange(String text) {
-    emit(
-        data: tile.copyWith(
-      password: text,
-      loginValidation: tile.loginValidation,
-    ));
+    emit(data: tile.copyWith(password: text));
+    if (validationResult != null && validationResult!.password != null) {
+      validationResult = ValidationResult(login: validationResult?.login);
+    }
     formKey.currentState?.validate();
   }
 
   @override
-  String? validateLogin() => tile.loginValidation;
+  String? validateLogin() => validationResult?.login;
 
   @override
-  String? validatePassword() => tile.passwordValidation;
+  String? validatePassword() => validationResult?.password;
 }

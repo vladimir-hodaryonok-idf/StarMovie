@@ -20,6 +20,12 @@ class ResultToLocalizedMapper
           return S.current.passwordIsRequired;
         case ValidationAndLogin.invalidPassword:
           return S.current.invalidPassword;
+        case ValidationAndLogin.loginMinLength:
+          return S.current.loginMinLength;
+        case ValidationAndLogin.passwordMinLength:
+          return S.current.passwordMinLength;
+        case ValidationAndLogin.invalidLogin:
+          return S.current.invalidLogin;
       }
     }
     return null;

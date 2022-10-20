@@ -16,8 +16,10 @@
   "emptyData" : "Empty Data",
   "shareString": "Look, what movie I found! \nhttps://www.themoviedb.org/movie/{id}?language={lng}",
   "loginIsRequired": "Login is required",
-  "invalidLoginFormat": "Login should be \\'Email\\' and at least 8 symbols",
+  "invalidLoginFormat": "Login should be 'Email'",
+  "loginMinLength": "Login field should be at least 8 symbols",
   "passwordIsRequired": "Password is required",
+  "passwordMinLength": "Password field should be at least 7 symbols",
   "invalidPassword": "Invalid password",
   "invalidLogin": "Invalid login"
 }

@@ -1,8 +1,7 @@
 import 'package:domain/domain.dart';
-import 'package:domain/src/use_cases/base/in_out_use_case.dart';
+import 'package:domain/src/use_cases/base/in_use_case.dart';
 
-class LoginWithEmailAndPassUseCase
-    implements InOutUseCase<UserEmailPass, Future<bool>> {
+class LoginWithEmailAndPassUseCase implements InUseCase<UserEmailPass> {
   final AuthRepository authRepository;
   final PreferencesLocalRepository preferences;
 
@@ -12,6 +11,8 @@ class LoginWithEmailAndPassUseCase
   });
 
   @override
-  Future<bool> call(UserEmailPass user) async =>
-      authRepository.isLoginAndPasswordCorrect(user);
+  Future<void> call(UserEmailPass user) async =>
+      authRepository.isLoginAndPasswordCorrect(user) == true
+          ? null
+          : throw ValidationException(ValidationResult.loginFailure());
 }
