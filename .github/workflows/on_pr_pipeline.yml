@@ -18,14 +18,17 @@ jobs:
       with:
         flutter-version: '3.0.5'
         channel: 'stable'
+    - run: cd android;
+           ./gradlew build;
+           cd ..
     - run: touch "keys_prod.json";
-    - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
-    - run: cd android
-    - run: echo "facebook_app_id=504363714516184" >> local.properties;
-    - run: echo "fb_login_protocol_scheme=fb504363714516184" >> local.properties;
-    - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> local.properties;
-    - run: cat local.properties;
-    - run: cd ..
+           echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+           cd android
+           echo "facebook_app_id=504363714516184" >> local.properties;
+           echo "fb_login_protocol_scheme=fb504363714516184" >> local.properties;
+           echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> local.properties;
+           cat local.properties;
+           cd ..
     - run: flutter pub get
     - run: flutter build appbundle --flavor Prod
     - name: Push APK to Releases
