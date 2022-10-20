@@ -18,7 +18,8 @@ class PeopleIds {
     this.tvrage,
   });
 
-  factory PeopleIds.fromJson(Map<String, dynamic> json) => _$PeopleIdsFromJson(json);
+  factory PeopleIds.fromJson(Map<String, dynamic> json) =>
+      _$PeopleIdsFromJson(json);
 
   Map<String, dynamic> toJson() => _$PeopleIdsToJson(this);
 }
