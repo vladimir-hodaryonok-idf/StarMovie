@@ -1,16 +1,25 @@
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 
+def keys = new Properties()
+def keysFile = rootProject.file('keys.properties')
+
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
 }
 
+if (keysFile.exists()){
+    keysFile.withReader('UTF-8') { reader ->
+        keys.load(reader)
+    }
+}
+
 def flutterRoot = localProperties.getProperty('flutter.sdk')
-def facebookAppId = localProperties.getProperty("facebook_app_id")
-def fbLoginProtocolScheme = localProperties.getProperty("fb_login_protocol_scheme")
-def facebookClientToken = localProperties.getProperty("facebook_client_token")
+def facebookAppId = keys.getProperty("facebook_app_id")
+def fbLoginProtocolScheme = keys.getProperty("fb_login_protocol_scheme")
+def facebookClientToken = keys.getProperty("facebook_client_token")
 
 if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
