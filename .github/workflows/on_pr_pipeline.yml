@@ -24,6 +24,7 @@ jobs:
     - run: echo "facebook_app_id=504363714516184" >> local.properties;
     - run: echo "fb_login_protocol_scheme=fb504363714516184" >> local.properties;
     - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> local.properties;
+    - run: cat local.properties;
     - run: cd ..
     - run: flutter pub get
     - run: flutter build appbundle --flavor Prod
