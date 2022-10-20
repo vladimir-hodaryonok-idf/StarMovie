@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';
-import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/logged_page/logged.dart';
@@ -78,35 +77,39 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
     final UserEmailPass user = UserEmailPass(tile.login, tile.password);
     try {
       await formValidator(user);
-      _tryLogin(await loginWithEmailAndPass(user));
+      await loginWithEmailAndPass(user);
+      navigateToLoggedPage();
     } on ValidationException catch (e) {
-      validationResult = localizationResultMapper(e.validationError);
-      formKey.currentState?.validate();
+      handleValidationException(e);
     }
   }
 
   @override
   Future<void> authFacebook() async {
     logButton(EventName.facebookBtn);
-    _tryLogin(await loginFaceBookUseCase());
+    try {
+      await loginFaceBookUseCase();
+      navigateToLoggedPage();
+    } on ValidationException catch (e) {
+      handleValidationException(e);
+    }
   }
 
   @override
   Future<void> authGoogle() async {
     logButton(EventName.googleBtn);
-    _tryLogin(await loginGoogleUseCase());
+    try {
+      await loginGoogleUseCase();
+      navigateToLoggedPage();
+    } on ValidationException catch (e) {
+      handleValidationException(e);
+    }
   }
 
-  void _tryLogin(bool isAbleToLogin) {
-    if (isAbleToLogin) {
-      appNavigator.push(LoggedPage.page());
-      return;
-    }
-    final result = ValidationResult(
-      login: S.current.invalidLogin,
-      password: S.current.invalidPassword,
-    );
-    validationResult = result;
+  void navigateToLoggedPage() => appNavigator.push(LoggedPage.page());
+
+  void handleValidationException(ValidationException e) {
+    validationResult = localizationResultMapper(e.validationError);
     formKey.currentState?.validate();
   }
 

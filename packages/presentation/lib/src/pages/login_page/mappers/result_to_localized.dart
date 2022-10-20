@@ -24,6 +24,8 @@ class ResultToLocalizedMapper
           return S.current.loginMinLength;
         case ValidationAndLogin.passwordMinLength:
           return S.current.passwordMinLength;
+        case ValidationAndLogin.invalidLogin:
+          return S.current.invalidLogin;
       }
     }
     return null;
