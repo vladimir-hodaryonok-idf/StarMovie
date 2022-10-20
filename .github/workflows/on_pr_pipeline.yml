@@ -21,14 +21,23 @@ jobs:
     - run: touch "keys_prod.json";
     - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
     - run: flutter pub get
-    - run: cd android
-    - run: touch "keys.propeties";
-    - run: echo "facebook_app_id=504363714516184" >> keys.properties;
-    - run: echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
-    - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
-    - run: cat keys.properties;
-    - run: cd ..
-    - run: flutter build apk --flavor Prod --stacktrace
+    - name: ApiKeys
+      run: |
+         cd android
+         touch "keys.propeties";
+         echo "facebook_app_id=504363714516184" >> keys.properties;
+         echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
+         echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
+         cat keys.properties;
+         cd ..
+#     - run: cd android
+#     - run: touch "keys.propeties";
+#     - run: echo "facebook_app_id=504363714516184" >> keys.properties;
+#     - run: echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
+#     - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
+#     - run: cat keys.properties;
+#     - run: cd ..
+    - run: flutter build apk --flavor Prod
     - name: Push APK to Releases
       uses: ncipollo/release-action@v1
       with:
