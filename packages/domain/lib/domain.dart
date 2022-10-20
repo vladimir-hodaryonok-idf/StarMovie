@@ -45,3 +45,4 @@ export 'src/models/movie_model/movie/ids.dart';
 export 'src/models/people_model/person.dart';
 export 'src/models/people_model/ids.dart';
 export 'src/repositories/people_local_repository.dart';
+

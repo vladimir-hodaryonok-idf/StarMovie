@@ -24,6 +24,7 @@ void initMappers() {
   );
   inject.registerFactory<MovieIdToImageUrlMapper>(
     () => MovieIdToImageUrlMapper(
+
       apiKey: inject.get(instanceName: OmdbApiNameKey.omdbApiKey),
     ),
   );
