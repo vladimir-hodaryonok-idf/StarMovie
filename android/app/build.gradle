@@ -63,9 +63,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        resValue("string", "facebook_app_id", facebookAppId)
-        resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
-        resValue("string", "facebook_client_token", facebookClientToken)
+//        resValue("string", "facebook_app_id", facebookAppId)
+//        resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
+//        resValue("string", "facebook_client_token", facebookClientToken)
     }
 
     flavorDimensions "app"
@@ -78,6 +78,9 @@ android {
 
         Prod {
             dimension "app"
+            resValue("string", "facebook_app_id", facebookAppId)
+            resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
+            resValue("string", "facebook_client_token", facebookClientToken)
         }
     }
 
