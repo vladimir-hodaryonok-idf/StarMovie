@@ -1,104 +1,12 @@
-import 'package:domain/domain.dart';
-import 'package:presentation/src/app/app_bloc.dart';
-import 'package:presentation/src/navigation/app_navigator.dart';
-import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
-import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_list.dart';
-import 'package:presentation/src/pages/home_page/mappers/movie_to_home_page_movie.dart';
-import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
-import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
-import 'package:presentation/src/pages/login_page/validator/validator.dart';
-import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
-import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
-import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
-import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dart';
+import 'package:presentation/src/di/ui_layer_mappers_module.dart';
+import 'package:presentation/src/di/navigator_module.dart';
 import 'package:needle_di/needle_di.dart';
+import 'package:presentation/src/di/bloc_module.dart';
 
 final inject = Needle.instance;
 
 void initPresentationModule() {
   initNavigatorModule();
   initUiLayerMappers();
-  initValidators();
   initBlocModule();
-}
-
-void initValidators() {
-  inject.registerFactory(() => LoginValidator());
-}
-
-void initNavigatorModule() {
-  inject.registerLazySingleton<AppNavigator>(() => AppNavigator());
-  inject.registerFactory<AppBloc>(
-    () => AppBloc(
-      inject.get(),
-      inject.get(),
-    ),
-  );
-}
-
-void initUiLayerMappers() {
-  inject.registerFactory<MovieToHomePageMovieMapper>(
-    () => MovieToHomePageMovieMapper(
-      movieIdToImage: inject.get(),
-      movieRatingToStarsCount: inject.get(),
-      durationToString: inject.get(),
-    ),
-  );
-
-  inject.registerFactory<TrendingToHomeListMapper>(
-    () => TrendingToHomeListMapper(
-      movieToHomePageMovieMapper: inject.get(),
-    ),
-  );
-
-  inject.registerFactory<AnticipatedToHomeListMapper>(
-    () => AnticipatedToHomeListMapper(
-      movieToHomePageMovieMapper: inject.get(),
-    ),
-  );
-  inject.registerFactory(
-    () => MovieToMovieDetailsMapper(
-      durationToString: inject.get(),
-      movieIdToImage: inject.get(),
-      movieRatingToStarsCount: inject.get(),
-      listToGenres: inject.get(),
-      ratingToString: inject.get(),
-    ),
-  );
-  inject.registerFactory<PeoplesToCrewUiMapper>(() => PeoplesToCrewUiMapper());
-}
-
-void initBlocModule() {
-  inject.registerFactory<SplashScreenBloc>(
-    () => SplashScreenBloc(
-      inject.get<InitialApiCallUseCase>(),
-    ),
-  );
-  inject.registerFactory<HomeBloc>(
-    () => HomeBloc(
-      inject.get<FetchTrendingMoviesUseCase>(),
-      inject.get<FetchAnticipatedMoviesUseCase>(),
-      inject.get<TrendingToHomeListMapper>(),
-      inject.get<AnticipatedToHomeListMapper>(),
-      inject.get<LogButtonUseCase>(),
-    ),
-  );
-  inject.registerFactory<MovieDetailsBloc>(
-    () => MovieDetailsBloc(
-      inject.get<FetchCrewAndCastUseCase>(),
-      inject.get<MovieToMovieDetailsMapper>(),
-      inject.get<PeoplesToCrewUiMapper>(),
-      inject.get<LogButtonUseCase>(),
-    ),
-  );
-
-  inject.registerFactory<LoginBloc>(
-    () => LoginBloc(
-      inject.get(),
-      inject.get(),
-      inject.get(),
-      inject.get(),
-      inject.get(),
-    ),
-  );
 }

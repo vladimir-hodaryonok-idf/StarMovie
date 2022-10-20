@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 
-class LoginGoogleUseCase implements OutUseCase<Future<bool>> {
+class LoginGoogleUseCase implements OutUseCase<Future<void>> {
   final AuthRepository authRepository;
   final PreferencesLocalRepository preferences;
 
@@ -11,10 +11,14 @@ class LoginGoogleUseCase implements OutUseCase<Future<bool>> {
   });
 
   @override
-  Future<bool> call() async {
+  Future<void> call() async {
     final UserEmailPass? user = await authRepository.loginWithGoogle();
-    return user != null
-        ? await authRepository.isLoginAndPasswordCorrect(user)
-        : false;
+    if (user != null) {
+      final isAbleToLogin =
+          await authRepository.isLoginAndPasswordCorrect(user);
+      return isAbleToLogin == true
+          ? null
+          : throw ValidationException(ValidationResult.loginFailure());
+    }
   }
 }

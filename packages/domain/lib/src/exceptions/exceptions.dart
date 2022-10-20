@@ -1,3 +1,5 @@
+import 'package:domain/domain.dart';
+
 class AppException implements Exception {
   final String code;
   final String message;
@@ -71,8 +73,14 @@ class TimeOutException extends AppException {
 class UnknownException extends AppException {
   const UnknownException(String? details)
       : super(
-    code: 'unknown exception',
-    message: 'Unknown Error',
-    details: details,
-  );
+          code: 'unknown exception',
+          message: 'Unknown Error',
+          details: details,
+        );
+}
+
+class ValidationException implements Exception {
+  final ValidationResult validationError;
+
+  const ValidationException(this.validationError);
 }

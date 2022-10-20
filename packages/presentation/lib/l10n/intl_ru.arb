@@ -14,5 +14,12 @@
   "loginPassword": "ПАРОЛЬ",
   "loginBtn": "Вход",
   "emptyData" : "Нет Данных",
-  "shareString": "Смотри, какой я фильм нашел! \nhttps://www.themoviedb.org/movie/{id}?language={lng}"
+  "shareString": "Смотри, какой я фильм нашел! \nhttps://www.themoviedb.org/movie/{id}?language={lng}",
+  "loginIsRequired": "Требуется логин",
+  "invalidLoginFormat": "Логин должен быть 'Email'",
+  "loginMinLength":"Логин должен быть минимум 8 символов",
+  "passwordIsRequired": "Требуется пароль",
+  "passwordMinLength": "Пароль должен быть минимум 7 символов",
+  "invalidPassword": "Неверный пароль",
+  "invalidLogin": "Неверный логин"
 }

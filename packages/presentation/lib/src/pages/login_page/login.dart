@@ -6,9 +6,8 @@ import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/login_page/widgets/form_widget.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
-
-import 'bloc/login_bloc.dart';
-import 'bloc/login_data.dart';
+import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
+import 'package:presentation/src/pages/login_page/bloc/login_data.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -50,11 +49,19 @@ class _LoginState extends BlocScreenState<Login, LoginBloc> {
         builder: (context, snapShot) {
           final data = snapShot.data;
           final tile = data?.tile;
-          return FormWidget(
-            bloc: bloc,
-            tile: tile?.errorMessage,
-            data: data,
-          );
+          if (data != null && tile != null) {
+            return FormWidget(
+              passwordValidation: bloc.validatePassword,
+              loginValidation: bloc.validateLogin,
+              onLoginChange: bloc.onLoginChange,
+              onPasswordChange: bloc.onPasswordChange,
+              formKey: bloc.formKey,
+              onLoginTap: bloc.auth,
+              onFacebookTap: bloc.authFacebook,
+              onGoogleTap: bloc.authGoogle,
+            );
+          }
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );
