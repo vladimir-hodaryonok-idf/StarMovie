@@ -42,14 +42,14 @@ jobs:
       - name: GetDependenciesPresentation
         run: |
           cd packages/presentation/
-          flutter pub add intl_utils
+          flutter pub global activate intl_utils 2.7.0
           flutter pub get
+      - name: GeneratePresentation
+        run: |
+          cd packages/presentation/
+          flutter pub global run intl_utils:generate
       - name: AppPubGet
         run: flutter pub get
-#      - name: GeneratePresentation
-#        run: |
-#          cd packages/presentation/
-#          flutter pub global run intl_utils:generate
       - run: flutter build apk -t lib/production.dart --flavor Prod
       - name: Push APK to Releases
         uses: ncipollo/release-action@v1
