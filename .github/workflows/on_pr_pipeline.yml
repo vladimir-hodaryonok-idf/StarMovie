@@ -19,13 +19,13 @@ jobs:
 #          flutter-version: '3.0.5'
 #          channel: 'stable'
       - name: ApiKeysFlutter
-        env:
-          prod_keys: ${{ secrets.KEYS_PROD }}
+#        env:
+#          prod_keys: ${{ secrets.KEYS_PROD }}
         run: |
           touch "keys_prod.json";
-          echo "$prod_keys" | base64 -d > keys_prod.json;
+          echo "${{ secrets.KEYS_PROD }}" >> keys_prod.json;
           touch "keys_sandbox.json";
-          echo "${{ secrets.KEYS_SANDBOX }}" | base64 -d > keys_sandbox.json;
+          echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
           cat keys_prod.json;
           cat keys_sandbox.json;
 #          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
