@@ -32,20 +32,17 @@ jobs:
       - name: GenerateFilesInDomain
         run: |
           cd packages/domain/
-          flutter pub get && flutter packages pub run build_runner build 
-          cd ..
+          flutter pub get && flutter packages pub run build_runner build
       - name: GenerateFilesInData
         run: |
-          cd data/
+          cd packages/data/
           flutter pub get && flutter packages pub run build_runner build
-          cd ..
       - name: pubGetPresentation
         run: |
-          cd presentation
+          cd packages/presentation/
           flutter pub get
-          cd ..;
-          cd ..;
-      - run: flutter pub get
+      - name: AppPubGet
+        run: flutter pub get
       - run: flutter build apk --flavor Prod
       - name: Push APK to Releases
         uses: ncipollo/release-action@v1
