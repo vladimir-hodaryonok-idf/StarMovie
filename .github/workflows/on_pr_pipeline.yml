@@ -10,21 +10,21 @@ jobs:
     name: Pull request to master
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '3.0.5'
-          channel: 'stable'
+#      - uses: actions/checkout@v1
+#      - uses: actions/setup-java@v1
+#        with:
+#          java-version: '11'
+#      - uses: subosito/flutter-action@v1
+#        with:
+#          flutter-version: '3.0.5'
+#          channel: 'stable'
       - name: ApiKeysFlutter
         run: |
           touch "keys_prod.json";
-          echo ${{secrets.KEYS_PROD}} >> keys_prod.json;
+          echo ${{secrets.KEYS_PROD}} | base64 -d > keys_prod.json;
           cat keys_prod.json;
           touch "keys_sandbox.json";
-          echo ${{secrets.KEYS_SANDBOX}} >> keys_sandbox.json;
+          echo ${{secrets.KEYS_SANDBOX}} | base64 -d > keys_sandbox.json;
           cat keys_sandbox.json;
 #          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
 #          touch "keys_sandbox.json";
@@ -33,7 +33,7 @@ jobs:
         run: |
           cd android;
           touch "keys.propeties";
-          echo ${{secrets.KEYS_FACEBOOK}} >> keys.propeties;
+          echo ${{secrets.KEYS_FACEBOOK}} | base64 -d > keys.propeties;
           cat keys.properties;
 #          echo "facebook_app_id=504363714516184" >> keys.properties;
 #          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
