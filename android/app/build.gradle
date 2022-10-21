@@ -59,7 +59,7 @@ android {
 
     defaultConfig {
         applicationId "com.vladimir.hodaryonok.star_movie"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
