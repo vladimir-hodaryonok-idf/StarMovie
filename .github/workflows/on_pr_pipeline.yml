@@ -10,35 +10,44 @@ jobs:
     name: Pull request to master
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '11'
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '3.0.5'
-        channel: 'stable'
-    - run: touch "keys_prod.json";
-    - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
-    - run: flutter pub get
-    - name: ApiKeys
-      run: |
-         cd android
-         touch "keys.propeties";
-         echo "facebook_app_id=504363714516184" >> keys.properties;
-         echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
-         echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
-         cat keys.properties;
-         cd ..
-#     - run: cd android
-#     - run: touch "keys.propeties";
-#     - run: echo "facebook_app_id=504363714516184" >> keys.properties;
-#     - run: echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
-#     - run: echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
-#     - run: cat keys.properties;
-#     - run: cd ..
-    - run: flutter build apk --flavor Prod
-    - name: Push APK to Releases
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "build/app/outputs/apk/debug/*.apk"
+      - uses: actions/checkout@v1
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '3.0.5'
+          channel: 'stable'
+      - run: touch "keys_prod.json";
+      - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+      - name: ApiKeys
+        run: |
+          cd android
+          touch "keys.propeties";
+          echo "facebook_app_id=504363714516184" >> keys.properties;
+          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
+          echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
+          cat keys.properties;
+          cd ..
+      - name: GenerateFilesInDomain
+        run: |
+          cd packages/domain/
+          flutter pub get && flutter packages pub run build_runner build 
+          cd ..
+      - name: GenerateFilesInData
+        run: |
+          cd data/
+          flutter pub get && flutter packages pub run build_runner build
+          cd ..
+      - name: pubGetPresentation
+        run: |
+          cd presentation
+          flutter pub get
+          cd ..;
+          cd ..;
+      - run: flutter pub get
+      - run: flutter build apk --flavor Prod
+      - name: Push APK to Releases
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/apk/Prod/debug/app-Prod-debug.apk"
