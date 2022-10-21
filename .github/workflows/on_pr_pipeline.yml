@@ -22,6 +22,8 @@ jobs:
         run: |
           touch "keys_prod.json";
           echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+          touch "keys_sandbox.json";
+          echo "{\"traktApiKey\":\"8238d1ee5bdd9ee352543156c217cc3e619c75cbe32d8b70a003c4186f0564d6\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
       - name: ApiKeysAndroid
         run: |
           cd android
