@@ -42,6 +42,7 @@ jobs:
       - name: GetDependenciesPresentation
         run: |
           cd packages/presentation/
+          flutter pub add intl_utils
           flutter pub get
       - name: AppPubGet
         run: flutter pub get
