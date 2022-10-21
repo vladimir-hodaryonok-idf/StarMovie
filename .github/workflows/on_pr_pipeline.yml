@@ -18,9 +18,11 @@ jobs:
         with:
           flutter-version: '3.0.5'
           channel: 'stable'
-      - run: touch "keys_prod.json";
-      - run: echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
-      - name: ApiKeys
+      - name: ApiKeysFlutter
+        run: |
+          touch "keys_prod.json";
+          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+      - name: ApiKeysAndroid
         run: |
           cd android
           touch "keys.propeties";
@@ -29,22 +31,23 @@ jobs:
           echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
           cat keys.properties;
           cd ..
-      - name: GenerateFilesInDomain
+      - name: GetDependenciesAndGenerateDomain
         run: |
           cd packages/domain/
           flutter pub get && flutter packages pub run build_runner build
-      - name: GenerateFilesInData
+      - name: GetDependenciesAndGenerateData
         run: |
           cd packages/data/
           flutter pub get && flutter packages pub run build_runner build
-      - name: pubGetPresentation
+      - name: GetDependenciesAndGeneratePresentation
         run: |
           cd packages/presentation/
+          flutter pub global run intl_utils:generate
           flutter pub get
       - name: AppPubGet
         run: flutter pub get
-      - run: flutter build apk --flavor Prod
+      - run: flutter build apk -t lib/production.dart --flavor Prod
       - name: Push APK to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/Prod/debug/app-Prod-debug.apk"
+          artifacts: "build/app/outputs/flutter-apk/app-prod-release.apk"
