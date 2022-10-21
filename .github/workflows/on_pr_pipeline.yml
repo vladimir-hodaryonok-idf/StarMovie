@@ -39,16 +39,16 @@ jobs:
         run: |
           cd packages/data/
           flutter pub get && flutter packages pub run build_runner build
-      - name: GetDependenciesPresentation
+      - name: GetDependenciesAndGeneratePresentation
         run: |
           cd packages/presentation/
-          flutter pub get
+          flutter pub get && flutter pub global run intl_utils:generate
       - name: AppPubGet
         run: flutter pub get
-      - name: GeneratePresentation
-        run: |
-          cd packages/presentation/
-          flutter pub global run intl_utils:generate
+#      - name: GeneratePresentation
+#        run: |
+#          cd packages/presentation/
+#          flutter pub global run intl_utils:generate
       - run: flutter build apk -t lib/production.dart --flavor Prod
       - name: Push APK to Releases
         uses: ncipollo/release-action@v1
