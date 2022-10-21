@@ -29,12 +29,9 @@ jobs:
       - name: ApiKeysAndroid
         run: |
           cd android;
-          touch "keys.propeties";
-          echo "${{ secrets.KEYS_FACEBOOK }}" >> keys.propeties;
+          touch "keys.properties";
+          echo "${{ secrets.KEYS_FACEBOOK }}" >> keys.properties;
           cat keys.properties;
-#          echo "facebook_app_id=504363714516184" >> keys.properties;
-#          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
-#          echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
 #      - name: GetDependenciesAndGenerateDomain
 #        run: |
 #          cd packages/domain/
