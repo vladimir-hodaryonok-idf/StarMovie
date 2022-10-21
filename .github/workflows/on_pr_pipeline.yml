@@ -42,8 +42,7 @@ jobs:
       - name: GetDependenciesAndGeneratePresentation
         run: |
           cd packages/presentation/
-          flutter pub global run intl_utils:generate
-          flutter pub get
+          flutter pub get && flutter pub global run intl_utils:generate
       - name: AppPubGet
         run: flutter pub get
       - run: flutter build apk -t lib/production.dart --flavor Prod
