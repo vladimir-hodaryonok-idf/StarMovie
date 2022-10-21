@@ -19,13 +19,15 @@ jobs:
 #          flutter-version: '3.0.5'
 #          channel: 'stable'
       - name: ApiKeysFlutter
+        env:
+          prod_keys: ${{ secrets.KEYS_PROD }}
         run: |
           touch "keys_prod.json";
-          echo ${{secrets.KEYS_PROD}} | base64 -d > keys_prod.json;
+          echo "$prod_keys" | base64 -d > keys_prod.json;
           touch "keys_sandbox.json";
-          echo ${{secrets.KEYS_SANDBOX}} | base64 -d > keys_sandbox.json;
-#          cat keys_prod.json;
-#          cat keys_sandbox.json;
+          echo "${{ secrets.KEYS_SANDBOX }}" | base64 -d > keys_sandbox.json;
+          cat keys_prod.json;
+          cat keys_sandbox.json;
 #          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
 #          touch "keys_sandbox.json";
 #          echo "{\"traktApiKey\":\"8238d1ee5bdd9ee352543156c217cc3e619c75cbe32d8b70a003c4186f0564d6\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
@@ -33,7 +35,7 @@ jobs:
         run: |
           cd android;
           touch "keys.propeties";
-          echo ${{secrets.KEYS_FACEBOOK}} | base64 -d > keys.propeties;
+          echo "${{ secrets.KEYS_FACEBOOK }}" | base64 -d > keys.propeties;
           cat keys.properties;
 #          echo "facebook_app_id=504363714516184" >> keys.properties;
 #          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
