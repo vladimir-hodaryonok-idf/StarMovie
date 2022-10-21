@@ -21,39 +21,44 @@ jobs:
       - name: ApiKeysFlutter
         run: |
           touch "keys_prod.json";
-          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+          echo ${{secrets.KEYS_PROD}} >> keys_prod.json;
+          cat keys_prod.json;
           touch "keys_sandbox.json";
-          echo "{\"traktApiKey\":\"8238d1ee5bdd9ee352543156c217cc3e619c75cbe32d8b70a003c4186f0564d6\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+          echo ${{secrets.KEYS_SANDBOX}} >> keys_sandbox.json;
+          cat keys_sandbox.json;
+      #          echo "{\"traktApiKey\":\"90ab4446135b42228a9c1a0957788ec82de5b5df568915903a319e02938227cc\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
+#          touch "keys_sandbox.json";
+#          echo "{\"traktApiKey\":\"8238d1ee5bdd9ee352543156c217cc3e619c75cbe32d8b70a003c4186f0564d6\",\"omdbApiKey\":\"5e582eee\",\"tmdbApiKey\":\"c8e25ea9a912cc6edfd3f4f87e1ee8cf\"}" >> test.json;
       - name: ApiKeysAndroid
         run: |
           cd android
           touch "keys.propeties";
-          echo "facebook_app_id=504363714516184" >> keys.properties;
-          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
-          echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
+          echo ${{secrets.KEYS_FACEBOOK}} >> keys.propeties;
+#          echo "facebook_app_id=504363714516184" >> keys.properties;
+#          echo "fb_login_protocol_scheme=fb504363714516184" >> keys.properties;
+#          echo "facebook_client_token=034b33121c13d5bfa49775ae9dd73ec4test" >> keys.properties;
           cat keys.properties;
-          cd ..
-      - name: GetDependenciesAndGenerateDomain
-        run: |
-          cd packages/domain/
-          flutter pub get && flutter packages pub run build_runner build
-      - name: GetDependenciesAndGenerateData
-        run: |
-          cd packages/data/
-          flutter pub get && flutter packages pub run build_runner build
-      - name: GetDependenciesPresentation
-        run: |
-          cd packages/presentation/
-          flutter pub global activate intl_utils 2.7.0
-          flutter pub get
-      - name: GeneratePresentation
-        run: |
-          cd packages/presentation/
-          flutter pub global run intl_utils:generate
-      - name: AppPubGet
-        run: flutter pub get
-      - run: flutter build apk -t lib/production.dart --flavor Prod
-      - name: Push APK to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "build/app/outputs/flutter-apk/*.apk"
+#      - name: GetDependenciesAndGenerateDomain
+#        run: |
+#          cd packages/domain/
+#          flutter pub get && flutter packages pub run build_runner build
+#      - name: GetDependenciesAndGenerateData
+#        run: |
+#          cd packages/data/
+#          flutter pub get && flutter packages pub run build_runner build
+#      - name: GetDependenciesPresentation
+#        run: |
+#          cd packages/presentation/
+#          flutter pub global activate intl_utils 2.7.0
+#          flutter pub get
+#      - name: GeneratePresentation
+#        run: |
+#          cd packages/presentation/
+#          flutter pub global run intl_utils:generate
+#      - name: AppPubGet
+#        run: flutter pub get
+#      - run: flutter build apk -t lib/production.dart --flavor Prod
+#      - name: Push APK to Releases
+#        uses: ncipollo/release-action@v1
+#        with:
+#          artifacts: "build/app/outputs/flutter-apk/*.apk"
