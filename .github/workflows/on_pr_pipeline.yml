@@ -32,27 +32,29 @@ jobs:
           touch "keys.properties";
           echo "${{ secrets.KEYS_FACEBOOK }}" >> keys.properties;
           cat keys.properties;
-#      - name: GetDependenciesAndGenerateDomain
-#        run: |
-#          cd packages/domain/
-#          flutter pub get && flutter packages pub run build_runner build
-#      - name: GetDependenciesAndGenerateData
-#        run: |
-#          cd packages/data/
-#          flutter pub get && flutter packages pub run build_runner build
-#      - name: GetDependenciesPresentation
-#        run: |
-#          cd packages/presentation/
-#          flutter pub global activate intl_utils 2.7.0
-#          flutter pub get
-#      - name: GeneratePresentation
-#        run: |
-#          cd packages/presentation/
-#          flutter pub global run intl_utils:generate
-#      - name: AppPubGet
-#        run: flutter pub get
-#      - run: flutter build apk -t lib/production.dart --flavor Prod
-#      - name: Push APK to Releases
-#        uses: ncipollo/release-action@v1
-#        with:
-#          artifacts: "build/app/outputs/flutter-apk/*.apk"
+      - name: GetDependenciesAndGenerateDomain
+        run: |
+          cd packages/domain/
+          flutter pub get && flutter packages pub run build_runner build
+      - name: GetDependenciesAndGenerateData
+        run: |
+          cd packages/data/
+          flutter pub get && flutter packages pub run build_runner build
+      - name: GetDependenciesPresentation
+        run: |
+          cd packages/presentation/
+          flutter pub global activate intl_utils 2.7.0
+          flutter pub get
+      - name: GeneratePresentation
+        run: |
+          cd packages/presentation/
+          flutter pub global run intl_utils:generate
+      - name: AppPubGet
+        run: flutter pub get
+      - run: flutter build apk --debug -t lib/production.dart --flavor SandBox --multidex flag
+      - name: Push APK to Releases
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}
+            file: build/app/outputs/flutter-apk/app-sandbox-debug.apk
