@@ -1,4 +1,4 @@
-import 'package:data/src/database/dto/people_with_image.dart';
+import 'package:data/src/database/dto/people_with_image_dto.dart';
 import 'package:floor/floor.dart';
 
 @dao
@@ -9,6 +9,6 @@ abstract class PeopleDao {
   @Query('SELECT * FROM PeopleWithImageDto WHERE movieId = :movieId')
   Future<List<PeopleWithImageDto>> fetchPeoplesByMovieId(int movieId);
 
-  @Query('DELETE FROM PeopleWithImageDto')
-  Future<void> clearPeoples();
+  @Query('DELETE FROM PeopleWithImageDto WHERE movieId NOT IN (:idList)')
+  Future<void> deleteIfIdIsNotInList(List<int> idList);
 }
