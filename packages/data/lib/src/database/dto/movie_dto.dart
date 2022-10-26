@@ -2,8 +2,9 @@ import 'package:domain/domain.dart';
 import 'package:floor/floor.dart';
 
 @entity
-class MovieAnticipatedDto {
-  final int listCount;
+class MovieDto {
+  final int? watchers;
+  final int? listCount;
   final String? title;
   final int? year;
   @PrimaryKey(autoGenerate: false)
@@ -28,7 +29,8 @@ class MovieAnticipatedDto {
   final List<String>? genres;
   final String? certification;
 
-  const MovieAnticipatedDto(
+  const MovieDto(
+    this.watchers,
     this.listCount,
     this.title,
     this.year,
@@ -54,8 +56,35 @@ class MovieAnticipatedDto {
     this.certification,
   );
 
-  factory MovieAnticipatedDto.fromAnticipated(MovieAnticipated anticipated) =>
-      MovieAnticipatedDto(
+  factory MovieDto.fromTrending(MovieTrending trending) => MovieDto(
+        trending.watchers,
+        null,
+        trending.movie.title,
+        trending.movie.year,
+        trending.movie.ids?.trakt,
+        trending.movie.ids?.slug,
+        trending.movie.ids?.imdb,
+        trending.movie.ids?.tmdb,
+        trending.movie.tagline,
+        trending.movie.overview,
+        trending.movie.released,
+        trending.movie.runtime,
+        trending.movie.country,
+        trending.movie.trailer,
+        trending.movie.homepage,
+        trending.movie.status,
+        trending.movie.rating,
+        trending.movie.votes,
+        trending.movie.commentCount,
+        trending.movie.updatedAt,
+        trending.movie.language,
+        trending.movie.availableTranslations,
+        trending.movie.genres,
+        trending.movie.certification,
+      );
+
+  factory MovieDto.fromAnticipated(MovieAnticipated anticipated) => MovieDto(
+        null,
         anticipated.listCount,
         anticipated.movie.title,
         anticipated.movie.year,
@@ -108,6 +137,36 @@ class MovieAnticipatedDto {
           genres,
           certification,
         ),
-        listCount,
+        listCount.toIntOrPlug(),
+      );
+
+  MovieTrending toMovieTrending() => MovieTrending(
+        Movie(
+          title,
+          year,
+          Ids(
+            trakt,
+            slug,
+            imdb,
+            tmdb,
+          ),
+          tagline,
+          overview,
+          released,
+          runtime,
+          country,
+          trailer,
+          homepage,
+          status,
+          rating,
+          votes,
+          commentCount,
+          updatedAt,
+          language,
+          availableTranslations,
+          genres,
+          certification,
+        ),
+        watchers.toIntOrPlug(),
       );
 }

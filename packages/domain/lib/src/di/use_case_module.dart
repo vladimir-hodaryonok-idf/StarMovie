@@ -6,7 +6,6 @@ void initUseCases() {
     () => FetchTrendingMoviesUseCase(
       networkRepository: inject.get(),
       jsonToTrendingListMapper: inject.get(),
-      peopleLocalRepository: inject.get(),
       extractItemLimit: inject.get(),
       dateRepository: inject.get(),
       localCacheRepository: inject.get(),
@@ -17,7 +16,6 @@ void initUseCases() {
     () => FetchAnticipatedMoviesUseCase(
       networkRepository: inject.get(),
       extractItemLimit: inject.get(),
-      peopleLocalRepository: inject.get(),
       jsonToAnticipatedListMapper: inject.get(),
       localCacheRepository: inject.get(),
       dateRepository: inject.get(),

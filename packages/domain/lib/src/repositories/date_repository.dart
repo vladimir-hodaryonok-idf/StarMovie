@@ -1,6 +1,9 @@
-abstract class DatePreferencesRepository{
+abstract class DateRepository {
   Future<void> saveTrendingLastUpdateFromApiDate(DateTime date);
+
   Future<void> saveAnticipatedLastUpdateFromApiDate(DateTime date);
-  DateTime? getTrendingLastRequestDate();
-  DateTime? getAnticipatedLastUpdateDate();
+
+  Future<DateTime?> getTrendingLastRequestDate();
+
+  Future<DateTime?> getAnticipatedLastUpdateDate();
 }

@@ -1,19 +1,29 @@
+import 'package:data/src/database/dto/movie_dto.dart';
 import 'package:domain/domain.dart';
 import 'package:floor/floor.dart';
 
-@entity
+@Entity(tableName: 'PeopleWithImageDto', primaryKeys: const [
+  'trakt',
+  'movieId',
+], foreignKeys: const [
+  ForeignKey(
+    childColumns: ['movieId'],
+    parentColumns: ['trakt'],
+    entity: MovieDto,
+    onDelete: ForeignKeyAction.cascade,
+  ),
+])
 class PeopleWithImageDto {
   final String? character;
   final List<String>? characters;
   final String? name;
-  @PrimaryKey(autoGenerate: false)
   final int? trakt;
   final String? slug;
   final String? imdb;
   final int? tmdb;
   final int? tvrage;
-  final int movieId;
   final String imageUrl;
+  final int movieId;
 
   const PeopleWithImageDto(
     this.character,
@@ -24,8 +34,8 @@ class PeopleWithImageDto {
     this.imdb,
     this.tmdb,
     this.tvrage,
-    this.movieId,
     this.imageUrl,
+    this.movieId,
   );
 
   factory PeopleWithImageDto.fromPeopleAndId(
@@ -41,8 +51,8 @@ class PeopleWithImageDto {
         peoples.person?.ids?.imdb,
         peoples.person?.ids?.tmdb,
         peoples.person?.ids?.tvrage,
-        movieId,
         peoples.imageUrl,
+        movieId,
       );
 
   PeopleWithImage toPeoplesWithImages() => PeopleWithImage(

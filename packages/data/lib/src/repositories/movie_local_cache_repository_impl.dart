@@ -1,6 +1,5 @@
 import 'package:data/src/database/dao/movie_dao.dart';
-import 'package:data/src/database/dto/movie_anticipated_dto.dart';
-import 'package:data/src/database/dto/movie_trending_dto.dart';
+import 'package:data/src/database/dto/movie_dto.dart';
 import 'package:domain/domain.dart';
 
 class MovieLocalCacheRepositoryImpl implements MovieLocalCacheRepository {
@@ -10,45 +9,54 @@ class MovieLocalCacheRepositoryImpl implements MovieLocalCacheRepository {
 
   @override
   Future<List<MovieAnticipated>> getAnticipated() async {
-    final List<MovieAnticipatedDto> cachedList =
-        await movieDao.getAnticipatedList();
+    final List<MovieDto> cachedList = await movieDao.getAnticipatedList();
     return cachedList.map((e) => e.toMovieAnticipated()).toList();
   }
 
   @override
   Future<List<MovieTrending>> getTrending() async {
-    final List<MovieTrendingDto> cachedList = await movieDao.getTrendingList();
+    final List<MovieDto> cachedList = await movieDao.getTrendingList();
     return cachedList.map((e) => e.toMovieTrending()).toList();
   }
 
   @override
-  Future<void> saveAnticipatedIntoCache(
-      List<MovieAnticipated> anticipated) async {
-    await movieDao.clearAnticipated();
-    final List<MovieAnticipatedDto> toCacheList =
-        anticipated.map((e) => MovieAnticipatedDto.fromAnticipated(e)).toList();
-    await movieDao.insertAnticipated(toCacheList);
+  Future<void> updateOrSaveTrends(List<MovieTrending> trends) async {
+    final fromApi = trends.map((e) => MovieDto.fromTrending(e)).toList();
+    final fromDb = await movieDao.getTrendingList();
+    return _updateOrSave(fromDb, fromApi);
   }
 
   @override
-  Future<void> saveTrendingIntoCache(List<MovieTrending> trends) async {
-    await movieDao.clearTrending();
-    final List<MovieTrendingDto> toCacheList =
-        trends.map((e) => MovieTrendingDto.fromTrending(e)).toList();
-    await movieDao.insertTrending(toCacheList);
+  Future<void> updateOrSaveAnticipated(
+    List<MovieAnticipated> anticipated,
+  ) async {
+    final fromApi =
+        anticipated.map((e) => MovieDto.fromAnticipated(e)).toList();
+    final fromDb = await movieDao.getAnticipatedList();
+    return _updateOrSave(fromDb, fromApi);
   }
 
-  @override
-  Future<bool> isCachedTrendsActual(List<int> idList) async {
-    final List<MovieTrendingDto> actualMovies =
-        await movieDao.compareTrendingListById(idList);
-    return actualMovies.length == idList.length ? true : false;
+  Future<void> _updateOrSave(
+    List<MovieDto> fromDb,
+    List<MovieDto> fromApi,
+  ) {
+    if (fromDb.isNotEmpty) {
+      _update(fromDb, fromApi);
+      return Future.value();
+    }
+    return movieDao.insertMovies(fromApi);
   }
 
-  @override
-  Future<bool> isCachedAnticipatedActual(List<int> idList) async{
-    final List<MovieAnticipatedDto> actualMovies =
-        await movieDao.compareAnticipatedListById(idList);
-    return actualMovies.length == idList.length ? true : false;
+  void _update(List<MovieDto> fromDb, List<MovieDto> fromApi) {
+    final itemsToDelete =
+        fromDb.where((element) => !fromApi.contains(element)).toList();
+    if (itemsToDelete.isNotEmpty) {
+      final itemsToAdd =
+          fromApi.where((element) => !fromDb.contains(element)).toList();
+      Future.wait([
+        movieDao.deleteNotActualMovies(itemsToDelete),
+        movieDao.insertMovies(itemsToAdd),
+      ]);
+    }
   }
 }

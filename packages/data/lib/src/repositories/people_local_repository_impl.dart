@@ -21,10 +21,6 @@ class PeopleLocalRepositoryImpl implements PeopleLocalRepository {
   Future<void> saveCast(List<PeopleWithImage> peoples, int id) async {
     final toCacheList =
         peoples.map((e) => PeopleWithImageDto.fromPeopleAndId(e, id)).toList();
-    await peopleDao.insertPeoples(toCacheList);
+    await peopleDao.insertPeople(toCacheList);
   }
-
-  @override
-  Future<void> deleteUnnecessaryCastById(List<int> idList) =>
-      peopleDao.deleteIfIdIsNotInList(idList);
 }

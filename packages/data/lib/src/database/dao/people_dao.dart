@@ -4,11 +4,8 @@ import 'package:floor/floor.dart';
 @dao
 abstract class PeopleDao {
   @Insert(onConflict: OnConflictStrategy.replace)
-  Future<List<int>> insertPeoples(List<PeopleWithImageDto> peoples);
+  Future<List<int>> insertPeople(List<PeopleWithImageDto> peoples);
 
   @Query('SELECT * FROM PeopleWithImageDto WHERE movieId = :movieId')
   Future<List<PeopleWithImageDto>> fetchPeoplesByMovieId(int movieId);
-
-  @Query('DELETE FROM PeopleWithImageDto WHERE movieId NOT IN (:idList)')
-  Future<void> deleteIfIdIsNotInList(List<int> idList);
 }
