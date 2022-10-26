@@ -7,7 +7,6 @@ void initUseCases() {
       networkRepository: inject.get(),
       jsonToTrendingListMapper: inject.get(),
       extractItemLimit: inject.get(),
-      isApiRequestAllowed: inject.get(),
       dateRepository: inject.get(),
       localCacheRepository: inject.get(),
       extractDate: inject.get(),
@@ -21,7 +20,6 @@ void initUseCases() {
       localCacheRepository: inject.get(),
       dateRepository: inject.get(),
       extractDate: inject.get(),
-      isApiRequestAllowed: inject.get(),
     ),
   );
   inject.registerFactory(

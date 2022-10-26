@@ -1,5 +1,5 @@
 import 'package:data/src/database/dao/people_dao.dart';
-import 'package:data/src/database/dto/people_with_image.dart';
+import 'package:data/src/database/dto/people_with_image_dto.dart';
 import 'package:domain/domain.dart';
 
 class PeopleLocalRepositoryImpl implements PeopleLocalRepository {
@@ -19,9 +19,8 @@ class PeopleLocalRepositoryImpl implements PeopleLocalRepository {
 
   @override
   Future<void> saveCast(List<PeopleWithImage> peoples, int id) async {
-    await peopleDao.clearPeoples();
     final toCacheList =
         peoples.map((e) => PeopleWithImageDto.fromPeopleAndId(e, id)).toList();
-    await peopleDao.insertPeoples(toCacheList);
+    await peopleDao.insertPeople(toCacheList);
   }
 }
