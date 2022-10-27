@@ -8,4 +8,6 @@ class TraktApiEndpoints {
   static const String movies = '/movies';
 
   static const String people = '/people';
+
+  static const String comments = '/comments';
 }

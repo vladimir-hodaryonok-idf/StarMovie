@@ -5,10 +5,12 @@ import 'package:presentation/style/dimens.dart';
 
 class MovieDetailsSwitcher extends StatelessWidget {
   const MovieDetailsSwitcher({
+    required this.onTap,
     required this.currentPosition,
     super.key,
   });
 
+  final Function(DetailsSwitcher) onTap;
   final DetailsSwitcher currentPosition;
 
   @override
@@ -32,14 +34,17 @@ class MovieDetailsSwitcher extends StatelessWidget {
               DetailsButton(
                 id: DetailsSwitcher.detail,
                 activeButtonId: currentPosition,
+                onTap: onTap,
               ),
               DetailsButton(
                 id: DetailsSwitcher.reviews,
                 activeButtonId: currentPosition,
+                onTap: onTap,
               ),
               DetailsButton(
                 id: DetailsSwitcher.showtime,
                 activeButtonId: currentPosition,
+                onTap: onTap,
               ),
             ],
           ),

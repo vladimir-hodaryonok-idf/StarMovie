@@ -7,6 +7,7 @@ import 'package:presentation/src/pages/login_page/bloc/login_bloc.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/movie_details_bloc.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
+import 'package:presentation/src/pages/movie_details_page/mappers/reviews_to_reviews_ui.dart';
 import 'package:presentation/src/pages/splash_screen/bloc/splash_screen_bloc.dart';
 
 void initBlocModule() {
@@ -32,6 +33,8 @@ void initBlocModule() {
       inject.get<MovieToMovieDetailsMapper>(),
       inject.get<PeoplesToCrewUiMapper>(),
       inject.get<LogButtonUseCase>(),
+      inject.get<FetchReviewsUseCase>(),
+      inject.get<ReviewsToReviewsUiMapper>(),
     ),
   );
 

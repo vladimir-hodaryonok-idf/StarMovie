@@ -9,4 +9,7 @@ class TraktApiPathFactory {
 
   static getCastAndCrewPath(int id) =>
       TraktApiEndpoints.movies + '/${id}' + TraktApiEndpoints.people;
+
+  static getReviewsPath(int id) =>
+      TraktApiEndpoints.movies + '/${id}' + TraktApiEndpoints.comments;
 }

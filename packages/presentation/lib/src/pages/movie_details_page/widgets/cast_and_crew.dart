@@ -136,7 +136,7 @@ class ImageWithName extends StatelessWidget {
       width: fiftyFivePercentsOfWidth,
       child: Row(
         children: [
-          PersonImage(item: item),
+          PersonImage(imageUrl: item.imageUrl),
           SizedBox(
             width: Dimens.size12,
           ),
@@ -152,11 +152,11 @@ class ImageWithName extends StatelessWidget {
 
 class PersonImage extends StatelessWidget {
   const PersonImage({
-    required this.item,
+    required this.imageUrl,
     super.key,
   });
 
-  final CrewAndCastUi item;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +166,7 @@ class PersonImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(Dimens.size25),
         child: Image.network(
-          item.imageUrl,
+          imageUrl,
           fit: BoxFit.fitWidth,
           errorBuilder: (context, exception, stackTrace) => ImageErrorWidget(
             height: Dimens.size50,

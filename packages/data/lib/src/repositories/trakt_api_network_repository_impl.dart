@@ -51,4 +51,13 @@ class TraktApiNetworkRepositoryImpl implements TraktApiNetworkRepository {
     );
     return CrewAndCast.fromJson(response.data).cast ?? List.empty();
   }
+
+  @override
+  Future<List<ReviewMessage>> fetchReviews(int id) async {
+    final response = await _fetchData(
+      path: TraktApiPathFactory.getReviewsPath(id),
+      query: TraktApiQueryFactory.generateMoviesReviewsFullList(),
+    );
+    return response.data.map((e) => ReviewMessage.fromJson(e)).toList();
+  }
 }

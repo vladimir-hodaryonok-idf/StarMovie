@@ -47,6 +47,18 @@ TextStyle sfProSemiMedium14px = TextStyle(
   fontSize: Dimens.size14,
 );
 
+TextStyle sfProSemiRegular12px50opacity = TextStyle(
+  color: Color(0xffFFFFFF).withOpacity(0.5),
+  fontFamily: _fontFamilySfProRegular,
+  fontSize: Dimens.size12,
+);
+
+TextStyle sfProSemiRegular14px = TextStyle(
+  color: Color(0xffFFFFFF),
+  fontFamily: _fontFamilySfProRegular,
+  fontSize: Dimens.size14,
+);
+
 TextStyle sfProSemiRegular16px50opacity = TextStyle(
   color: Color(0xffFFFFFF).withOpacity(0.5),
   fontFamily: _fontFamilySfProRegular,
