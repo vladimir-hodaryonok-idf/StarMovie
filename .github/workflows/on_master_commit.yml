@@ -24,6 +24,7 @@ jobs:
       - name: ApiKeysFlutter
         run: |
           touch "keys_prod.json";
+          touch "keys_sandbox.json";
           echo "${{ secrets.KEYS_PROD }}" >> keys_prod.json;
       - name: ApiKeysAndroid
         run: |
