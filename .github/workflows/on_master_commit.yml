@@ -23,8 +23,8 @@ jobs:
         run: flutter upgrade          
       - name: ApiKeysFlutter
         run: |
-          touch "keys_sandbox.json";
-          echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
+          touch "keys_prod.json";
+          echo "${{ secrets.KEYS_PROD }}" >> keys_prod.json;
       - name: ApiKeysAndroid
         run: |
           touch "keys.properties";
