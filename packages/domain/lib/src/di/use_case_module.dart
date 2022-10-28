@@ -7,6 +7,9 @@ void initUseCases() {
       networkRepository: inject.get(),
       jsonToTrendingListMapper: inject.get(),
       extractItemLimit: inject.get(),
+      dateRepository: inject.get(),
+      localCacheRepository: inject.get(),
+      extractDate: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -14,6 +17,9 @@ void initUseCases() {
       networkRepository: inject.get(),
       extractItemLimit: inject.get(),
       jsonToAnticipatedListMapper: inject.get(),
+      localCacheRepository: inject.get(),
+      dateRepository: inject.get(),
+      extractDate: inject.get(),
     ),
   );
   inject.registerFactory(
@@ -21,6 +27,7 @@ void initUseCases() {
       traktApiNetworkRepository: inject.get(),
       tmdbApiNetworkRepository: inject.get(),
       castAndImagesMapper: inject.get(),
+      peopleLocalRepository: inject.get(),
     ),
   );
   inject.registerFactory(

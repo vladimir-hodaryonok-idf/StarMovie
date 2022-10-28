@@ -38,4 +38,11 @@ export 'src/use_cases/validate_login_form.dart';
 export 'src/models/validation_model/login_form_result.dart';
 export 'src/use_cases/log_button.dart';
 export 'src/use_cases/log_page.dart';
+export 'src/repositories/movie_local_repository.dart';
+export 'src/repositories/date_repository.dart';
 export 'src/const/validation_and_login_result.dart';
+export 'src/models/movie_model/movie/ids.dart';
+export 'src/models/people_model/person.dart';
+export 'src/models/people_model/ids.dart';
+export 'src/repositories/people_local_repository.dart';
+

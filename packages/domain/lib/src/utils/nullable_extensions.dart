@@ -12,3 +12,7 @@ extension GetFirstIOrDefaultValue on List<String>? {
 
   String get firstOrEmpty => this?.firstOrNull ?? '';
 }
+
+extension ToIntOr on int?{
+  int toIntOrPlug() => this ?? -1;
+}

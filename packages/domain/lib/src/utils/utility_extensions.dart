@@ -1,3 +1,4 @@
+
 import 'package:domain/domain.dart';
 
 extension StringExtension on String {
@@ -18,6 +19,18 @@ extension NullAbleString on String? {
   String get valueOrEmpty => this ?? '';
 }
 
-extension IsValid on ValidationResult{
+extension IsValid on ValidationResult {
   bool get isFailure => this.login != null || this.password != null;
+}
+
+extension IsApiRequestAllowed on DateTime? {
+  bool get isApiRequestAllowed {
+    if (this != null) {
+      final currentDate = DateTime.now();
+      return currentDate.year != this!.year &&
+          currentDate.month != this!.month &&
+          currentDate.day != this!.day;
+    }
+    return true;
+  }
 }
