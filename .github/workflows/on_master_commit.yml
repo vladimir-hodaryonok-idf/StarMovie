@@ -18,6 +18,9 @@ jobs:
         with:
           flutter-version: '3.0.5'
           channel: 'stable'
+      - run: flutter --version
+      - name: Flutter upgrade
+        run: flutter upgrade          
       - name: ApiKeysFlutter
         run: |
           touch "keys_sandbox.json";
