@@ -1,3 +1,4 @@
+
 import 'package:domain/domain.dart';
 
 extension StringExtension on String {
