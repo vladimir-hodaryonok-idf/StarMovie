@@ -1,0 +1,55 @@
+name: master_commit
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  commit_master:
+    name: commit to master
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+          channel: 'stable'
+      - name: ApiKeysFlutter
+        run: |
+          touch "keys_sandbox.json";
+          echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
+      - name: ApiKeysAndroid
+        run: |
+          touch "keys.properties";
+          echo "${{ secrets.KEYS_FACEBOOK }}" >> keys.properties;
+        working-directory: android/
+      - name: GetDependenciesAndGenerateDomain
+        run: |
+          flutter pub get && flutter packages pub run build_runner build
+        working-directory: packages/domain/
+      - name: GetDependenciesAndGenerateData
+        run: |
+          flutter pub get && flutter packages pub run build_runner build
+        working-directory: packages/data/
+      - name: GetDependenciesPresentation
+        run: |
+          flutter pub global activate intl_utils 2.7.0
+          flutter pub get
+        working-directory: packages/presentation/
+      - name: GeneratePresentation
+        run: |
+          flutter pub global run intl_utils:generate
+        working-directory: packages/presentation/
+      - name: AppPubGet
+        run: flutter pub get
+      - name: Build Prod Release Apk
+        run: flutter build apk --release -t lib/production.dart --flavor Prod
+      - name: Push APK to GitHub Release
+        uses: ncipollo/release-action@v1.11.1
+        with:
+          artifacts: build/app/outputs/flutter-apk/app-prod-release.apk
+          tag: Release
+          token: ${{ secrets.TOKEN_G_H }}
