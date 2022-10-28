@@ -10,7 +10,7 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-if (keysFile.exists()){
+if (keysFile.exists()) {
     keysFile.withReader('UTF-8') { reader ->
         keys.load(reader)
     }
@@ -63,6 +63,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        resValue("string", "facebook_app_id", facebookAppId)
+        resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
+        resValue("string", "facebook_client_token", facebookClientToken)
     }
 
     flavorDimensions "app"
@@ -71,16 +74,10 @@ android {
 
         SandBox {
             dimension "app"
-            resValue("string", "facebook_app_id", facebookAppId)
-            resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
-            resValue("string", "facebook_client_token", facebookClientToken)
         }
 
         Prod {
             dimension "app"
-            resValue("string", "facebook_app_id", facebookAppId)
-            resValue("string", "fb_login_protocol_scheme", fbLoginProtocolScheme)
-            resValue("string", "facebook_client_token", facebookClientToken)
         }
     }
 
