@@ -1,11 +1,13 @@
 import 'package:domain/src/mappers/extract_date.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
+import 'package:domain/src/models/data_wrapper/movies_wrapper.dart';
 import 'package:domain/src/models/movie_model/movie_anticipated.dart';
 import 'package:domain/src/repositories/date_repository.dart';
 import 'package:domain/src/repositories/movie_local_repository.dart';
 import 'package:domain/src/repositories/trakt_api_network_repository.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
 import 'package:domain/src/mappers/json_to_anticipated_list.dart';
+import 'package:domain/src/utils/utility_class.dart';
 import 'package:domain/src/utils/utility_extensions.dart';
 
 class FetchAnticipatedMoviesUseCase
@@ -38,8 +40,29 @@ class FetchAnticipatedMoviesUseCase
   Future<List<MovieAnticipated>> _fetchThenCache() async {
     final int limit = await _getPagesLimit();
     final anticipated = await _fetchAnticipatedMovies(limit);
-    await localCacheRepository.updateOrSaveAnticipated(anticipated);
+    await _updateOrSaveAnticipated(anticipated);
     return anticipated;
+  }
+
+  Future<void> _updateOrSaveAnticipated(
+      List<MovieAnticipated> apiTrends) async {
+    final cachedTrends = await localCacheRepository.getAnticipated();
+    if (cachedTrends.isNotEmpty) {
+      final dataWrapper =
+          MoviesWrapper(dbList: cachedTrends, apiList: apiTrends);
+      final compareResult = MoviesUtility.findItemsToAddAndDelete(dataWrapper);
+      _handleDiffs(compareResult);
+    }
+    return localCacheRepository.addAnticipatedMovies(apiTrends);
+  }
+
+  void _handleDiffs(ListCompareResult<MovieAnticipated>? diffs) {
+    if (diffs != null) {
+      Future.wait([
+        localCacheRepository.addAnticipatedMovies(diffs.itemsToAdd),
+        localCacheRepository.deleteAnticipated(diffs.itemsToDelete),
+      ]);
+    }
   }
 
   Future<List<MovieAnticipated>> _fetchAnticipatedMovies(int limit) async {
