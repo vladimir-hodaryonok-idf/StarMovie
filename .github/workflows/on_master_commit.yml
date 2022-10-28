@@ -48,7 +48,7 @@ jobs:
       - name: Build Prod Release Apk
         run: flutter build apk --release -t lib/production.dart --flavor Prod
       - name: Push APK to GitHub Release
-        uses: ncipollo/release-action@v1.11.1
+        uses: ncipollo/release-action@v1
         with:
           artifacts: build/app/outputs/flutter-apk/app-prod-release.apk
           tag: Release
