@@ -17,7 +17,7 @@ dependencies:
     path: packages/data
   presentation:
     path: packages/presentation
-  firebase_core: ^1.24.0
+  firebase_core: 2.1.0
   firebase_crashlytics: ^2.8.3
 
 dev_dependencies:
