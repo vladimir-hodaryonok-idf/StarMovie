@@ -20,43 +20,26 @@ class MovieLocalCacheRepositoryImpl implements MovieLocalCacheRepository {
   }
 
   @override
-  Future<void> updateOrSaveTrends(List<MovieTrending> trends) async {
-    final fromApi = trends.map((e) => MovieDto.fromTrending(e)).toList();
-    final fromDb = await movieDao.getTrendingList();
-    return _updateOrSave(fromDb, fromApi);
+  Future<void> addAnticipatedMovies(List<MovieAnticipated> movies) {
+    final toDb = movies.map((e) => MovieDto.fromAnticipated(e)).toList();
+    return movieDao.insertMovies(toDb);
   }
 
   @override
-  Future<void> updateOrSaveAnticipated(
-    List<MovieAnticipated> anticipated,
-  ) async {
-    final fromApi =
-        anticipated.map((e) => MovieDto.fromAnticipated(e)).toList();
-    final fromDb = await movieDao.getAnticipatedList();
-    return _updateOrSave(fromDb, fromApi);
+  Future<void> addTrendsMovies(List<MovieTrending> movies) {
+    final toDb = movies.map((e) => MovieDto.fromTrending(e)).toList();
+    return movieDao.insertMovies(toDb);
   }
 
-  Future<void> _updateOrSave(
-    List<MovieDto> fromDb,
-    List<MovieDto> fromApi,
-  ) {
-    if (fromDb.isNotEmpty) {
-      _update(fromDb, fromApi);
-      return Future.value();
-    }
-    return movieDao.insertMovies(fromApi);
+  @override
+  Future<void> deleteAnticipated(List<MovieAnticipated> movies) {
+    final toDelete = movies.map((e) => MovieDto.fromAnticipated(e)).toList();
+    return movieDao.deleteNotActualMovies(toDelete);
   }
 
-  void _update(List<MovieDto> fromDb, List<MovieDto> fromApi) {
-    final itemsToDelete =
-        fromDb.where((element) => !fromApi.contains(element)).toList();
-    if (itemsToDelete.isNotEmpty) {
-      final itemsToAdd =
-          fromApi.where((element) => !fromDb.contains(element)).toList();
-      Future.wait([
-        movieDao.deleteNotActualMovies(itemsToDelete),
-        movieDao.insertMovies(itemsToAdd),
-      ]);
-    }
+  @override
+  Future<void> deleteTrends(List<MovieTrending> movies) {
+    final toDelete = movies.map((e) => MovieDto.fromTrending(e)).toList();
+    return movieDao.deleteNotActualMovies(toDelete);
   }
 }
