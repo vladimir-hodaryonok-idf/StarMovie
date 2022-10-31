@@ -28,11 +28,9 @@ class ReviewsWidget extends StatelessWidget {
       width: double.infinity,
       height: MediaQuery.of(context).size.height - Dimens.size250,
       child: isLoading
-          ? ListView(
-              children: List.generate(
-                AppConst.shadowMovieListLength,
-                (index) => ReviewListItemShadow(),
-              ),
+          ? ListView.builder(
+              itemCount: AppConst.shadowMovieListLength,
+              itemBuilder: (_, index) => ReviewListItemShadow(),
             )
           : ListView.builder(
               itemCount: reviews.length,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class MyColors {
   const MyColors._();
 
-  static int splashScreenUp = 0xffE51937;
+  static const int splashScreenUp = 0xffE51937;
 
-  static int splashScreenBottom = 0xffDB5252;
+  static const int splashScreenBottom = 0xffDB5252;
 
   static const messageBackground = 0xff2B3543;
 
