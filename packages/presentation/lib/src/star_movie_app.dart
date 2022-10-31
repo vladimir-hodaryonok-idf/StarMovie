@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:presentation/src/app/data/app_data.dart';
@@ -9,7 +8,6 @@ import 'app/app_bloc.dart';
 import 'app/widgets/app_navigation_bar.dart';
 import 'base_bloc/base_tile.dart';
 import 'config_model/presentation_config.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class StarMovieApp extends StatefulWidget {
   const StarMovieApp({

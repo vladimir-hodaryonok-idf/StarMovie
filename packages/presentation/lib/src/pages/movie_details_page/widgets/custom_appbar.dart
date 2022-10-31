@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/generated/l10n.dart';
@@ -66,7 +68,13 @@ class CustomAppBar extends StatelessWidget {
               onPressed: () {
                 final locale = Localizations.localeOf(context).languageCode;
                 final message = S.of(context).shareString(id, locale);
-                bloc.share(message);
+                if (Platform.isAndroid || Platform.isIOS) {
+                  bloc.share(message);
+                }
+                if (Platform.isMacOS) {
+                  final renderBox = context.findRenderObject() as RenderBox?;
+                  bloc.share(message, renderBox: renderBox);
+                }
               },
               icon: SvgPicture.asset(
                 AssetsImages.shareArrow,

@@ -6,6 +6,7 @@ import 'package:presentation/src/pages/home_page/widgets/movie_grid_item.dart';
 import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:presentation/style/dimens.dart';
+import 'package:presentation/utils/size_picker.dart';
 
 import 'empty_lists_state.dart';
 
@@ -47,7 +48,10 @@ class HomeBody extends StatelessWidget {
                           ? PageStorageKey(AppConst.trendsListKey)
                           : PageStorageKey(AppConst.anticipatedListKey),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: AppConst.movieListCrossAxisCount,
+                        crossAxisCount:
+                            GridViewDisplayAdapter.columnsAccordingWithWidth(
+                          context,
+                        ),
                         crossAxisSpacing: Dimens.size8,
                         mainAxisSpacing: Dimens.size8,
                         childAspectRatio: Dimens.aspectRatio1to22,
