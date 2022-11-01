@@ -7,8 +7,10 @@ class AppConst {
   static const maxDescriptionTextLines = 4;
   static const roleMaxLines = 2;
   static const movieNameMaxLines = 2;
+  static const movieShortInfoLines = 1;
   static const shadowMovieListLength = 10;
   static const trendsListKey = 'trends';
   static const anticipatedListKey = 'anticipated';
   static const movieListCrossAxisCount = 2;
+  static const blackCircleCharCode = 9679;
 }

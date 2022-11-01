@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:presentation/const/app.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
-import 'package:presentation/utils/images_container.dart';
 
 class MovieShortInfo extends StatelessWidget {
   const MovieShortInfo({
@@ -21,42 +19,31 @@ class MovieShortInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          Container(
             padding: const EdgeInsets.only(bottom: Dimens.size8),
+            alignment: Alignment.centerLeft,
             child: Text(
               movieName,
               style: sfProSemiBold16px,
-              maxLines: AppConst.movieNameMaxLines,
+              maxLines: AppConst.movieShortInfoLines,
               softWrap: true,
             ),
           ),
-          Padding(
+          Container(
             padding: const EdgeInsets.only(bottom: Dimens.size8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  movieGenres,
-                  style: sfProSemiMedium12px50opacity,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: Dimens.size8,
-                    right: Dimens.size8,
-                  ),
-                  child: SvgPicture.asset(AssetsImages.ellipse),
-                ),
-                Text(
-                  '$duration | $parentsGuide',
-                  style: sfProSemiMedium12px50opacity,
-                )
-              ],
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '$movieGenres ${String.fromCharCode(
+                AppConst.blackCircleCharCode,
+              )} $duration | $parentsGuide',
+              style: sfProSemiMedium12px50opacity,
+              maxLines: AppConst.movieShortInfoLines,
+              softWrap: true,
             ),
           )
         ],

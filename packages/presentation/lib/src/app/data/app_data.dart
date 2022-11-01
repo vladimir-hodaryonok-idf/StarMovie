@@ -5,12 +5,12 @@ final initialPageIndex = 0;
 
 class AppData {
   final List<BasePage> pages;
-  final int bottomNavIndex;
+  final int navIndex;
   final bool isShowNavBar;
 
   const AppData(
     this.pages,
-    this.bottomNavIndex,
+    this.navIndex,
     this.isShowNavBar,
   );
 
@@ -26,7 +26,7 @@ class AppData {
           Sh}) =>
       AppData(
         pages ?? this.pages,
-        bottomNavIndex ?? this.bottomNavIndex,
+        bottomNavIndex ?? this.navIndex,
         isShowNavBar ?? this.isShowNavBar,
       );
 }
