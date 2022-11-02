@@ -13,4 +13,12 @@ class ReviewUser {
             ? null
             : json['images']['avatar']['full'] as String?,
       );
+    Map<String, dynamic> toJson() => <String, dynamic>{
+        'username': this.userName,
+        'images': {
+          'avatar': {
+            'full': this.imageUrl,
+          }
+        },
+      };
 }
