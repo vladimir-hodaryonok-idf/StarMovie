@@ -21,7 +21,7 @@ class ReviewsToReviewsUiMapper
     return ReviewMessageUi(
       review.message.valueOrEmpty,
       dateString,
-      _ratingToStarsCount(review.user_rating.toIntOrNil().toDouble()),
+      _ratingToStarsCount(review.userRating.orZero().toDouble()),
       (review.user?.userName).valueOrEmpty,
       review.user?.imageUrl,
     );

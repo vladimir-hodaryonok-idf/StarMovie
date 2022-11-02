@@ -137,7 +137,7 @@ class MovieDto {
           genres,
           certification,
         ),
-        listCount.toIntOrPlug(),
+        listCount.orPlug(),
       );
 
   MovieTrending toMovieTrending() => MovieTrending(
@@ -167,6 +167,6 @@ class MovieDto {
           genres,
           certification,
         ),
-        watchers.toIntOrPlug(),
+        watchers.orPlug(),
       );
 }

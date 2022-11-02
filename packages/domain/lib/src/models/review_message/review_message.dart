@@ -9,13 +9,14 @@ class ReviewMessage {
   final String? message;
   @JsonKey(name: 'created_at')
   final String? created;
-  final int? user_rating;
+  @JsonKey(name: 'user_rating')
+  final int? userRating;
   final ReviewUser? user;
 
   const ReviewMessage(
     this.message,
     this.created,
-    this.user_rating,
+    this.userRating,
     this.user,
   );
 

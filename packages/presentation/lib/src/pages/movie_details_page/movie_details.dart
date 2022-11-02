@@ -101,7 +101,8 @@ class MovieDetailsWidget extends StatelessWidget {
   }
 
   Widget _movieInfoAccordingWithDetailsSwitcher(
-      DetailsSwitcher detailsSwitcher) {
+    DetailsSwitcher detailsSwitcher,
+  ) {
     switch (detailsSwitcher) {
       case DetailsSwitcher.detail:
         return _details();
