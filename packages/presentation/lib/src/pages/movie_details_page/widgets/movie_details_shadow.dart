@@ -1,7 +1,7 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:presentation/style/dimens.dart';
+import 'package:presentation/utils/widget_display_helper.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsShadow extends StatelessWidget {
@@ -9,10 +9,6 @@ class MovieDetailsShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final personNameTextShadow_w =
-        MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.size50;
-    final roleTextShadow_w = MediaQuery.of(context).size.width.thirtyPercent;
-
     return Shimmer.fromColors(
       child: Row(
         children: [
@@ -22,7 +18,7 @@ class MovieDetailsShadow extends StatelessWidget {
             borderRadius: Dimens.size25,
           ),
           ShadowContainer(
-            width: personNameTextShadow_w,
+            width: WidgetDisplayHelper.personNameTextShadowWidth(context),
             height: Dimens.size24,
           ),
           ShadowContainer(
@@ -31,7 +27,7 @@ class MovieDetailsShadow extends StatelessWidget {
           ),
           Flexible(
             child: ShadowContainer(
-              width: roleTextShadow_w,
+              width: WidgetDisplayHelper.roleTextWidgetWidth(context),
               height: Dimens.size24,
             ),
           ),

@@ -59,6 +59,12 @@ class WidgetDisplayHelper {
         : (MediaQuery.of(context).size.width - Dimens.size70).twentyFivePercent;
   }
 
+  static double personNameTextShadowWidth(BuildContext context){
+    return isPhoneDisplay(context)
+        ? MediaQuery.of(context).size.width.fiftyFivePercent - Dimens.size50
+        : (MediaQuery.of(context).size.width - Dimens.size70).fifteenPercent;
+  }
+
   static bool isPhoneDisplay(BuildContext context) {
     final screenType = getDisplayType(context);
     return screenType == ScreenType.phone;
