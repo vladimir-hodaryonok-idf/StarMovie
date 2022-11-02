@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/generated/l10n.dart';
@@ -19,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: Dimens.size70,
       width: MediaQuery.of(context).size.width,
       child: Padding(
@@ -43,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: SizedBox(
                 height: Dimens.size56,
                 width: Dimens.size56,
                 child: Stack(

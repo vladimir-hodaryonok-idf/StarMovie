@@ -1,4 +1,3 @@
-
 import 'package:domain/domain.dart';
 
 extension StringExtension on String {
@@ -11,6 +10,10 @@ extension TakePercents on double {
   double get fiftyFivePercent => this * 0.55;
 
   double get thirtyPercent => this * 0.30;
+
+  double get fifteenPercent => this * 0.15;
+
+  double get twentyFivePercent => this * 0.25;
 
   double get fiftyPercents => this / 2;
 }

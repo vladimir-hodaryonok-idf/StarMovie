@@ -24,7 +24,7 @@ class MovieStars extends StatelessWidget {
         top: Dimens.size16,
         bottom: Dimens.size8,
       ),
-      child: Container(
+      child: SizedBox(
         height: isBigStar ? Dimens.size30 : Dimens.size14,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

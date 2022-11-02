@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:presentation/const/app.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
 import 'package:presentation/src/pages/home_page/widgets/movie_stars.dart';
@@ -8,6 +9,7 @@ import 'package:presentation/src/pages/movie_details_page/widgets/review_list_it
 import 'package:presentation/style/colors.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
+import 'package:presentation/utils/widget_display_helper.dart';
 
 import 'cast_and_crew.dart';
 
@@ -26,17 +28,63 @@ class ReviewsWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(Dimens.size18),
       width: double.infinity,
-      height: MediaQuery.of(context).size.height - Dimens.size250,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height - Dimens.size250,
       child: isLoading
-          ? ListView.builder(
-              itemCount: AppConst.shadowMovieListLength,
-              itemBuilder: (_, index) => ReviewListItemShadow(),
-            )
-          : ListView.builder(
-              itemCount: reviews.length,
-              itemBuilder: (_, index) => ReviewListItem(item: reviews[index]),
-            ),
+          ? buildListViewShadow(context)
+          : buildListViewReviews(context),
     );
+  }
+//todo refactor'!
+  Widget buildListViewReviews(BuildContext context) {
+    if (WidgetDisplayHelper.isPhoneDisplay(context)) {
+      return ListView.builder(
+        itemCount: reviews.length,
+        itemBuilder: (_, index) => ReviewListItem(item: reviews[index]),
+      );
+    } else {
+      return SingleChildScrollView(
+        child: StaggeredGrid.count(
+          crossAxisCount: 2,
+          children: [
+          ...List.generate(reviews.length, (index) =>
+              ReviewListItem(item: reviews[index]))
+          ],
+        ),
+      );
+
+      // return GridView.builder(
+      //       itemCount: reviews.length,
+      //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      //         crossAxisCount: AppConst.reviewsColumnsCount,
+      //         crossAxisSpacing: Dimens.size8,
+      //         mainAxisSpacing: Dimens.size8,
+      //         childAspectRatio: 16/9, mainAxisExtent: MediaQuery.of(context).size.width
+      //       ),
+      //       itemBuilder: (_, index) => ReviewListItem(item: reviews[index]),
+      //     );
+    }
+  }
+
+  Widget buildListViewShadow(BuildContext context) {
+    if (WidgetDisplayHelper.isPhoneDisplay(context)) {
+      return ListView.builder(
+        itemCount: AppConst.shadowMovieListLength,
+        itemBuilder: (_, index) => ReviewListItemShadow(),
+      );
+    } else {
+      return GridView.builder(
+        itemCount: AppConst.shadowMovieListLength,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: AppConst.reviewsColumnsCount,
+          crossAxisSpacing: Dimens.size8,
+          mainAxisSpacing: Dimens.size8,
+        ),
+        itemBuilder: (_, index) => ReviewListItemShadow(),
+      );
+    }
   }
 }
 
@@ -136,9 +184,9 @@ class AvatarWithName extends StatelessWidget {
           imageUrl != null
               ? PersonImage(imageUrl: imageUrl!)
               : ImageErrorWidget(
-                  height: Dimens.size50,
-                  width: Dimens.size50,
-                ),
+            height: Dimens.size50,
+            width: Dimens.size50,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: Dimens.size10),
             child: Column(

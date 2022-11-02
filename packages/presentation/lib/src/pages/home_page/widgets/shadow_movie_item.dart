@@ -12,7 +12,7 @@ class ShadowItem extends StatelessWidget {
         children: [
           ShadowContainer(
             width: double.infinity,
-            height: Dimens.size250,
+            height: Dimens.size230,
           ),
           ShadowContainer(
             width: Dimens.size86,

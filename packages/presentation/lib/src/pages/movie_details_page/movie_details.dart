@@ -11,6 +11,7 @@ import 'package:presentation/src/pages/movie_details_page/widgets/movie_cover.da
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_switcher.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_info.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/reviews_widget.dart';
+import 'package:presentation/utils/widget_display_helper.dart';
 import 'bloc/details_data.dart';
 import 'bloc/movie_details_bloc.dart';
 
@@ -85,7 +86,10 @@ class MovieDetailsWidget extends StatelessWidget {
                   currentPosition: tile.detailsSwitcher,
                   onTap: bloc.onDetailsSwitcherTap,
                 ),
-                _movieInfoAccordingWithDetailsSwitcher(tile.detailsSwitcher),
+                _movieInfoAccordingWithDetailsSwitcher(
+                  tile.detailsSwitcher,
+                  context,
+                ),
               ],
             ),
           ),
@@ -101,10 +105,12 @@ class MovieDetailsWidget extends StatelessWidget {
   }
 
   Widget _movieInfoAccordingWithDetailsSwitcher(
-      DetailsSwitcher detailsSwitcher) {
+    DetailsSwitcher detailsSwitcher,
+    BuildContext context,
+  ) {
     switch (detailsSwitcher) {
       case DetailsSwitcher.detail:
-        return _details();
+        return _details(context);
       case DetailsSwitcher.reviews:
         return ReviewsWidget(
           reviews: tile.reviews,
@@ -115,12 +121,23 @@ class MovieDetailsWidget extends StatelessWidget {
     }
   }
 
-  Widget _details() {
-    return Wrap(
-      children: [
-        ExpandableDescription(description: details.overview),
-        CastAndCrewList(castList: tile.crewAndCast),
-      ],
-    );
+  Widget _details(BuildContext context) {
+    return WidgetDisplayHelper.isPhoneDisplay(context)
+        ? Column(
+            children: [
+              ExpandableDescription(description: details.overview),
+              CastAndCrewList(castList: tile.crewAndCast),
+            ],
+          )
+        : Row(
+            children: [
+              Flexible(
+                child: ExpandableDescription(description: details.overview),
+              ),
+              Flexible(
+                child: CastAndCrewList(castList: tile.crewAndCast),
+              )
+            ],
+          );
   }
 }
