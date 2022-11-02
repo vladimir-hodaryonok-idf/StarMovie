@@ -21,7 +21,7 @@ class GoogleLoginButton extends StatelessWidget {
         onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            MyColors.colorGoogle,
+            Color(MyColors.colorGoogle),
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(

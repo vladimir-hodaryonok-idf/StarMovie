@@ -20,7 +20,7 @@ jobs:
           channel: 'stable'
       - run: flutter --version
       - name: Flutter upgrade
-        run: flutter upgrade          
+        run: flutter upgrade
       - name: ApiKeysFlutter
         run: |
           touch "keys_prod.json";

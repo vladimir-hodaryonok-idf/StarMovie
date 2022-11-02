@@ -50,4 +50,5 @@ void initUseCases() {
   );
   inject.registerFactory(() => LogButtonUseCase(inject.get()));
   inject.registerFactory(() => LogPageUseCase(inject.get()));
+  inject.registerFactory(() => FetchReviewsUseCase(inject.get()));
 }

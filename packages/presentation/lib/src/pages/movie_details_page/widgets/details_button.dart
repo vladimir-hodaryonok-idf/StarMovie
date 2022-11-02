@@ -7,11 +7,13 @@ import 'package:presentation/style/dimens.dart';
 
 class DetailsButton extends StatelessWidget {
   const DetailsButton({
+    required this.onTap,
     required this.activeButtonId,
     required this.id,
     super.key,
   });
 
+  final Function(DetailsSwitcher) onTap;
   final DetailsSwitcher id;
   final DetailsSwitcher activeButtonId;
 
@@ -43,9 +45,7 @@ class DetailsButton extends StatelessWidget {
         MediaQuery.of(context).size.width / AppConst.buttonsCount -
             Dimens.size24;
     return GestureDetector(
-      onTap: () {
-        //todo implement
-      },
+      onTap: () => onTap(id),
       child: Container(
         height: double.infinity,
         width: details_button_w,

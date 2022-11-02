@@ -10,6 +10,7 @@ import 'package:presentation/src/pages/movie_details_page/widgets/expandable_des
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_cover.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_switcher.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_info.dart';
+import 'package:presentation/src/pages/movie_details_page/widgets/reviews_widget.dart';
 import 'bloc/details_data.dart';
 import 'bloc/movie_details_bloc.dart';
 
@@ -46,6 +47,7 @@ class _MovieDetailsPageState
             details: details,
             tile: tile,
             bloc: bloc,
+            isLoading: snapshot.data?.isLoading ?? false,
           );
         },
       ),
@@ -58,12 +60,14 @@ class MovieDetailsWidget extends StatelessWidget {
     required this.details,
     required this.tile,
     required this.bloc,
+    required this.isLoading,
     super.key,
   });
 
   final MovieDetails details;
   final DetailsData tile;
   final MovieDetailsBloc bloc;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -79,13 +83,9 @@ class MovieDetailsWidget extends StatelessWidget {
                 MovieInfo(details: details),
                 MovieDetailsSwitcher(
                   currentPosition: tile.detailsSwitcher,
+                  onTap: bloc.onDetailsSwitcherTap,
                 ),
-                ExpandableDescription(
-                  description: details.overview,
-                ),
-                CastAndCrewList(
-                  castList: tile.crewAndCast,
-                ),
+                _movieInfoAccordingWithDetailsSwitcher(tile.detailsSwitcher),
               ],
             ),
           ),
@@ -97,6 +97,31 @@ class MovieDetailsWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _movieInfoAccordingWithDetailsSwitcher(
+    DetailsSwitcher detailsSwitcher,
+  ) {
+    switch (detailsSwitcher) {
+      case DetailsSwitcher.detail:
+        return _details();
+      case DetailsSwitcher.reviews:
+        return ReviewsWidget(
+          reviews: tile.reviews,
+          isLoading: isLoading,
+        );
+      case DetailsSwitcher.showtime:
+        return SizedBox.shrink();
+    }
+  }
+
+  Widget _details() {
+    return Wrap(
+      children: [
+        ExpandableDescription(description: details.overview),
+        CastAndCrewList(castList: tile.crewAndCast),
+      ],
     );
   }
 }

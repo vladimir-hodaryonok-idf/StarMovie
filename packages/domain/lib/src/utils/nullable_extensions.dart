@@ -14,5 +14,6 @@ extension GetFirstIOrDefaultValue on List<String>? {
 }
 
 extension ToIntOr on int?{
-  int toIntOrPlug() => this ?? -1;
+  int orPlug() => this ?? -1;
+  int orZero() => this ?? 0;
 }
