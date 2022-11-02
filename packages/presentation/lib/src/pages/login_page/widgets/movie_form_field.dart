@@ -25,7 +25,9 @@ class MovieFormField extends StatelessWidget {
           isPasswordField ? TextInputAction.done : TextInputAction.next,
       onChanged: onChange,
       cursorColor: Colors.white,
-      style: const TextStyle(color: MyColors.colorTitle),
+      style: const TextStyle(
+        color: Color(MyColors.colorTitle),
+      ),
       decoration: InputDecoration(
         prefixIcon: SvgPicture.asset(
           isPasswordField ? AssetsImages.lock : AssetsImages.profile,
@@ -34,7 +36,7 @@ class MovieFormField extends StatelessWidget {
           fit: BoxFit.none,
         ),
         filled: true,
-        fillColor: MyColors.colorTextField,
+        fillColor: Color(MyColors.colorTextField),
       ),
     );
   }

@@ -4,9 +4,9 @@ import 'package:presentation/src/pages/movie_details_page/model/review_messages_
 
 class ReviewsToReviewsUiMapper
     implements Mapper<List<ReviewMessage>, List<ReviewMessageUi>> {
-  final MovieRatingToStarsCountMapper ratingToStarsCount;
+  final MovieRatingToStarsCountMapper _ratingToStarsCount;
 
-  const ReviewsToReviewsUiMapper(this.ratingToStarsCount);
+  const ReviewsToReviewsUiMapper(this._ratingToStarsCount);
 
   @override
   List<ReviewMessageUi> call(List<ReviewMessage> params) =>
@@ -21,9 +21,9 @@ class ReviewsToReviewsUiMapper
     return ReviewMessageUi(
       review.message.valueOrEmpty,
       dateString,
-      ratingToStarsCount(review.user_rating.toIntOrNil().toDouble()),
+      _ratingToStarsCount(review.user_rating.toIntOrNil().toDouble()),
       (review.user?.userName).valueOrEmpty,
-      review.user?.images?.avatar?.full,
+      review.user?.imageUrl,
     );
   }
 }

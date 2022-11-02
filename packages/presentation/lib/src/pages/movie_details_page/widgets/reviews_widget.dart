@@ -117,9 +117,9 @@ class MessageField extends StatelessWidget {
 
 class AvatarWithName extends StatelessWidget {
   const AvatarWithName({
-    required this.imageUrl,
     required this.date,
     required this.userName,
+    this.imageUrl,
     super.key,
   });
 

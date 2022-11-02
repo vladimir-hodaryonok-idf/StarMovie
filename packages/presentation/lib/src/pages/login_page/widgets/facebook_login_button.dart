@@ -20,7 +20,9 @@ class FacebookLoginButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(MyColors.colorFaceBook),
+          backgroundColor: MaterialStateProperty.all(
+            Color(MyColors.colorFaceBook),
+          ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Dimens.size44),
