@@ -104,7 +104,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
       data: tile.copyWith(detailsSwitcher: id),
       isLoading: true,
     );
-    final reviews = await fetchReviews((tile.movieDetails?.id).toIntOrPlug());
+    final reviews = await fetchReviews((tile.movieDetails?.id).orPlug());
     final reviewsUi = reviewsToReviewsUi(reviews);
     emit(
       data: tile.copyWith(reviews: reviewsUi),
