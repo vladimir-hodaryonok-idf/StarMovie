@@ -100,9 +100,15 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   }
 
   void _fetchReviews(DetailsSwitcher id) async {
-    emit(data: tile.copyWith(detailsSwitcher: id), isLoading: true);
+    emit(
+      data: tile.copyWith(detailsSwitcher: id),
+      isLoading: true,
+    );
     final reviews = await fetchReviews((tile.movieDetails?.id).toIntOrPlug());
     final reviewsUi = reviewsToReviewsUi(reviews);
-    emit(data: tile.copyWith(reviews: reviewsUi), isLoading: false);
+    emit(
+      data: tile.copyWith(reviews: reviewsUi),
+      isLoading: false,
+    );
   }
 }

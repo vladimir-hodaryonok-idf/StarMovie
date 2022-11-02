@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:presentation/style/colors.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/utils/images_container.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 
 class MovieFormField extends StatelessWidget {
   final Function validation;
@@ -19,28 +18,25 @@ class MovieFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: WidgetDisplayHelper.isPhoneDisplay(context)
-      ? double.infinity
-      : Dimens.size400,
-      child: TextFormField(
-        obscureText: isPasswordField,
-        validator: (_) => validation(),
-        textInputAction:
-            isPasswordField ? TextInputAction.done : TextInputAction.next,
-        onChanged: onChange,
-        cursorColor: Colors.white,
-        style: const TextStyle(color: MyColors.colorTitle),
-        decoration: InputDecoration(
-          prefixIcon: SvgPicture.asset(
-            isPasswordField ? AssetsImages.lock : AssetsImages.profile,
-            width: Dimens.size18,
-            height: Dimens.size18,
-            fit: BoxFit.none,
-          ),
-          filled: true,
-          fillColor: MyColors.colorTextField,
+    return TextFormField(
+      obscureText: isPasswordField,
+      validator: (_) => validation(),
+      textInputAction:
+          isPasswordField ? TextInputAction.done : TextInputAction.next,
+      onChanged: onChange,
+      cursorColor: Colors.white,
+      style: const TextStyle(
+        color: Color(MyColors.colorTitle),
+      ),
+      decoration: InputDecoration(
+        prefixIcon: SvgPicture.asset(
+          isPasswordField ? AssetsImages.lock : AssetsImages.profile,
+          width: Dimens.size18,
+          height: Dimens.size18,
+          fit: BoxFit.none,
         ),
+        filled: true,
+        fillColor: Color(MyColors.colorTextField),
       ),
     );
   }
