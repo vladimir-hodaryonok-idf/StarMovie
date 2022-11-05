@@ -21,5 +21,13 @@
   "passwordIsRequired": "Требуется пароль",
   "passwordMinLength": "Пароль должен быть минимум 7 символов",
   "invalidPassword": "Неверный пароль",
-  "invalidLogin": "Неверный логин"
+  "invalidLogin": "Неверный логин",
+  "updateRequired": "Требуется обновление",
+  "newVersionAvailable": "Доступна новая версия",
+  "updateRequiredContent": "Обновитесь, что бы продолжить",
+  "newVersionAvailableContent": "Обновитесь или продолжите использовать старую версию приложения",
+  "continueWithOld": "Продолжить",
+  "update": "Обновить",
+  "cantCheckVersion": "Невозможно проверить версию",
+  "cantCheckVersionContent": "Проверьте интернет соединение"
 }

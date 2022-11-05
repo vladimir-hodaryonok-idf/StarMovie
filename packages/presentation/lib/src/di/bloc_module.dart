@@ -15,7 +15,8 @@ void initBlocModule() {
 
   inject.registerFactory<SplashScreenBloc>(
     () => SplashScreenBloc(
-      inject.get<InitialApiCallUseCase>(),
+      inject.get(),
+      inject.get(),
     ),
   );
   inject.registerFactory<HomeBloc>(

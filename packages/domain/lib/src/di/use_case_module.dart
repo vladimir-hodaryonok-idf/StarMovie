@@ -1,7 +1,12 @@
 import 'package:domain/domain.dart';
 
 void initUseCases() {
-  inject.registerFactory(() => InitialApiCallUseCase());
+  inject.registerFactory(
+    () => CheckAppVersionUseCase(
+      inject.get(),
+      inject.get(),
+    ),
+  );
   inject.registerFactory(
     () => FetchTrendingMoviesUseCase(
       networkRepository: inject.get(),
@@ -51,4 +56,5 @@ void initUseCases() {
   inject.registerFactory(() => LogButtonUseCase(inject.get()));
   inject.registerFactory(() => LogPageUseCase(inject.get()));
   inject.registerFactory(() => FetchReviewsUseCase(inject.get()));
+  inject.registerFactory(() => UpdateAppUseCase());
 }
