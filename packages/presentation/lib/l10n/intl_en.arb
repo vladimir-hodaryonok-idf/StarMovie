@@ -21,5 +21,9 @@
   "passwordIsRequired": "Password is required",
   "passwordMinLength": "Password field should be at least 7 symbols",
   "invalidPassword": "Invalid password",
-  "invalidLogin": "Invalid login"
+  "invalidLogin": "Invalid login",
+  "navBarReminder": "Reminder",
+  "navBarTickets": "Tickets",
+  "navBarPersonal": "Personal",
+  "navBarFilms": "Films"
 }

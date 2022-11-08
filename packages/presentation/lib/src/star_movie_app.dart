@@ -26,10 +26,10 @@ class StarMovieApp extends StatefulWidget {
 GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
 class _StarMovieAppState extends BlocScreenState<StarMovieApp, AppBloc> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: widget.config.title,
       theme: ThemeData.from(colorScheme: dark),
       localizationsDelegates: const [
         S.delegate,
@@ -52,7 +52,11 @@ class _StarMovieAppState extends BlocScreenState<StarMovieApp, AppBloc> {
             bottomNavigationBar: bottomNavBarHandler(context, tile),
             body: Row(
               children: [
-                sideNavBarHandler(context, tile),
+                SideNavigationBar(
+                  selectedIndex: tile.navIndex,
+                  isShowNavBar: tile.isShowNavBar,
+                  callback: bloc.navigationBar,
+                ),
                 Expanded(
                   child: Navigator(
                     onPopPage: (route, result) {
@@ -71,22 +75,11 @@ class _StarMovieAppState extends BlocScreenState<StarMovieApp, AppBloc> {
   }
 
   Widget? bottomNavBarHandler(BuildContext context, AppData tile) {
-    return WidgetDisplayHelper.isBottomNavBarActive(context) &&
-            tile.isShowNavBar
+    return WidgetDisplayHelper.isBottomNavBarActive(context) && tile.isShowNavBar
         ? AppNavigationBar(
             bloc: bloc,
             bottomNavIndex: tile.navIndex,
           )
         : null;
-  }
-
-  Widget sideNavBarHandler(BuildContext context, AppData tile) {
-    return !WidgetDisplayHelper.isBottomNavBarActive(context) &&
-            tile.isShowNavBar
-        ? SideNavigationBar(
-            bloc: bloc,
-            selectedIndex: tile.navIndex,
-          )
-        : SizedBox.shrink();
   }
 }
