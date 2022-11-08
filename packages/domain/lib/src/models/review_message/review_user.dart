@@ -15,11 +15,11 @@ class ReviewUser {
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'username': this.userName,
-        'images': {
-          'avatar': {
-            'full': this.imageUrl,
-          }
-        },
-      };
+      'username': this.userName,
+      'images': {
+        'avatar': {
+          'full': this.imageUrl,
+        }
+      },
+    };
 }
