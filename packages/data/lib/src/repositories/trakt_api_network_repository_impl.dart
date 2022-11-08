@@ -1,5 +1,5 @@
 import 'package:data/src/remote/payloads/dio_service_payload.dart';
-import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/remote/service/dio_service.dart';
 import 'package:data/src/request/trakt_api/tract_api_query_factory.dart';
 import 'package:data/src/request/trakt_api/trakt_api_path_factory.dart';
 import 'package:dio/dio.dart';

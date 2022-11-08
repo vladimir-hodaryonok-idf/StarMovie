@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:data/src/remote/service/firebase_firerstore_service.dart';
 import 'package:domain/domain.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-const _versionCollection = 'StarMovie_versions';
-
 class AppVersionRepositoryImpl implements AppVersionRepository {
-  final FirebaseFirestore firebaseFirestore;
+  final FireStoreService firebaseFirestore;
   final PackageInfo packageInfo;
 
   const AppVersionRepositoryImpl(
@@ -15,9 +14,7 @@ class AppVersionRepositoryImpl implements AppVersionRepository {
 
   @override
   Future<AppVersions> getVersions() async {
-    final QuerySnapshot<Map<String, dynamic>> query =
-        await firebaseFirestore.collection(_versionCollection).get();
-    final data = query.docs.first;
+    final data = await firebaseFirestore.fetchVersionsFromCloud();
     return AppVersions(
       actualVersion: data['actual'],
       minVersion: data['minimal'],

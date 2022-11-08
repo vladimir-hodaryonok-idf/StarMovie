@@ -1,5 +1,5 @@
 import 'package:data/src/remote/payloads/dio_service_payload.dart';
-import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/remote/service/dio_service.dart';
 import 'package:data/src/request/tmdb_api/tmdb_api_path_factory.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/domain.dart';

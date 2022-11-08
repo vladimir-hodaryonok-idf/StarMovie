@@ -19,13 +19,14 @@ abstract class LoginBloc extends Bloc<BaseArguments, LoginData> {
     ResultToLocalizedMapper localizationResultMapper,
   ) =>
       _LoginBloc(
-          loginWithEmailAndPass,
-          loginGoogleUseCase,
-          loginFaceBookUseCase,
-          logButton,
-          formValidator,
-          formKey,
-          localizationResultMapper);
+        loginWithEmailAndPass,
+        loginGoogleUseCase,
+        loginFaceBookUseCase,
+        logButton,
+        formValidator,
+        formKey,
+        localizationResultMapper,
+      );
 
   void onLoginChange(String text);
 
