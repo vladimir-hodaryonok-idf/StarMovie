@@ -27,6 +27,7 @@ abstract class LoginBloc extends Bloc<BaseArguments, LoginData> {
         formKey,
         localizationResultMapper,
       );
+  ValidationResult? validationResult;
 
   void onLoginChange(String text);
 
@@ -43,6 +44,7 @@ abstract class LoginBloc extends Bloc<BaseArguments, LoginData> {
   String? validateLogin();
 
   String? validatePassword();
+  void navigateToLoggedPage();
 }
 
 class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
@@ -54,6 +56,7 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
   final ValidateLoginFormUseCase formValidator;
   final GlobalKey<FormState> formKey;
   final ResultToLocalizedMapper localizationResultMapper;
+  @override
   ValidationResult? validationResult = null;
 
   _LoginBloc(
@@ -106,7 +109,7 @@ class _LoginBloc extends BlocImpl<BaseArguments, LoginData>
       handleValidationException(e);
     }
   }
-
+  @override
   void navigateToLoggedPage() => appNavigator.push(LoggedPage.page());
 
   void handleValidationException(ValidationException e) {
