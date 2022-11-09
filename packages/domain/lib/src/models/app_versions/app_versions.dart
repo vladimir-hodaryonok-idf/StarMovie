@@ -8,6 +8,4 @@ class AppVersions {
     required this.minVersion,
     required this.currentVersion,
   });
-
-
 }
