@@ -55,7 +55,7 @@ class _StarMovieAppState extends BlocScreenState<StarMovieApp, AppBloc> {
                 SideNavigationBar(
                   selectedIndex: tile.navIndex,
                   isShowNavBar: tile.isShowNavBar,
-                  callback: bloc.navigationBar,
+                  callback: bloc.onNavigationBarClicked,
                 ),
                 Expanded(
                   child: Navigator(

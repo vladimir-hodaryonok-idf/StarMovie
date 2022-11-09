@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/generated/l10n.dart';
+import 'package:presentation/src/pages/movie_details_page/adapt_details_widgets.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/style/dimens.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 
 class DetailsButton extends StatelessWidget {
   const DetailsButton({
@@ -45,7 +45,7 @@ class DetailsButton extends StatelessWidget {
       onTap: () => onTap(id),
       child: Container(
         height: double.infinity,
-        width: WidgetDisplayHelper.detailsButtonWidth(context),
+        width: AdaptDetailsWidget.detailsButtonWidth(context),
         decoration: decoration(context),
         child: Center(
           child: Text(
