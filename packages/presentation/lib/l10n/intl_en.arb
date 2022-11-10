@@ -29,5 +29,9 @@
   "continueWithOld": "Continue",
   "update": "Update",
   "cantCheckVersion": "Can't check versions",
-  "cantCheckVersionContent": "Check your internet connection"
+  "cantCheckVersionContent": "Check your internet connection",
+  "navBarReminder": "Reminder",
+  "navBarTickets": "Tickets",
+  "navBarPersonal": "Personal",
+  "navBarFilms": "Films"
 }

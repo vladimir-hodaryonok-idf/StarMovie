@@ -29,5 +29,9 @@
   "continueWithOld": "Продолжить",
   "update": "Обновить",
   "cantCheckVersion": "Невозможно проверить версию",
-  "cantCheckVersionContent": "Проверьте интернет соединение"
+  "cantCheckVersionContent": "Проверьте интернет соединение",
+  "navBarReminder": "Напоминания",
+  "navBarTickets": "Билеты",
+  "navBarPersonal": "Личное",
+  "navBarFilms": "Фильмы"
 }

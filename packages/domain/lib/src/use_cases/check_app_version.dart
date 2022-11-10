@@ -1,15 +1,18 @@
 import 'package:domain/src/mappers/version_to_int_mapper.dart';
 import 'package:domain/src/models/version_check_result/version_check_result.dart';
-import 'package:domain/src/repositories/app_version_repository.dart';
+import 'package:domain/src/repositories/app_info_repository.dart';
 import 'package:domain/src/use_cases/base/out_use_case.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class CheckAppVersionUseCase implements OutUseCase<Future<VersionCheckResult>> {
-  final AppVersionRepository appVersionRepository;
+  final AppInfoRepository appVersionRepository;
   final VersionToIntMapper versionToIntMapper;
+  final PackageInfo packageInfo;
 
   const CheckAppVersionUseCase(
     this.appVersionRepository,
     this.versionToIntMapper,
+    this.packageInfo,
   );
 
   @override
@@ -17,7 +20,7 @@ class CheckAppVersionUseCase implements OutUseCase<Future<VersionCheckResult>> {
     final versions = await appVersionRepository.getVersions();
     final actualVersion = versionToIntMapper(versions.actualVersion);
     final minVersion = versionToIntMapper(versions.minVersion);
-    final currentVersion = versionToIntMapper(versions.currentVersion);
+    final currentVersion = versionToIntMapper(packageInfo.version);
     if (currentVersion < minVersion) {
       return VersionCheckResult.shouldUpdate;
     }

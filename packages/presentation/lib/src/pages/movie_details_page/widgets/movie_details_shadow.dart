@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
+import 'package:presentation/src/pages/movie_details_page/adapt_details_widgets.dart';
 import 'package:presentation/style/dimens.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsShadow extends StatelessWidget {
@@ -18,7 +18,7 @@ class MovieDetailsShadow extends StatelessWidget {
             borderRadius: Dimens.size25,
           ),
           ShadowContainer(
-            width: WidgetDisplayHelper.personNameTextShadowWidth(context),
+            width: AdaptDetailsWidget.personNameTextShadowWidth(context),
             height: Dimens.size24,
           ),
           ShadowContainer(
@@ -27,7 +27,7 @@ class MovieDetailsShadow extends StatelessWidget {
           ),
           Flexible(
             child: ShadowContainer(
-              width: WidgetDisplayHelper.roleTextWidgetWidth(context),
+              width: AdaptDetailsWidget.roleTextWidgetWidth(context),
               height: Dimens.size24,
             ),
           ),

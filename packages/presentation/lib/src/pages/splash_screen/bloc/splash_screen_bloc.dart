@@ -10,7 +10,10 @@ abstract class SplashScreenBloc extends Bloc<BaseArguments, AlertDialogData?> {
     CheckAppVersionUseCase checkVersion,
     UpdateAppUseCase updateApp,
   ) =>
-      _SplashScreenBloc(checkVersion, updateApp);
+      _SplashScreenBloc(
+        checkVersion,
+        updateApp,
+      );
 }
 
 class _SplashScreenBloc extends BlocImpl<BaseArguments, AlertDialogData?>

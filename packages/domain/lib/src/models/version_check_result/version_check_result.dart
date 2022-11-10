@@ -1,1 +1,5 @@
-enum VersionCheckResult { shouldUpdate, ableToUpdate, actualVersion }
+enum VersionCheckResult {
+  shouldUpdate,
+  ableToUpdate,
+  actualVersion,
+}

@@ -1,24 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data/src/remote/service/firebase_firerstore_service.dart';
 import 'package:domain/domain.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class AppVersionRepositoryImpl implements AppVersionRepository {
-  final FireStoreService firebaseFirestore;
-  final PackageInfo packageInfo;
+  final FireStoreService _firebaseFirestore;
 
-  const AppVersionRepositoryImpl(
-    this.firebaseFirestore,
-    this.packageInfo,
+  const AppInfoRepositoryImpl(
+    this._firebaseFirestore,
   );
 
   @override
   Future<AppVersions> getVersions() async {
-    final data = await firebaseFirestore.fetchVersionsFromCloud();
+    final data = await _firebaseFirestore.fetchVersionsFromCloud();
     return AppVersions(
       actualVersion: data['actual'],
       minVersion: data['minimal'],
-      currentVersion: packageInfo.version,
     );
   }
 }

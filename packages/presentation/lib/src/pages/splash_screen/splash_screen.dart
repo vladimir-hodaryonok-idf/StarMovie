@@ -79,13 +79,13 @@ class _SplashScreenState
         style: sfProSemiRegular14px,
       ),
       actions: [
-        generateUpdateBtn(data),
-        generateContinueBtn(data),
+        _generateUpdateBtn(data),
+        _generateContinueBtn(data),
       ],
     );
   }
 
-  Widget generateContinueBtn(AlertDialogData data) {
+  Widget _generateContinueBtn(AlertDialogData data) {
     return data.useCurrentCallBack != null
         ? TextButton(
             onPressed: () {
@@ -100,7 +100,7 @@ class _SplashScreenState
         : SizedBox.shrink();
   }
 
-  Widget generateUpdateBtn(AlertDialogData data) {
+  Widget _generateUpdateBtn(AlertDialogData data) {
     return data.updateCallBack != null
         ? TextButton(
             onPressed: data.updateCallBack,

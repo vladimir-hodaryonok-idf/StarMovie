@@ -48,7 +48,7 @@ export 'src/repositories/people_local_repository.dart';
 export 'src/use_cases/fetch_reviews.dart';
 export 'src/models/review_message/review_message.dart';
 export 'src/models/review_message/review_user.dart';
-export 'src/repositories/app_version_repository.dart';
+export 'src/repositories/app_info_repository.dart';
 export 'src/models/app_versions/app_versions.dart';
 export 'src/mappers/version_to_int_mapper.dart';
 export 'src/models/version_check_result/version_check_result.dart';

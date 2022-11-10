@@ -1,10 +1,16 @@
 import 'package:domain/domain.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-void initUseCases() {
+void initUseCases() async {
+  final packageInfo = await PackageInfo.fromPlatform();
+
+  inject.registerFactory<PackageInfo>(() => packageInfo);
+
   inject.registerFactory(
     () => CheckAppVersionUseCase(
       inject.get(),
       inject.get(),
+      inject.get()
     ),
   );
   inject.registerFactory(
