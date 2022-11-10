@@ -12,7 +12,7 @@ class LoginWithEmailAndPassUseCase implements InUseCase<UserEmailPass> {
 
   @override
   Future<void> call(UserEmailPass user) async =>
-      authRepository.isLoginAndPasswordCorrect(user) == true
-          ? null
+      await authRepository.isLoginAndPasswordCorrect(user) == true
+          ? preferences.saveLoggedUser(user)
           : throw ValidationException(ValidationResult.loginFailure());
 }

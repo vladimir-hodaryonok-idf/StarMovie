@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
@@ -30,7 +33,7 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
 
   void goBack();
 
-  void share(String message);
+  void share(String message, {RenderBox? renderBox});
 }
 
 class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
@@ -71,7 +74,13 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
   }
 
   @override
-  void share(String message) => ShareText.shareText(message);
+  void share(String message, {RenderBox? renderBox}) {
+    if (Platform.isMacOS) {
+      ShareText.macShareText(message, renderBox);
+    } else {
+      ShareText.shareText(message);
+    }
+  }
 
   @override
   void initArgs(BaseArguments args) {

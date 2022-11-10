@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Dimens {
   const Dimens._();
 
@@ -28,14 +30,21 @@ class Dimens {
   static const double size48 = 48;
   static const double size50 = 50;
   static const double size56 = 56;
+  static const double size59 = 59;
   static const double size70 = 70;
   static const double size86 = 86;
   static const double size104 = 104;
   static const double size120 = 120;
   static const double size140 = 140;
+  static const double size170 = 170;
   static const double size180 = 180;
+  static const double size230 = 230;
   static const double size250 = 250;
   static const double size300 = 300;
+  static const double size400 = 400;
 
-  static const double aspectRatio1to22 = 1 / 2.2;
+  static const double aspectRatio9to20 = 9 / 20;
+  static const double aspectRatio9to16 = 9 / 16;
+
+  static const Size minWindowSize = Size(370, 700);
 }

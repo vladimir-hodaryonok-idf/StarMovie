@@ -1,7 +1,7 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/generated/l10n.dart';
+import 'package:presentation/src/pages/home_page/adapt_home_widgets.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/style/dimens.dart';
@@ -22,13 +22,11 @@ class StatusButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final containerWidth =
-        MediaQuery.of(context).size.width.fiftyPercents - Dimens.size24;
     return GestureDetector(
       onTap: () => bloc.onButtonTap(id),
       child: Container(
         height: double.infinity,
-        width: containerWidth,
+        width: AdaptHomeWidgets.statusButtonWidth(context),
         decoration: decoration(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

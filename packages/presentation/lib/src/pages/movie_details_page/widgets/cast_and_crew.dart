@@ -1,9 +1,9 @@
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
+import 'package:presentation/src/pages/movie_details_page/adapt_details_widgets.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_shadow.dart';
 import 'package:presentation/style/text_styles/styles.dart';
@@ -38,7 +38,7 @@ class CastAndCrewList extends StatelessWidget {
                 onPressed: () {
                   // todo implement in the next tasks
                 },
-                child: Container(
+                child: SizedBox(
                   height: Dimens.size18,
                   child: Text(
                     S.of(context).viewAll,
@@ -75,26 +75,39 @@ class CastAndCrewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final thirtyPercentsOfWidth =
-        MediaQuery.of(context).size.width.thirtyPercent;
     return Padding(
       padding: const EdgeInsets.all(Dimens.size8),
       child: Row(
         children: [
           ImageWithName(item: item),
           ThreeEllipsesButton(),
-          Expanded(
-            child: Container(
-              width: thirtyPercentsOfWidth,
-              child: Text(
-                item.role,
-                style: sfProSemiMedium12px50opacity,
-                maxLines: AppConst.roleMaxLines,
-                softWrap: true,
-              ),
-            ),
-          )
+          PersonRole(item: item)
         ],
+      ),
+    );
+  }
+}
+
+class PersonRole extends StatelessWidget {
+  const PersonRole({
+    required this.item,
+    super.key,
+  });
+
+  final CrewAndCastUi item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: SizedBox(
+        width: AdaptDetailsWidget.roleTextWidgetWidth(context),
+        child: Text(
+          item.role,
+          style: sfProSemiMedium12px50opacity,
+          maxLines: AppConst.roleMaxLines,
+          softWrap: true,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
@@ -105,7 +118,7 @@ class ThreeEllipsesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: EdgeInsets.all(Dimens.size15),
       child: Row(
         children: [
@@ -129,20 +142,21 @@ class ImageWithName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fiftyFivePercentsOfWidth =
-        MediaQuery.of(context).size.width.fiftyFivePercent;
-
-    return Container(
-      width: fiftyFivePercentsOfWidth,
+    return Flexible(
       child: Row(
         children: [
-          PersonImage(imageUrl: item.imageUrl),
-          SizedBox(
-            width: Dimens.size12,
-          ),
-          Text(
-            item.personName,
-            style: sfProSemiMedium14px,
+          Flexible(child: PersonImage(imageUrl: item.imageUrl)),
+          SizedBox(width: Dimens.size12),
+          Flexible(
+            child: SizedBox(
+              width: AdaptDetailsWidget.imageWithNameWidgetWidth(context),
+              child: Text(
+                item.personName,
+                style: sfProSemiMedium14px,
+                maxLines: AppConst.roleMaxLines,
+                softWrap: true,
+              ),
+            ),
           ),
         ],
       ),
@@ -160,7 +174,7 @@ class PersonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: Dimens.size50,
       width: Dimens.size50,
       child: ClipRRect(

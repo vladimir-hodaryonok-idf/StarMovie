@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/const/app.dart';
+import 'package:presentation/src/pages/home_page/adapt_home_widgets.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/src/pages/home_page/widgets/movie_grid_item.dart';
@@ -47,10 +48,12 @@ class HomeBody extends StatelessWidget {
                           ? PageStorageKey(AppConst.trendsListKey)
                           : PageStorageKey(AppConst.anticipatedListKey),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: AppConst.movieListCrossAxisCount,
+                        crossAxisCount:
+                            AdaptHomeWidgets.columnsAccordingWithWidth(context),
                         crossAxisSpacing: Dimens.size8,
                         mainAxisSpacing: Dimens.size8,
-                        childAspectRatio: Dimens.aspectRatio1to22,
+                        childAspectRatio:
+                            AdaptHomeWidgets.movieChildAspectRatio(context),
                       ),
                       itemCount: isLoading
                           ? AppConst.shadowMovieListLength

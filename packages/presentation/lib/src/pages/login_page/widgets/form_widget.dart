@@ -42,9 +42,7 @@ class FormWidget extends StatelessWidget {
               onPasswordChange: onPasswordChange,
               formKey: formKey,
             ),
-            LoginButton(
-              onTap: onLoginTap,
-            ),
+            LoginButton(onTap: onLoginTap),
             const SizedBox(height: Dimens.size50),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

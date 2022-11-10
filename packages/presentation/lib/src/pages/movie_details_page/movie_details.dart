@@ -3,7 +3,9 @@ import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/src/base_bloc/movie_args.dart';
 import 'package:presentation/src/navigation/base_page.dart';
+import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
+import 'package:presentation/src/pages/movie_details_page/model/review_messages_ui.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/custom_appbar.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/expandable_description.dart';
@@ -11,6 +13,7 @@ import 'package:presentation/src/pages/movie_details_page/widgets/movie_cover.da
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_switcher.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_info.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/reviews_widget.dart';
+import 'package:presentation/utils/widget_display_helper.dart';
 import 'bloc/details_data.dart';
 import 'bloc/movie_details_bloc.dart';
 
@@ -85,7 +88,13 @@ class MovieDetailsWidget extends StatelessWidget {
                   currentPosition: tile.detailsSwitcher,
                   onTap: bloc.onDetailsSwitcherTap,
                 ),
-                _movieInfoAccordingWithDetailsSwitcher(tile.detailsSwitcher),
+                MovieInfoAccordingWithDetailsSwitcher(
+                  details: details,
+                  isLoading: isLoading,
+                  detailsSwitcher: tile.detailsSwitcher,
+                  crewAndCast: tile.crewAndCast,
+                  reviews: tile.reviews,
+                ),
               ],
             ),
           ),
@@ -99,29 +108,71 @@ class MovieDetailsWidget extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _movieInfoAccordingWithDetailsSwitcher(
-    DetailsSwitcher detailsSwitcher,
-  ) {
+class MovieInfoAccordingWithDetailsSwitcher extends StatelessWidget {
+  const MovieInfoAccordingWithDetailsSwitcher({
+    Key? key,
+    required this.details,
+    required this.isLoading,
+    required this.detailsSwitcher,
+    required this.crewAndCast,
+    required this.reviews,
+  }) : super(key: key);
+
+  final MovieDetails details;
+  final bool isLoading;
+  final DetailsSwitcher detailsSwitcher;
+  final List<CrewAndCastUi> crewAndCast;
+  final List<ReviewMessageUi> reviews;
+
+  @override
+  Widget build(BuildContext context) {
     switch (detailsSwitcher) {
       case DetailsSwitcher.detail:
-        return _details();
+        return DescriptionAndCast(
+          crewAndCast: crewAndCast,
+          movieDetails: details.overview,
+        );
       case DetailsSwitcher.reviews:
         return ReviewsWidget(
-          reviews: tile.reviews,
+          reviews: reviews,
           isLoading: isLoading,
         );
       case DetailsSwitcher.showtime:
         return SizedBox.shrink();
     }
   }
+}
 
-  Widget _details() {
-    return Wrap(
-      children: [
-        ExpandableDescription(description: details.overview),
-        CastAndCrewList(castList: tile.crewAndCast),
-      ],
-    );
+class DescriptionAndCast extends StatelessWidget {
+  const DescriptionAndCast({
+    required this.crewAndCast,
+    required this.movieDetails,
+    super.key,
+  });
+
+  final List<CrewAndCastUi> crewAndCast;
+  final String movieDetails;
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetDisplayHelper.isPhoneDisplay(context)
+        ? Column(
+            children: [
+              ExpandableDescription(description: movieDetails),
+              CastAndCrewList(castList: crewAndCast),
+            ],
+          )
+        : Row(
+            children: [
+              Flexible(
+                child: ExpandableDescription(description: movieDetails),
+              ),
+              Flexible(
+                child: CastAndCrewList(castList: crewAndCast),
+              )
+            ],
+          );
   }
 }

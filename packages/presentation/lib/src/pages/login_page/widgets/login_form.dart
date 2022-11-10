@@ -22,35 +22,37 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            S.of(context).loginUserName,
-            style: sfProSemiMedium12px50opacity,
-          ),
-          const SizedBox(height: Dimens.size8),
-          MovieFormField(
-            isPasswordField: false,
-            onChange: onLoginChange,
-            validation: loginValidation,
-          ),
-          const SizedBox(height: Dimens.size20),
-          Text(
-            S.of(context).loginPassword,
-            style: sfProSemiMedium12px50opacity,
-          ),
-          const SizedBox(height: Dimens.size8),
-          MovieFormField(
-            isPasswordField: true,
-            onChange: onPasswordChange,
-            validation: passwordValidation,
-          ),
-          const SizedBox(height: Dimens.size20),
-        ],
+    return Center(
+      child: Form(
+        key: formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              S.of(context).loginUserName,
+              style: sfProSemiMedium12px50opacity,
+            ),
+            const SizedBox(height: Dimens.size8),
+            MovieFormField(
+              isPasswordField: false,
+              onChange: onLoginChange,
+              validation: loginValidation,
+            ),
+            const SizedBox(height: Dimens.size20),
+            Text(
+              S.of(context).loginPassword,
+              style: sfProSemiMedium12px50opacity,
+            ),
+            const SizedBox(height: Dimens.size8),
+            MovieFormField(
+              isPasswordField: true,
+              onChange: onPasswordChange,
+              validation: passwordValidation,
+            ),
+            const SizedBox(height: Dimens.size20),
+          ],
+        ),
       ),
     );
   }

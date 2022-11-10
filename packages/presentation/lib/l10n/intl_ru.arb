@@ -21,5 +21,9 @@
   "passwordIsRequired": "Требуется пароль",
   "passwordMinLength": "Пароль должен быть минимум 7 символов",
   "invalidPassword": "Неверный пароль",
-  "invalidLogin": "Неверный логин"
+  "invalidLogin": "Неверный логин",
+  "navBarReminder": "Напоминания",
+  "navBarTickets": "Билеты",
+  "navBarPersonal": "Личное",
+  "navBarFilms": "Фильмы"
 }

@@ -26,7 +26,7 @@ class AppNavigationBar extends StatelessWidget {
       ),
       child: BottomNavigationBar(
         currentIndex: bottomNavIndex,
-        onTap: bloc.bottomBarNavigation,
+        onTap: bloc.onNavigationBarClicked,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: <BottomNavigationBarItem>[

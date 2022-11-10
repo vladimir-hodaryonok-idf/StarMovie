@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
+import 'package:presentation/src/pages/movie_details_page/adapt_details_widgets.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/style/dimens.dart';
@@ -41,14 +41,11 @@ class DetailsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final details_button_w =
-        MediaQuery.of(context).size.width / AppConst.buttonsCount -
-            Dimens.size24;
     return GestureDetector(
       onTap: () => onTap(id),
       child: Container(
         height: double.infinity,
-        width: details_button_w,
+        width: AdaptDetailsWidget.detailsButtonWidth(context),
         decoration: decoration(context),
         child: Center(
           child: Text(

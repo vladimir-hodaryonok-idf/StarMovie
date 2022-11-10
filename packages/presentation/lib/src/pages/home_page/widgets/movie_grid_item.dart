@@ -23,24 +23,20 @@ class MovieGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => bloc.onItemTap(index),
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            buildImage(),
-            MovieStars(
-              fullStarsCount: movie.stars,
-              isBigStar: false,
-            ),
-            MovieShortInfo(
-              movieGenres: movie.genre,
-              movieName: movie.title,
-              parentsGuide: movie.certification,
-              duration: movie.duration,
-            ),
-          ],
-        ),
+      child: Column(
+        children: [
+          buildImage(),
+          MovieStars(
+            fullStarsCount: movie.stars,
+            isBigStar: false,
+          ),
+          MovieShortInfo(
+            movieGenres: movie.genre,
+            movieName: movie.title,
+            parentsGuide: movie.certification,
+            duration: movie.duration,
+          ),
+        ],
       ),
     );
   }
