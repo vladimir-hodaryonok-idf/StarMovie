@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/pages/login_page/widgets/movie_form_field.dart';
 import 'package:presentation/style/dimens.dart';
-import 'package:presentation/style/text_styles/styles.dart';
 
 class LoginForm extends StatelessWidget {
   final Function loginValidation;
@@ -29,10 +27,6 @@ class LoginForm extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              S.of(context).loginUserName,
-              style: sfProSemiMedium12px50opacity,
-            ),
             const SizedBox(height: Dimens.size8),
             MovieFormField(
               isPasswordField: false,
@@ -40,11 +34,6 @@ class LoginForm extends StatelessWidget {
               validation: loginValidation,
             ),
             const SizedBox(height: Dimens.size20),
-            Text(
-              S.of(context).loginPassword,
-              style: sfProSemiMedium12px50opacity,
-            ),
-            const SizedBox(height: Dimens.size8),
             MovieFormField(
               isPasswordField: true,
               onChange: onPasswordChange,

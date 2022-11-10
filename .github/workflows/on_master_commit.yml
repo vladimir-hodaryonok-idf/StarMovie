@@ -49,7 +49,9 @@ jobs:
           flutter pub global run intl_utils:generate
         working-directory: packages/presentation/
       - name: AppPubGet
-        run: flutter pub get
+        run: flutter pub get && flutter packages pub run build_runner build
+      - name: Tests
+        run: flutter test
       - name: Build Prod Release Apk
         run: flutter build apk --release -t lib/production.dart --flavor Prod
       - name: Push APK to GitHub Release

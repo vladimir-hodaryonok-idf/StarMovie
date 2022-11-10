@@ -11,91 +11,101 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:presentation/generated/l10n.dart';
 
 import 'login_bloc_test.mocks.dart';
-//
-// @GenerateNiceMocks([
-//   MockSpec<LogButtonUseCase>(),
-//   // MockSpec<GlobalKey<FormState>>(),
-//   // MockSpec<ResultToLocalizedMapper>(),
-//   MockSpec<LoginWithEmailAndPassUseCase>(),
-//   MockSpec<LoginGoogleUseCase>(),
-//   MockSpec<LoginFaceBookUseCase>(),
-//   MockSpec<AppNavigator>(),
-// ])
-// void main() {
-//   final appNav = MockAppNavigator();
-//   Needle.instance.registerSingleton<AppNavigator>(instance: appNav);
-//   final formKey = GlobalKey<FormState>();
-//   final bloc = LoginBloc(
-//     MockLoginWithEmailAndPassUseCase(),
-//     MockLoginGoogleUseCase(),
-//     MockLoginFaceBookUseCase(),
-//     MockLogButtonUseCase(),
-//     ValidateLoginFormUseCase(),
-//     formKey,
-//     MockResultToLocalizedMapper(),
-//   );
-//
-//   Needle.instance.registerSingleton<LoginBloc>(
-//       instance: bloc);
-//
-//   testWidgets('LoginWidget_Test', (widgetTester) async {
-//     await widgetTester.pumpWidget(
-//       MaterialApp(
-//         localizationsDelegates: const [
-//           S.delegate,
-//           GlobalMaterialLocalizations.delegate,
-//           GlobalWidgetsLocalizations.delegate,
-//           GlobalCupertinoLocalizations.delegate,
-//         ],
-//         supportedLocales: S.delegate.supportedLocales,
-//         home: Scaffold(
-//           appBar: AppBar(
-//             title: Text('test'),
-//           ),
-//           body: Login(),
-//         ),
-//       ),
-//     );
-//     final loginTextField = find.text('test',skipOffstage: false);
-//     expect(loginTextField, findsOneWidget);
-//   });
-//
-//
-// }
 
+@GenerateNiceMocks([
+  MockSpec<LogButtonUseCase>(),
+  MockSpec<LoginWithEmailAndPassUseCase>(),
+  MockSpec<LoginGoogleUseCase>(),
+  MockSpec<LoginFaceBookUseCase>(),
+  MockSpec<AppNavigator>(),
+])
 void main() {
-  testWidgets('MyWidget has a title and message', (tester) async {
-    await tester.pumpWidget(const MyWidget(title: 'T', message: 'M'));
-    final titleFinder = find.text('Flutter Demo');
-    final messageFinder = find.text('M');
+  final appNav = MockAppNavigator();
+  Needle.instance.registerSingleton<AppNavigator>(instance: appNav);
+  Needle.instance.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      MockLoginWithEmailAndPassUseCase(),
+      MockLoginGoogleUseCase(),
+      MockLoginFaceBookUseCase(),
+      MockLogButtonUseCase(),
+      ValidateLoginFormUseCase(),
+      GlobalKey<FormState>(),
+      ResultToLocalizedMapper(),
+    ),
+  );
 
-    // Use the `findsOneWidget` matcher provided by flutter_test to verify
-    // that the Text widgets appear exactly once in the widget tree.
-    expect(titleFinder, findsOneWidget);
-    expect(messageFinder, findsOneWidget);
+  testWidgets('EmptyFieldTest', (widgetTester) async {
+    await widgetTester.pumpWidget(const TestWidget(child: Login()));
+
+    await widgetTester.idle();
+    await widgetTester.pump();
+    await widgetTester.pump(const Duration(seconds: 1));
+
+    final loginButton = find.widgetWithText(ElevatedButton, S.current.loginBtn);
+
+    await widgetTester.tap(loginButton);
+    await widgetTester.pump();
+
+    final loginError = find.text(S.current.loginIsRequired);
+    final passwordError = find.text(S.current.passwordIsRequired);
+
+    expect(loginError, findsOneWidget);
+    expect(passwordError, findsOneWidget);
+  });
+
+  testWidgets('InvalidInput', (widgetTester) async {
+    await widgetTester.pumpWidget(const TestWidget(child: Login()));
+
+    await widgetTester.idle();
+    await widgetTester.pump();
+    await widgetTester.pump(const Duration(seconds: 1));
+
+    final loginButton = find.widgetWithText(
+      ElevatedButton,
+      S.current.loginBtn,
+    );
+    final loginField = find.widgetWithText(
+      TextFormField,
+      S.current.loginUserName,
+    );
+    final passwordField = find.widgetWithText(
+      TextFormField,
+      S.current.loginPassword,
+    );
+    await widgetTester.enterText(loginField, 'invalidLogin');
+    await widgetTester.enterText(passwordField, 'invalid%Password');
+    await widgetTester.tap(loginButton);
+    await widgetTester.pump();
+
+    final loginError = find.text(S.current.invalidLoginFormat);
+    final passwordError = find.text(S.current.invalidPassword);
+
+    expect(loginError, findsOneWidget);
+    expect(passwordError, findsOneWidget);
   });
 }
-class MyWidget extends StatelessWidget {
-  const MyWidget({
+
+class TestWidget extends StatelessWidget {
+  const TestWidget({
+    required this.child,
     super.key,
-    required this.title,
-    required this.message,
   });
 
-  final String title;
-  final String message;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: const Locale('en'),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: Center(
-          child: Text(message),
-        ),
+        body: child,
       ),
     );
   }

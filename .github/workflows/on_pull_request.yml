@@ -50,7 +50,9 @@ jobs:
           flutter pub global run intl_utils:generate
         working-directory: packages/presentation/
       - name: AppPubGet
-        run: flutter pub get
+        run: flutter pub get && flutter packages pub run build_runner build
+      - name: Tests
+        run: flutter test
       - name: Build Sandbox Debug Apk
         run: flutter build apk --debug -t lib/sand_box.dart --flavor SandBox
       - name: Push APK to Releases

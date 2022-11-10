@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data/src/remote/service/firebase_firerstore_service.dart';
 import 'package:domain/domain.dart';
 
-class AppVersionRepositoryImpl implements AppVersionRepository {
+class AppInfoRepositoryImpl implements AppInfoRepository {
   final FireStoreService _firebaseFirestore;
 
   const AppInfoRepositoryImpl(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/style/colors.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/utils/images_container.dart';
@@ -29,6 +30,9 @@ class MovieFormField extends StatelessWidget {
         color: Color(MyColors.colorTitle),
       ),
       decoration: InputDecoration(
+        hintText: isPasswordField
+            ? S.of(context).loginPassword
+            : S.of(context).loginUserName,
         prefixIcon: SvgPicture.asset(
           isPasswordField ? AssetsImages.lock : AssetsImages.profile,
           width: Dimens.size18,
