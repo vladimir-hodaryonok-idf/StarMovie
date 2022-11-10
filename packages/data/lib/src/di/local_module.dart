@@ -5,7 +5,6 @@ import 'package:data/src/database/database.dart';
 import 'package:data/src/database/migrations/migrations.dart';
 import 'package:data/src/repositories/people_local_repository_impl.dart';
 import 'package:domain/domain.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:data/src/repositories/date_repository_impl.dart';
 import 'package:data/src/repositories/movie_local_cache_repository_impl.dart';
@@ -18,13 +17,11 @@ Future<void> initLocalModule() async {
   final database = await $FloorMovieDatabase
       .databaseBuilder('app_database.db')
       .addMigrations([Migrations.migration1to2]).build();
-  final packageInfo = await PackageInfo.fromPlatform();
   inject.registerSingleton(instance: database);
   inject.registerFactory<MovieDao>(() => database.movieDao);
   inject.registerFactory<PeopleDao>(() => database.peopleDao);
   inject.registerFactory<DateDao>(() => database.dateDao);
   inject.registerSingleton(instance: await SharedPreferences.getInstance());
-  inject.registerFactory<PackageInfo>(() => packageInfo);
   inject.registerLazySingleton<PreferencesLocalRepository>(
     () => PreferencesLocalRepositoryImpl(sharedPreferences: inject.get()),
   );

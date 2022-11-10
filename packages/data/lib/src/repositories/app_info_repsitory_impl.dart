@@ -1,16 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:domain/domain.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 const _versionCollection = 'StarMovie_versions';
 
-class AppVersionRepositoryImpl implements AppVersionRepository {
+class AppInfoRepositoryImpl implements AppInfoRepository {
   final FirebaseFirestore _firebaseFirestore;
-  final PackageInfo _packageInfo;
 
-  const AppVersionRepositoryImpl(
+  const AppInfoRepositoryImpl(
     this._firebaseFirestore,
-    this._packageInfo,
   );
 
   @override
@@ -21,7 +18,6 @@ class AppVersionRepositoryImpl implements AppVersionRepository {
     return AppVersions(
       actualVersion: data['actual'],
       minVersion: data['minimal'],
-      currentVersion: _packageInfo.version,
     );
   }
 }
