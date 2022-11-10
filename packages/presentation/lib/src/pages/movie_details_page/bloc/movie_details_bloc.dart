@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';
@@ -73,7 +75,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
 
   @override
   void share(String message, {RenderBox? renderBox}) {
-    if (renderBox != null) {
+    if (Platform.isMacOS) {
       ShareText.macShareText(message, renderBox);
     } else {
       ShareText.shareText(message);
