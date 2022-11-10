@@ -3,12 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:presentation/const/app.dart';
 import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/src/common_widgets/image_error_widget.dart';
+import 'package:presentation/src/pages/movie_details_page/adapt_details_widgets.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/movie_details_shadow.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
 import 'package:presentation/style/dimens.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 
 class CastAndCrewList extends StatelessWidget {
   const CastAndCrewList({
@@ -100,7 +100,7 @@ class PersonRole extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: SizedBox(
-        width: WidgetDisplayHelper.roleTextWidgetWidth(context),
+        width: AdaptDetailsWidget.roleTextWidgetWidth(context),
         child: Text(
           item.role,
           style: sfProSemiMedium12px50opacity,
@@ -149,7 +149,7 @@ class ImageWithName extends StatelessWidget {
           SizedBox(width: Dimens.size12),
           Flexible(
             child: SizedBox(
-              width: WidgetDisplayHelper.imageWithNameWidgetWidth(context),
+              width: AdaptDetailsWidget.imageWithNameWidgetWidth(context),
               child: Text(
                 item.personName,
                 style: sfProSemiMedium14px,

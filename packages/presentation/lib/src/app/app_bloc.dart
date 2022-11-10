@@ -31,7 +31,7 @@ abstract class AppBloc extends Bloc<BaseArguments, AppData> {
 
   void handleRemoveRouteSettings(RouteSettings value);
 
-  void navigationBar(int index);
+  void onNavigationBarClicked(int index);
 }
 
 class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
@@ -140,7 +140,7 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   }
 
   @override
-  void navigationBar(int index) {
+  void onNavigationBarClicked(int index) {
     emit(data: tile.copyWith(bottomNavIndex: index));
     final type = BottomNavBarItemType.fromIndex(index);
     logButton(EventName.navBarBtn + type.name);

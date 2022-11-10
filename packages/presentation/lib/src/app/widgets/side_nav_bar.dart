@@ -18,40 +18,29 @@ class SideNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final selectedColor = Theme.of(context).colorScheme.onPrimaryContainer;
     return !WidgetDisplayHelper.isBottomNavBarActive(context) && isShowNavBar
         ? NavigationRail(
             destinations: [
-              NavigationRailDestination(
-                icon: SvgPicture.asset(AssetsImages.movieReelIcon),
-                label: Text(S.of(context).navBarFilms),
-                selectedIcon: SvgPicture.asset(
-                  AssetsImages.movieReelIcon,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+              NavigationDestination(
+                imagePath: AssetsImages.movieReelIcon,
+                selectedColor: selectedColor,
+                labelStr: S.of(context).navBarFilms,
               ),
-              NavigationRailDestination(
-                icon: SvgPicture.asset(AssetsImages.alarmIcon),
-                label: Text(S.of(context).navBarReminder),
-                selectedIcon: SvgPicture.asset(
-                  AssetsImages.alarmIcon,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+              NavigationDestination(
+                imagePath: AssetsImages.alarmIcon,
+                selectedColor: selectedColor,
+                labelStr: S.of(context).navBarReminder,
               ),
-              NavigationRailDestination(
-                icon: SvgPicture.asset(AssetsImages.eventTicketIcon),
-                label: Text(S.of(context).navBarTickets),
-                selectedIcon: SvgPicture.asset(
-                  AssetsImages.eventTicketIcon,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+              NavigationDestination(
+                imagePath: AssetsImages.eventTicketIcon,
+                selectedColor: selectedColor,
+                labelStr: S.of(context).navBarTickets,
               ),
-              NavigationRailDestination(
-                icon: SvgPicture.asset(AssetsImages.singlePersonIcon),
-                label: Text(S.of(context).navBarPersonal),
-                selectedIcon: SvgPicture.asset(
-                  AssetsImages.singlePersonIcon,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
+              NavigationDestination(
+                imagePath: AssetsImages.singlePersonIcon,
+                selectedColor: selectedColor,
+                labelStr: S.of(context).navBarPersonal,
               ),
             ],
             selectedIndex: selectedIndex,
@@ -59,4 +48,23 @@ class SideNavigationBar extends StatelessWidget {
           )
         : SizedBox.shrink();
   }
+}
+
+class NavigationDestination extends NavigationRailDestination {
+  final String imagePath;
+  final Color selectedColor;
+  final String labelStr;
+
+  NavigationDestination({
+    required this.imagePath,
+    required this.selectedColor,
+    required this.labelStr,
+  }) : super(
+          label: Text(labelStr),
+          icon: SvgPicture.asset(imagePath),
+          selectedIcon: SvgPicture.asset(
+            imagePath,
+            color: selectedColor,
+          ),
+        );
 }

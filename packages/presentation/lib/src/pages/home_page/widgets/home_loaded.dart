@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/const/app.dart';
+import 'package:presentation/src/pages/home_page/adapt_home_widgets.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/src/pages/home_page/widgets/movie_grid_item.dart';
 import 'package:presentation/src/pages/home_page/widgets/movie_showing_status.dart';
 import 'package:presentation/src/pages/home_page/widgets/shadow_movie_item.dart';
 import 'package:presentation/style/dimens.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 
 import 'empty_lists_state.dart';
 
@@ -49,13 +49,11 @@ class HomeBody extends StatelessWidget {
                           : PageStorageKey(AppConst.anticipatedListKey),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount:
-                            WidgetDisplayHelper.columnsAccordingWithWidth(
-                          context,
-                        ),
+                            AdaptHomeWidgets.columnsAccordingWithWidth(context),
                         crossAxisSpacing: Dimens.size8,
                         mainAxisSpacing: Dimens.size8,
                         childAspectRatio:
-                            WidgetDisplayHelper.movieChildAspectRatio(context),
+                            AdaptHomeWidgets.movieChildAspectRatio(context),
                       ),
                       itemCount: isLoading
                           ? AppConst.shadowMovieListLength

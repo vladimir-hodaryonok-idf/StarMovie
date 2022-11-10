@@ -73,7 +73,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
 
   @override
   void share(String message, {RenderBox? renderBox}) {
-    if (renderBox != null) {
+    if (Platform.isMacOS) {
       ShareText.macShareText(message, renderBox);
     } else {
       ShareText.shareText(message);

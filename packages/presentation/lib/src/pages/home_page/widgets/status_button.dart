@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:presentation/generated/l10n.dart';
+import 'package:presentation/src/pages/home_page/adapt_home_widgets.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
 import 'package:presentation/utils/images_container.dart';
-import 'package:presentation/utils/widget_display_helper.dart';
 
 class StatusButton extends StatelessWidget {
   const StatusButton({
@@ -26,7 +26,7 @@ class StatusButton extends StatelessWidget {
       onTap: () => bloc.onButtonTap(id),
       child: Container(
         height: double.infinity,
-        width: WidgetDisplayHelper.statusButtonWidth(context),
+        width: AdaptHomeWidgets.statusButtonWidth(context),
         decoration: decoration(context),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
