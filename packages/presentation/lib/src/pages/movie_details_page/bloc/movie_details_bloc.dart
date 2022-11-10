@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';

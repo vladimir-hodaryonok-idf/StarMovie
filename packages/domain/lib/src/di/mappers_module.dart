@@ -41,4 +41,8 @@ void initMappers() {
   inject.registerFactory<ExtractDateMapper>(
         () => ExtractDateMapper(),
   );
+
+  inject.registerFactory<VersionToIntMapper>(
+        () => VersionToIntMapper(),
+  );
 }

@@ -1,7 +1,7 @@
 library domain;
 
 export 'src/di/domain_dependencies.dart';
-export 'src/use_cases/initial_api_call.dart';
+export 'src/use_cases/check_app_version.dart';
 export 'src/repositories/trakt_api_network_repository.dart';
 export 'src/use_cases/fetch_trending_movies.dart';
 export 'src/use_cases/fetch_anticipated_movies.dart';
@@ -48,3 +48,8 @@ export 'src/repositories/people_local_repository.dart';
 export 'src/use_cases/fetch_reviews.dart';
 export 'src/models/review_message/review_message.dart';
 export 'src/models/review_message/review_user.dart';
+export 'src/repositories/app_info_repository.dart';
+export 'src/models/app_versions/app_versions.dart';
+export 'src/mappers/version_to_int_mapper.dart';
+export 'src/models/version_check_result/version_check_result.dart';
+export 'src/use_cases/update_app.dart';
