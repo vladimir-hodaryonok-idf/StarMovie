@@ -54,6 +54,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2.27.0
         with:
           api-level: 29
+          target: playstore
           arch: x86_64
           profile: Nexus 6
           script: flutter test integration_test --flavor Prod
