@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:presentation/generated/l10n.dart';
-import 'package:star_movie/production.dart' as app;
+import 'package:star_movie/sand_box.dart' as app;
 
 void main() {
   if (Platform.isAndroid) {
@@ -12,7 +12,7 @@ void main() {
     group('Login_Test', () {
       testWidgets('Login', (widgetTester) async {
         await app.main();
-        await widgetTester.pumpAndSettle(const Duration(seconds: 5));
+        await widgetTester.pumpAndSettle(const Duration(seconds: 3));
         final personalButton = find.byTooltip('Personal');
         await widgetTester.tap(personalButton);
 

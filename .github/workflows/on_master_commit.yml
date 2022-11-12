@@ -6,7 +6,6 @@ on:
       - master
 jobs:
   commit_master:
-    name: commit to master
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v3
@@ -57,6 +56,51 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           script: flutter test integration_test --flavor Prod
+
+  github_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.0.5'
+          channel: 'stable'
+      - run: flutter --version
+      - name: Flutter upgrade
+        run: flutter upgrade
+      - name: ApiKeysFlutter
+        run: |
+          touch "keys_prod.json";
+          touch "keys_sandbox.json";
+          echo "${{ secrets.KEYS_PROD }}" >> keys_prod.json;
+      - name: ApiKeysAndroid
+        run: |
+          touch "keys.properties";
+          echo "${{ secrets.KEYS_FACEBOOK }}" >> keys.properties;
+        working-directory: android/
+      - name: GetDependenciesAndGenerateDomain
+        run: |
+          flutter pub get && flutter packages pub run build_runner build
+        working-directory: packages/domain/
+      - name: GetDependenciesAndGenerateData
+        run: |
+          flutter pub get && flutter packages pub run build_runner build
+        working-directory: packages/data/
+      - name: GetDependenciesPresentation
+        run: |
+          flutter pub global activate intl_utils 2.7.0
+          flutter pub get
+        working-directory: packages/presentation/
+      - name: GeneratePresentation
+        run: |
+          flutter pub global run intl_utils:generate
+        working-directory: packages/presentation/
+      - name: AppPubGet
+        run: flutter pub get && flutter packages pub run build_runner build
       - name: Tests
         run: flutter test
       - name: Build Prod Release Apk
