@@ -32,7 +32,7 @@ void main() {
         await widgetTester.enterText(loginField, 'vladimir@idfinance.com');
         await widgetTester.enterText(passwordField, 'idfinance');
         await widgetTester.tap(loginButton);
-        await widgetTester.pumpAndSettle(const Duration(seconds: 1));
+        await widgetTester.pumpAndSettle(const Duration(seconds: 2));
 
         final successLoggedAndNavigated = find.text('Successfully logged in');
         expect(successLoggedAndNavigated, findsOneWidget);
