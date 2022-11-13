@@ -54,6 +54,8 @@ void main() {
   });
 
   testWidgets('InvalidInput', (widgetTester) async {
+    const invalidLogin = 'invalidLogin';
+    const invalidPassword = 'invalid%Password';
     await widgetTester.pumpWidget(const TestWidget(child: Login()));
 
     await widgetTester.idle();
@@ -72,8 +74,8 @@ void main() {
       TextFormField,
       S.current.loginPassword,
     );
-    await widgetTester.enterText(loginField, 'invalidLogin');
-    await widgetTester.enterText(passwordField, 'invalid%Password');
+    await widgetTester.enterText(loginField, invalidLogin);
+    await widgetTester.enterText(passwordField, invalidPassword);
     await widgetTester.tap(loginButton);
     await widgetTester.pump();
 

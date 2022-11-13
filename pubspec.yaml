@@ -41,6 +41,7 @@ flutter:
     - keys_sandbox.json
     - flavor_sandbox_config.json
     - flavor_prod_config.json
+    - login_secrets.json
 
   uses-material-design: true
 

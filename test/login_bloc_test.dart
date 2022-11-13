@@ -36,10 +36,13 @@ void main() {
     MockGlobalKey(),
     MockResultToLocalizedMapper(),
   );
+  const fakeString = 'fake';
+  const testLogin = 'test@email.com';
+  const testPassword = 'passsword123';
   group('Auth_Test', () {
     test('ValidationFail_Test', () async {
-      bloc.onPasswordChange('fake');
-      bloc.onLoginChange('fake');
+      bloc.onPasswordChange(fakeString);
+      bloc.onLoginChange(fakeString);
       await bloc.auth();
       verify(logButton(any)).called(1);
       verifyNever(loginWithEmail(any));
@@ -47,8 +50,8 @@ void main() {
     });
     test('ValidationSuccess_Test', () async {
       bloc.validationResult = null;
-      bloc.onLoginChange('test@email.com');
-      bloc.onPasswordChange('passsword123');
+      bloc.onLoginChange(testLogin);
+      bloc.onPasswordChange(testPassword);
       when(loginWithEmail(any)).thenAnswer((_) => Future.value());
       await bloc.auth();
       verify(logButton(any)).called(1);
@@ -58,8 +61,8 @@ void main() {
 
     test('LoginWithEmailFailure_Test', () async {
       bloc.validationResult = null;
-      bloc.onLoginChange('test@email.com');
-      bloc.onPasswordChange('passsword123');
+      bloc.onLoginChange(testLogin);
+      bloc.onPasswordChange(testPassword);
       when(await loginWithEmail(any))
           .thenThrow(const ValidationException(ValidationResult()));
       await bloc.auth();

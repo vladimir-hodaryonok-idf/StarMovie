@@ -25,7 +25,9 @@ jobs:
         run: |
           touch "keys_sandbox.json";
           touch "keys_prod.json";
+          touch "login_secrets.json";
           echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
+          echo "${{ secrets.LOGIN_SECRETS }}" >> login_secrets.json;
       - name: ApiKeysAndroid
         run: |
           touch "keys.properties";
@@ -73,10 +75,11 @@ jobs:
       - run: flutter --version
       - name: Flutter upgrade
         run: flutter upgrade
-      - name: ApiKeysFlutter
+      - name: SecretsFlutter
         run: |
           touch "keys_sandbox.json";
           touch "keys_prod.json";
+          touch "login_secrets.json";
           echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
       - name: ApiKeysAndroid
         run: |

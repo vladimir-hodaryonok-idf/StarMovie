@@ -1,3 +1,4 @@
+import 'package:data/src/constants/strings.dart';
 import 'package:data/src/remote/service/facebook_auth_service.dart';
 import 'package:data/src/remote/service/firebase_auth_service.dart';
 import 'package:data/src/remote/service/firebase_firerstore_service.dart';
@@ -31,8 +32,8 @@ class AuthRepositoryImpl implements AuthRepository {
       final user = await facebookAuth.getUserData();
       firebaseAuth.signInWithCredential(facebookAuthCredential);
       return UserEmailPass(
-        user['email'] ?? '',
-        user['id'] ?? '',
+        user[DataStrings.email] ?? '',
+        user[DataStrings.id] ?? '',
       );
     }
     return null;
@@ -45,8 +46,8 @@ class AuthRepositoryImpl implements AuthRepository {
       final googleUser = googleAuthService.getUserData();
       firebaseAuth.signInWithCredential(credential);
       return UserEmailPass(
-        googleUser?['email'] ?? '',
-        googleUser?['id'] ?? '',
+        googleUser?[DataStrings.email] ?? '',
+        googleUser?[DataStrings.id] ?? '',
       );
     }
     return null;

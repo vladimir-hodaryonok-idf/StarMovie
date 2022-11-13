@@ -1,3 +1,4 @@
+import 'package:data/src/constants/strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
@@ -17,8 +18,11 @@ class FacebookAuthServiceImpl implements FacebookAuthService {
 
   @override
   Future<OAuthCredential?> login() async {
-    final LoginResult loginResult = await facebookAuth
-        .login(permissions: ['email', 'public_profile', 'user_birthday']);
+    final LoginResult loginResult = await facebookAuth.login(permissions: [
+      DataStrings.email,
+      DataStrings.public_profile,
+      DataStrings.user_birthday,
+    ]);
     if (loginResult.status == LoginStatus.success) {
       return FacebookAuthProvider.credential(
           loginResult.accessToken?.token ?? '');

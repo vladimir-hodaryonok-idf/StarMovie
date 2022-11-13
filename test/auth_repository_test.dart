@@ -32,13 +32,16 @@ void main() {
     googleAuthService: googleAuth,
   );
 
+  const userDataResponse = {
+    'login': 'anyLogin',
+    'password': 'anyPassword',
+  };
+
   group('LoginWithFaceBook_Test', () {
     test('SuccessTest', () async {
       when(facebookAuth.login()).thenAnswer((_) async => MockOAuthCredential());
-      when(facebookAuth.getUserData()).thenAnswer((_) async => {
-            'email': 'email',
-            'id': 'id',
-          });
+      when(facebookAuth.getUserData())
+          .thenAnswer((_) async => userDataResponse);
       when(firebaseAuth.signInWithCredential(MockOAuthCredential()))
           .thenAnswer((_) => Future.value());
       expect(await authRepository.loginWithFaceBook(), isNotNull);
@@ -58,10 +61,7 @@ void main() {
     test('SuccessTest', () async {
       when(googleAuth.loginAndAuthenticate())
           .thenAnswer((_) async => MockOAuthCredential());
-      when(googleAuth.getUserData()).thenReturn({
-        'login': 'anyLogin',
-        'password': 'anyPassword',
-      });
+      when(googleAuth.getUserData()).thenReturn(userDataResponse);
       when(firebaseAuth.signInWithCredential(any))
           .thenAnswer((_) => Future.value());
       expect(await authRepository.loginWithGoogle(), isNotNull);
@@ -80,12 +80,7 @@ void main() {
   group('IsLoginSuccess_Test', () {
     test('SuccessTest', () async {
       when(firebaseFirestoreService.findUserInCloud(any))
-          .thenAnswer((_) async => [
-                {
-                  'login': 'anyLogin',
-                  'password': 'anyPassword',
-                }
-              ]);
+          .thenAnswer((_) async => [userDataResponse]);
       expect(await authRepository.isLoginAndPasswordCorrect(user), true);
     });
     test('FailureTest', () async {

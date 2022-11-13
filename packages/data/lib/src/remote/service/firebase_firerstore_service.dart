@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:data/src/constants/strings.dart';
 import 'package:domain/domain.dart';
 
 abstract class FireStoreService {
@@ -6,9 +7,6 @@ abstract class FireStoreService {
 
   Future<Map<String, dynamic>> fetchVersionsFromCloud();
 }
-
-const _usersCollection = 'StarMovie_users';
-const _versionCollection = 'StarMovie_versions';
 
 class FireStoreServiceImpl implements FireStoreService {
   final FirebaseFirestore firebaseFirestore;
@@ -19,13 +17,12 @@ class FireStoreServiceImpl implements FireStoreService {
   Future<List<Map<String, dynamic>>> findUserInCloud(
     UserEmailPass user,
   ) async {
-    const login = 'login';
-    const password = 'password';
+
 
     final QuerySnapshot<Map<String, dynamic>> query = await firebaseFirestore
-        .collection(_usersCollection)
-        .where(login, isEqualTo: user.login)
-        .where(password, isEqualTo: user.password)
+        .collection(DataStrings.usersCollection)
+        .where(DataStrings.login, isEqualTo: user.login)
+        .where(DataStrings.password, isEqualTo: user.password)
         .get();
     return query.docs.map((e) => e.data()).toList();
   }
@@ -33,7 +30,7 @@ class FireStoreServiceImpl implements FireStoreService {
   @override
   Future<Map<String, dynamic>> fetchVersionsFromCloud() async {
     final QuerySnapshot<Map<String, dynamic>> query =
-        await firebaseFirestore.collection(_versionCollection).get();
+        await firebaseFirestore.collection(DataStrings.versionCollection).get();
     return query.docs.first.data();
   }
 }
