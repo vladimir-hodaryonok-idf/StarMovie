@@ -50,7 +50,7 @@ jobs:
           flutter pub global run intl_utils:generate
         working-directory: packages/presentation/
       - name: AppPubGet
-        run: flutter pub get && flutter packages pub run build_runner build
+        run: flutter pub get
       - name: Integration Test
         uses: reactivecircus/android-emulator-runner@v2.27.0
         with:
@@ -89,9 +89,15 @@ jobs:
         run: |
           flutter pub get && flutter packages pub run build_runner build
         working-directory: packages/domain/
+      - name: Domain Unit Tests
+        run: flutter test
+        working-directory: packages/domain/
       - name: GetDependenciesAndGenerateData
         run: |
           flutter pub get && flutter packages pub run build_runner build
+        working-directory: packages/data/
+      - name: Data Unit Tests
+        run: flutter test
         working-directory: packages/data/
       - name: GetDependenciesPresentation
         run: |
@@ -101,11 +107,13 @@ jobs:
       - name: GeneratePresentation
         run: |
           flutter pub global run intl_utils:generate
+          flutter packages pub run build_runner build
+        working-directory: packages/presentation/
+      - name: Presentation Unit Tests
+        run: flutter test
         working-directory: packages/presentation/
       - name: AppPubGet
-        run: flutter pub get && flutter packages pub run build_runner build
-      - name: Tests
-        run: flutter test
+        run: flutter pub get
       - name: Build Prod Release Apk
         run: flutter build apk --release -t lib/production.dart --flavor Prod
       - name: Push APK to GitHub Release
