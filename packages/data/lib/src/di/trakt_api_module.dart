@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 import 'package:data/src/di/const/trakt_api_names.dart';
 import 'package:data/src/remote/interceptors/trakt_api_interceptor.dart';
-import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/remote/service/dio_service.dart';
 import 'package:data/src/di/const/connection_time_out.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';

@@ -3,10 +3,9 @@ import 'package:data/data.dart';
 import 'package:data/src/di/tmdb_api_module.dart';
 import 'package:data/src/di/trakt_api_module.dart';
 import 'package:data/src/key_store/store.dart';
-import 'package:data/src/remote/service/service.dart';
+import 'package:data/src/remote/service/dio_service.dart';
 import 'package:data/src/repositories/app_info_repsitory_impl.dart';
 import 'package:data/src/services/analytics_service_impl.dart';
-import 'package:data/src/repositories/auth_repository_impl.dart';
 import 'package:data/src/repositories/tmdb_api_network_repository_impl.dart';
 import 'package:data/src/repositories/trakt_api_network_repository_impl.dart';
 import 'package:domain/domain.dart';
@@ -53,14 +52,53 @@ void initNetworkModule() {
   initTraktApiNetworkRepository();
   initTmdbApiNetworkRepository();
   initAuthFireBaseRepository();
-  initAnalyticsService();
   initAppVersionRepository();
 }
 
 void initAppVersionRepository() {
   inject.registerFactory<AppInfoRepository>(
     () => AppInfoRepositoryImpl(
-      FirebaseFirestore.instance,
+      inject.get(),
+    ),
+  );
+}
+
+void initAuthFireBaseRepository() {
+  inject.registerSingleton<GoogleAuthService>(
+      instance: GoogleAuthServiceImpl());
+  inject.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(
+      firebaseAuth: inject.get(),
+      firebaseFirestore: inject.get(),
+      facebookAuth: inject.get(),
+      googleAuthService: inject.get(),
+    ),
+  );
+}
+
+void initNetworkServices() {
+  initTraktApiModule();
+  initTmdbApiModule();
+  initFirebaseFirestore();
+  initAnalyticsService();
+  initFacebookAuthService();
+  initFirebaseAuthService();
+}
+
+void initFirebaseAuthService() {
+  inject.registerSingleton<FirebaseAuth>(instance: FirebaseAuth.instance);
+  inject.registerSingleton<FirebaseAuthService>(
+    instance: FirebaseAuthServiceImpl(
+      inject.get(),
+    ),
+  );
+}
+
+void initFacebookAuthService() {
+  inject.registerSingleton<FacebookAuth>(instance: FacebookAuth.instance);
+  inject.registerSingleton<FacebookAuthService>(
+    instance: FacebookAuthServiceImpl(
+      inject.get(),
     ),
   );
 }
@@ -71,19 +109,10 @@ void initAnalyticsService() {
   );
 }
 
-void initAuthFireBaseRepository() {
-  inject.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(
-      firebaseAuth: FirebaseAuth.instance,
-      firebaseFirestore: FirebaseFirestore.instance,
-      facebookAuth: FacebookAuth.instance,
-    ),
+void initFirebaseFirestore() {
+  inject.registerSingleton<FireStoreService>(
+    instance: FireStoreServiceImpl(FirebaseFirestore.instance),
   );
-}
-
-void initNetworkServices() {
-  initTraktApiModule();
-  initTmdbApiModule();
 }
 
 void initTmdbApiNetworkRepository() {

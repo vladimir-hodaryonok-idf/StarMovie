@@ -8,6 +8,7 @@ import 'package:presentation/generated/l10n.dart';
 import 'package:presentation/utils/widget_display_helper.dart';
 import 'app/app_bloc.dart';
 import 'app/widgets/app_navigation_bar.dart';
+import 'app/widgets/side_nav_bar.dart';
 import 'base_bloc/base_tile.dart';
 import 'config_model/presentation_config.dart';
 

@@ -26,9 +26,10 @@ dependencies:
       path: plugins/window_size
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^2.0.0
 
 flutter:
@@ -37,6 +38,7 @@ flutter:
     - keys_sandbox.json
     - flavor_sandbox_config.json
     - flavor_prod_config.json
+    - login_secrets.json
 
   uses-material-design: true
 
