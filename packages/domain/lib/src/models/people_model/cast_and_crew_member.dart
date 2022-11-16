@@ -1,15 +1,13 @@
 import 'package:domain/src/models/people_model/person.dart';
 
-class PeopleWithImage {
+abstract class CastAndCrewMember {
   final String? activity;
   final List<String>? activities;
   final Person? person;
-  final String imageUrl;
 
-  const PeopleWithImage({
+  const CastAndCrewMember(
+    this.activity,
     this.activities,
     this.person,
-    this.imageUrl = '',
-    this.activity,
-  });
+  );
 }

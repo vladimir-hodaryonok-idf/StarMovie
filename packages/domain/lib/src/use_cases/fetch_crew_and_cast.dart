@@ -1,6 +1,8 @@
 import 'package:domain/domain.dart';
+import 'package:domain/src/mappers/cast_and_crew_to_list_mapper.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/models/data_wrapper/cast_and_images_wrapper.dart';
+import 'package:domain/src/models/people_model/cast_and_crew_member.dart';
 import 'package:domain/src/use_cases/base/in_out_use_case.dart';
 
 class FetchCrewAndCastUseCase
@@ -9,12 +11,14 @@ class FetchCrewAndCastUseCase
   final TmdbApiNetworkRepository tmdbApiNetworkRepository;
   final PeopleLocalRepository peopleLocalRepository;
   final CastAndImagesMapper castAndImagesMapper;
+  final CastAndCrewToListMapper castAndCrewToListMapper;
 
   const FetchCrewAndCastUseCase({
     required this.traktApiNetworkRepository,
     required this.tmdbApiNetworkRepository,
     required this.castAndImagesMapper,
     required this.peopleLocalRepository,
+    required this.castAndCrewToListMapper,
   });
 
   @override
@@ -28,36 +32,39 @@ class FetchCrewAndCastUseCase
   }
 
   Future<List<PeopleWithImage>> _fetchFromApiAndCache(int id) async {
-    final List<Cast> cast =
-        await traktApiNetworkRepository.fetchCrewAndCast(id);
-    if (cast.isEmpty) return List.empty();
-    final List<PeopleWithImage> fromApi = await _fetchImagesAndMap(cast);
+    final fullMemberList = await _fetchCastAndCrewMember(id);
+    final List<PeopleWithImage> fromApi =
+        await _fetchImagesAndMap(fullMemberList);
     await peopleLocalRepository.saveCast(fromApi, id);
     return fromApi;
   }
 
-  Future<List<PeopleWithImage>> _fetchImagesAndMap(List<Cast> cast) async {
-    final List<int> indexes = _generateFirstIndexes(cast.length);
+  Future<List<CastAndCrewMember>> _fetchCastAndCrewMember(int id) async {
+    final CrewAndCast team =
+        await traktApiNetworkRepository.fetchCrewAndCast(id);
+    final crewAndCastMembersList = castAndCrewToListMapper(team);
+    return crewAndCastMembersList.isEmpty
+        ? List.empty()
+        : crewAndCastMembersList;
+  }
+
+  Future<List<PeopleWithImage>> _fetchImagesAndMap(
+    List<CastAndCrewMember> members,
+  ) async {
     return Future.wait(
-      indexes.map(
-        (index) async {
-          final id = cast[index].person?.ids?.tmdb;
+      members.map(
+        (member) async {
+          final id = member.person?.ids?.tmdb;
           if (id == null) return PeopleWithImage();
           final images = await tmdbApiNetworkRepository.fetchImage(id);
           return castAndImagesMapper(
             CastAndImageWrapper(
               images: images,
-              people: cast[index],
+              people: member,
             ),
           );
         },
       ),
     );
-  }
-
-  List<int> _generateFirstIndexes(int castLength) {
-    const firstFourIds = 4;
-    final length = castLength >= firstFourIds ? firstFourIds : castLength;
-    return List.generate(length, (index) => index++);
   }
 }

@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  commit_master:
+  integration_test:
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
           touch "keys_prod.json";
           touch "keys_sandbox.json";          
           touch "login_secrets.json";
-          echo "${{ secrets.KEYS_PROD }}" >> keys_prod.json;
+          echo "${{ secrets.KEYS_SANDBOX }}" >> keys_sandbox.json;
           echo "${{ secrets.LOGIN_SECRETS }}" >> login_secrets.json;
       - name: ApiKeysAndroid
         run: |
@@ -57,7 +57,7 @@ jobs:
           api-level: 29
           arch: x86_64
           profile: Nexus 6
-          script: flutter test integration_test --flavor Prod
+          script: flutter test integration_test --flavor SandBox
 
   github_release:
     runs-on: ubuntu-latest

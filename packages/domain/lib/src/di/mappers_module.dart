@@ -1,4 +1,5 @@
 import 'package:domain/domain.dart';
+import 'package:domain/src/mappers/cast_and_crew_to_list_mapper.dart';
 import 'package:domain/src/mappers/cast_and_image_list_mapper.dart';
 import 'package:domain/src/mappers/extract_date.dart';
 import 'package:domain/src/mappers/extract_header_value.dart';
@@ -23,7 +24,6 @@ void initMappers() {
   );
   inject.registerFactory<MovieIdToImageUrlMapper>(
     () => MovieIdToImageUrlMapper(
-
       apiKey: inject.get(instanceName: OmdbApiNameKey.omdbApiKey),
     ),
   );
@@ -39,10 +39,13 @@ void initMappers() {
   );
 
   inject.registerFactory<ExtractDateMapper>(
-        () => ExtractDateMapper(),
+    () => ExtractDateMapper(),
   );
 
   inject.registerFactory<VersionToIntMapper>(
-        () => VersionToIntMapper(),
+    () => VersionToIntMapper(),
+  );
+  inject.registerFactory<CastAndCrewToListMapper>(
+    () => CastAndCrewToListMapper(),
   );
 }

@@ -18,7 +18,6 @@ class FireStoreServiceImpl implements FireStoreService {
     UserEmailPass user,
   ) async {
 
-
     final QuerySnapshot<Map<String, dynamic>> query = await firebaseFirestore
         .collection(DataStrings.usersCollection)
         .where(DataStrings.login, isEqualTo: user.login)

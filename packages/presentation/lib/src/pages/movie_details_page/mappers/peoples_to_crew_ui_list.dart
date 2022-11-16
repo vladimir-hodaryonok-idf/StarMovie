@@ -9,7 +9,7 @@ class PeoplesToCrewUiMapper
         (e) => CrewAndCastUi(
           imageUrl: e.imageUrl,
           personName: e.person?.name ?? '',
-          role: e.characters.firstOrEmpty,
+          role: e.activities.firstOrEmpty,
         ),
       )
       .toList();

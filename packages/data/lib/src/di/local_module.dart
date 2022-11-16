@@ -16,7 +16,10 @@ final inject = Needle.instance;
 Future<void> initLocalModule() async {
   final database = await $FloorMovieDatabase
       .databaseBuilder('app_database.db')
-      .addMigrations([Migrations.migration1to2]).build();
+      .addMigrations([
+    Migrations.migration1to2,
+    Migrations.migration2to3,
+  ]).build();
   inject.registerSingleton(instance: database);
   inject.registerFactory<MovieDao>(() => database.movieDao);
   inject.registerFactory<PeopleDao>(() => database.peopleDao);

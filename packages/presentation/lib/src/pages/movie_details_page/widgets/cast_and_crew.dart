@@ -13,10 +13,12 @@ import 'package:presentation/style/dimens.dart';
 class CastAndCrewList extends StatelessWidget {
   const CastAndCrewList({
     required this.castList,
+    required this.fullCastCallback,
     super.key,
   });
 
   final List<CrewAndCastUi> castList;
+  final Function() fullCastCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +37,7 @@ class CastAndCrewList extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () {
-                  // todo implement in the next tasks
-                },
+                onPressed: fullCastCallback,
                 child: SizedBox(
                   height: Dimens.size18,
                   child: Text(

@@ -47,4 +47,8 @@ class Migrations {
     await database.execute('CREATE TABLE IF NOT EXISTS DateDto'
         '(key INTEGER NOT NULL, date INTEGER, PRIMARY KEY (key))');
   });
+
+  static Migration migration2to3 = Migration(2, 3, (database) async {
+    await database.execute('DELETE FROM PeopleWithImageDto');
+  });
 }

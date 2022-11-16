@@ -1,3 +1,4 @@
+import 'package:presentation/const/app.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/model/review_messages_ui.dart';
@@ -40,4 +41,7 @@ class DetailsData {
         detailsSwitcher: detailsSwitcher ?? this.detailsSwitcher,
         reviews: reviews ?? this.reviews,
       );
+
+  List<CrewAndCastUi> get shortCastList =>
+      crewAndCast.take(AppConst.castListLength).toList();
 }

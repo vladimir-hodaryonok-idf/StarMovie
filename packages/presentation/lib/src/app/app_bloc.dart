@@ -6,6 +6,7 @@ import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:collection/collection.dart';
+import 'package:presentation/src/pages/cast_and_crew_page/cast_and_crew_screen.dart';
 import 'package:presentation/src/pages/home_page/home.dart';
 import 'package:presentation/src/pages/login_page/login.dart';
 
@@ -46,6 +47,7 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
   final bottomNavBarStack = {
     BottomNavBarItemType.home: () => Home.page(),
     BottomNavBarItemType.login: () => Login.page(),
+    BottomNavBarItemType.tickets: () => CastAndCrewScreen.page(),
   };
 
   @override
@@ -151,6 +153,9 @@ class _AppBloc extends BlocImpl<BaseArguments, AppData> implements AppBloc {
         _popAllAndPush(page);
         break;
       case BottomNavBarItemType.login:
+        _popAllAndPush(page);
+        break;
+      case BottomNavBarItemType.tickets:
         _popAllAndPush(page);
         break;
       default:

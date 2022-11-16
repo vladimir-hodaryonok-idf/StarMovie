@@ -16,5 +16,5 @@ class AppConst {
   static const blackCircleCharCode = 9679;
   static const desktopMinWidth = 900;
   static const tabletMinWidth = 600;
-
+  static const castListLength = 4;
 }
