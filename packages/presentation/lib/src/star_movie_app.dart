@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:presentation/src/app/data/app_data.dart';
+import 'package:presentation/src/app/widgets/side_nav_bar.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
 import 'package:presentation/style/color_scheme/dark.dart';
 import 'package:presentation/generated/l10n.dart';
