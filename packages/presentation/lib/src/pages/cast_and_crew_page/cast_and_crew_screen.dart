@@ -7,6 +7,7 @@ import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/cast_and_crew_page/adapt_crew_widgets.dart';
 import 'package:presentation/src/pages/cast_and_crew_page/bloc/crew_and_cast_bloc.dart';
 import 'package:presentation/src/pages/cast_and_crew_page/bloc/crew_and_cast_data.dart';
+import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/widgets/cast_and_crew.dart';
 import 'package:presentation/style/dimens.dart';
 import 'package:presentation/style/text_styles/styles.dart';
@@ -49,36 +50,44 @@ class _CastAndCrewScreenState
           child: StreamBuilder<BaseTile<CrewAndCastData>>(
             stream: bloc.dataStream,
             builder: (context, snapShot) {
+              if (snapShot.data == null) return SizedBox.shrink();
               final tile = snapShot.data?.tile;
-              if (tile != null) {
-                return WidgetDisplayHelper.isPhoneDisplay(context)
-                    ? ListView.builder(
-                        itemCount: tile.crew.length,
-                        itemBuilder: (_, index) => CastAndCrewItem(
-                          item: tile.crew[index],
-                        ),
-                      )
-                    : GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              AdaptCrewWidgets.columnsAccordingWithWidth(
-                            context,
-                          ),
-                          crossAxisSpacing: Dimens.size8,
-                          mainAxisSpacing: Dimens.size8,
-                          childAspectRatio: Dimens.aspectRatio5to1,
-                        ),
-                        itemCount: tile.crew.length,
-                        itemBuilder: (context, index) => CastAndCrewItem(
-                          item: tile.crew[index],
-                        ),
-                      );
-              }
-              return SizedBox.shrink();
+              if (tile != null) return CastAndCrewListFull(list: tile.crew);
+              return Center(child: Text(S.of(context).emptyData));
             },
           ),
         ),
       ),
     );
+  }
+}
+
+class CastAndCrewListFull extends StatelessWidget {
+  const CastAndCrewListFull({
+    required this.list,
+    super.key,
+  });
+
+  final List<CrewAndCastUi> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetDisplayHelper.isPhoneDisplay(context)
+        ? ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (_, index) => CastAndCrewItem(item: list[index]),
+          )
+        : GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: AdaptCrewWidgets.columnsAccordingWithWidth(
+                context,
+              ),
+              crossAxisSpacing: Dimens.size8,
+              mainAxisSpacing: Dimens.size8,
+              childAspectRatio: Dimens.aspectRatio5to1,
+            ),
+            itemCount: list.length,
+            itemBuilder: (context, index) => CastAndCrewItem(item: list[index]),
+          );
   }
 }
