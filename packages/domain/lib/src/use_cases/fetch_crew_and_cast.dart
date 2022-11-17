@@ -23,8 +23,7 @@ class FetchCrewAndCastUseCase
 
   @override
   Future<List<PeopleWithImage>> call(int id) async {
-    final List<PeopleWithImage> fromCache =
-        await peopleLocalRepository.fetchByMovieId(id);
+    final fromCache = await peopleLocalRepository.fetchByMovieId(id);
     if (fromCache.isNotEmpty) {
       return fromCache;
     }
@@ -33,15 +32,13 @@ class FetchCrewAndCastUseCase
 
   Future<List<PeopleWithImage>> _fetchFromApiAndCache(int id) async {
     final fullMemberList = await _fetchCastAndCrewMember(id);
-    final List<PeopleWithImage> fromApi =
-        await _fetchImagesAndMap(fullMemberList);
+    final fromApi = await _fetchImagesAndMap(fullMemberList);
     await peopleLocalRepository.saveCast(fromApi, id);
     return fromApi;
   }
 
   Future<List<CastAndCrewMember>> _fetchCastAndCrewMember(int id) async {
-    final CrewAndCast team =
-        await traktApiNetworkRepository.fetchCrewAndCast(id);
+    final team = await traktApiNetworkRepository.fetchCrewAndCast(id);
     final crewAndCastMembersList = castAndCrewToListMapper(team);
     return crewAndCastMembersList.isEmpty
         ? List.empty()
