@@ -7,5 +7,5 @@ class CastAndCrewArgs implements BaseArguments {
   const CastAndCrewArgs(this._crew);
 
   @override
-  get value => _crew;
+  List<CrewAndCastUi> get value => _crew;
 }

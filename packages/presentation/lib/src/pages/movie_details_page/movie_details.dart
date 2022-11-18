@@ -113,14 +113,14 @@ class MovieDetailsWidget extends StatelessWidget {
 
 class MovieInfoAccordingWithDetailsSwitcher extends StatelessWidget {
   const MovieInfoAccordingWithDetailsSwitcher({
-    Key? key,
     required this.details,
     required this.isLoading,
     required this.detailsSwitcher,
     required this.crewAndCast,
     required this.reviews,
     required this.fullCastCallback,
-  }) : super(key: key);
+    super.key,
+  });
 
   final MovieDetails details;
   final bool isLoading;
