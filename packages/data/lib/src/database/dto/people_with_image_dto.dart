@@ -43,8 +43,8 @@ class PeopleWithImageDto {
     int movieId,
   ) =>
       PeopleWithImageDto(
-        peoples.character,
-        peoples.characters,
+        peoples.activity,
+        peoples.activities,
         peoples.person?.name,
         peoples.person?.ids?.trakt,
         peoples.person?.ids?.slug,
@@ -56,8 +56,8 @@ class PeopleWithImageDto {
       );
 
   PeopleWithImage toPeoplesWithImages() => PeopleWithImage(
-        character: character,
-        characters: characters,
+        activity: character,
+        activities: characters,
         person: Person(
           name: name,
           ids: PeopleIds(

@@ -12,7 +12,7 @@ import 'dto/people_with_image_dto.dart';
 part 'database.g.dart';
 
 @TypeConverters([ListToStringConverter])
-@Database(version: 2, entities: [
+@Database(version: 3, entities: [
   MovieDto,
   PeopleWithImageDto,
   DateDto,

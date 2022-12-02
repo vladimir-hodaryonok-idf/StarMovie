@@ -39,6 +39,7 @@ void initUseCases() async {
       tmdbApiNetworkRepository: inject.get(),
       castAndImagesMapper: inject.get(),
       peopleLocalRepository: inject.get(),
+      castAndCrewToListMapper:  inject.get(),
     ),
   );
   inject.registerFactory(

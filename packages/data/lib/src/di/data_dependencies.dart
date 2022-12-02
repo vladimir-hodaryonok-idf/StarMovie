@@ -65,7 +65,8 @@ void initAppVersionRepository() {
 
 void initAuthFireBaseRepository() {
   inject.registerSingleton<GoogleAuthService>(
-      instance: GoogleAuthServiceImpl());
+    instance: GoogleAuthServiceImpl(),
+  );
   inject.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(
       firebaseAuth: inject.get(),

@@ -7,8 +7,8 @@ const _imageUrl = 'http://image.tmdb.org/t/p/w185';
 class CastAndImagesMapper extends Mapper<CastAndImageWrapper, PeopleWithImage> {
   @override
   PeopleWithImage call(CastAndImageWrapper data) => PeopleWithImage(
-        character: data.people.character,
-        characters: data.people.characters,
+        activity: data.people.activity,
+        activities: data.people.activities,
         person: data.people.person,
         imageUrl: _imageUrl +
             (data.images.profiles?.firstOrNull?.filePath).stringOrEmpty,

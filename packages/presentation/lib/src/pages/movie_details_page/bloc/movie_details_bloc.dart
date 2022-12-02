@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:presentation/const/events_strings.dart';
+import 'package:presentation/src/base_bloc/args/cast_args.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
+import 'package:presentation/src/pages/cast_and_crew_page/cast_and_crew_screen.dart';
 import 'package:presentation/src/pages/movie_details_page/bloc/details_data.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/movie_to_movie_details.dart';
 import 'package:presentation/src/pages/movie_details_page/mappers/peoples_to_crew_ui_list.dart';
@@ -34,6 +36,8 @@ abstract class MovieDetailsBloc extends Bloc<BaseArguments, DetailsData> {
   void goBack();
 
   void share(String message, {RenderBox? renderBox});
+
+  void viewFullCastAndCrew();
 }
 
 class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
@@ -75,6 +79,7 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
 
   @override
   void share(String message, {RenderBox? renderBox}) {
+    logButton(EventName.shareBtn);
     if (Platform.isMacOS) {
       ShareText.macShareText(message, renderBox);
     } else {
@@ -112,5 +117,12 @@ class _MovieDetailsBloc extends BlocImpl<BaseArguments, DetailsData>
       data: tile.copyWith(reviews: reviewsUi),
       isLoading: false,
     );
+  }
+
+  @override
+  void viewFullCastAndCrew() {
+    logButton(EventName.viewCastBtn);
+    final args = CastAndCrewArgs(tile.crewAndCast);
+    appNavigator.push(CastAndCrewScreen.page(args: args));
   }
 }

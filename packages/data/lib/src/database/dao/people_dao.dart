@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class PeopleDao {
-  @Insert(onConflict: OnConflictStrategy.replace)
+  @Insert(onConflict: OnConflictStrategy.ignore)
   Future<List<int>> insertPeople(List<PeopleWithImageDto> peoples);
 
   @Query('SELECT * FROM PeopleWithImageDto WHERE movieId = :movieId')

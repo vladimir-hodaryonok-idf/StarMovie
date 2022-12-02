@@ -10,4 +10,5 @@ class EventName {
   static const navBarBtn = 'navBar_btn_clicked:';
   static const backNavBtn = 'back_nav_button_clicked';
   static const shareBtn = 'share_btn_clicked';
+  static const viewCastBtn = 'view_full_cast_clicked';
 }

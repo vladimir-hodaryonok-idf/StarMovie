@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/src/base_bloc/base_tile.dart';
 import 'package:presentation/src/base_bloc/bloc_screen.dart';
-import 'package:presentation/src/base_bloc/movie_args.dart';
+import 'package:presentation/src/base_bloc/args/movie_args.dart';
 import 'package:presentation/src/navigation/base_page.dart';
 import 'package:presentation/src/pages/movie_details_page/model/cast_and_crew.dart';
 import 'package:presentation/src/pages/movie_details_page/model/movie_details.dart';
@@ -92,8 +92,9 @@ class MovieDetailsWidget extends StatelessWidget {
                   details: details,
                   isLoading: isLoading,
                   detailsSwitcher: tile.detailsSwitcher,
-                  crewAndCast: tile.crewAndCast,
+                  crewAndCast: tile.shortCastList,
                   reviews: tile.reviews,
+                  fullCastCallback: bloc.viewFullCastAndCrew,
                 ),
               ],
             ),
@@ -112,19 +113,21 @@ class MovieDetailsWidget extends StatelessWidget {
 
 class MovieInfoAccordingWithDetailsSwitcher extends StatelessWidget {
   const MovieInfoAccordingWithDetailsSwitcher({
-    Key? key,
     required this.details,
     required this.isLoading,
     required this.detailsSwitcher,
     required this.crewAndCast,
     required this.reviews,
-  }) : super(key: key);
+    required this.fullCastCallback,
+    super.key,
+  });
 
   final MovieDetails details;
   final bool isLoading;
   final DetailsSwitcher detailsSwitcher;
   final List<CrewAndCastUi> crewAndCast;
   final List<ReviewMessageUi> reviews;
+  final Function() fullCastCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -133,6 +136,7 @@ class MovieInfoAccordingWithDetailsSwitcher extends StatelessWidget {
         return DescriptionAndCast(
           crewAndCast: crewAndCast,
           movieDetails: details.overview,
+          fullCastCallback: fullCastCallback,
         );
       case DetailsSwitcher.reviews:
         return ReviewsWidget(
@@ -149,11 +153,13 @@ class DescriptionAndCast extends StatelessWidget {
   const DescriptionAndCast({
     required this.crewAndCast,
     required this.movieDetails,
+    required this.fullCastCallback,
     super.key,
   });
 
   final List<CrewAndCastUi> crewAndCast;
   final String movieDetails;
+  final Function() fullCastCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +167,10 @@ class DescriptionAndCast extends StatelessWidget {
         ? Column(
             children: [
               ExpandableDescription(description: movieDetails),
-              CastAndCrewList(castList: crewAndCast),
+              CastAndCrewList(
+                castList: crewAndCast,
+                fullCastCallback: fullCastCallback,
+              ),
             ],
           )
         : Row(
@@ -170,7 +179,10 @@ class DescriptionAndCast extends StatelessWidget {
                 child: ExpandableDescription(description: movieDetails),
               ),
               Flexible(
-                child: CastAndCrewList(castList: crewAndCast),
+                child: CastAndCrewList(
+                  castList: crewAndCast,
+                  fullCastCallback: fullCastCallback,
+                ),
               )
             ],
           );

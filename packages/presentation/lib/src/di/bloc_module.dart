@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:presentation/src/pages/cast_and_crew_page/bloc/crew_and_cast_bloc.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_bloc.dart';
 import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_list.dart';
 import 'package:presentation/src/pages/home_page/mappers/trending_to_home_list.dart';
@@ -50,4 +51,6 @@ void initBlocModule() {
       inject.get(),
     ),
   );
+
+  inject.registerFactory<CrewAndCastBloc>(() => CrewAndCastBloc());
 }

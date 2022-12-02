@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:presentation/const/events_strings.dart';
 import 'package:presentation/src/base_bloc/bloc.dart';
-import 'package:presentation/src/base_bloc/movie_args.dart';
+import 'package:presentation/src/base_bloc/args/movie_args.dart';
 import 'package:presentation/src/navigation/base_arguments.dart';
 import 'package:presentation/src/pages/home_page/bloc/home_data.dart';
 import 'package:presentation/src/pages/home_page/mappers/anticipated_to_home_list.dart';
